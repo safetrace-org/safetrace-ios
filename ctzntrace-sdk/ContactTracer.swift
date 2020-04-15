@@ -1,20 +1,24 @@
 import UIKit
 
 public final class ContactTracer {
+    private let bluetoothManager = BluetoothManager()
+    
     public static let shared = ContactTracer()
     
-    public var isTracing: Bool
+    public var isTracing: Bool {
+        return bluetoothManager.isTracingActive
+    }
     
     public func startIfEnabled() {
-        print("Starting")
+        bluetoothManager.startScanning()
     }
     
     public func stop() {
-        
+        bluetoothManager.stopScanning()
     }
     
     public func flushPendingTraces() {
-        
+        bluetoothManager.reportPendingTraces()
     }
     
     public func contactCenterViewController() -> UIViewController {
@@ -25,9 +29,5 @@ public final class ContactTracer {
         let vc = UIViewController()
         vc.view.backgroundColor = .magenta
         return vc
-    }
-    
-    private init() {
-        isTracing = false
     }
 }
