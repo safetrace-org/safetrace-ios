@@ -10,6 +10,7 @@
 		DC0BBB1C24468E5B00B18911 /* ctzntrace_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* ctzntrace_sdk.framework */; };
 		DC0BBB2124468E5B00B18911 /* ctzntrace_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */; };
 		DC0BBB2324468E5B00B18911 /* ctzntrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* ContactTracer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		DC0BBB1B24468E5B00B18911 /* ctzntrace-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ctzntrace-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ctzntrace_sdkTests.swift; sourceTree = "<group>"; };
 		DC0BBB2224468E5B00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC0BBB2C24468EA500B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */,
 				DC0BBB1624468E5B00B18911 /* Info.plist */,
+				DC0BBB2C24468EA500B18911 /* ContactTracer.swift */,
 			);
 			path = "ctzntrace-sdk";
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					DC0BBB1124468E5B00B18911 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					DC0BBB1A24468E5B00B18911 = {
 						CreatedOnToolsVersion = 11.4;
@@ -195,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 		DC0BBB2724468E5B00B18911 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
@@ -356,6 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.ctzntrace-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +371,7 @@
 		DC0BBB2824468E5B00B18911 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
@@ -388,6 +396,7 @@
 		DC0BBB2A24468E5B00B18911 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
 				INFOPLIST_FILE = "ctzntrace-sdkTests/Info.plist";
@@ -406,6 +415,7 @@
 		DC0BBB2B24468E5B00B18911 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
 				INFOPLIST_FILE = "ctzntrace-sdkTests/Info.plist";
