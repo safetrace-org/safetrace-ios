@@ -1,7 +1,7 @@
 import UIKit
 
-public final class CTZNTrace {
-    public static let shared = CTZNTrace()
+public final class ContactTracer {
+    public static let shared = ContactTracer()
     
     public var isTracing: Bool
     

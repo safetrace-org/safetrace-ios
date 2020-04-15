@@ -10,8 +10,8 @@
 		DC0BBB1C24468E5B00B18911 /* CTZNTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* CTZNTrace.framework */; };
 		DC0BBB2124468E5B00B18911 /* ctzntrace_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */; };
 		DC0BBB2324468E5B00B18911 /* ctzntrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC0BBB2D24468EA500B18911 /* CTZNTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */; };
-		DC0BBB302446957000B18911 /* ContactTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2F2446957000B18911 /* ContactTracer.swift */; };
+		DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* ContactTracer.swift */; };
+		DC0BBB302446957000B18911 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2F2446957000B18911 /* BluetoothManager.swift */; };
 		DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB33244699E400B18911 /* ContactTrace.swift */; };
 		DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */; };
 		DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
@@ -61,8 +61,8 @@
 		DC0BBB1B24468E5B00B18911 /* ctzntrace-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ctzntrace-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ctzntrace_sdkTests.swift; sourceTree = "<group>"; };
 		DC0BBB2224468E5B00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTZNTrace.swift; sourceTree = "<group>"; };
-		DC0BBB2F2446957000B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
+		DC0BBB2C24468EA500B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
+		DC0BBB2F2446957000B18911 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		DC0BBB33244699E400B18911 /* ContactTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTrace.swift; sourceTree = "<group>"; };
 		DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorage.swift; sourceTree = "<group>"; };
 		DC0BBB3B24469C9900B18911 /* trace-sdk-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "trace-sdk-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +127,7 @@
 			children = (
 				DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */,
 				DC0BBB1624468E5B00B18911 /* Info.plist */,
-				DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */,
+				DC0BBB2C24468EA500B18911 /* ContactTracer.swift */,
 				DC0BBB2E244694EB00B18911 /* Trace */,
 			);
 			path = "ctzntrace-sdk";
@@ -145,7 +145,7 @@
 		DC0BBB2E244694EB00B18911 /* Trace */ = {
 			isa = PBXGroup;
 			children = (
-				DC0BBB2F2446957000B18911 /* ContactTracer.swift */,
+				DC0BBB2F2446957000B18911 /* BluetoothManager.swift */,
 				DC0BBB33244699E400B18911 /* ContactTrace.swift */,
 				DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */,
 			);
@@ -315,8 +315,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */,
-				DC0BBB2D24468EA500B18911 /* CTZNTrace.swift in Sources */,
-				DC0BBB302446957000B18911 /* ContactTracer.swift in Sources */,
+				DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */,
+				DC0BBB302446957000B18911 /* BluetoothManager.swift in Sources */,
 				DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

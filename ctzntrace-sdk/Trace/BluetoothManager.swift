@@ -35,7 +35,7 @@ private let tracePacketCharacteristicIdentifier = CBUUID(string: "0000cd20-0000-
 private let centralRestorationIdentifier = "com.citizen.bluetoothRestoration.central"
 private let peripheralRestorationIdentifier = "com.citizen.bluetoothRestoration.peripheral"
 
-internal final class ContactTracer: NSObject {
+internal final class BluetoothManager: NSObject {
     private var defaults: UserDefaultsProtocol
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
@@ -219,7 +219,7 @@ internal final class ContactTracer: NSObject {
 }
 
 // MARK: - CBPeripheralManagerDelegate
-extension ContactTracer: CBPeripheralManagerDelegate {
+extension BluetoothManager: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == .poweredOn {
             startPeripheralService()
@@ -258,7 +258,7 @@ extension ContactTracer: CBPeripheralManagerDelegate {
 }
 
 // MARK: - CBCentralManagerDelegate
-extension ContactTracer: CBCentralManagerDelegate {
+extension BluetoothManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ manager: CBCentralManager) {
         if manager.state == .poweredOn {
             let servicesToScan: [CBUUID]? = [contactTracingServiceIdentifier]
@@ -314,7 +314,7 @@ extension ContactTracer: CBCentralManagerDelegate {
 }
 
 // MARK: - CBPeripheralDelegate
-extension ContactTracer: CBPeripheralDelegate {
+extension BluetoothManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
             notifyPeripheralError(peripheral: peripheral, context: "didDiscoverServices", error: error)
@@ -439,7 +439,7 @@ private extension ContactTrace {
 }
 
 // MARK: - Debug
-extension ContactTracer {
+extension BluetoothManager {
     private func notifyPeripheralDiscovery(
         peripheral: CBPeripheral,
         rssi: NSNumber,
@@ -500,4 +500,3 @@ extension ContactTracer {
         #endif
     }
 }
-
