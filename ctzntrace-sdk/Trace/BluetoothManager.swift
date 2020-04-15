@@ -18,16 +18,6 @@ private struct PendingTraceData {
     var packet: TracePacket?
 }
 
-//sourcery: AutoMockable
-protocol UserDefaultsProtocol {
-    func set(_: Any?, forKey: String)
-    func object(forKey: String) -> Any?
-    func data(forKey: String) -> Data?
-    func bool(forKey: String) -> Bool
-}
-
-extension UserDefaults: UserDefaultsProtocol { }
-
 private let isEnabledDefaultsIdentifier = "org.ctzn.tracing_enabled"
 private let pendingContactDefaultsIdentifier = "org.ctzn.pending_contacts"
 private let contactTracingServiceIdentifier = CBUUID(string: "0000cd19-0000-1000-8000-00805f9b34fb")
@@ -36,7 +26,7 @@ private let centralRestorationIdentifier = "com.citizen.bluetoothRestoration.cen
 private let peripheralRestorationIdentifier = "com.citizen.bluetoothRestoration.peripheral"
 
 internal final class BluetoothManager: NSObject {
-    private var defaults: UserDefaultsProtocol
+    private let environment: Environment
     private var peripheralManager: CBPeripheralManager?
     private var centralManager: CBCentralManager?
     private var characteristic: CBMutableCharacteristic?
@@ -63,27 +53,16 @@ internal final class BluetoothManager: NSObject {
     }
 
     var isTracingEnabled: Bool {
-        return defaults.bool(forKey: isEnabledDefaultsIdentifier)
+        return environment.defaults.bool(forKey: isEnabledDefaultsIdentifier)
     }
 
     var isTracingActive: Bool {
         return isTracingEnabled && isBluetoothPermissionEnabled
     }
-        
-    private let isInForeground: () -> Bool
-    private let getModelIdentifier: () -> String
     
-    init(
-        defaults: UserDefaultsProtocol = UserDefaults.standard,
-        isInForeground: @escaping () -> Bool = {
-            UIApplication.shared.applicationState == .active
-        },
-        getModelIdentifier: @escaping () -> String = getModelIdentifierString
-    ) {
-        self.defaults = defaults
-        self.isInForeground = isInForeground
-        self.getModelIdentifier = getModelIdentifier
-        self.uuidStorage = TraceIDStorage(defaults: defaults)
+    init(environment: Environment) {
+        self.environment = environment
+        self.uuidStorage = TraceIDStorage(environment: environment)
     }
     
     func startScanning() {
@@ -100,12 +79,12 @@ internal final class BluetoothManager: NSObject {
     }
     
     func optIn() {
-        defaults.set(true, forKey: isEnabledDefaultsIdentifier)
+        environment.defaults.set(true, forKey: isEnabledDefaultsIdentifier)
         startScanning()
     }
 
     func optOut() {
-        defaults.set(false, forKey: isEnabledDefaultsIdentifier)
+        environment.defaults.set(false, forKey: isEnabledDefaultsIdentifier)
         stopScanning()
     }
     
@@ -167,9 +146,9 @@ internal final class BluetoothManager: NSObject {
             rssi: rssi,
             timestamp: Date(),
             location: nil, // todo
-            foreground: isInForeground())
+            foreground: environment.device.appState() == .active)
         
-        if isInForeground() {
+        if environment.device.appState() != .background {
             reportTraces([trace])
         } else {
             savePendingTrace(trace)
@@ -177,7 +156,7 @@ internal final class BluetoothManager: NSObject {
     }
     
     private func reportTraces(_ traces: [ContactTrace], success: (() -> Void)? = nil) {
-        let traceData = ContactTraces(traces: traces, phoneModel: getModelIdentifier())
+        let traceData = ContactTraces(traces: traces, phoneModel: environment.device.model())
         
         // todo
         
@@ -186,7 +165,7 @@ internal final class BluetoothManager: NSObject {
     }
     
     private func loadPendingTraces() -> [ContactTrace] {
-        if let json = defaults.data(forKey: pendingContactDefaultsIdentifier),
+        if let json = environment.defaults.data(forKey: pendingContactDefaultsIdentifier),
             let contacts = try? JSONDecoder().decode([ContactTrace].self, from: json) {
             
             return contacts
@@ -201,7 +180,7 @@ internal final class BluetoothManager: NSObject {
             return
         }
         
-        defaults.set(json, forKey: pendingContactDefaultsIdentifier)
+        environment.defaults.set(json, forKey: pendingContactDefaultsIdentifier)
     }
     
     private func savePendingTrace(_ contact: ContactTrace) {
@@ -247,8 +226,8 @@ extension BluetoothManager: CBPeripheralManagerDelegate {
             
             let packet = TracePacket(
                 traceID: traceID,
-                foreground: self.isInForeground(),
-                phoneModel: self.getModelIdentifier())
+                foreground: self.environment.device.appState() == .active,
+                phoneModel: self.environment.device.model())
             
             let jsonData = try? JSONEncoder().encode(packet)
             request.value = jsonData
@@ -408,16 +387,6 @@ extension BluetoothManager: CBPeripheralDelegate {
 extension TracePacket: CustomStringConvertible {
     var description: String {
         "traceID: \(traceID)"
-    }
-}
-
-private func getModelIdentifierString() -> String {
-    var systemInfo = utsname()
-    uname(&systemInfo)
-    let machineMirror = Mirror(reflecting: systemInfo.machine)
-    return machineMirror.children.reduce(into: "") { identifier, element in
-        guard let value = element.value as? Int8, value != 0 else { return }
-        identifier += String(UnicodeScalar(UInt8(value)))
     }
 }
 

@@ -8,13 +8,13 @@ public struct TraceIDRecord: Codable {
 
 internal final class TraceIDStorage {
         
-    private let defaults: UserDefaultsProtocol
+    private let environment: Environment
     private let userDefaultsIdentifier = "org.ctzn.traceUUIDs"
     private var knownIDs: [TraceIDRecord] = []
     private var lastID: TraceIDRecord?
     
-    init(defaults: UserDefaultsProtocol) {
-        self.defaults = defaults
+    init(environment: Environment) {
+        self.environment = environment
         restorePersistedIDs()
     }
     
@@ -99,7 +99,7 @@ internal final class TraceIDStorage {
     }
     
     private func restorePersistedIDs() {
-        if let data = defaults.data(forKey: userDefaultsIdentifier),
+        if let data = environment.defaults.data(forKey: userDefaultsIdentifier),
             let ids = try? JSONDecoder().decode([TraceIDRecord].self, from: data) {
             
             self.knownIDs = ids
@@ -112,7 +112,7 @@ internal final class TraceIDStorage {
             return
         }
         
-        defaults.set(json, forKey: userDefaultsIdentifier)
+        environment.defaults.set(json, forKey: userDefaultsIdentifier)
     }
 }
 

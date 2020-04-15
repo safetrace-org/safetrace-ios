@@ -21,6 +21,15 @@
 		DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
 		DC0BBB5E24469DF400B18911 /* CTZNTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* CTZNTrace.framework */; };
 		DC0BBB5F24469DF400B18911 /* CTZNTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* CTZNTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC7AC09924475486000FF13D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09824475486000FF13D /* Networking.swift */; };
+		DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09B24478B3A000FF13D /* URLSession+.swift */; };
+		DC7AC09F24478DF8000FF13D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09E24478DF8000FF13D /* Environment.swift */; };
+		DC7AC0A42447946A000FF13D /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A32447946A000FF13D /* KeychainSwift.swift */; };
+		DC7AC0A524479495000FF13D /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A224478E47000FF13D /* UserSession.swift */; };
+		DC7AC0A624479498000FF13D /* UserSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A124478E46000FF13D /* UserSessionProtocol.swift */; };
+		DC7AC0A82447A52D000FF13D /* TracerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */; };
+		DC7AC0AA2447A716000FF13D /* UserDefaultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */; };
+		DC7AC0AC2447AA0D000FF13D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0AB2447AA0D000FF13D /* Device.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +81,15 @@
 		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC7AC09824475486000FF13D /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		DC7AC09B24478B3A000FF13D /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
+		DC7AC09E24478DF8000FF13D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		DC7AC0A124478E46000FF13D /* UserSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionProtocol.swift; sourceTree = "<group>"; };
+		DC7AC0A224478E47000FF13D /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		DC7AC0A32447946A000FF13D /* KeychainSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
+		DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracerEnvironment.swift; sourceTree = "<group>"; };
+		DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocol.swift; sourceTree = "<group>"; };
+		DC7AC0AB2447AA0D000FF13D /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +147,8 @@
 				DC0BBB1624468E5B00B18911 /* Info.plist */,
 				DC0BBB2C24468EA500B18911 /* ContactTracer.swift */,
 				DC0BBB2E244694EB00B18911 /* Trace */,
+				DC7AC09D24478DA8000FF13D /* Services */,
+				DC7AC09724475478000FF13D /* Utility */,
 			);
 			path = "ctzntrace-sdk";
 			sourceTree = "<group>";
@@ -170,6 +190,45 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC7AC09724475478000FF13D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DC7AC0A32447946A000FF13D /* KeychainSwift.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		DC7AC09A24478B18000FF13D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DC7AC09824475486000FF13D /* Networking.swift */,
+				DC7AC09B24478B3A000FF13D /* URLSession+.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		DC7AC09D24478DA8000FF13D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DC7AC0A024478E19000FF13D /* Session */,
+				DC7AC09A24478B18000FF13D /* Networking */,
+				DC7AC09E24478DF8000FF13D /* Environment.swift */,
+				DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */,
+				DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */,
+				DC7AC0AB2447AA0D000FF13D /* Device.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DC7AC0A024478E19000FF13D /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				DC7AC0A224478E47000FF13D /* UserSession.swift */,
+				DC7AC0A124478E46000FF13D /* UserSessionProtocol.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,10 +373,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC7AC0AC2447AA0D000FF13D /* Device.swift in Sources */,
 				DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */,
+				DC7AC09924475486000FF13D /* Networking.swift in Sources */,
+				DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */,
+				DC7AC09F24478DF8000FF13D /* Environment.swift in Sources */,
 				DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */,
 				DC0BBB302446957000B18911 /* BluetoothManager.swift in Sources */,
+				DC7AC0A524479495000FF13D /* UserSession.swift in Sources */,
+				DC7AC0A82447A52D000FF13D /* TracerEnvironment.swift in Sources */,
 				DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */,
+				DC7AC0A42447946A000FF13D /* KeychainSwift.swift in Sources */,
+				DC7AC0AA2447A716000FF13D /* UserDefaultsProtocol.swift in Sources */,
+				DC7AC0A624479498000FF13D /* UserSessionProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
