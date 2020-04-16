@@ -82,11 +82,14 @@ internal final class TraceIDStorage {
     }
 
     private func updateStoredIDs(completion: ((_ success: Bool) -> Void)? = nil) {
+        guard let userID = environment.session.userID else { return }
         
-        // todo
-        let ids: [TraceIDRecord] = []
-        didDownloadIDs(ids)
-        completion?(true)
+        environment.network.getTraceIDs(userID: userID) { result in
+            if case .success(let ids) = result {
+                self.didDownloadIDs(ids)
+                completion?(true)
+            }
+        }
     }
     
     private func didDownloadIDs(_ ids: [TraceIDRecord]) {

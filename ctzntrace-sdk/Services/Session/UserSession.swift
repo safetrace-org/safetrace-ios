@@ -101,7 +101,7 @@ class UserSession: UserSessionProtocol {
             WKWebsiteDataStore.default().httpCookieStore.setCookie(cookie)
         }
     }
-    
+
     private func attemptToLoadCachedValues() {
         // we want to have *both* or *neither* to be in a consistent state
         guard let authToken = getCachedAuthToken(),

@@ -156,12 +156,14 @@ internal final class BluetoothManager: NSObject {
     }
     
     private func reportTraces(_ traces: [ContactTrace], success: (() -> Void)? = nil) {
+        guard let userID = environment.session.userID else { return }
+        
         let traceData = ContactTraces(traces: traces, phoneModel: environment.device.model())
         
-        // todo
-        
-        self.notifyTraceUpload(count: traceData.traces.count, error: nil)
-        success?()
+        environment.network.uploadTraces(traceData, userID: userID) { result in
+            self.notifyTraceUpload(count: traces.count, error: result.error)
+            success?()
+        }
     }
     
     private func loadPendingTraces() -> [ContactTrace] {

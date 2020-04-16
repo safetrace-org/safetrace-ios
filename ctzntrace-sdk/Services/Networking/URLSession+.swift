@@ -40,6 +40,7 @@ extension URLSession {
     func sendRequest<T: Codable>(
         with request: @autoclosure () throws -> URLRequest,
         resultType: T.Type,
+        dateDecodingStrategy: JSONDecoder.DateDecodingStrategy? = nil,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
         
@@ -48,6 +49,7 @@ extension URLSession {
                 if let data = data {
                     do {
                         let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = dateDecodingStrategy ?? .iso8601
                         let result = try decoder.decode(T.self, from: data)
                         return .success(result)
                     } catch let error {
@@ -88,5 +90,23 @@ extension URLSession {
             completion(.failure(error))
             return
         }
+    }
+}
+
+extension Result{
+    var value: Success? {
+        if case .success(let value) = self {
+            return value
+        }
+        
+        return nil
+    }
+    
+    var error: Error? {
+        if case .failure(let error) = self {
+            return error
+        }
+        
+        return nil
     }
 }

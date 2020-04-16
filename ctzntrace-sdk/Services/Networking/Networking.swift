@@ -6,6 +6,7 @@ protocol NetworkProtocol {
     func authenticateWithCode(_ token: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
     
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void)
+    func uploadTraces(_: ContactTraces, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 struct Network: NetworkProtocol {
@@ -43,7 +44,7 @@ struct Network: NetworkProtocol {
             completion: completion)
     }
 
-    // MARK: - Trace IDs
+    // MARK: - Trace
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void) {
         struct Wrapper: Codable {
             let traceIDs: [TraceIDRecord]
@@ -55,9 +56,20 @@ struct Network: NetworkProtocol {
                 method: .get,
                 token: environment.session.authToken),
             resultType: Wrapper.self,
+            dateDecodingStrategy: .secondsSince1970,
             completion: {
                 completion($0.map { $0.traceIDs })
             }
         )
+    }
+
+    func uploadTraces(_ traces: ContactTraces, userID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "v1/users/\(userID)/traces",
+                method: .post,
+                token: environment.session.authToken,
+                body: traces),
+            completion:completion)
     }
 }
