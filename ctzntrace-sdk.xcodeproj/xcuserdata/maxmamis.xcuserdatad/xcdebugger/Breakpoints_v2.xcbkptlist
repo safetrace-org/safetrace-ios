@@ -3,4 +3,102 @@
    uuid = "FC6E0CF4-161F-4CE7-9DDD-B54867AD55B0"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4A16DD1-6037-421C-AB89-12DC7317A7F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4740FD2B-721A-4A38-94C3-B3BEB5F17FEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "processPacket(_:for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEB2EEB4-A5D8-4BB8-A3C2-7B2C222D3B47"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "reportTraces(_:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "notifyPeripheralDiscovery(peripheral:rssi:value:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7 - fa590191f7616540"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CTZNTrace.BluetoothManager.(notifyPeripheralDiscovery in _5D1DD2195154C02A7551364EE3E0B6EA)(peripheral: __C.CBPeripheral, rssi: __C.NSNumber, value: Swift.String) -&gt; ()"
+                  moduleName = "CTZNTrace"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "448"
+                  endingLineNumber = "448"
+                  offsetFromSymbolStart = "1616">
+               </Location>
+               <Location
+                  uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7 - d26dde0f85a5e1d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CTZNTrace.BluetoothManager.(notifyPeripheralDiscovery in _5D1DD2195154C02A7551364EE3E0B6EA)(peripheral: __C.CBPeripheral, rssi: __C.NSNumber, value: Swift.String) -&gt; ()"
+                  moduleName = "CTZNTrace"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "449"
+                  endingLineNumber = "449"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

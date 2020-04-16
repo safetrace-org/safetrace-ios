@@ -1,18 +1,12 @@
-import CTZNTrace
-import UIKit
-import UserNotifications
+# ctzntrace
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UNUserNotificationCenter.current().delegate = self
-        ContactTracer.shared.startIfEnabled()
+## Push Notification Support
 
-        return true
-    }
-}
+In your AppDelegate's `application(_:, didFinishLaunchingWithOptions:)` method, add the line:
+`UNUserNotificationCenter.current().delegate = self`
 
+Declare conformance to `UNUserNotificationCenterDelegate` as follows:
+```
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
@@ -23,3 +17,4 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+```

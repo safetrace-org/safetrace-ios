@@ -17,15 +17,53 @@ internal final class OptInOutViewController: UIViewController {
 
         view.backgroundColor = .white
         
+        let tracingLabel = UILabel()
+        tracingLabel.text = "Enable Tracing: "
+        tracingLabel.textColor = .black
+        
+        let toggle = UISwitch()
+        toggle.addTarget(self, action: #selector(toggleBluetooth(sender:)), for: .valueChanged)
+        toggle.isOn = ContactTracer.shared.isTracing
+
+        let switchStackView = UIStackView(arrangedSubviews: [
+            tracingLabel,
+            toggle
+        ])
+        
+        let debugLabel = UILabel()
+        debugLabel.text = "Enable Debug Notifs: "
+        debugLabel.textColor = .black
+        
+        let notifToggle = UISwitch()
+        notifToggle.addTarget(self, action: #selector(toggleNotifs(sender:)), for: .valueChanged)
+        notifToggle.isOn = ContactTracer.shared.bluetoothManager.debugNotificationsEnabled
+
+        let notifStackView = UIStackView(arrangedSubviews: [
+            debugLabel,
+            notifToggle
+        ])
+
         let button = UIButton()
         button.setTitle("Logout", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+
+        let stackView = UIStackView(arrangedSubviews: [
+            switchStackView,
+            notifStackView,
+            button
+        ])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        view.addSubview(stackView)
         
-        view.addSubview(button)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        toggle.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
         
         button.addTarget(self, action: #selector(logout), for: .touchUpInside)
@@ -38,4 +76,17 @@ internal final class OptInOutViewController: UIViewController {
         navigationController?.setViewControllers([phoneAuthViewController, self], animated: false)
         navigationController?.popToRootViewController(animated: true)
     }
+    
+    @objc private func toggleBluetooth(sender: UISwitch) {
+        if sender.isOn {
+            ContactTracer.shared.bluetoothManager.optIn()
+        } else {
+            ContactTracer.shared.bluetoothManager.optOut()
+        }
+    }
+    
+    @objc private func toggleNotifs(sender: UISwitch) {
+        ContactTracer.shared.bluetoothManager.setDebugNotificationsEnabled(sender.isOn)
+    }
+
 }

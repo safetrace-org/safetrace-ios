@@ -56,5 +56,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-peripheral</string>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Citizen uses Bluetooth to determine if you have come in nearby contact with someone who has reported testing positive for COVID-19.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Citizen uses Bluetooth to determine if you have come in nearby contact with someone who has reported testing positive for COVID-19.</string>
 </dict>
 </plist>

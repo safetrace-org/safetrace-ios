@@ -20,6 +20,7 @@ private struct PendingTraceData {
 
 private let isEnabledDefaultsIdentifier = "org.ctzn.tracing_enabled"
 private let pendingContactDefaultsIdentifier = "org.ctzn.pending_contacts"
+private let debugNotifsDefaultsIdentifier = "org.ctzn.debug_notifications"
 private let contactTracingServiceIdentifier = CBUUID(string: "0000cd19-0000-1000-8000-00805f9b34fb")
 private let tracePacketCharacteristicIdentifier = CBUUID(string: "0000cd20-0000-1000-8000-00805f9b34fb")
 private let centralRestorationIdentifier = "com.citizen.bluetoothRestoration.central"
@@ -33,6 +34,8 @@ internal final class BluetoothManager: NSObject {
     private var pendingTraceDataByPeripheralUUID: [UUID: PendingTraceData] = [:]
     private var connectedPeripherals: [CBPeripheral] = []
     private let uuidStorage: TraceIDStorage
+    
+    internal var debugNotificationsEnabled = false
     
     // Keep track of discovered android devices, so that we do not connect to the same Android device multiple times.
     // Our Android code sets a Manufacturer field for this purpose.
@@ -63,6 +66,7 @@ internal final class BluetoothManager: NSObject {
     init(environment: Environment) {
         self.environment = environment
         self.uuidStorage = TraceIDStorage(environment: environment)
+        self.debugNotificationsEnabled = environment.defaults.bool(forKey: debugNotifsDefaultsIdentifier)
     }
     
     func startScanning() {
@@ -86,6 +90,17 @@ internal final class BluetoothManager: NSObject {
     func optOut() {
         environment.defaults.set(false, forKey: isEnabledDefaultsIdentifier)
         stopScanning()
+    }
+    
+    func setDebugNotificationsEnabled(_ enabled: Bool) {
+        environment.defaults.set(enabled, forKey: debugNotifsDefaultsIdentifier)
+        self.debugNotificationsEnabled = enabled
+        
+        if enabled {
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: [.alert, .badge, .sound],
+                completionHandler: { _, _ in })
+        }
     }
     
     func reportPendingTraces() {
@@ -416,9 +431,7 @@ extension BluetoothManager {
         rssi: NSNumber,
         value: String
     ) {
-        #if INTERNAL
-
-        guard environment.settings.value(for: FeatureFlag.bluetoothDebug) else { return }
+        guard debugNotificationsEnabled else { return }
         let content = UNMutableNotificationContent()
         
         var text = peripheral.name ?? "unknown"
@@ -429,18 +442,16 @@ extension BluetoothManager {
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
 
-        LocalNotificationHandler.sendNotification(collapseID: "Bluetooth Discovery", notificationContent: content, trigger: trigger)
-        #endif
+        let request = UNNotificationRequest(identifier: "Bluetooth Discovery", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { _ in }
     }
-    
+        
     private func notifyPeripheralError(
         peripheral: CBPeripheral,
         context: String,
         error: Error?
     ) {
-        #if INTERNAL
-
-        guard environment.settings.value(for: FeatureFlag.bluetoothDebug) else { return }
+        guard debugNotificationsEnabled else { return }
         let content = UNMutableNotificationContent()
         
         let text = peripheral.name ?? "unknown"
@@ -448,18 +459,16 @@ extension BluetoothManager {
         content.body = "\(context) - \(error?.localizedDescription ?? "none")"
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-
-        LocalNotificationHandler.sendNotification(collapseID: "Bluetooth Discovery", notificationContent: content, trigger: trigger)
-        #endif
+        
+        let request = UNNotificationRequest(identifier: "Bluetooth Discovery", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { _ in }
     }
     
     private func notifyTraceUpload(
         count: Int,
         error: Error?
     ) {
-        #if INTERNAL
-
-        guard environment.settings.value(for: FeatureFlag.bluetoothDebug) else { return }
+        guard debugNotificationsEnabled else { return }
         let content = UNMutableNotificationContent()
         
         content.title = "UPLOADED \(count) TRACES"
@@ -467,7 +476,7 @@ extension BluetoothManager {
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
 
-        LocalNotificationHandler.sendNotification(collapseID: "Bluetooth Upload", notificationContent: content, trigger: trigger)
-        #endif
+        let request = UNNotificationRequest(identifier: "Bluetooth Upload", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { _ in }
     }
 }

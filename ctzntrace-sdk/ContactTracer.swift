@@ -2,7 +2,7 @@ import UIKit
 
 public final class ContactTracer {
     private let environment = TracerEnvironment()
-    private lazy var bluetoothManager = BluetoothManager(environment: environment)
+    internal lazy var bluetoothManager = BluetoothManager(environment: environment)
     
     public static let shared = ContactTracer()
     
