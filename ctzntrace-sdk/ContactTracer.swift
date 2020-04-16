@@ -27,8 +27,15 @@ public final class ContactTracer {
     }
     
     public func optInOutViewController() -> UIViewController {
-        let vc = UIViewController()
-        vc.view.backgroundColor = .magenta
-        return vc
+        let navigationController = UINavigationController()
+
+        if environment.session.isAuthenticated {
+            navigationController.viewControllers = [OptInOutViewController(environment: environment)]
+        } else {
+            let phoneAuthVC = PhoneAuthorizationViewController(environment: environment)
+            navigationController.viewControllers = [phoneAuthVC]
+        }
+        
+        return navigationController
     }
 }

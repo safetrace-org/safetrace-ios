@@ -1,3 +1,4 @@
+import CTZNTrace
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -12,10 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
 
-        let rootVC = ViewController()
-        let rootNC = UINavigationController(rootViewController: rootVC)
+        let rootVC = ContactTracer.shared.optInOutViewController()
         
-        self.window?.rootViewController = rootNC
+        self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
     }
 }

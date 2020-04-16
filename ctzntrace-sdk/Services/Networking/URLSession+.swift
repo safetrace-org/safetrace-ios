@@ -10,7 +10,7 @@ extension URLRequest {
         case delete = "DELETE"
     }
     
-    init(endpoint: String, method: Method, body: Encodable? = nil) throws {
+    init(endpoint: String, method: Method, token: String? = nil, body: Encodable? = nil) throws {
         guard let url = URL(string: endpoint, relativeTo: baseURL) else {
             preconditionFailure()
         }
@@ -18,6 +18,10 @@ extension URLRequest {
         self.init(url: url)
         self.httpMethod = method.rawValue
         self.httpBody = try body?.toData()
+        
+        if let token = token {
+            self.addValue(token, forHTTPHeaderField: "x-access-token")
+        }
     }
 }
 

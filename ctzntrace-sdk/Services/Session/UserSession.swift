@@ -7,8 +7,8 @@ enum SessionError: Error {
 }
 
 struct AuthData: Codable {
-    let userID: String
-    let authToken: String
+    let uid: String
+    let userToken: String
 }
 
 private let authTokenKeychainIdentifier = "org.ctzn.auth_token"
@@ -41,14 +41,14 @@ class UserSession: UserSessionProtocol {
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
     
-    func authenticateWithToken(_ token: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        environment.network.authenticateWithToken(token, phone: phone) { result in
+    func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        environment.network.authenticateWithCode(code, phone: phone) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
                 
             case .success(let auth):
-                self.authenticate(withUserID: auth.userID, authToken: auth.authToken)
+                self.authenticate(withUserID: auth.uid, authToken: auth.userToken)
                 completion(.success(()))
             }
         }
@@ -74,9 +74,11 @@ class UserSession: UserSessionProtocol {
     private func updateLocalValues(token: String?, userID: String?) {
         self.userID = userID
         self.authToken = token
-
-        updateAuthTokenWebViewCookie(authToken: authToken)
         authenticationDelegate?.authenticationTokenDidChange(forSession: self)
+
+        DispatchQueue.main.async {
+            self.updateAuthTokenWebViewCookie(authToken: self.authToken)
+        }
     }
 
     private func updateAuthTokenWebViewCookie(authToken: String?) {

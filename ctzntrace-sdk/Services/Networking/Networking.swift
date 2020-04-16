@@ -2,33 +2,47 @@ import Foundation
 
 //sourcery:AutoMockable
 protocol NetworkProtocol {
-    func sendAuthToken(phone: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func authenticateWithToken(_ token: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
+    func requestAuthCode(phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func authenticateWithCode(_ token: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
     
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void)
 }
 
 struct Network: NetworkProtocol {
-    let urlSession: URLSession = .shared
+    private let environment: Environment
+    private let urlSession: URLSession = .shared
     
+    init(environment: Environment){
+        self.environment = environment
+    }
+
     // MARK: - Auth
-    func sendAuthToken(phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func requestAuthCode(phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         urlSession.sendRequest(
             with: try URLRequest(
-                endpoint: "PHONE PHONE PHONE",
-                method: .post),
+                endpoint: "v1/auth/request_code",
+                method: .post,
+                token: environment.session.authToken,
+                body: [
+                    "phoneNumber": phone
+                ]),
             completion: completion)
     }
 
-    func authenticateWithToken(_ token: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void) {
+    func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void) {
         urlSession.sendRequest(
             with: try URLRequest(
-                endpoint: "PHONE PHONE PHONE",
-                method: .post),
+                endpoint: "v1/auth/validate_code",
+                method: .post,
+                token: environment.session.authToken,
+                body: [
+                    "phoneNumber": phone,
+                    "code": code
+                ]),
             resultType: AuthData.self,
             completion: completion)
     }
-    
+
     // MARK: - Trace IDs
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void) {
         struct Wrapper: Codable {
@@ -38,7 +52,8 @@ struct Network: NetworkProtocol {
         urlSession.sendRequest(
             with: try URLRequest(
                 endpoint: "v1/users/\(userID)/traces",
-                method: .get),
+                method: .get,
+                token: environment.session.authToken),
             resultType: Wrapper.self,
             completion: {
                 completion($0.map { $0.traceIDs })
