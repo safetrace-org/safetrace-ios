@@ -13,7 +13,7 @@ struct Network: NetworkProtocol {
     private let environment: Environment
     private let urlSession: URLSession = .shared
     
-    init(environment: Environment){
+    init(environment: Environment) {
         self.environment = environment
     }
 
