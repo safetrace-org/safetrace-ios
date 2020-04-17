@@ -1,7 +1,7 @@
 import Foundation
 import UserNotifications
 
-#if DEBUG
+#if STAGING || DEBUG
 
 internal let debugNotifsDefaultsIdentifier = "org.ctzn.debug_notifications"
 private var debugNotificationsEnabled = UserDefaults.standard.bool(forKey: debugNotifsDefaultsIdentifier)
@@ -38,6 +38,11 @@ internal enum Debug {
 #else
 
 internal enum Debug {
+    var notificationsEnabled: Bool {
+        get { return false }
+        set { }
+    }
+    
     static func notify(
         title: String,
         body: String,
