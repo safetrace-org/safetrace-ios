@@ -10,14 +10,20 @@ extension URLRequest {
         case delete = "DELETE"
     }
     
-    init(endpoint: String, method: Method, token: String? = nil, body: Encodable? = nil) throws {
+    init(
+        endpoint: String,
+        method: Method,
+        token: String? = nil,
+        body: Encodable? = nil,
+        dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
+    ) throws {
         guard let url = URL(string: endpoint, relativeTo: baseURL) else {
             preconditionFailure()
         }
         
         self.init(url: url)
         self.httpMethod = method.rawValue
-        self.httpBody = try body?.toData()
+        self.httpBody = try body?.toData(dateEncodingStrategy: dateEncodingStrategy)
         
         if let token = token {
             self.addValue(token, forHTTPHeaderField: "x-access-token")
@@ -26,8 +32,9 @@ extension URLRequest {
 }
 
 extension Encodable {
-    func toData() throws -> Data {
+    func toData(dateEncodingStrategy: JSONEncoder.DateEncodingStrategy) throws -> Data {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = dateEncodingStrategy
         return try encoder.encode(self)
     }
 }

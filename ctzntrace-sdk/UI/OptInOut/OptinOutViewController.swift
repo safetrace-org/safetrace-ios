@@ -23,7 +23,7 @@ internal final class OptInOutViewController: UIViewController {
         
         let toggle = UISwitch()
         toggle.addTarget(self, action: #selector(toggleBluetooth(sender:)), for: .valueChanged)
-        toggle.isOn = ContactTracer.shared.isTracing
+        toggle.isOn = CTZNTrace.shared.isTracing
 
         let switchStackView = UIStackView(arrangedSubviews: [
             tracingLabel,
@@ -36,7 +36,7 @@ internal final class OptInOutViewController: UIViewController {
         
         let notifToggle = UISwitch()
         notifToggle.addTarget(self, action: #selector(toggleNotifs(sender:)), for: .valueChanged)
-        notifToggle.isOn = ContactTracer.shared.bluetoothManager.debugNotificationsEnabled
+        notifToggle.isOn = Debug.notificationsEnabled
 
         let notifStackView = UIStackView(arrangedSubviews: [
             debugLabel,
@@ -79,14 +79,13 @@ internal final class OptInOutViewController: UIViewController {
     
     @objc private func toggleBluetooth(sender: UISwitch) {
         if sender.isOn {
-            ContactTracer.shared.bluetoothManager.optIn()
+            CTZNTrace.shared.tracer.optIn()
         } else {
-            ContactTracer.shared.bluetoothManager.optOut()
+            CTZNTrace.shared.tracer.optOut()
         }
     }
     
     @objc private func toggleNotifs(sender: UISwitch) {
-        ContactTracer.shared.bluetoothManager.setDebugNotificationsEnabled(sender.isOn)
+        Debug.notificationsEnabled = sender.isOn
     }
-
 }

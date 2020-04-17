@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
 
-        let rootVC = ContactTracer.shared.optInOutViewController()
+        let rootVC = CTZNTrace.shared.optInOutViewController()
         
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()

@@ -1,13 +1,19 @@
 import Foundation
 
-public struct TraceIDRecord: Codable {
+internal struct TraceIDRecord: Codable {
     public let start: Date
     public let end: Date
     public let traceID: String
 }
 
-internal final class TraceIDStorage {
-        
+//sourceery:AutoMockable
+internal protocol TraceIDStorageProtocol {
+    func getCurrent(_ completion: @escaping (String?) -> Void)
+    func refreshIfNeeded()
+    func clear()
+}
+
+internal final class TraceIDStorage: TraceIDStorageProtocol {
     private let environment: Environment
     private let userDefaultsIdentifier = "org.ctzn.traceUUIDs"
     private var knownIDs: [TraceIDRecord] = []
@@ -18,11 +24,11 @@ internal final class TraceIDStorage {
         restorePersistedIDs()
     }
     
-    func getCurrentID(_ completion: @escaping (String?) -> Void) {
-        getCurrentID(completion, refreshIfNeeded: true)
+    func getCurrent(_ completion: @escaping (String?) -> Void) {
+        getCurrent(completion, refreshIfNeeded: true)
     }
     
-    func updateStoredIDsIfNeeded() {
+    func refreshIfNeeded() {
         guard let lastID = knownIDs.last else {
             updateStoredIDs()
             return
@@ -37,12 +43,12 @@ internal final class TraceIDStorage {
         }
     }
     
-    func clearStoredIDs() {
+    func clear() {
         knownIDs = []
         persistIDs([])
     }
     
-    private func getCurrentID(_ completion: @escaping (String?) -> Void, refreshIfNeeded: Bool) {
+    private func getCurrent(_ completion: @escaping (String?) -> Void, refreshIfNeeded: Bool) {
         let time = Date()
         
         // If the last known ID is still valid, just return that
@@ -74,7 +80,7 @@ internal final class TraceIDStorage {
         
         updateStoredIDs { success in
             if success {
-                self.getCurrentID(completion, refreshIfNeeded: false)
+                self.getCurrent(completion, refreshIfNeeded: false)
             } else {
                 completion(nil)
             }
@@ -88,6 +94,8 @@ internal final class TraceIDStorage {
             if case .success(let ids) = result {
                 self.didDownloadIDs(ids)
                 completion?(true)
+            } else {
+                completion?(false)
             }
         }
     }

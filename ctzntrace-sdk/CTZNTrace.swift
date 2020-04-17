@@ -1,25 +1,29 @@
 import UIKit
 
-public final class ContactTracer {
+public final class CTZNTrace {
     private let environment = TracerEnvironment()
-    internal lazy var bluetoothManager = BluetoothManager(environment: environment)
+    internal lazy var tracer = ContactTracer(environment: environment)
     
-    public static let shared = ContactTracer()
+    public static let shared = CTZNTrace()
     
     public var isTracing: Bool {
-        return bluetoothManager.isTracingActive
+        return tracer.isTracingActive
     }
     
     public func startIfEnabled() {
-        bluetoothManager.startScanning()
+        tracer.startScanning()
     }
     
     public func stop() {
-        bluetoothManager.stopScanning()
+        tracer.stopScanning()
     }
     
     public func flushPendingTraces() {
-        bluetoothManager.reportPendingTraces()
+        tracer.reportPendingTraces()
+    }
+    
+    public func refreshTraceIDsIfNeeded() {
+        environment.traceIDs.refreshIfNeeded()
     }
     
     public func contactCenterViewController() -> UIViewController {

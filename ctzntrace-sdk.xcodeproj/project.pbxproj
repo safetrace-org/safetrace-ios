@@ -10,7 +10,7 @@
 		DC0BBB1C24468E5B00B18911 /* CTZNTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* CTZNTrace.framework */; };
 		DC0BBB2124468E5B00B18911 /* ctzntrace_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */; };
 		DC0BBB2324468E5B00B18911 /* ctzntrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* ContactTracer.swift */; };
+		DC0BBB2D24468EA500B18911 /* CTZNTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */; };
 		DC0BBB302446957000B18911 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2F2446957000B18911 /* BluetoothManager.swift */; };
 		DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB33244699E400B18911 /* ContactTrace.swift */; };
 		DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */; };
@@ -31,6 +31,9 @@
 		DC7AC0A82447A52D000FF13D /* TracerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */; };
 		DC7AC0AA2447A716000FF13D /* UserDefaultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */; };
 		DC7AC0AC2447AA0D000FF13D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC0AB2447AA0D000FF13D /* Device.swift */; };
+		DC7F32F4244933DA009B61B8 /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F3244933DA009B61B8 /* BluetoothPeripheral.swift */; };
+		DC7F32F824493A82009B61B8 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F724493A82009B61B8 /* Debug.swift */; };
+		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DCD7482E2447D09E00B93256 /* PhoneAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneAuthorizationViewController.swift */; };
 		DCD748302447D2C100B93256 /* ConfirmationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -73,7 +76,7 @@
 		DC0BBB1B24468E5B00B18911 /* ctzntrace-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ctzntrace-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB2024468E5B00B18911 /* ctzntrace_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ctzntrace_sdkTests.swift; sourceTree = "<group>"; };
 		DC0BBB2224468E5B00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC0BBB2C24468EA500B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
+		DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTZNTrace.swift; sourceTree = "<group>"; };
 		DC0BBB2F2446957000B18911 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		DC0BBB33244699E400B18911 /* ContactTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTrace.swift; sourceTree = "<group>"; };
 		DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorage.swift; sourceTree = "<group>"; };
@@ -95,6 +98,9 @@
 		DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracerEnvironment.swift; sourceTree = "<group>"; };
 		DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocol.swift; sourceTree = "<group>"; };
 		DC7AC0AB2447AA0D000FF13D /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		DC7F32F3244933DA009B61B8 /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
+		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthorizationViewController.swift; sourceTree = "<group>"; };
 		DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +158,7 @@
 			children = (
 				DC0BBB1524468E5B00B18911 /* ctzntrace_sdk.h */,
 				DC0BBB1624468E5B00B18911 /* Info.plist */,
-				DC0BBB2C24468EA500B18911 /* ContactTracer.swift */,
+				DC0BBB2C24468EA500B18911 /* CTZNTrace.swift */,
 				DC0BBB2E244694EB00B18911 /* Trace */,
 				DC7AC09D24478DA8000FF13D /* Services */,
 				DCD7482C2447D09300B93256 /* UI */,
@@ -175,7 +181,8 @@
 			children = (
 				DC0BBB2F2446957000B18911 /* BluetoothManager.swift */,
 				DC0BBB33244699E400B18911 /* ContactTrace.swift */,
-				DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */,
+				DC7F32F3244933DA009B61B8 /* BluetoothPeripheral.swift */,
+				DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */,
 			);
 			path = Trace;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				DC7AC0A32447946A000FF13D /* KeychainSwift.swift */,
+				DC7F32F724493A82009B61B8 /* Debug.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 			children = (
 				DC7AC0A024478E19000FF13D /* Session */,
 				DC7AC09A24478B18000FF13D /* Networking */,
+				DC7F32F524493516009B61B8 /* TraceID Storage */,
 				DC7AC09E24478DF8000FF13D /* Environment.swift */,
 				DC7AC0A72447A52D000FF13D /* TracerEnvironment.swift */,
 				DC7AC0A92447A716000FF13D /* UserDefaultsProtocol.swift */,
@@ -246,6 +255,14 @@
 				DC7AC0A124478E46000FF13D /* UserSessionProtocol.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		DC7F32F524493516009B61B8 /* TraceID Storage */ = {
+			isa = PBXGroup;
+			children = (
+				DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */,
+			);
+			path = "TraceID Storage";
 			sourceTree = "<group>";
 		};
 		DCD7482C2447D09300B93256 /* UI */ = {
@@ -413,13 +430,16 @@
 				DC7AC09924475486000FF13D /* Networking.swift in Sources */,
 				DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */,
 				DC7AC09F24478DF8000FF13D /* Environment.swift in Sources */,
-				DC0BBB2D24468EA500B18911 /* ContactTracer.swift in Sources */,
+				DC0BBB2D24468EA500B18911 /* CTZNTrace.swift in Sources */,
 				DC0BBB302446957000B18911 /* BluetoothManager.swift in Sources */,
+				DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */,
+				DC7F32F4244933DA009B61B8 /* BluetoothPeripheral.swift in Sources */,
 				DCD748302447D2C100B93256 /* ConfirmationCodeViewController.swift in Sources */,
 				DC42321F2447D42900B9ABC4 /* OptinOutViewController.swift in Sources */,
 				DC7AC0A524479495000FF13D /* UserSession.swift in Sources */,
 				DC7AC0A82447A52D000FF13D /* TracerEnvironment.swift in Sources */,
 				DCD7482E2447D09E00B93256 /* PhoneAuthorizationViewController.swift in Sources */,
+				DC7F32F824493A82009B61B8 /* Debug.swift in Sources */,
 				DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */,
 				DC7AC0A42447946A000FF13D /* KeychainSwift.swift in Sources */,
 				DC7AC0AA2447A716000FF13D /* UserDefaultsProtocol.swift in Sources */,

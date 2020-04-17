@@ -47,7 +47,7 @@ struct Network: NetworkProtocol {
     // MARK: - Trace
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void) {
         struct Wrapper: Codable {
-            let traceIDs: [TraceIDRecord]
+            let traces: [TraceIDRecord]
         }
         
         urlSession.sendRequest(
@@ -58,7 +58,7 @@ struct Network: NetworkProtocol {
             resultType: Wrapper.self,
             dateDecodingStrategy: .secondsSince1970,
             completion: {
-                completion($0.map { $0.traceIDs })
+                completion($0.map { $0.traces })
             }
         )
     }
@@ -69,7 +69,8 @@ struct Network: NetworkProtocol {
                 endpoint: "v1/users/\(userID)/traces",
                 method: .post,
                 token: environment.session.authToken,
-                body: traces),
+                body: traces,
+                dateEncodingStrategy: .iso8601),
             completion:completion)
     }
 }

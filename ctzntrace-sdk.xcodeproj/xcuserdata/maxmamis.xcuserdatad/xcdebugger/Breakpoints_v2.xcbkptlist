@@ -7,38 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4A16DD1-6037-421C-AB89-12DC7317A7F5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4740FD2B-721A-4A38-94C3-B3BEB5F17FEF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "processPacket(_:for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EEB2EEB4-A5D8-4BB8-A3C2-7B2C222D3B47"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -46,8 +14,8 @@
             filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "reportTraces(_:success:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,49 +23,145 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7"
+            uuid = "0659B382-A0C4-477A-923F-E0064FE55BA3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ctzntrace-sdk/Trace/BluetoothManager.swift"
+            filePath = "ctzntrace-sdk/Trace/BluetoothPeripheral.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
-            landmarkName = "notifyPeripheralDiscovery(peripheral:rssi:value:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "peripheralManager(_:didReceiveRead:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7 - fa590191f7616540"
+                  uuid = "0659B382-A0C4-477A-923F-E0064FE55BA3 - a327449c29d752ee"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CTZNTrace.BluetoothManager.(notifyPeripheralDiscovery in _5D1DD2195154C02A7551364EE3E0B6EA)(peripheral: __C.CBPeripheral, rssi: __C.NSNumber, value: Swift.String) -&gt; ()"
+                  symbolName = "CTZNTrace.BluetoothPeripheral.peripheralManager(_: __C.CBPeripheralManager, didReceiveRead: __C.CBATTRequest) -&gt; ()"
                   moduleName = "CTZNTrace"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothManager.swift"
+                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothPeripheral.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "448"
-                  endingLineNumber = "448"
-                  offsetFromSymbolStart = "1616">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "44">
                </Location>
                <Location
-                  uuid = "2DC2486F-C1C5-4A56-A248-39747B8CD7A7 - d26dde0f85a5e1d2"
+                  uuid = "0659B382-A0C4-477A-923F-E0064FE55BA3 - 145c01442028355d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CTZNTrace.BluetoothManager.(notifyPeripheralDiscovery in _5D1DD2195154C02A7551364EE3E0B6EA)(peripheral: __C.CBPeripheral, rssi: __C.NSNumber, value: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in CTZNTrace.BluetoothPeripheral.peripheralManager(_: __C.CBPeripheralManager, didReceiveRead: __C.CBATTRequest) -&gt; ()"
                   moduleName = "CTZNTrace"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothManager.swift"
+                  urlString = "file:///Users/maxmamis/code/ctzntrace-sdk/ctzntrace-sdk/Trace/BluetoothPeripheral.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "156">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E86954D0-F607-42EA-98C6-CB37641EF2A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Trace/BluetoothPeripheral.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "peripheralManager(_:didReceiveRead:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F62EF140-69CF-4311-B181-FD80E69D1DF1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Services/TraceID Storage/TraceIDStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getCurrent(_:refreshIfNeeded:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F58A6342-9F93-4DAC-A8EF-0DEF107660C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Services/TraceID Storage/TraceIDStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "getCurrent(_:refreshIfNeeded:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06F5117F-44A9-4E86-BBD9-32918C254AEE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Services/TraceID Storage/TraceIDStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "getCurrent(_:refreshIfNeeded:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F52A5C80-4C21-48F8-988F-A5E36F87B297"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Services/TraceID Storage/TraceIDStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "getCurrent(_:refreshIfNeeded:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FC65396-44AD-41C7-8B1D-A66DFFD44C49"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ctzntrace-sdk/Services/TraceID Storage/TraceIDStorage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "updateStoredIDs(completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
