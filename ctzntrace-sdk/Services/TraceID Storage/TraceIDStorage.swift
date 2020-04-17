@@ -89,7 +89,7 @@ internal final class TraceIDStorage: TraceIDStorageProtocol {
 
     private func updateStoredIDs(completion: ((_ success: Bool) -> Void)? = nil) {
         guard let userID = environment.session.userID else { return }
-        
+
         environment.network.getTraceIDs(userID: userID) { result in
             if case .success(let ids) = result {
                 self.didDownloadIDs(ids)
@@ -99,7 +99,7 @@ internal final class TraceIDStorage: TraceIDStorageProtocol {
             }
         }
     }
-    
+
     private func didDownloadIDs(_ ids: [TraceIDRecord]) {
         let sortedIDs = ids.sorted {
             $0.start < $1.start
