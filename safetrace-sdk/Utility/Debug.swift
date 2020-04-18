@@ -38,7 +38,7 @@ internal enum Debug {
 #else
 
 internal enum Debug {
-    var notificationsEnabled: Bool {
+    static var notificationsEnabled: Bool {
         get { return false }
         set { }
     }

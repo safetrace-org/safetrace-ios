@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC0BBB3A24469C9900B18911"
-               BuildableName = "safetrace-app.app"
+               BuildableName = "SafeTrace.app"
                BlueprintName = "safetrace-app"
                ReferencedContainer = "container:safetrace.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC0BBB3A24469C9900B18911"
-            BuildableName = "safetrace-app.app"
+            BuildableName = "SafeTrace.app"
             BlueprintName = "safetrace-app"
             ReferencedContainer = "container:safetrace.xcodeproj">
          </BuildableReference>
