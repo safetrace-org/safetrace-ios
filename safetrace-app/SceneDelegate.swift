@@ -1,4 +1,4 @@
-import CTZNTrace
+import SafeTrace
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
 
-        let rootVC = CTZNTrace.shared.optInOutViewController()
+        let rootVC = SafeTrace.shared.optInOutViewController()
         
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()

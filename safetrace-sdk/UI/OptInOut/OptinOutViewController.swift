@@ -23,7 +23,7 @@ internal final class OptInOutViewController: UIViewController {
         
         let toggle = UISwitch()
         toggle.addTarget(self, action: #selector(toggleBluetooth(sender:)), for: .valueChanged)
-        toggle.isOn = CTZNTrace.shared.isTracing
+        toggle.isOn = SafeTrace.shared.isTracing
 
         let switchStackView = UIStackView(arrangedSubviews: [
             tracingLabel,
@@ -79,9 +79,9 @@ internal final class OptInOutViewController: UIViewController {
     
     @objc private func toggleBluetooth(sender: UISwitch) {
         if sender.isOn {
-            CTZNTrace.shared.tracer.optIn()
+            SafeTrace.shared.tracer.optIn()
         } else {
-            CTZNTrace.shared.tracer.optOut()
+            SafeTrace.shared.tracer.optOut()
         }
     }
     

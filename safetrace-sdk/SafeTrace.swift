@@ -1,10 +1,10 @@
 import UIKit
 
-public final class CTZNTrace {
+public final class SafeTrace {
     private let environment = TracerEnvironment()
     internal lazy var tracer = ContactTracer(environment: environment)
     
-    public static let shared = CTZNTrace()
+    public static let shared = SafeTrace()
     
     public var isTracing: Bool {
         return tracer.isTracingActive
