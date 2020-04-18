@@ -26,4 +26,7 @@ protocol UserSessionProtocol: AnyObject {
     func logout()
 
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    
+    /// For injecting a token and ID
+    func authenticate(withUserID userID: String, authToken: String)
 }

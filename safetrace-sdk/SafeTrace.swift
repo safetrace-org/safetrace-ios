@@ -10,6 +10,14 @@ public final class SafeTrace {
         return tracer.isTracingActive
     }
     
+    public var isBluetoothEnabled: Bool {
+        return tracer.isBluetoothPermissionEnabled
+    }
+    
+    public var isBluetoothDenied: Bool {
+        return tracer.isBluetoothPermissionDenied
+    }
+    
     public func startIfEnabled() {
         tracer.startScanning()
     }
@@ -18,12 +26,24 @@ public final class SafeTrace {
         tracer.stopScanning()
     }
     
+    public func optIn() {
+        tracer.optIn()
+    }
+    
+    public func optOut() {
+        tracer.optOut()
+    }
+    
     public func flushPendingTraces() {
         tracer.reportPendingTraces()
     }
     
     public func refreshTraceIDsIfNeeded() {
         environment.traceIDs.refreshIfNeeded()
+    }
+    
+    public func injectCitizenAuth(token: String, userID: String) {
+        environment.session.authenticate(withUserID: userID, authToken: token)
     }
     
     public func contactCenterViewController() -> UIViewController {
