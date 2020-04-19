@@ -14,7 +14,6 @@
 		DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB33244699E400B18911 /* ContactTrace.swift */; };
 		DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */; };
 		DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
-		DC0BBB4024469C9900B18911 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3F24469C9900B18911 /* SceneDelegate.swift */; };
 		DC0BBB4724469C9C00B18911 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4624469C9C00B18911 /* Assets.xcassets */; };
 		DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
 		DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
@@ -80,7 +79,6 @@
 		DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorage.swift; sourceTree = "<group>"; };
 		DC0BBB3B24469C9900B18911 /* SafeTrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeTrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB3D24469C9900B18911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC0BBB3F24469C9900B18911 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				DC9650A0244BE03800CFB202 /* Home */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
 				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
-				DC0BBB3F24469C9900B18911 /* SceneDelegate.swift */,
 				DC0BBB4624469C9C00B18911 /* Assets.xcassets */,
 				DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */,
 				DC0BBB4B24469C9C00B18911 /* Info.plist */,
@@ -444,7 +441,6 @@
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */,
 				DCA29A07244B91380074CD29 /* ConfirmationCodeViewController.swift in Sources */,
-				DC0BBB4024469C9900B18911 /* SceneDelegate.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneAuthenticationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,7 +699,7 @@
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -726,7 +722,7 @@
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -855,7 +851,7 @@
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
