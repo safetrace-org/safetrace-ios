@@ -25,13 +25,19 @@ class Button: UIButton {
         }
     }
 
+    override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1 : 0.5
+        }
+    }
+
     init(style: ButtonStyle) {
         self.style = style
         super.init(frame: .zero)
 
         heightAnchor.constraint(equalToConstant: 48).isActive = true
         layer.cornerRadius = 24
-        clipsToBounds = true
+        layer.masksToBounds = true
 
         titleLabel?.font = .titleH3
 

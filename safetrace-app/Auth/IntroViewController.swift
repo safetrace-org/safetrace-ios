@@ -1,6 +1,6 @@
 import UIKit
 
-class IntroViewController: UIViewController {
+class IntroViewController: OnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,6 +77,6 @@ class IntroViewController: UIViewController {
     }
 
     @objc private func didTapButton() {
-        navigationController?.pushViewController(PhoneAuthenticationViewController(), animated: true)
+        navigationController?.pushViewController(PhoneEnterViewController(), animated: true)
     }
 }

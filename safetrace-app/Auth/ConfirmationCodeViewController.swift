@@ -1,7 +1,7 @@
 import SafeTrace
 import UIKit
 
-internal final class ConfirmationCodeViewController: UIViewController {
+final class ConfirmationCodeViewController: UIViewController {
     private let phone: String
     
     private let textField = UITextField()
