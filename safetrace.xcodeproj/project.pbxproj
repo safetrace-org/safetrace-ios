@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
+		3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
+		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
+		3E0E3A24244C0886006520E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
 		DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB2324468E5B00B18911 /* safetrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0BBB2D24468EA500B18911 /* SafeTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* SafeTrace.swift */; };
@@ -67,6 +71,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E0E3A19244BFD41006520E4 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		3E0E3A1F244BFFA4006520E4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "safetrace-app.entitlements"; sourceTree = "<group>"; };
 		DC0BBB1224468E5B00B18911 /* SafeTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safetrace_sdk.h; sourceTree = "<group>"; };
@@ -126,6 +134,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E0E3A1B244BFE1F006520E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3E0E3A1F244BFFA4006520E4 /* Fonts.swift */,
+				3E0E3A21244C0085006520E4 /* Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3E0E3A1E244BFF76006520E4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3E0E3A23244C0886006520E4 /* Button.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DC0BBB0824468E5B00B18911 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +207,8 @@
 		DC0BBB3C24469C9900B18911 /* safetrace-app */ = {
 			isa = PBXGroup;
 			children = (
+				3E0E3A1E244BFF76006520E4 /* Common */,
+				3E0E3A1B244BFE1F006520E4 /* Extensions */,
 				DCA29A05244B91170074CD29 /* Auth */,
 				DC9650A0244BE03800CFB202 /* Home */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
@@ -262,6 +289,7 @@
 			children = (
 				DCD7482D2447D09E00B93256 /* PhoneAuthenticationViewController.swift */,
 				DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */,
+				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -438,7 +466,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
+				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
+				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
+				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */,
 				DCA29A07244B91380074CD29 /* ConfirmationCodeViewController.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneAuthenticationViewController.swift in Sources */,
