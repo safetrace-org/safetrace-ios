@@ -62,8 +62,8 @@ internal final class HomeViewController: UIViewController {
     @objc private func logout() {
         SafeTrace.session.logout()
         
-        let phoneAuthViewController = PhoneAuthenticationViewController()
-        navigationController?.setViewControllers([phoneAuthViewController, self], animated: false)
+        let introViewController = IntroViewController()
+        navigationController?.setViewControllers([introViewController, self], animated: false)
         navigationController?.popToRootViewController(animated: true)
     }
     

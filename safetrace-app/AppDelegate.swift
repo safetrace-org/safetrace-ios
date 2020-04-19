@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if SafeTrace.session.isAuthenticated {
             navigationController.viewControllers = [HomeViewController()]
         } else {
-            navigationController.viewControllers = [PhoneAuthenticationViewController()]
+            navigationController.viewControllers = [IntroViewController()]
         }
         
         self.window?.rootViewController = navigationController
