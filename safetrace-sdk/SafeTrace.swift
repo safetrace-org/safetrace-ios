@@ -1,65 +1,61 @@
 import UIKit
 
 public final class SafeTrace {
-    private let environment = TracerEnvironment()
-    internal lazy var tracer = ContactTracer(environment: environment)
+    private static let environment = TracerEnvironment()
     
-    public static let shared = SafeTrace()
-    
-    public var isTracing: Bool {
-        return tracer.isTracingActive
+    public static var session: SafeTraceSession {
+        environment.session
     }
     
-    public var isBluetoothEnabled: Bool {
-        return tracer.isBluetoothPermissionEnabled
+    public static var isTracing: Bool {
+        return environment.tracer.isTracingActive
     }
     
-    public var isBluetoothDenied: Bool {
-        return tracer.isBluetoothPermissionDenied
+    /// Will start the scanning process. May only be called once authenticated.
+    public static func startTracing() {
+        guard session.isAuthenticated else {
+            preconditionFailure("Cannot start scanning until authenticated.")
+        }
+        
+        environment.tracer.optIn()
     }
     
-    public func startIfEnabled() {
-        tracer.startScanning()
+    public static func stopTracing() {
+        environment.tracer.optOut()
     }
-    
-    public func stop() {
-        tracer.stopScanning()
-    }
-    
-    public func optIn() {
-        tracer.optIn()
-    }
-    
-    public func optOut() {
-        tracer.optOut()
-    }
-    
-    public func flushPendingTraces() {
-        tracer.reportPendingTraces()
-    }
-    
-    public func refreshTraceIDsIfNeeded() {
-        environment.traceIDs.refreshIfNeeded()
-    }
-    
-    public func injectCitizenAuth(token: String, userID: String) {
-        environment.session.authenticate(withUserID: userID, authToken: token)
-    }
-    
-    public func contactCenterViewController() -> UIViewController {
+
+    /// Vends a view controller contaning the Contact Center web app.
+    public static func contactCenterViewController() -> UIViewController {
         fatalError("not implemented")
     }
     
-    public func optInOutViewController() -> UIViewController {
-        let navigationController = UINavigationController()
-
-        if environment.session.isAuthenticated {
-            navigationController.viewControllers = [OptInOutViewController(environment: environment)]
-        } else {
-            let phoneAuthVC = PhoneAuthorizationViewController(environment: environment)
-            navigationController.viewControllers = [phoneAuthVC]
-        }
+    /// Must be called from the corresponding App Delegate method.
+    ///
+    /// Will start tracing, if enabled. If the app is being launched in the
+    /// foreground, or for background fetch activity, will initiate batch
+    /// reporting and update the traceID cache.
+    public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        // check if we're launching for foreground or background,
+        // and then do some combination of the following:
         
-        return navigationController
+        environment.traceIDs.refreshIfNeeded()
+        environment.tracer.reportPendingTraces()
+        environment.tracer.startScanning()
     }
 }
+
+#if STAGING || DEBUG
+extension SafeTrace {
+    public static var debug_notificationsEnabled: Bool {
+        get { Debug.notificationsEnabled }
+        set { Debug.notificationsEnabled = newValue }
+    }
+}
+#else
+extension SafeTrace {
+    public static var debug_notificationsEnabled: Bool {
+        get { false }
+        set { }
+    }
+}
+#endif

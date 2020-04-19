@@ -1,6 +1,7 @@
 import Foundation
 
 protocol Environment {
+    var tracer: ContactTracer { get }
     var network: NetworkProtocol { get }
     var session: UserSessionProtocol { get }
     var defaults: UserDefaultsProtocol { get }

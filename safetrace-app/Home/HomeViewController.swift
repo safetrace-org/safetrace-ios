@@ -1,17 +1,7 @@
 import UIKit
+import SafeTrace
 
-internal final class OptInOutViewController: UIViewController {
-    private let environment: Environment
-    
-    init(environment: Environment) {
-        self.environment = environment
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+internal final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +13,7 @@ internal final class OptInOutViewController: UIViewController {
         
         let toggle = UISwitch()
         toggle.addTarget(self, action: #selector(toggleBluetooth(sender:)), for: .valueChanged)
-        toggle.isOn = SafeTrace.shared.isTracing
+        toggle.isOn = SafeTrace.isTracing
 
         let switchStackView = UIStackView(arrangedSubviews: [
             tracingLabel,
@@ -36,7 +26,7 @@ internal final class OptInOutViewController: UIViewController {
         
         let notifToggle = UISwitch()
         notifToggle.addTarget(self, action: #selector(toggleNotifs(sender:)), for: .valueChanged)
-        notifToggle.isOn = Debug.notificationsEnabled
+        notifToggle.isOn = SafeTrace.debug_notificationsEnabled
 
         let notifStackView = UIStackView(arrangedSubviews: [
             debugLabel,
@@ -70,22 +60,22 @@ internal final class OptInOutViewController: UIViewController {
     }
     
     @objc private func logout() {
-        environment.session.logout()
+        SafeTrace.session.logout()
         
-        let phoneAuthViewController = PhoneAuthorizationViewController(environment: environment)
+        let phoneAuthViewController = PhoneAuthenticationViewController()
         navigationController?.setViewControllers([phoneAuthViewController, self], animated: false)
         navigationController?.popToRootViewController(animated: true)
     }
     
     @objc private func toggleBluetooth(sender: UISwitch) {
         if sender.isOn {
-            SafeTrace.shared.tracer.optIn()
+            SafeTrace.startTracing()
         } else {
-            SafeTrace.shared.tracer.optOut()
+            SafeTrace.stopTracing()
         }
     }
     
     @objc private func toggleNotifs(sender: UISwitch) {
-        Debug.notificationsEnabled = sender.isOn
+        SafeTrace.debug_notificationsEnabled = sender.isOn
     }
 }

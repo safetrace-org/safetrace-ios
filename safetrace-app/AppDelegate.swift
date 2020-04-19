@@ -5,10 +5,9 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        SafeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
         UNUserNotificationCenter.current().delegate = self
-        SafeTrace.shared.startIfEnabled()
-
+        
         return true
     }
 }

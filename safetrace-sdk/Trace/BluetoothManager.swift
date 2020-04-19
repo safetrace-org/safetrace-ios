@@ -22,7 +22,7 @@ internal final class ContactTracer: NSObject {
     private let environment: Environment
     private let peripheral: BluetoothPeripheral
     private let central: BluetoothCentral
-    
+
     var isBluetoothPermissionEnabled: Bool {
         if #available(iOS 13.1, *) {
             return CBCentralManager.authorization == .allowedAlways
@@ -44,7 +44,7 @@ internal final class ContactTracer: NSObject {
     var isTracingActive: Bool {
         return isTracingEnabled && isBluetoothPermissionEnabled
     }
-    
+
     init(environment: Environment) {
         self.environment = environment
         self.peripheral = BluetoothPeripheral(environment: environment)

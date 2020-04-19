@@ -12,11 +12,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.window = UIWindow(windowScene: windowScene)
-
-        let rootVC = SafeTrace.shared.optInOutViewController()
+        let navigationController = UINavigationController()
         
-        self.window?.rootViewController = rootVC
+        if SafeTrace.session.isAuthenticated {
+            navigationController.viewControllers = [HomeViewController()]
+        } else {
+            navigationController.viewControllers = [PhoneAuthenticationViewController()]
+        }
+        
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
 }
-

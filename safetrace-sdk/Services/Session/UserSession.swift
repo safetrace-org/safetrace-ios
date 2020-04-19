@@ -14,7 +14,8 @@ struct AuthData: Codable {
 private let authTokenKeychainIdentifier = "org.ctzn.auth_token"
 private let userIDKeychainIdentifier = "org.ctzn.userID"
 
-class UserSession: UserSessionProtocol {    
+class UserSession: UserSessionProtocol {
+    
     weak var authenticationDelegate: UserSessionAuthenticationDelegate?
     
     var isAuthenticated: Bool {
@@ -41,6 +42,10 @@ class UserSession: UserSessionProtocol {
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
     
+    func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        environment.network.requestAuthCode(phone: phone, completion: completion)
+    }
+
     func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         environment.network.authenticateWithCode(code, phone: phone) { result in
             switch result {
@@ -54,11 +59,17 @@ class UserSession: UserSessionProtocol {
         }
     }
         
-    func authenticate(withUserID userID: String, authToken: String) {
+    func authenticateWithToken(_ token: String) {
+//        self.updateStoredValues(token: authToken, userID: userID)
+//        self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
+    }
+    
+    // legacy Citizen auth
+    private func authenticate(withUserID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
-    
+
     private func updateStoredValues(token: String?, userID: String?) {
         if let token = token {
             keychain.set(token, forKey: authTokenKeychainIdentifier, withAccess: .accessibleAfterFirstUnlockThisDeviceOnly)

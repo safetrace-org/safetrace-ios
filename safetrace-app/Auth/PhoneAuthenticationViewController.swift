@@ -1,15 +1,11 @@
+import SafeTrace
 import UIKit
 
-internal final class ConfirmationCodeViewController: UIViewController {
-    private let environment: Environment
-    private let phone: String
-    
+internal final class PhoneAuthenticationViewController: UIViewController {
     private let textField = UITextField()
     private let submitButton = UIButton()
     
-    init(environment: Environment, phone: String) {
-        self.environment = environment
-        self.phone = phone
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,7 +17,7 @@ internal final class ConfirmationCodeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        submitButton.setTitle("Submit Confirmation Code", for: .normal)
+        submitButton.setTitle("Submit Phone #", for: .normal)
         submitButton.setTitleColor(.systemBlue, for: .normal)
         textField.backgroundColor = .lightGray
         textField.textAlignment = .center
@@ -48,20 +44,24 @@ internal final class ConfirmationCodeViewController: UIViewController {
     }
     
     @objc private func submit() {
-        guard let text = textField.text, !text.isEmpty else { return }
+        guard let phone = textField.text, !phone.isEmpty else { return }
         
-        environment.session.authenticateWithCode(text, phone: phone) { result in
+        SafeTrace.session.requestAuthenticationCode(for: phone) { result in
             DispatchQueue.main.async {
-                guard case .success = result else { return }
-                let vc = OptInOutViewController(environment: self.environment)
-                self.navigationController?.setViewControllers([vc], animated: true)
+                if case .success = result {
+                    let vc = ConfirmationCodeViewController(phone: phone)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    // TODO: display error state
+                }
             }
         }
     }
 }
 
-extension ConfirmationCodeViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+extension PhoneAuthenticationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         submit()
+        return true
     }
 }

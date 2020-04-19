@@ -15,8 +15,17 @@ protocol UserSessionAuthenticationDelegate: AnyObject {
     func authenticationTokenDidChange(forSession: UserSessionProtocol)
 }
 
+public protocol SafeTraceSession {
+    var isAuthenticated: Bool { get }
+ 
+    func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func authenticateWithToken(_: String)
+    func logout()
+}
+
 //sourcery: AutoMockable
-protocol UserSessionProtocol: AnyObject {
+protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     var authenticationDelegate: UserSessionAuthenticationDelegate? { get set }
     
     var isAuthenticated: Bool { get }
@@ -28,5 +37,6 @@ protocol UserSessionProtocol: AnyObject {
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     
     /// For injecting a token and ID
-    func authenticate(withUserID userID: String, authToken: String)
+//    func authenticate(withUserID userID: String, authToken: String)
+    func authenticateWithToken(_: String)
 }
