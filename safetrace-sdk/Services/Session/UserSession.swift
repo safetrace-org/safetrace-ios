@@ -65,7 +65,7 @@ class UserSession: UserSessionProtocol {
     }
     
     // legacy Citizen auth
-    private func authenticate(withUserID: String, authToken: String) {
+    private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
