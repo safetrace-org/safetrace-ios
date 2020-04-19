@@ -14,6 +14,7 @@
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */; };
+		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
 		DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB2324468E5B00B18911 /* safetrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0BBB2D24468EA500B18911 /* SafeTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* SafeTrace.swift */; };
@@ -39,7 +40,6 @@
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42321E2447D42900B9ABC4 /* HomeViewController.swift */; };
 		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
-		DCA29A07244B91380074CD29 /* ConfirmationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +81,7 @@
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "safetrace-app.entitlements"; sourceTree = "<group>"; };
 		DC0BBB1224468E5B00B18911 /* SafeTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safetrace_sdk.h; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
-		DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */,
+				3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */,
 			);
 			path = "Phone Step";
 			sourceTree = "<group>";
@@ -306,7 +307,6 @@
 				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
 				3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */,
 				3E0E3A29244CA76F006520E4 /* Phone Step */,
-				DCD7482F2447D2C100B93256 /* ConfirmationCodeViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -487,12 +487,12 @@
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
+				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */,
-				DCA29A07244B91380074CD29 /* ConfirmationCodeViewController.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

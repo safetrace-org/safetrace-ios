@@ -83,7 +83,7 @@ final class PhoneEnterViewController: OnboardingViewController {
         SafeTrace.session.requestAuthenticationCode(for: phone) { [weak self] result in
             DispatchQueue.main.async {
                 if case .success = result {
-                    let vc = ConfirmationCodeViewController(phone: phone)
+                    let vc = PhoneVerificationViewController(phone: phone)
                     self?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self?.phoneTextField.setState(.error)
@@ -95,7 +95,12 @@ final class PhoneEnterViewController: OnboardingViewController {
 
 extension PhoneEnterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let isValid = isValidNumber(input: textField.text)
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        let isValid = isValidNumber(input: updatedText)
         sendCodeButton.isEnabled = isValid
         return true
     }
