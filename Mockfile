@@ -3,11 +3,11 @@ safetrace-sdk-tests:
   sources:
     include:
     - ./safetrace-sdk
-  output: ./safetrace-sdk-tests/Mock.generated.swift
+  output: ./safetrace-sdk-tests/mock/Mock.generated.swift
   targets:
   - safetrace-sdk-tests
   testable:
-  - safetrace-sdk
+  - SafeTrace
   import:
   - AdSupport
   - CoreBluetooth

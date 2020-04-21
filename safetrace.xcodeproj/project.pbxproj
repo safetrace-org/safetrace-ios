@@ -43,6 +43,7 @@
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
 		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
+		DCE94628244F9D59001AB10D /* MockEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94627244F9D59001AB10D /* MockEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,9 +115,9 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
-		DCE9461F244F888E001AB10D /* safetrace-sdk-tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "safetrace-sdk-tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorageTests.swift; sourceTree = "<group>"; };
 		DCE94625244F8E33001AB10D /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
+		DCE94627244F9D59001AB10D /* MockEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,10 +213,9 @@
 		DC0BBB1F24468E5B00B18911 /* safetrace-sdk-tests */ = {
 			isa = PBXGroup;
 			children = (
+				DCE94629244F9E80001AB10D /* mock */,
 				DC0BBB2224468E5B00B18911 /* Info.plist */,
-				DCE94625244F8E33001AB10D /* Mock.generated.swift */,
 				DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */,
-				DCE9461F244F888E001AB10D /* safetrace-sdk-tests-Bridging-Header.h */,
 			);
 			path = "safetrace-sdk-tests";
 			sourceTree = "<group>";
@@ -319,6 +319,15 @@
 				3E0E3A29244CA76F006520E4 /* Phone Step */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		DCE94629244F9E80001AB10D /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				DCE94625244F8E33001AB10D /* Mock.generated.swift */,
+				DCE94627244F9D59001AB10D /* MockEnvironment.swift */,
+			);
+			path = mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +504,7 @@
 			files = (
 				DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */,
 				DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */,
+				DCE94628244F9D59001AB10D /* MockEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,7 +748,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "safetrace-sdk-tests/safetrace-sdk-tests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -760,7 +769,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "safetrace-sdk-tests/safetrace-sdk-tests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -914,7 +922,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "safetrace-sdk-tests/safetrace-sdk-tests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

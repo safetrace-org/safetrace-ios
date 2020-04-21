@@ -6,7 +6,7 @@ internal struct TraceIDRecord: Codable {
     public let traceID: String
 }
 
-//sourceery:AutoMockable
+//sourcery:AutoMockable
 internal protocol TraceIDStorageProtocol {
     func getCurrent(_ completion: @escaping (String?) -> Void)
     func refreshIfNeeded()
@@ -35,7 +35,7 @@ internal final class TraceIDStorage: TraceIDStorageProtocol {
         }
         
         let twelveHoursInSeconds: TimeInterval = 12 * 60 * 60
-        let twelveHoursFromNow = Date()
+        let twelveHoursFromNow = environment.date()
             .addingTimeInterval(twelveHoursInSeconds)
         
         if lastID.end <= twelveHoursFromNow {
@@ -49,7 +49,7 @@ internal final class TraceIDStorage: TraceIDStorageProtocol {
     }
     
     private func getCurrent(_ completion: @escaping (String?) -> Void, refreshIfNeeded: Bool) {
-        let time = Date()
+        let time = environment.date()
         
         // If the last known ID is still valid, just return that
         if let lastID = lastID, lastID.isCurrent(time) {
