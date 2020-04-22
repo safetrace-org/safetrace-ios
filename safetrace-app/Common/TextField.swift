@@ -15,6 +15,7 @@ class TextField: UITextField {
 
         backgroundColor = .stGrey90
         textAlignment = .left
+        textColor = .stBlack
         layer.borderWidth = 1
         layer.cornerRadius = 12
         tintColor = .stPurple

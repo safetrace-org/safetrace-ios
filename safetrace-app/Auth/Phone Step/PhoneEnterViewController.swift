@@ -1,3 +1,4 @@
+import SafariServices
 import SafeTrace
 import UIKit
 
@@ -47,13 +48,16 @@ final class PhoneEnterViewController: OnboardingViewController {
         sendCodeButton.setTitle(NSLocalizedString("Send code", comment: "Phone auth send code button title"), for: .normal)
         sendCodeButton.addTarget(self, action: #selector(didTapSendCode), for: .touchUpInside)
 
+        let privacyAndTermsTextView = makePrivacyAndTermsTextView()
+
         let stackView = UIStackView(arrangedSubviews: [
             backButton,
             titleLabel,
             subtitleLabel,
             phoneNumberLabel,
             phoneTextField,
-            sendCodeButton
+            sendCodeButton,
+            privacyAndTermsTextView
         ])
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -68,13 +72,63 @@ final class PhoneEnterViewController: OnboardingViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             phoneTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            sendCodeButton.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            sendCodeButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            privacyAndTermsTextView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
 
         stackView.setCustomSpacing(23, after: backButton)
         stackView.setCustomSpacing(30, after: subtitleLabel)
         stackView.setCustomSpacing(8, after: phoneNumberLabel)
         stackView.setCustomSpacing(40, after: phoneTextField)
+        stackView.setCustomSpacing(33, after: sendCodeButton)
+    }
+
+    private func makePrivacyAndTermsTextView() -> TappableTextView {
+        let privacyAndTermsTextView = TappableTextView()
+
+        let termsOfUseText = NSLocalizedString("Terms of Use", comment: "Terms of use text")
+        let privacyPolicyText = NSLocalizedString("Privacy Policy", comment: "Privacy policy text")
+        let termsAndConditionsTemplate = NSLocalizedString("By continuing you agree to our\n%1$@ and %2$@.", comment: "Terms of use and privacy policy text template")
+        let termsAndConditionsText = String(format: termsAndConditionsTemplate, termsOfUseText, privacyPolicyText)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attributedString = NSMutableAttributedString(
+            string: termsAndConditionsText,
+            attributes: [
+                .font: UIFont.smallSemibold,
+                .foregroundColor: UIColor.stGrey40,
+                .paragraphStyle: paragraphStyle
+            ])
+
+        let termsOfUseCharacterRange = attributedString.mutableString.range(of: termsOfUseText)
+        let privacyPolicyCharacterRange = attributedString.mutableString.range(of: privacyPolicyText)
+        [
+            termsOfUseCharacterRange: "https://citizen.com/tracing/terms",
+            privacyPolicyCharacterRange: "https://citizen.com/tracing/privacy"
+        ]
+        .forEach {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .link: $0.1,
+                .foregroundColor: UIColor.stPurple
+            ]
+            attributedString.addAttributes(attributes, range: $0.0)
+        }
+
+        privacyAndTermsTextView.attributedText = attributedString
+        privacyAndTermsTextView.linkHandler = { [weak self] url in
+            self?.openInWebView(url: url)
+        }
+        return privacyAndTermsTextView
+    }
+
+    private func openInWebView(url: URL) {
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = false
+        let safariViewController = SFSafariViewController(url: url, configuration: configuration)
+        safariViewController.preferredBarTintColor = .stBlack
+        safariViewController.preferredControlTintColor = .white
+        present(safariViewController, animated: true)
     }
     
     @objc private func didTapSendCode() {

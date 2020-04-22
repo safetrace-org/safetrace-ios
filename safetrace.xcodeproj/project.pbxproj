@@ -12,6 +12,7 @@
 		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
 		3E0E3A24244C0886006520E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
+		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
@@ -83,6 +84,7 @@
 		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				3E0E3A21244C0085006520E4 /* Colors.swift */,
 				3E0E3A1F244BFFA4006520E4 /* Fonts.swift */,
 				3EE970BE244CBB2000AAF2CF /* TextField.swift */,
+				3E5F6380244FDCF900C508A4 /* TappableTextView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
+				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
