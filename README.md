@@ -27,7 +27,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 ## Contributing
 
 ### Tests
-We use [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) for test mocks. To update tests, make sure the CLI tool is [installed](https://github.com/MakeAWishFoundation/SwiftyMocky#installation). The easiest way is by using Mint:
+We use [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky) for test mocks. In order to update mocks, first make sure the CLI tool is [installed](https://github.com/MakeAWishFoundation/SwiftyMocky#installation). The easiest way is by using Mint:
 
 ```bash
 > brew install mint
