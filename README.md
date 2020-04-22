@@ -1,6 +1,6 @@
 # SafeTrace [![Build Status](https://app.bitrise.io/app/4dfbd089ca815827/status.svg?token=IRZo5KIki0lQ4w75l7zFwQ&branch=master)](https://app.bitrise.io/app/4dfbd089ca815827)
 
-COVID-9 Contact Tracing App & SDK
+COVID-19 Contact Tracing App & SDK
 
 ## Integration Guide
 
