@@ -104,8 +104,8 @@ final class PhoneEnterViewController: OnboardingViewController {
         let termsOfUseCharacterRange = attributedString.mutableString.range(of: termsOfUseText)
         let privacyPolicyCharacterRange = attributedString.mutableString.range(of: privacyPolicyText)
         [
-            termsOfUseCharacterRange: "https://citizen.com/tracing/terms",
-            privacyPolicyCharacterRange: "https://citizen.com/tracing/privacy"
+            termsOfUseCharacterRange: Constants.termsOfUseUrl,
+            privacyPolicyCharacterRange: Constants.privacyPolicyUrl
         ]
         .forEach {
             let attributes: [NSAttributedString.Key: Any] = [
