@@ -1,0 +1,18 @@
+sourceryCommand: null
+safetrace-sdk-tests:
+  sources:
+    include:
+    - ./safetrace-sdk
+  output: ./safetrace-sdk-tests/mock/Mock.generated.swift
+  targets:
+  - safetrace-sdk-tests
+  testable:
+  - SafeTrace
+  import:
+  - AdSupport
+  - CoreBluetooth
+  - CoreLocation
+  - Foundation
+  - UIKit
+  - UserNotifications
+  - WebKit

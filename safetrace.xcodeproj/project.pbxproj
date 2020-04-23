@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,6 +40,10 @@
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42321E2447D42900B9ABC4 /* HomeViewController.swift */; };
 		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
+		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
+		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
+		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
+		DCE94628244F9D59001AB10D /* MockEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94627244F9D59001AB10D /* MockEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,9 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
+		DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorageTests.swift; sourceTree = "<group>"; };
+		DCE94625244F8E33001AB10D /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
+		DCE94627244F9D59001AB10D /* MockEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */,
 				DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +213,9 @@
 		DC0BBB1F24468E5B00B18911 /* safetrace-sdk-tests */ = {
 			isa = PBXGroup;
 			children = (
+				DCE94629244F9E80001AB10D /* mock */,
 				DC0BBB2224468E5B00B18911 /* Info.plist */,
+				DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */,
 			);
 			path = "safetrace-sdk-tests";
 			sourceTree = "<group>";
@@ -311,6 +321,15 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		DCE94629244F9E80001AB10D /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				DCE94625244F8E33001AB10D /* Mock.generated.swift */,
+				DCE94627244F9D59001AB10D /* MockEnvironment.swift */,
+			);
+			path = mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -357,6 +376,9 @@
 				DC0BBB1E24468E5B00B18911 /* PBXTargetDependency */,
 			);
 			name = "safetrace-sdk-tests";
+			packageProductDependencies = (
+				DCE94623244F8ADE001AB10D /* SwiftyMocky */,
+			);
 			productName = "ctzntrace-sdkTests";
 			productReference = DC0BBB1B24468E5B00B18911 /* safetrace-sdk-tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -396,6 +418,7 @@
 					};
 					DC0BBB1A24468E5B00B18911 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					DC0BBB3A24469C9900B18911 = {
 						CreatedOnToolsVersion = 11.4;
@@ -411,6 +434,9 @@
 				Base,
 			);
 			mainGroup = DC0BBB0824468E5B00B18911;
+			packageReferences = (
+				DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */,
+			);
 			productRefGroup = DC0BBB1324468E5B00B18911 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -476,6 +502,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */,
+				DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */,
+				DCE94628244F9D59001AB10D /* MockEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
@@ -718,6 +748,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -727,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
@@ -879,6 +911,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YBR8XVZH29;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
@@ -961,6 +994,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MakeAWishFoundation/SwiftyMocky.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCE94623244F8ADE001AB10D /* SwiftyMocky */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */;
+			productName = SwiftyMocky;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC0BBB0924468E5B00B18911 /* Project object */;
 }
