@@ -14,6 +14,10 @@
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
+		3E5F638A2452216600C508A4 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F63892452216600C508A4 /* BackButton.swift */; };
+		3E5F638C24523CCF00C508A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F638B24523CCF00C508A4 /* MainViewController.swift */; };
+		3E5F638E245242D200C508A4 /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F638D245242D200C508A4 /* AuthOnboardingStep.swift */; };
+		3E5F6390245243D500C508A4 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F638F245243D500C508A4 /* OnboardingStep.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
@@ -87,6 +91,10 @@
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E5F63892452216600C508A4 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		3E5F638B24523CCF00C508A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3E5F638D245242D200C508A4 /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
+		3E5F638F245243D500C508A4 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +176,7 @@
 				3E0E3A1F244BFFA4006520E4 /* Fonts.swift */,
 				3EE970BE244CBB2000AAF2CF /* TextField.swift */,
 				3E5F6380244FDCF900C508A4 /* TappableTextView.swift */,
+				3E5F63892452216600C508A4 /* BackButton.swift */,
 			);
 			path = "Common UI";
 			sourceTree = "<group>";
@@ -175,6 +184,8 @@
 		3E0E3A29244CA76F006520E4 /* Phone Step */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F638D245242D200C508A4 /* AuthOnboardingStep.swift */,
+				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
 				DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */,
 				3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */,
 			);
@@ -241,11 +252,12 @@
 			children = (
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
-				DCA29A05244B91170074CD29 /* Auth */,
+				DCA29A05244B91170074CD29 /* Onboarding */,
 				DC9650A0244BE03800CFB202 /* Home */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
 				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
 				3E5F6382245209D900C508A4 /* Constants.swift */,
+				3E5F638B24523CCF00C508A4 /* MainViewController.swift */,
 				DC0BBB4624469C9C00B18911 /* Assets.xcassets */,
 				DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */,
 				DC0BBB4B24469C9C00B18911 /* Info.plist */,
@@ -317,14 +329,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		DCA29A05244B91170074CD29 /* Auth */ = {
+		DCA29A05244B91170074CD29 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
+				3E5F638F245243D500C508A4 /* OnboardingStep.swift */,
 				3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */,
 				3E0E3A29244CA76F006520E4 /* Phone Step */,
 			);
-			path = Auth;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		DCE94629244F9E80001AB10D /* mock */ = {
@@ -518,14 +530,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E5F6390245243D500C508A4 /* OnboardingStep.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
+				3E5F638E245242D200C508A4 /* AuthOnboardingStep.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
+				3E5F638C24523CCF00C508A4 /* MainViewController.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
+				3E5F638A2452216600C508A4 /* BackButton.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,

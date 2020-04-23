@@ -77,6 +77,9 @@ class IntroViewController: OnboardingViewController {
     }
 
     @objc private func didTapButton() {
-        navigationController?.pushViewController(PhoneEnterViewController(), animated: true)
+        navigationController?.pushViewController(
+            PhoneEnterViewController(onboardingStep: onboardingStep),
+            animated: true
+        )
     }
 }

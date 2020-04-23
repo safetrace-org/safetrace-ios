@@ -5,19 +5,12 @@ import UIKit
 final class PhoneEnterViewController: OnboardingViewController {
     private let phoneTextField = TextField()
     private let sendCodeButton = Button(style: .primary)
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        navigationController?.setNavigationBarHidden(true, animated: false)
 
         // MARK: - UI Components
 
@@ -28,12 +21,14 @@ final class PhoneEnterViewController: OnboardingViewController {
         titleLabel.textColor = .stBlack
         titleLabel.text = NSLocalizedString("Enter your phone number", comment: "Phone auth title")
         titleLabel.textAlignment = .left
+        titleLabel.numberOfLines = 0
 
         let subtitleLabel = UILabel()
         subtitleLabel.font = .titleH2
         subtitleLabel.textColor = .stGrey40
         subtitleLabel.text = NSLocalizedString("to sign up or log in.", comment: "Phone auth subtitle")
         subtitleLabel.textAlignment = .left
+        subtitleLabel.numberOfLines = 0
 
         let phoneNumberLabel = UILabel()
         phoneNumberLabel.font = .titleH6
@@ -135,12 +130,13 @@ final class PhoneEnterViewController: OnboardingViewController {
         guard let phone = phoneTextField.text, !phone.isEmpty else { return }
 
         SafeTrace.session.requestAuthenticationCode(for: phone) { [weak self] result in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 if case .success = result {
-                    let vc = PhoneVerificationViewController(phone: phone)
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                    let vc = PhoneVerificationViewController(onboardingStep: self.onboardingStep, phone: phone)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 } else {
-                    self?.phoneTextField.setState(.error)
+                    self.phoneTextField.setState(.error)
                 }
             }
         }

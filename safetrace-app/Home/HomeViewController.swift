@@ -61,10 +61,8 @@ internal final class HomeViewController: UIViewController {
     
     @objc private func logout() {
         SafeTrace.session.logout()
-        
-        let introViewController = IntroViewController()
-        navigationController?.setViewControllers([introViewController, self], animated: false)
-        navigationController?.popToRootViewController(animated: true)
+
+        (navigationController as? MainNavigationController)?.logout()
     }
     
     @objc private func toggleBluetooth(sender: UISwitch) {

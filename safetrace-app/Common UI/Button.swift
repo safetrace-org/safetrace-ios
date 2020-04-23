@@ -21,7 +21,12 @@ class Button: UIButton {
 
     override var isHighlighted: Bool {
         didSet {
-            alpha = isHighlighted ? 0.8 : 1
+            switch style {
+            case .primary:
+                alpha = isHighlighted ? 0.8 : 1
+            case .secondary:
+                backgroundColor = isHighlighted ? .stGrey90 : .white
+            }
         }
     }
 
@@ -49,6 +54,7 @@ class Button: UIButton {
             setTitleColor(.stGrey15, for: .normal)
             layer.borderColor = UIColor.stBlack.withAlphaComponent(0.3).cgColor
             layer.borderWidth = 1
+            backgroundColor = .white
         }
     }
 
