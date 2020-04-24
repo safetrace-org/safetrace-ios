@@ -76,6 +76,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
         ])
 
         stackView.setCustomSpacing(23, after: backButton)
+        stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
         stackView.setCustomSpacing(8, after: phoneNumberLabel)
         stackView.setCustomSpacing(58, after: codeTextField)

@@ -72,6 +72,7 @@ class IntroViewController: OnboardingViewController {
         ])
 
         stackView.setCustomSpacing(15, after: iconView)
+        stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(32, after: subtitleLabel)
         stackView.setCustomSpacing(35, after: bodyLabel)
     }
