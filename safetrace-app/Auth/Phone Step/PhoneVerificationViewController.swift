@@ -6,9 +6,9 @@ final class PhoneVerificationViewController: OnboardingViewController {
     private let codeTextField = TextField()
     private let resendButton = UIButton()
 
-    init(phone: String) {
+    init(onboardingStep: OnboardingStep, phone: String) {
         self.phone = phone
-        super.init(nibName: nil, bundle: nil)
+        super.init(onboardingStep: onboardingStep)
     }
 
     required init?(coder: NSCoder) {
@@ -76,6 +76,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
         ])
 
         stackView.setCustomSpacing(23, after: backButton)
+        stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
         stackView.setCustomSpacing(8, after: phoneNumberLabel)
         stackView.setCustomSpacing(58, after: codeTextField)
@@ -95,8 +96,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
         SafeTrace.session.authenticateWithCode(code, phone: phone) { [weak self] result in
             DispatchQueue.main.async {
                 if case .success = result {
-                    let vc = HomeViewController()
-                    self?.navigationController?.setViewControllers([vc], animated: true)
+                    self?.onboardingStep.stepCompleted()
                 } else {
                     self?.codeTextField.setState(.error)
                 }

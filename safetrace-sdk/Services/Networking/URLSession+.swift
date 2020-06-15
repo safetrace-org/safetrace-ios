@@ -4,7 +4,7 @@ public enum NetworkEnvironment {
     case staging
     case production
     
-    internal var baseURL: URL {
+    internal var safetraceURL: URL {
         switch self {
         case .staging:
             return URL(string: "https://api.staging.ctzn.org")!
@@ -12,9 +12,32 @@ public enum NetworkEnvironment {
             return URL(string: "https://api.ctzn.org")!
         }
     }
+    
+    internal var sp0nURL: URL {
+        switch self {
+        case .staging:
+            return URL(string: "https://data.staging.sp0n.io")!
+        case .production:
+            return URL(string: "https://data.sp0n.io")!
+        }
+    }
 }
 
-var baseURL = NetworkEnvironment.production.baseURL
+internal enum Host {
+    case safetrace
+    case sp0n
+    
+    func baseURL(for env: NetworkEnvironment) -> URL {
+        switch self {
+        case .safetrace:
+            return env.safetraceURL
+        case .sp0n:
+            return env.sp0nURL
+        }
+    }
+}
+
+var networkEnvironment: NetworkEnvironment = .production
 
 extension URLRequest {
     enum Method: String {
@@ -27,11 +50,12 @@ extension URLRequest {
     init(
         endpoint: String,
         method: Method,
+        host: Host,
         token: String? = nil,
         body: Encodable? = nil,
         dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
     ) throws {
-        guard let url = URL(string: endpoint, relativeTo: baseURL) else {
+        guard let url = URL(string: endpoint, relativeTo: host.baseURL(for: networkEnvironment)) else {
             preconditionFailure()
         }
         
@@ -114,7 +138,7 @@ extension URLSession {
     }
 }
 
-extension Result{
+extension Result {
     var value: Success? {
         if case .success(let value) = self {
             return value

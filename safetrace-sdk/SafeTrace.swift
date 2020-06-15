@@ -58,7 +58,7 @@ public final class SafeTrace {
     }
 
     public static func setNetworkingEnvironment(_ env: NetworkEnvironment) {
-        baseURL = env.baseURL
+        networkEnvironment = env
     }
     
     public static func registerErrorHandler(_ handler: @escaping (TraceError) -> Void) {
