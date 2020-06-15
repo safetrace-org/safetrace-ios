@@ -24,7 +24,7 @@ class MainNavigationController: UINavigationController {
                 pushViewController(nextOnboardingController, animated: true)
             }
         } else {
-            setViewControllers([HomeViewController()], animated: true)
+            setViewControllers([ContactCenterViewController()], animated: true)
         }
     }
 
