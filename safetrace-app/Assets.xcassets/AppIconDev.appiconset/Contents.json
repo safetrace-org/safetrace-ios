@@ -11,43 +11,43 @@
       "size" : "20x20"
     },
     {
-      "filename" : "App Icon - Prod-Settings@2x.png",
+      "filename" : "App Icon - Stag-Settings@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "App Icon - Prod-Settings@3x.png",
+      "filename" : "App Icon - Stag-Settings@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "App Icon - Prod-Spotlight-40@2x.png",
+      "filename" : "App Icon - Stag-Spotlight-40@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "App Icon - Prod-Spotlight-40@3x.png",
+      "filename" : "App Icon - Stag-Spotlight-40@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "App Icon - Prod-Spotlight-40@3x-1.png",
+      "filename" : "App Icon - Stag-60@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "App Icon - Prod-60@3x.png",
+      "filename" : "App Icon - Stag-60@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "App Icon - Prodios~marketing.png",
+      "filename" : "App Icon - Stagios~marketing.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

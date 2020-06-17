@@ -11,8 +11,16 @@ struct AuthData: Codable {
     let userToken: String
 }
 
-private let authTokenKeychainIdentifier = "org.ctzn.auth_token"
-private let userIDKeychainIdentifier = "org.ctzn.userID"
+private let authTokenKeychainIdentifier = "UserToken"
+private let userIDKeychainIdentifier = "UserId"
+
+#if INTERNAL
+private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-app-dev"
+private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilantedev"
+#else
+private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-app"
+private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilante"
+#endif
 
 class UserSession: UserSessionProtocol {
     
@@ -30,13 +38,18 @@ class UserSession: UserSessionProtocol {
     
     init(
         environment: Environment,
-        keychain: KeychainProtocol = KeychainSwift()
+        appKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainAppIdentifier),
+        groupKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainGroupIdentifier)
     ) {
         self.environment = environment
-        self.keychain = keychain
+        self.keychain = appKeychain
         attemptToLoadCachedValues()
-    }
         
+        if !isAuthenticated {
+            attemptToLoadValuesFromAppGroup(groupKeychain: groupKeychain)
+        }
+    }
+
     func logout() {
         updateStoredValues(token: nil, userID: nil)
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
@@ -115,28 +128,47 @@ class UserSession: UserSessionProtocol {
 
     private func attemptToLoadCachedValues() {
         // we want to have *both* or *neither* to be in a consistent state
-        guard let authToken = getCachedAuthToken(),
-              let userID = getCachedUserID() else {
+        guard let authToken = getCachedAuthToken(from: self.keychain),
+            let userID = getCachedUserID(from: self.keychain) else {
             return
         }
         
         updateLocalValues(token: authToken, userID: userID)
     }
     
-    private func getCachedAuthToken() -> String? {
+    // Try to load shared values from Citizen app, if present
+    private func attemptToLoadValuesFromAppGroup(groupKeychain: KeychainProtocol) {
+        guard let authToken = getCachedAuthToken(from: groupKeychain),
+            let userID = getCachedUserID(from: groupKeychain) else {
+            return
+        }
+        
+        // Persist values in this app's keychain now that we have them
+        updateStoredValues(token: authToken, userID: userID)
+    }
+    
+    private func getCachedAuthToken(from keychain: KeychainProtocol) -> String? {
         return keychain.get(authTokenKeychainIdentifier)
     }
     
-    private func getCachedUserID() -> String? {
+    private func getCachedUserID(from keychain: KeychainProtocol) -> String? {
         return keychain.get(userIDKeychainIdentifier)
     }
 }
 
 //sourcery: AutoMockable
 protocol KeychainProtocol {
+    var accessGroup: String? { get set }
     @discardableResult func set(_ value: String, forKey key: String, withAccess: KeychainSwiftAccessOptions?) -> Bool
     func get(_ key: String) -> String?
     @discardableResult func delete(_ key: String) -> Bool
 }
 
 extension KeychainSwift: KeychainProtocol { }
+
+extension KeychainSwift {
+    convenience init(accessGroup: String?) {
+        self.init()
+        self.accessGroup = accessGroup
+    }
+}
