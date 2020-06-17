@@ -15,7 +15,6 @@
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
-		3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
 		DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB2324468E5B00B18911 /* safetrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +27,16 @@
 		DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
 		DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
+		DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */; };
+		DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
+		DC0E0F9F249826C200D3C9FC /* BluetoothOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9E249826C200D3C9FC /* BluetoothOnboardingStep.swift */; };
+		DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */; };
+		DC0E0FA3249826F000D3C9FC /* BluetoothPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA2249826F000D3C9FC /* BluetoothPermissionsViewController.swift */; };
+		DC0E0FA52498270100D3C9FC /* BluetoothRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA42498270100D3C9FC /* BluetoothRequiredViewController.swift */; };
+		DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
+		DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
+		DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
 		DC738ACB247F02CA000BF99E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC738ACA247F02CA000BF99E /* LocationProvider.swift */; };
 		DC7AC09924475486000FF13D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09824475486000FF13D /* Networking.swift */; };
 		DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09B24478B3A000FF13D /* URLSession+.swift */; };
@@ -42,7 +51,6 @@
 		DC7F32F824493A82009B61B8 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F724493A82009B61B8 /* Debug.swift */; };
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC897BA52450F65F00C80DF9 /* BluetoothCentralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */; };
-		DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC42321E2447D42900B9ABC4 /* HomeViewController.swift */; };
 		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
@@ -102,7 +110,6 @@
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "safetrace-app.entitlements"; sourceTree = "<group>"; };
 		DC0BBB1224468E5B00B18911 /* SafeTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +126,16 @@
 		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC42321E2447D42900B9ABC4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DC0E0F972498261700D3C9FC /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCenterViewController.swift; sourceTree = "<group>"; };
+		DC0E0F9B2498267800D3C9FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DC0E0F9E249826C200D3C9FC /* BluetoothOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothOnboardingStep.swift; sourceTree = "<group>"; };
+		DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissions.swift; sourceTree = "<group>"; };
+		DC0E0FA2249826F000D3C9FC /* BluetoothPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissionsViewController.swift; sourceTree = "<group>"; };
+		DC0E0FA42498270100D3C9FC /* BluetoothRequiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothRequiredViewController.swift; sourceTree = "<group>"; };
+		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
 		DC738ACA247F02CA000BF99E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DC7AC09824475486000FF13D /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		DC7AC09B24478B3A000FF13D /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
@@ -191,6 +207,7 @@
 				3E0E3A1F244BFFA4006520E4 /* Fonts.swift */,
 				3EE970BE244CBB2000AAF2CF /* TextField.swift */,
 				3E5F6380244FDCF900C508A4 /* TappableTextView.swift */,
+				DC0E0F972498261700D3C9FC /* BackButton.swift */,
 			);
 			path = "Common UI";
 			sourceTree = "<group>";
@@ -264,6 +281,7 @@
 		DC0BBB3C24469C9900B18911 /* safetrace-app */ = {
 			isa = PBXGroup;
 			children = (
+				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
 				DCA29A05244B91170074CD29 /* Auth */,
@@ -283,6 +301,20 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC0E0F9D249826B500D3C9FC /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DC0E0F9E249826C200D3C9FC /* BluetoothOnboardingStep.swift */,
+				DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */,
+				DC0E0FA2249826F000D3C9FC /* BluetoothPermissionsViewController.swift */,
+				DC0E0FA42498270100D3C9FC /* BluetoothRequiredViewController.swift */,
+				DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */,
+				DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */,
+				DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		DC7AC09724475478000FF13D /* Utility */ = {
@@ -338,7 +370,8 @@
 		DC9650A0244BE03800CFB202 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DC42321E2447D42900B9ABC4 /* HomeViewController.swift */,
+				DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */,
+				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -347,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
-				3EE970C4244CD75B00AAF2CF /* OnboardingViewController.swift */,
 				3E0E3A29244CA76F006520E4 /* Phone Step */,
 			);
 			path = Auth;
@@ -567,18 +599,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
+				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
+				DC0E0F9F249826C200D3C9FC /* BluetoothOnboardingStep.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
+				DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
+				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
+				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
+				DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
+				DC0E0FA3249826F000D3C9FC /* BluetoothPermissionsViewController.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
-				3EE970C5244CD75B00AAF2CF /* OnboardingViewController.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
-				DC9650A1244BE05000CFB202 /* HomeViewController.swift in Sources */,
+				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
+				DC0E0FA52498270100D3C9FC /* BluetoothRequiredViewController.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

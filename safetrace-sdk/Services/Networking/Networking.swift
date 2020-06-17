@@ -23,6 +23,7 @@ struct Network: NetworkProtocol {
             with: try URLRequest(
                 endpoint: "v1/auth/request_code",
                 method: .post,
+                host: .sp0n,
                 token: environment.session.authToken,
                 body: [
                     "phoneNumber": phone
@@ -35,6 +36,7 @@ struct Network: NetworkProtocol {
             with: try URLRequest(
                 endpoint: "v1/auth/validate_code",
                 method: .post,
+                host: .sp0n,
                 token: environment.session.authToken,
                 body: [
                     "phoneNumber": phone,
@@ -50,6 +52,7 @@ struct Network: NetworkProtocol {
             with: try URLRequest(
                 endpoint: "v1/trace_ids",
                 method: .get,
+                host: .safetrace,
                 token: environment.session.authToken),
             resultType: [TraceIDRecord].self,
             dateDecodingStrategy: .secondsSince1970,
@@ -61,6 +64,7 @@ struct Network: NetworkProtocol {
             with: try URLRequest(
                 endpoint: "v1/traces",
                 method: .post,
+                host: .safetrace,
                 token: environment.session.authToken,
                 body: traces,
                 dateEncodingStrategy: .iso8601),

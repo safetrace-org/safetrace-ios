@@ -11,16 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SafeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
         UNUserNotificationCenter.current().delegate = self
         
-        self.window = UIWindow()
-        let navigationController = UINavigationController()
-        
-        if SafeTrace.session.isAuthenticated {
-            navigationController.viewControllers = [HomeViewController()]
-        } else {
-            navigationController.viewControllers = [IntroViewController()]
-        }
-        
-        self.window?.rootViewController = navigationController
+        self.window = UIWindow()        
+        self.window?.rootViewController = MainNavigationController()
         self.window?.makeKeyAndVisible()
         
         return true
