@@ -219,6 +219,12 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
         if scopes.contains(.perform) { methodPerformValues = [] }
     }
 
+    public var accessGroup: String? {
+		get {	invocations.append(.p_accessGroup_get); return __p_accessGroup ?? optionalGivenGetterValue(.p_accessGroup_get, "KeychainProtocolMock - stub value for accessGroup was not defined") }
+		set {	invocations.append(.p_accessGroup_set(.value(newValue))); __p_accessGroup = newValue }
+	}
+	private var __p_accessGroup: (String)?
+
 
 
 
@@ -269,6 +275,8 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
         case m_set__valueforKey_keywithAccess_withAccess(Parameter<String>, Parameter<String>, Parameter<KeychainSwiftAccessOptions?>)
         case m_get__key(Parameter<String>)
         case m_delete__key(Parameter<String>)
+        case p_accessGroup_get
+		case p_accessGroup_set(Parameter<String?>)
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
@@ -283,6 +291,8 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
             case (.m_delete__key(let lhsKey), .m_delete__key(let rhsKey)):
                 guard Parameter.compare(lhs: lhsKey, rhs: rhsKey, with: matcher) else { return false } 
                 return true 
+            case (.p_accessGroup_get,.p_accessGroup_get): return true
+			case (.p_accessGroup_set(let left),.p_accessGroup_set(let right)): return Parameter<String?>.compare(lhs: left, rhs: right, with: matcher)
             default: return false
             }
         }
@@ -292,6 +302,8 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
             case let .m_set__valueforKey_keywithAccess_withAccess(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_get__key(p0): return p0.intValue
             case let .m_delete__key(p0): return p0.intValue
+            case .p_accessGroup_get: return 0
+			case .p_accessGroup_set(let newValue): return newValue.intValue
             }
         }
     }
@@ -304,6 +316,9 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
             super.init(products)
         }
 
+        public static func accessGroup(getter defaultValue: String?...) -> PropertyStub {
+            return Given(method: .p_accessGroup_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
+        }
 
         public static func set(_ value: Parameter<String>, forKey key: Parameter<String>, withAccess: Parameter<KeychainSwiftAccessOptions?>, willReturn: Bool...) -> MethodStub {
             return Given(method: .m_set__valueforKey_keywithAccess_withAccess(`value`, `key`, `withAccess`), products: willReturn.map({ StubProduct.return($0 as Any) }))
@@ -343,6 +358,8 @@ open class KeychainProtocolMock: KeychainProtocol, Mock {
         public static func set(_ value: Parameter<String>, forKey key: Parameter<String>, withAccess: Parameter<KeychainSwiftAccessOptions?>) -> Verify { return Verify(method: .m_set__valueforKey_keywithAccess_withAccess(`value`, `key`, `withAccess`))}
         public static func get(_ key: Parameter<String>) -> Verify { return Verify(method: .m_get__key(`key`))}
         public static func delete(_ key: Parameter<String>) -> Verify { return Verify(method: .m_delete__key(`key`))}
+        public static var accessGroup: Verify { return Verify(method: .p_accessGroup_get) }
+		public static func accessGroup(set newValue: Parameter<String?>) -> Verify { return Verify(method: .p_accessGroup_set(newValue)) }
     }
 
     public struct Perform {

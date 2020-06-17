@@ -37,6 +37,31 @@
 		DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
 		DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
 		DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
+		DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
+		DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
+		DC31D06D24994F7D0039FD6B /* BluetoothOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9E249826C200D3C9FC /* BluetoothOnboardingStep.swift */; };
+		DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
+		DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
+		DC31D07024994F7D0039FD6B /* ContactCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */; };
+		DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
+		DC31D07224994F7D0039FD6B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
+		DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
+		DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
+		DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */; };
+		DC31D07624994F7D0039FD6B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
+		DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
+		DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
+		DC31D07924994F7D0039FD6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
+		DC31D07A24994F7D0039FD6B /* BluetoothPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA2249826F000D3C9FC /* BluetoothPermissionsViewController.swift */; };
+		DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
+		DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
+		DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
+		DC31D07E24994F7D0039FD6B /* BluetoothRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA42498270100D3C9FC /* BluetoothRequiredViewController.swift */; };
+		DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
+		DC31D08124994F7D0039FD6B /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
+		DC31D08324994F7D0039FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
+		DC31D08424994F7D0039FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4624469C9C00B18911 /* Assets.xcassets */; };
+		DC31D08624994F7D0039FD6B /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC738ACB247F02CA000BF99E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC738ACA247F02CA000BF99E /* LocationProvider.swift */; };
 		DC7AC09924475486000FF13D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09824475486000FF13D /* Networking.swift */; };
 		DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09B24478B3A000FF13D /* URLSession+.swift */; };
@@ -78,6 +103,13 @@
 			remoteGlobalIDString = DC0BBB1124468E5B00B18911;
 			remoteInfo = "ctzntrace-sdk";
 		};
+		DC31D06924994F7D0039FD6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC0BBB0924468E5B00B18911 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC0BBB1124468E5B00B18911;
+			remoteInfo = "ctzntrace-sdk";
+		};
 		DCEBE8862450AEDD003D7967 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC0BBB0924468E5B00B18911 /* Project object */;
@@ -95,6 +127,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC31D08524994F7D0039FD6B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC31D08624994F7D0039FD6B /* SafeTrace.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +179,9 @@
 		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
+		DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeTraceDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "safetrace-app-dev-Info.plist"; path = "/Users/maxmamis/code/safetrace-ios/safetrace-app-dev-Info.plist"; sourceTree = "<absolute>"; };
+		DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "safetrace-app-dev.entitlements"; sourceTree = "<group>"; };
 		DC738ACA247F02CA000BF99E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DC7AC09824475486000FF13D /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		DC7AC09B24478B3A000FF13D /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
@@ -185,6 +231,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC31D08024994F7D0039FD6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC31D08124994F7D0039FD6B /* SafeTrace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +292,7 @@
 				DC0BBB1224468E5B00B18911 /* SafeTrace.framework */,
 				DC0BBB1B24468E5B00B18911 /* safetrace-sdk-tests.xctest */,
 				DC0BBB3B24469C9900B18911 /* SafeTrace.app */,
+				DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,11 +342,13 @@
 				DCA29A05244B91170074CD29 /* Auth */,
 				DC9650A0244BE03800CFB202 /* Home */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
+				DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */,
 				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
 				3E5F6382245209D900C508A4 /* Constants.swift */,
 				DC0BBB4624469C9C00B18911 /* Assets.xcassets */,
 				DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */,
 				DC0BBB4B24469C9C00B18911 /* Info.plist */,
+				DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */,
 			);
 			path = "safetrace-app";
 			sourceTree = "<group>";
@@ -481,6 +538,25 @@
 			productReference = DC0BBB3B24469C9900B18911 /* SafeTrace.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DC31D06724994F7D0039FD6B /* safetrace-app-dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC31D08724994F7D0039FD6B /* Build configuration list for PBXNativeTarget "safetrace-app-dev" */;
+			buildPhases = (
+				DC31D06A24994F7D0039FD6B /* Sources */,
+				DC31D08024994F7D0039FD6B /* Frameworks */,
+				DC31D08224994F7D0039FD6B /* Resources */,
+				DC31D08524994F7D0039FD6B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC31D06824994F7D0039FD6B /* PBXTargetDependency */,
+			);
+			name = "safetrace-app-dev";
+			productName = "trace-sdk-demo";
+			productReference = DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -524,6 +600,7 @@
 				DC0BBB1124468E5B00B18911 /* safetrace-sdk */,
 				DC0BBB1A24468E5B00B18911 /* safetrace-sdk-tests */,
 				DC0BBB3A24469C9900B18911 /* safetrace-app */,
+				DC31D06724994F7D0039FD6B /* safetrace-app-dev */,
 			);
 		};
 /* End PBXProject section */
@@ -549,6 +626,15 @@
 			files = (
 				DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */,
 				DC0BBB4724469C9C00B18911 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC31D08224994F7D0039FD6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC31D08324994F7D0039FD6B /* LaunchScreen.storyboard in Resources */,
+				DC31D08424994F7D0039FD6B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +709,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DC31D06A24994F7D0039FD6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */,
+				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
+				DC31D06D24994F7D0039FD6B /* BluetoothOnboardingStep.swift in Sources */,
+				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
+				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
+				DC31D07024994F7D0039FD6B /* ContactCenterViewController.swift in Sources */,
+				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
+				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
+				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
+				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
+				DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */,
+				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
+				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
+				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
+				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
+				DC31D07A24994F7D0039FD6B /* BluetoothPermissionsViewController.swift in Sources */,
+				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
+				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
+				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
+				DC31D07E24994F7D0039FD6B /* BluetoothRequiredViewController.swift in Sources */,
+				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -635,6 +749,11 @@
 			isa = PBXTargetDependency;
 			target = DC0BBB1124468E5B00B18911 /* safetrace-sdk */;
 			targetProxy = DC0BBB6024469DF400B18911 /* PBXContainerItemProxy */;
+		};
+		DC31D06824994F7D0039FD6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC0BBB1124468E5B00B18911 /* safetrace-sdk */;
+			targetProxy = DC31D06924994F7D0039FD6B /* PBXContainerItemProxy */;
 		};
 		DCEBE8872450AEDD003D7967 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -798,7 +917,7 @@
 				PRODUCT_MODULE_NAME = SafeTrace;
 				PRODUCT_NAME = SafeTrace;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -926,6 +1045,77 @@
 			};
 			name = Release;
 		};
+		DC31D08824994F7D0039FD6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5262XM8UA;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
+				PRODUCT_NAME = SafeTraceDev;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DC31D08924994F7D0039FD6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5262XM8UA;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
+				PRODUCT_NAME = SafeTraceDev;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DC31D08A24994F7D0039FD6B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5262XM8UA;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
+				PRODUCT_NAME = SafeTraceDev;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = INTERNAL;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
 		DC7F32FB244A2F9E009B61B8 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1006,7 +1196,7 @@
 				PRODUCT_MODULE_NAME = SafeTrace;
 				PRODUCT_NAME = SafeTrace;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGING;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "STAGING INTERNAL";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1097,6 +1287,16 @@
 				DC0BBB5824469C9C00B18911 /* Debug */,
 				DC0BBB5924469C9C00B18911 /* Release */,
 				DC7F32FE244A2F9E009B61B8 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC31D08724994F7D0039FD6B /* Build configuration list for PBXNativeTarget "safetrace-app-dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC31D08824994F7D0039FD6B /* Debug */,
+				DC31D08924994F7D0039FD6B /* Release */,
+				DC31D08A24994F7D0039FD6B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
