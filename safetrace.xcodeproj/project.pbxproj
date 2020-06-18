@@ -16,6 +16,12 @@
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
+		3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
+		3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4E249AC93700B74759 /* UIScreen+.swift */; };
+		3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
+		3EEFCB51249ADAF200B74759 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4E249AC93700B74759 /* UIScreen+.swift */; };
+		3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */; };
+		3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */; };
 		DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB2324468E5B00B18911 /* safetrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0BBB2D24468EA500B18911 /* SafeTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* SafeTrace.swift */; };
@@ -154,6 +160,9 @@
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewController.swift; sourceTree = "<group>"; };
+		3EEFCB4E249AC93700B74759 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewModel.swift; sourceTree = "<group>"; };
 		DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "safetrace-app.entitlements"; sourceTree = "<group>"; };
 		DC0BBB1224468E5B00B18911 /* SafeTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safetrace_sdk.h; sourceTree = "<group>"; };
@@ -249,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3E0E3A27244C1959006520E4 /* UIView+.swift */,
+				3EEFCB4E249AC93700B74759 /* UIScreen+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,6 +437,8 @@
 		DC9650A0244BE03800CFB202 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
+				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
 				DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */,
 				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
@@ -693,6 +705,7 @@
 				DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
+				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
 				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */,
@@ -700,12 +713,14 @@
 				DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
+				3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */,
 				DC0E0FA3249826F000D3C9FC /* BluetoothPermissionsViewController.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
 				DC0E0FA52498270100D3C9FC /* BluetoothRequiredViewController.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
+				3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,12 +736,15 @@
 				DC31D07024994F7D0039FD6B /* ContactCenterViewController.swift in Sources */,
 				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
+				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
+				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
 				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
 				DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */,
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
 				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
+				3EEFCB51249ADAF200B74759 /* UIScreen+.swift in Sources */,
 				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
 				DC31D07A24994F7D0039FD6B /* BluetoothPermissionsViewController.swift in Sources */,
 				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
@@ -960,7 +978,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YBR8XVZH29;
+				DEVELOPMENT_TEAM = L5262XM8UA;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -983,7 +1001,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YBR8XVZH29;
+				DEVELOPMENT_TEAM = L5262XM8UA;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1209,7 +1227,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YBR8XVZH29;
+				DEVELOPMENT_TEAM = L5262XM8UA;
 				INFOPLIST_FILE = "safetrace-sdk-tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
