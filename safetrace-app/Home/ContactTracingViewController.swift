@@ -1,4 +1,8 @@
+import ReactiveSwift
+import ReactiveCocoa
+import SafeTrace
 import UIKit
+import UserNotifications
 
 class ContactTracingViewController: UIViewController {
     private let citizenLogoView = UIImageView()
@@ -7,11 +11,20 @@ class ContactTracingViewController: UIViewController {
     private let toggle = UISwitch()
     private let bluetoothImageView = UIImageView()
     private let bluetoothLabel = UILabel()
+    private let notificationImageView = UIImageView()
+    private let notificationLabel = UILabel()
 
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 80
     private let trayTopSpacingToToggle: CGFloat = 20
 
-    private var viewModel = ContactTracingViewModel()
+    private let viewDidLoadPipe = Signal<Void, Never>.pipe()
+    private let tapDescriptionTextPipe = Signal<Void, Never>.pipe()
+    private let tapBluetoothPermissionsTextPipe = Signal<Void, Never>.pipe()
+    private let tapNotificationPermissionsTextPipe = Signal<Void, Never>.pipe()
+    private let tapPrivacyTextPipe = Signal<Void, Never>.pipe()
+    private let tapTermsTextPipe = Signal<Void, Never>.pipe()
+    private let goToSettingsAlertActionPipe = Signal<Void, Never>.pipe()
+    private let notificationPermissionsPipe = Signal<UNAuthorizationStatus, Never>.pipe()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -20,12 +33,105 @@ class ContactTracingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        defer {
+            viewDidLoadPipe.input.send(value: ())
+            NotificationPermissions.getCurrentAuthorization { [weak self] in
+                self?.notificationPermissionsPipe.input.send(value: $0)
+            }
+        }
+
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         layoutUI()
+        bindViewModel()
+    }
 
-        viewModel.updateViewData = updateWithViewData
-        viewModel.setupDefaultViewData()
+    private func bindViewModel() {
+        // If bluetooth status changes from permissions prompts, this signal will fire when the permission prompt goes away after user has granted/denied permissions
+        let appBecameActiveSignal = NotificationCenter.default.reactive
+            .notifications(forName: UIApplication.didBecomeActiveNotification)
+            .map(value: ())
+
+        let (
+            viewData: viewData,
+            optIn: optIn,
+            optOut: optOut,
+            askBluetoothPermissions: askBluetoothPermissions,
+            askNotificationPermissions: askNotificationPermissions,
+            navigateToAppSettings: navigateToAppSettings,
+            openWebView: openWebView,
+            displayAlert: displayAlert
+        ) = contactTracingViewModel(
+            toggleIsOn: toggle.reactive.controlEvents(.valueChanged).map { $0.isOn },
+            appBecameActive: appBecameActiveSignal,
+            tapDescriptionText: tapDescriptionTextPipe.output,
+            tapBluetoothPermissionsText: tapBluetoothPermissionsTextPipe.output,
+            tapNotificationPermissionsText: tapNotificationPermissionsTextPipe.output,
+            tapPrivacyText: tapPrivacyTextPipe.output,
+            tapTermsText: tapTermsTextPipe.output,
+            goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
+            notificationPermissions: notificationPermissionsPipe.output,
+            viewDidLoad: viewDidLoadPipe.output
+        )
+
+        viewData
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] viewData in
+                self?.updateWithViewData(viewData)
+            }
+
+        optIn
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues {
+                SafeTrace.startTracing()
+            }
+
+        optOut
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues {
+                SafeTrace.stopTracing()
+            }
+
+        askBluetoothPermissions
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues {
+                BluetoothPermissions.requestPermissions()
+            }
+
+        askNotificationPermissions
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues {
+                NotificationPermissions.requestPushNotifications { [weak self] success in
+                    self?.notificationPermissionsPipe.input.send(value: success ? .authorized : .denied)
+                }
+            }
+
+        navigateToAppSettings
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues {
+                BluetoothPermissions.openSettings()
+            }
+
+        openWebView
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { url in
+                // TODO
+            }
+
+        displayAlert
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] alert in
+                guard let self = self else { return }
+                self.goToSettingsAlertActionPipe.input <~ self.displayAlert(alert)
+            }
     }
 
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
@@ -44,6 +150,13 @@ class ContactTracingViewController: UIViewController {
             ? "*Bluetooth permissions are required.*\n**Go to Settings** to enable."
             : "Bluetooth permissions are required."
         bluetoothImageView.tintColor = viewData.bluetoothDenied
+            ? .stRed
+            : .stGrey40
+
+        notificationLabel.text = viewData.notificationDenied
+            ? "*Notification permissions are required.*\n**Go to Settings** to enable."
+            : "Notification permissions are required."
+        notificationImageView.tintColor = viewData.notificationDenied
             ? .stRed
             : .stGrey40
     }
@@ -81,7 +194,7 @@ class ContactTracingViewController: UIViewController {
         descriptionLabel.isUserInteractionEnabled = true
         let descriptionLabelRecognizer = UITapGestureRecognizer()
         descriptionLabel.addGestureRecognizer(descriptionLabelRecognizer)
-//        tapDescriptionTextPipe.input <~ descriptionLabelRecognizer.reactive.stateChanged.ignoreValues()
+        tapDescriptionTextPipe.input <~ descriptionLabelRecognizer.reactive.stateChanged.map(value: ())
 
         bluetoothLabel.text = "Bluetooth permissions are required." // TODO stylize
         bluetoothLabel.numberOfLines = 0
@@ -91,7 +204,7 @@ class ContactTracingViewController: UIViewController {
 
         let bluetoothTextRecognizer = UITapGestureRecognizer()
         bluetoothLabel.addGestureRecognizer(bluetoothTextRecognizer)
-//        tapBluetoothPermissionsTextPipe.input <~ bluetoothTextRecognizer.reactive.stateChanged.ignoreValues()
+        tapBluetoothPermissionsTextPipe.input <~ bluetoothTextRecognizer.reactive.stateChanged.map(value: ())
 
         let bluetoothTextContainer = layoutImageLabel(
             imageView: bluetoothImageView,
@@ -99,15 +212,31 @@ class ContactTracingViewController: UIViewController {
             textContainer: bluetoothLabel
         )
 
+        notificationLabel.text = "Notification permissions are required." // TODO stylize
+        notificationLabel.numberOfLines = 0
+        notificationLabel.isUserInteractionEnabled = true
+        notificationLabel.font = .bodyBold
+        notificationLabel.textColor = .stGrey40
+
+        let notificationTextRecognizer = UITapGestureRecognizer()
+        notificationLabel.addGestureRecognizer(notificationTextRecognizer)
+        tapNotificationPermissionsTextPipe.input <~ notificationTextRecognizer.reactive.stateChanged.map(value: ())
+
+        let notificationTextContainer = layoutImageLabel(
+            imageView: notificationImageView,
+            image: UIImage(named: "contactTracingNotificationIcon")!.withRenderingMode(.alwaysTemplate),
+            textContainer: notificationLabel
+        )
+
         let privacyTextView = TappableTextView()
         privacyTextView.font = .bodyBold
         privacyTextView.textColor = .stGrey40
         privacyTextView.text = "By enabling COVID-19 SafeTrace, you agree to the [Privacy Policy](privacyPolicy) and [Terms of Use](terms)." // TODO Stylize
-        privacyTextView.linkHandler = { url in
+        privacyTextView.linkHandler = { [weak self] url in
             if url.absoluteString == "privacyPolicy" {
-//                self?.tapPrivacyTextPipe.input.send(value: ())
+                self?.tapPrivacyTextPipe.input.send(value: ())
             } else {
-//                self?.tapTermsTextPipe.input.send(value: ())
+                self?.tapTermsTextPipe.input.send(value: ())
             }
         }
 
@@ -124,6 +253,7 @@ class ContactTracingViewController: UIViewController {
             toggleContainer,
             descriptionLabel,
             bluetoothTextContainer,
+            notificationTextContainer,
             privacyTextContainer
         ])
         stackView.axis = .vertical
@@ -134,6 +264,7 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? trayTopSpacingToToggle : 34, after: toggleContainer)
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
         stackView.setCustomSpacing(12, after: bluetoothTextContainer)
+        stackView.setCustomSpacing(12, after: notificationTextContainer)
         stackView.setCustomSpacing(16, after: privacyTextContainer)
 
         view.addSubview(stackView)
@@ -203,31 +334,3 @@ private extension UISwitch {
         tintColor = color
     }
 }
-
-//private let descriptionParser = update(
-//    MarkdownKit.MarkdownParser(
-//        font: TextStyle.titleH3.font,
-//        color: .ctznGrey55,
-//        enabledElements: [.bold]
-//    ), { $0.bold.color = .ctznPurpleAccentUp }
-//)
-//
-//private let bluetoothPermissionsParser = update(
-//    MarkdownKit.MarkdownParser(
-//        font: TextStyle.smallSemibold.font,
-//        color: .ctznGrey40,
-//        enabledElements: [.bold, .italic]
-//    ), { parser -> Void in
-//        parser.bold.color = .ctznBlue
-//        parser.italic.color = .ctznRed
-//        parser.italic.font = TextStyle.smallSemibold.font
-//    }
-//)
-//
-//private let privacyLinkParser = update(
-//    MarkdownKit.MarkdownParser(
-//        font: TextStyle.smallSemibold.font,
-//        color: .ctznGrey40,
-//        enabledElements: [.link]
-//    ), { $0.link.color = .ctznBlueMutedDown }
-//)

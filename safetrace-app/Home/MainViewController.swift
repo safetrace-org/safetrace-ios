@@ -5,8 +5,7 @@ class MainNavigationController: UINavigationController {
 
     lazy var authOnboardingStep = AuthOnboardingStep(completionHandler: goToNextScreen)
     lazy var onboardingSteps: [OnboardingStep] = [
-        authOnboardingStep,
-        BluetoothOnboardingStep(completionHandler: goToNextScreen)
+        authOnboardingStep
     ]
 
     override func viewDidLoad() {
