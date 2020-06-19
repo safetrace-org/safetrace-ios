@@ -5,8 +5,7 @@ class MainNavigationController: UINavigationController {
 
     lazy var authOnboardingStep = AuthOnboardingStep(completionHandler: goToNextScreen)
     lazy var onboardingSteps: [OnboardingStep] = [
-        authOnboardingStep,
-        BluetoothOnboardingStep(completionHandler: goToNextScreen)
+        authOnboardingStep
     ]
 
     override func viewDidLoad() {
@@ -24,7 +23,7 @@ class MainNavigationController: UINavigationController {
                 pushViewController(nextOnboardingController, animated: true)
             }
         } else {
-            setViewControllers([ContactCenterViewController()], animated: true)
+            setViewControllers([ContactTracingViewController()], animated: true)
         }
     }
 
