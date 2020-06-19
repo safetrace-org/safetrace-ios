@@ -21,6 +21,7 @@ public protocol SafeTraceSession {
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithToken(_: String, userID: String)
+    func setAPNSToken(_ token: Data)
     func logout()
 }
 

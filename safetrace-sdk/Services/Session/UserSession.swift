@@ -77,6 +77,10 @@ class UserSession: UserSessionProtocol {
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
     
+    func setAPNSToken(_ token: Data) {
+        environment.network.syncPushToken(token, completion: { _ in })
+    }
+    
     // legacy Citizen auth
     private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)

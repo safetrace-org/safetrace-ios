@@ -22,15 +22,42 @@ public final class SafeTrace {
     
     /// Will start the scanning process. May only be called once authenticated.
     public static func startTracing() {
-        guard session.isAuthenticated else {
+        guard let userID = environment.session.userID else {
             preconditionFailure("Cannot start scanning until authenticated.")
         }
         
         environment.tracer.optIn()
+        environment.network.setTracingEnabled(
+            true,
+            userID: userID,
+            completion: { _ in })
     }
-    
+
     public static func stopTracing() {
         environment.tracer.optOut()
+        
+        if let userID = environment.session.userID {
+            environment.network.setTracingEnabled(
+                false,
+                userID: userID,
+                completion: { _ in })
+        }
+    }
+    
+    public static func sendHealthCheck(completion: (() -> Void)? = nil) {
+        guard let userID = environment.session.userID else { return }
+        
+        let bluetoothEnabled = environment.tracer.isBluetoothPermissionEnabled
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let pushEnabled = settings.authorizationStatus == .authorized
+            
+            environment.network.sendHealthCheck(
+                userID: userID,
+                bluetoothEnabled: bluetoothEnabled,
+                notificationsEnabled: pushEnabled) { _ in
+                    completion?()
+                }
+        }
     }
 
     /// Vends a view controller contaning the Contact Center web app.
@@ -60,6 +87,11 @@ public final class SafeTrace {
     public static func applicationWillEnterForeground(_ application: UIApplication) {
         environment.traceIDs.refreshIfNeeded()
         environment.tracer.reportPendingTraces()
+        sendHealthCheck()
+    }
+    
+    public static func applicationDidEnterBackground(_ application: UIApplication) {
+        sendHealthCheck()
     }
 
     public static func setNetworkingEnvironment(_ env: NetworkEnvironment) {
