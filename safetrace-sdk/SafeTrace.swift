@@ -15,6 +15,11 @@ public final class SafeTrace {
         return environment.tracer.isTracingActive
     }
     
+    public static var apiEnvironment: NetworkEnvironment {
+        get { return networkEnvironment }
+        set { networkEnvironment = newValue }
+    }
+    
     /// Will start the scanning process. May only be called once authenticated.
     public static func startTracing() {
         guard session.isAuthenticated else {

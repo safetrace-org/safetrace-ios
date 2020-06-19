@@ -87,6 +87,9 @@
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC897BA52450F65F00C80DF9 /* BluetoothCentralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */; };
 		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
+		DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */; };
+		DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
+		DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
 		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
@@ -209,6 +212,8 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentralTests.swift; sourceTree = "<group>"; };
+		DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Debug.swift"; sourceTree = "<group>"; };
+		DCB94CCA249BC43200D616AD /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
 		DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorageTests.swift; sourceTree = "<group>"; };
 		DCE94625244F8E33001AB10D /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
@@ -365,6 +370,7 @@
 		DC0BBB3C24469C9900B18911 /* safetrace-app */ = {
 			isa = PBXGroup;
 			children = (
+				DCB94CC6249BC01800D616AD /* Debug */,
 				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
@@ -468,6 +474,15 @@
 				3E0E3A29244CA76F006520E4 /* Phone Step */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		DCB94CC6249BC01800D616AD /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */,
+				DCB94CCA249BC43200D616AD /* DebugViewController.swift */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		DCE94629244F9E80001AB10D /* mock */ = {
@@ -725,6 +740,7 @@
 			files = (
 				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
 				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
+				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */,
@@ -766,6 +782,7 @@
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
 				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
 				DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */,
+				DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */,
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
 				3EB4386D249D4A4200AA80DF /* Signal.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
@@ -778,6 +795,7 @@
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
+				DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,7 +1075,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1080,7 +1098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1103,7 +1121,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTraceDev;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
@@ -1127,7 +1145,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTraceDev;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1150,7 +1168,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app-dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTraceDev;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = INTERNAL;
@@ -1283,7 +1301,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-app";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
