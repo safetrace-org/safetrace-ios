@@ -90,6 +90,8 @@
 		DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */; };
 		DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
 		DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
+		DCB94CCE249D62DC00D616AD /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */; };
+		DCB94CD0249D651800D616AD /* Data+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCF249D651700D616AD /* Data+HexString.swift */; };
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
 		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
@@ -214,6 +216,8 @@
 		DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentralTests.swift; sourceTree = "<group>"; };
 		DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Debug.swift"; sourceTree = "<group>"; };
 		DCB94CCA249BC43200D616AD /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
+		DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
+		DCB94CCF249D651700D616AD /* Data+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+HexString.swift"; sourceTree = "<group>"; };
 		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
 		DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorageTests.swift; sourceTree = "<group>"; };
 		DCE94625244F8E33001AB10D /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
@@ -300,13 +304,13 @@
 			path = "Phone Step";
 			sourceTree = "<group>";
 		};
-		3EEFCB67249C2B0D00B74759 /* Util */ = {
+		3EEFCB67249C2B0D00B74759 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */,
 				3EB43868249D125500AA80DF /* NotificationPermissions.swift */,
 			);
-			path = Util;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		DC0BBB0824468E5B00B18911 = {
@@ -376,7 +380,7 @@
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
 				DCA29A05244B91170074CD29 /* Auth */,
 				DC9650A0244BE03800CFB202 /* Home */,
-				3EEFCB67249C2B0D00B74759 /* Util */,
+				3EEFCB67249C2B0D00B74759 /* Utility */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
 				DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */,
 				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
@@ -411,6 +415,8 @@
 			children = (
 				DC7AC0A32447946A000FF13D /* KeychainSwift.swift */,
 				DC7F32F724493A82009B61B8 /* Debug.swift */,
+				DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */,
+				DCB94CCF249D651700D616AD /* Data+HexString.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -699,7 +705,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC7AC0AC2447AA0D000FF13D /* Device.swift in Sources */,
+				DCB94CCE249D62DC00D616AD /* UIApplication+Version.swift in Sources */,
 				DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */,
+				DCB94CD0249D651800D616AD /* Data+HexString.swift in Sources */,
 				DC7AC09924475486000FF13D /* Networking.swift in Sources */,
 				DC738ACB247F02CA000BF99E /* LocationProvider.swift in Sources */,
 				DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */,
