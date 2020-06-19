@@ -1,6 +1,6 @@
 import Foundation
 
-public enum NetworkEnvironment {
+public enum NetworkEnvironment: String {
     case staging
     case production
     
@@ -37,7 +37,21 @@ internal enum Host {
     }
 }
 
-var networkEnvironment: NetworkEnvironment = .production
+var networkEnvironment: NetworkEnvironment {
+    get {
+        guard let string = UserDefaults.standard.string(forKey: "org.ctzn.network_environment"),
+            let env = NetworkEnvironment(rawValue: string) else {
+            
+            return .production
+        }
+        
+        return env
+    }
+
+    set {
+        UserDefaults.standard.set(newValue.rawValue, forKey: "org.ctzn.network_environment")
+    }
+}
 
 extension URLRequest {
     enum Method: String {
