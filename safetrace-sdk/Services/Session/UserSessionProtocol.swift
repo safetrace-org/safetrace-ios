@@ -20,7 +20,6 @@ public protocol SafeTraceSession {
  
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func authenticateWithToken(_: String, userID: String)
     func setAPNSToken(_ token: Data)
     func logout()
 }
@@ -36,7 +35,4 @@ protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     func logout()
 
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
-    
-    /// For injecting a token and ID
-    func authenticateWithToken(_: String, userID: String)
 }
