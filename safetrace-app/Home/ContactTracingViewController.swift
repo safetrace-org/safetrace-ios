@@ -136,7 +136,7 @@ class ContactTracingViewController: UIViewController {
 
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
         let tracingEnabled = viewData.contactTracingEnabled
-        toggle.setOn(viewData.contactTracingEnabled, animated: true)
+        toggle.setOn(viewData.contactTracingEnabled, animated: false)
         let enabledLabelColor: UIColor = tracingEnabled
             ? .stPurpleAccentUp
             : .stGrey40
