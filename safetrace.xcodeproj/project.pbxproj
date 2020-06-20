@@ -295,13 +295,15 @@
 			path = "Common UI";
 			sourceTree = "<group>";
 		};
-		3E0E3A29244CA76F006520E4 /* Phone Step */ = {
+		3E0E3A29244CA76F006520E4 /* Auth Step */ = {
 			isa = PBXGroup;
 			children = (
+				DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */,
+				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
 				DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */,
 				3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */,
 			);
-			path = "Phone Step";
+			path = "Auth Step";
 			sourceTree = "<group>";
 		};
 		3EEFCB67249C2B0D00B74759 /* Utility */ = {
@@ -378,7 +380,6 @@
 				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
-				DCA29A05244B91170074CD29 /* Auth */,
 				DC9650A0244BE03800CFB202 /* Home */,
 				3EEFCB67249C2B0D00B74759 /* Utility */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
@@ -405,7 +406,7 @@
 			children = (
 				DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */,
 				DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */,
-				DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */,
+				3E0E3A29244CA76F006520E4 /* Auth Step */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -471,15 +472,6 @@
 				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		DCA29A05244B91170074CD29 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
-				3E0E3A29244CA76F006520E4 /* Phone Step */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		DCB94CC6249BC01800D616AD /* Debug */ = {
