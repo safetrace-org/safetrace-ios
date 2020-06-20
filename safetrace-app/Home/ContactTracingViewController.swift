@@ -5,6 +5,8 @@ import UIKit
 import UserNotifications
 
 class ContactTracingViewController: UIViewController {
+    private let environment: Environment
+
     private let citizenLogoView = UIImageView()
     private let titleLabel = UILabel()
     private let enabledLabel = UILabel()
@@ -26,6 +28,15 @@ class ContactTracingViewController: UIViewController {
     private let goToSettingsAlertActionPipe = Signal<Void, Never>.pipe()
     private let notificationPermissionsPipe = Signal<UNAuthorizationStatus, Never>.pipe()
 
+    init(environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -35,7 +46,7 @@ class ContactTracingViewController: UIViewController {
 
         defer {
             viewDidLoadPipe.input.send(value: ())
-            NotificationPermissions.getCurrentAuthorization { [weak self] in
+            environment.notificationPermissions.getCurrentAuthorization { [weak self] in
                 self?.notificationPermissionsPipe.input.send(value: $0)
             }
         }
@@ -62,6 +73,7 @@ class ContactTracingViewController: UIViewController {
             openWebView: openWebView,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
+            environment: environment,
             toggleIsOn: toggle.reactive.controlEvents(.valueChanged).map { $0.isOn },
             appBecameActive: appBecameActiveSignal,
             tapDescriptionText: tapDescriptionTextPipe.output,
@@ -84,29 +96,29 @@ class ContactTracingViewController: UIViewController {
         optIn
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                SafeTrace.startTracing()
+            .observeValues { [weak self] in
+                self?.environment.safeTrace.startTracing()
             }
 
         optOut
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                SafeTrace.stopTracing()
+            .observeValues { [weak self] in
+                self?.environment.safeTrace.stopTracing()
             }
 
         askBluetoothPermissions
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                BluetoothPermissions.requestPermissions()
+            .observeValues { [weak self] in
+                self?.environment.bluetoothPermissions.requestPermissions()
             }
 
         askNotificationPermissions
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                NotificationPermissions.requestPushNotifications { [weak self] success in
+            .observeValues { [weak self] in
+                self?.environment.notificationPermissions.requestPushNotifications { [weak self] success in
                     self?.notificationPermissionsPipe.input.send(value: success ? .authorized : .denied)
                 }
             }
@@ -114,8 +126,8 @@ class ContactTracingViewController: UIViewController {
         navigateToAppSettings
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                BluetoothPermissions.openSettings()
+            .observeValues { [weak self] in
+                self?.environment.bluetoothPermissions.openSettings()
             }
 
         openWebView

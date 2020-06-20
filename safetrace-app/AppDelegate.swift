@@ -6,23 +6,24 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    let environment: Environment = AppEnvironment()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        SafeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
+        environment.safeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
         UNUserNotificationCenter.current().delegate = self
         
         self.window = UIWindow()        
-        self.window?.rootViewController = MainNavigationController()
+        self.window?.rootViewController = MainNavigationController(environment: environment)
         self.window?.makeKeyAndVisible()
         
         return true
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        SafeTrace.applicationWillEnterForeground(application)
+        environment.safeTrace.applicationWillEnterForeground(application)
         
         // Re-sync push token in case it changed
-        NotificationPermissions.getCurrentAuthorization { status in
+        environment.notificationPermissions.getCurrentAuthorization { status in
             DispatchQueue.main.async {
                 if status == .authorized {
                     UIApplication.shared.registerForRemoteNotifications()
@@ -32,11 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        SafeTrace.applicationDidEnterBackground(application)
+        environment.safeTrace.applicationDidEnterBackground(application)
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        SafeTrace.sendHealthCheck {
+        environment.safeTrace.sendHealthCheck {
             completionHandler(.newData)
         }
     }
@@ -53,12 +54,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        SafeTrace.sendHealthCheck {
+        environment.safeTrace.sendHealthCheck {
             completionHandler(.newData)
         }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        SafeTrace.session.setAPNSToken(deviceToken)
+        environment.safeTrace.session.setAPNSToken(deviceToken)
     }
 }

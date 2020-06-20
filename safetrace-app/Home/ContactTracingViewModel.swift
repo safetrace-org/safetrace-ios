@@ -12,6 +12,7 @@ struct ContactTracingViewData {
 typealias ContactTracingAlertData = AlertData<Void>
 
 func contactTracingViewModel(
+    environment: Environment,
     toggleIsOn: Signal<Bool, Never>,
     appBecameActive: Signal<Void, Never>,
     tapDescriptionText: Signal<Void, Never>,
@@ -37,7 +38,7 @@ func contactTracingViewModel(
     // MARK: - Opt In Status
 
     let isInitiallyOptedIn = viewDidLoad
-        .map { SafeTrace.isOptedIn }
+        .map { environment.safeTrace.isOptedIn }
     let isOptedIn = Signal
         .merge(
             isInitiallyOptedIn,
@@ -52,7 +53,7 @@ func contactTracingViewModel(
             viewDidLoad,
             appBecameActive
         )
-        .map { BluetoothPermissions.currentAuthorization }
+        .map { environment.bluetoothPermissions.currentAuthorization }
         .skipRepeats()
 
     // MARK: - View Data

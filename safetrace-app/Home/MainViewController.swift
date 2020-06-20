@@ -2,11 +2,20 @@ import SafeTrace
 import UIKit
 
 class MainNavigationController: UINavigationController {
-
-    lazy var authOnboardingStep = AuthOnboardingStep(completionHandler: goToNextScreen)
-    lazy var onboardingSteps: [OnboardingStep] = [
+    private let environment: Environment
+    private lazy var authOnboardingStep = AuthOnboardingStep(environment: environment, completionHandler: goToNextScreen)
+    private lazy var onboardingSteps: [OnboardingStep] = [
         authOnboardingStep
     ]
+
+    init(environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +32,7 @@ class MainNavigationController: UINavigationController {
                 pushViewController(nextOnboardingController, animated: true)
             }
         } else {
-            setViewControllers([ContactTracingViewController()], animated: true)
+            setViewControllers([ContactTracingViewController(environment: environment)], animated: true)
         }
     }
 

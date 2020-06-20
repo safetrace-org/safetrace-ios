@@ -14,8 +14,16 @@
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
-		3EB43869249D125500AA80DF /* NotificationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissions.swift */; };
-		3EB4386A249D125500AA80DF /* NotificationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissions.swift */; };
+		3E826841249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
+		3E826842249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
+		3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826843249EA00E00B12FE3 /* AppEnvironment.swift */; };
+		3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826843249EA00E00B12FE3 /* AppEnvironment.swift */; };
+		3E826849249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */; };
+		3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */; };
+		3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
+		3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
+		3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
+		3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386C249D4A4200AA80DF /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Signal.swift */; };
 		3EB4386D249D4A4200AA80DF /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Signal.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
@@ -46,7 +54,7 @@
 		DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
 		DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
 		DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
-		DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */; };
+		DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */; };
 		DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
 		DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
 		DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
@@ -59,7 +67,7 @@
 		DC31D07224994F7D0039FD6B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
 		DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
-		DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */; };
+		DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */; };
 		DC31D07624994F7D0039FD6B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
 		DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
 		DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
@@ -167,7 +175,11 @@
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3EB43868249D125500AA80DF /* NotificationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissions.swift; sourceTree = "<group>"; };
+		3E826840249E9D8100B12FE3 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		3E826843249EA00E00B12FE3 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProviding.swift; sourceTree = "<group>"; };
+		3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProvider.swift; sourceTree = "<group>"; };
+		3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsProviding.swift; sourceTree = "<group>"; };
 		3EB4386B249D4A4200AA80DF /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
@@ -193,7 +205,7 @@
 		DC0E0F972498261700D3C9FC /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		DC0E0F992498263E00D3C9FC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DC0E0F9B2498267800D3C9FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissions.swift; sourceTree = "<group>"; };
+		DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissionsProviding.swift; sourceTree = "<group>"; };
 		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
@@ -306,13 +318,33 @@
 			path = "Auth Step";
 			sourceTree = "<group>";
 		};
-		3EEFCB67249C2B0D00B74759 /* Utility */ = {
+		3E82683F249E9D6B00B12FE3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */,
-				3EB43868249D125500AA80DF /* NotificationPermissions.swift */,
+				3E826847249EA67D00B12FE3 /* SafeTrace */,
+				3E826846249EA66F00B12FE3 /* Permissions */,
+				3E826840249E9D8100B12FE3 /* Environment.swift */,
+				3E826843249EA00E00B12FE3 /* AppEnvironment.swift */,
 			);
-			path = Utility;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3E826846249EA66F00B12FE3 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */,
+				3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
+		3E826847249EA67D00B12FE3 /* SafeTrace */ = {
+			isa = PBXGroup;
+			children = (
+				3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */,
+				3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */,
+			);
+			path = SafeTrace;
 			sourceTree = "<group>";
 		};
 		DC0BBB0824468E5B00B18911 = {
@@ -381,7 +413,7 @@
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
 				DC9650A0244BE03800CFB202 /* Home */,
-				3EEFCB67249C2B0D00B74759 /* Utility */,
+				3E82683F249E9D6B00B12FE3 /* Services */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
 				DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */,
 				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
@@ -749,20 +781,24 @@
 				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
-				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */,
+				3E826849249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
+				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
 				DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */,
 				3EB4386C249D4A4200AA80DF /* Signal.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
-				3EB43869249D125500AA80DF /* NotificationPermissions.swift in Sources */,
+				3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
+				3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
 				3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
+				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
 				3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */,
+				3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,7 +807,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */,
+				3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
 				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
+				3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
 				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
 				DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */,
@@ -781,15 +819,17 @@
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
 				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
-				DC31D07524994F7D0039FD6B /* BluetoothPermissions.swift in Sources */,
+				DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */,
 				DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */,
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
 				3EB4386D249D4A4200AA80DF /* Signal.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
 				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
-				3EB4386A249D125500AA80DF /* NotificationPermissions.swift in Sources */,
+				3E826842249E9D8100B12FE3 /* Environment.swift in Sources */,
+				3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
 				3EEFCB51249ADAF200B74759 /* UIScreen+.swift in Sources */,
 				3EEFCB66249BFD1100B74759 /* UIViewController+.swift in Sources */,
+				3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
 				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,

@@ -4,16 +4,18 @@ import UIKit
 
 class AuthOnboardingStep: OnboardingStep {
     var stepCompleted: (() -> Void)
+    private let environment: Environment
 
-    init(completionHandler: @escaping (() -> Void)) {
+    init(environment: Environment, completionHandler: @escaping (() -> Void)) {
+        self.environment = environment
         stepCompleted = completionHandler
     }
 
     var shouldBegin: Bool {
-        return !SafeTrace.session.isAuthenticated
+        return !environment.safeTrace.session.isAuthenticated
     }
 
     func viewControllerToShow() -> UIViewController {
-        return IntroViewController(onboardingStep: self)
+        return IntroViewController(environment: environment, onboardingStep: self)
     }
 }
