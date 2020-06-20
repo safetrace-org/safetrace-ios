@@ -63,10 +63,10 @@ func contactTracingViewModel(
             notificationPermissions,
             isOptedIn
         )
-        .map { BluetoothPermissions, notificationPermissions, isOptedIn in
+        .map { bluetoothPermissions, notificationPermissions, isOptedIn in
             return ContactTracingViewData(
                 contactTracingEnabled: isOptedIn,
-                bluetoothDenied: notificationPermissions == .denied,
+                bluetoothDenied: bluetoothPermissions == .denied,
                 notificationDenied: notificationPermissions == .denied
             )
         }
