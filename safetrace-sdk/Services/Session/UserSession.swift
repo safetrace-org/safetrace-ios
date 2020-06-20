@@ -83,11 +83,15 @@ class UserSession: UserSessionProtocol {
 
     private func updateStoredValues(token: String?, userID: String?) {
         if let token = token {
-            keychain.set(token, forKey: authTokenKeychainIdentifier, withAccess: .accessibleAfterFirstUnlockThisDeviceOnly)
+            keychain.set(token, forKey: authTokenKeychainIdentifier, withAccess: .accessibleAfterFirstUnlock)
+        } else {
+            keychain.delete(authTokenKeychainIdentifier)
         }
         
         if let userID = userID {
             keychain.set(userID, forKey: userIDKeychainIdentifier, withAccess: .accessibleAfterFirstUnlock)
+        } else {
+            keychain.delete(userIDKeychainIdentifier)
         }
         
         updateLocalValues(token: token, userID: userID)

@@ -27,11 +27,4 @@ class MainNavigationController: UINavigationController {
         }
     }
 
-    func logout() {
-        let authViewController = authOnboardingStep.viewControllerToShow()
-        viewControllers.insert(authViewController, at: 0)
-
-        popToRootViewController(animated: true)
-    }
-
 }

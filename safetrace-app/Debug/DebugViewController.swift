@@ -46,6 +46,7 @@ internal final class DebugViewController: UIViewController {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical
         mainStackView.alignment = .center
+        mainStackView.spacing = 10
         
         view.addSubview(mainStackView)
         NSLayoutConstraint.activate([
