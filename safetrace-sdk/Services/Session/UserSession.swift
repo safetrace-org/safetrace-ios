@@ -14,7 +14,7 @@ struct AuthData: Codable {
 private let authTokenKeychainIdentifier = "UserToken"
 private let userIDKeychainIdentifier = "UserId"
 
-#if DEV
+#if INTERNAL
 private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-dev"
 private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilantedev"
 #else
