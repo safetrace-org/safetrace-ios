@@ -105,15 +105,22 @@ func contactTracingViewModel(
         .filter { $0 == .notDetermined }
         .map(value: ())
 
-    // Open an alert that navigates to app permissions settings if bluetooth permission is denied, only if toggle is turning on
-    let toggleOnWhenEitherPermissionsDenied = Signal
+    let toggleOnWhenPermissionsDenied = Signal
         .combineLatest(
             bluetoothPermissions,
             notificationPermissions
         )
         .sample(on: toggleOn)
-        .filter { $0 == .denied || $1 == .denied }
-        .map(value: ())
+        .compactMap { bluetoothPermissions, notificationPermissions -> PermissionsAlertCopy? in
+            if bluetoothPermissions == .denied && notificationPermissions == .denied {
+                return .missingBoth
+            } else if bluetoothPermissions == .denied {
+                return .missingBluetooth
+            } else if notificationPermissions == .denied {
+                return .missingNotification
+            }
+            return nil
+        }
 
     let tapBluetoothPermissionTextWhenDenied = bluetoothPermissions
         .sample(on: tapBluetoothPermissionsText)
@@ -131,18 +138,16 @@ func contactTracingViewModel(
         tapNotificationPermissionTextWhenDenied
     )
 
-    let displayAlert: Signal<ContactTracingAlertData, Never> = toggleOnWhenEitherPermissionsDenied
-        .map { _ in
+    let displayAlert: Signal<ContactTracingAlertData, Never> = toggleOnWhenPermissionsDenied
+        .map { alertCopy in
             let goToSettingsAction = ContactTracingAlertData.Action(
-                title: NSLocalizedString("Go to Settings", comment: "Button title to go to settings to enable bluetooth permissions"),
+                title: NSLocalizedString("Go to Settings", comment: "Button title to go to settings to enable permissions"),
                 style: .default,
                 tapAction: ())
 
             return .init(
-                title: NSLocalizedString("Bluetooth and Notifications are required", comment: "Alert title for prompting bluetooth and notification permissions"),
-                message: NSLocalizedString(
-                    "Citizen uses Bluetooth to determine if you have come in nearby contact with someone who has tested positive for COVID-19.",
-                    comment: "Alert message for prompting bluetooth permissions for contact tracing"),
+                title: alertCopy.title,
+                message: alertCopy.message,
                 actions: [goToSettingsAction, .cancel]
             )
         }
@@ -178,4 +183,41 @@ func contactTracingViewModel(
         openWebView: openWebView,
         displayAlert: displayAlert
     )
+}
+
+private enum PermissionsAlertCopy {
+    case missingBluetooth
+    case missingNotification
+    case missingBoth
+
+    var title: String {
+        switch self {
+        case .missingBluetooth:
+            return NSLocalizedString("Bluetooth is required", comment: "Alert title for prompting bluetooth permissions")
+        case .missingNotification:
+            return NSLocalizedString("Notifications is required", comment: "Alert title for prompting notification permissions")
+        case .missingBoth:
+            return NSLocalizedString("Bluetooth and Notifications are required", comment: "Alert title for prompting both bluetooth and notification permissions")
+        }
+    }
+
+    var message: String {
+        switch self {
+        case .missingBluetooth:
+            return NSLocalizedString(
+                "Citizen SafeTrace uses Bluetooth to provide COVID-19 contact tracing and exposure notifications.",
+                comment: "Alert message for prompting bluetooth permissions for contact tracing"
+            )
+        case .missingNotification:
+            return NSLocalizedString(
+                "Citizen SafeTrace uses Notifications to provide COVID-19 contact tracing and exposure notifications.",
+                comment: "Alert message for prompting notification permissions for contact tracing"
+            )
+        case .missingBoth:
+            return NSLocalizedString(
+                "Citizen SafeTrace uses Bluetooth and Notifications to provide COVID-19 contact tracing and exposure notifications.",
+                comment: "Alert message for prompting both bluetooth and notification permissions for contact tracing"
+            )
+        }
+    }
 }
