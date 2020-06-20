@@ -347,6 +347,23 @@
 			path = SafeTrace;
 			sourceTree = "<group>";
 		};
+		3E82684E249EB23C00B12FE3 /* Contact Tracing */ = {
+			isa = PBXGroup;
+			children = (
+				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
+				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
+			);
+			path = "Contact Tracing";
+			sourceTree = "<group>";
+		};
+		3E82684F249EB2A400B12FE3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DC0E0F992498263E00D3C9FC /* WebViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DC0BBB0824468E5B00B18911 = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				DCB94CC6249BC01800D616AD /* Debug */,
-				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
 				DC9650A0244BE03800CFB202 /* Home */,
@@ -498,9 +514,9 @@
 		DC9650A0244BE03800CFB202 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
-				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
-				DC0E0F992498263E00D3C9FC /* WebViewController.swift */,
+				3E82684F249EB2A400B12FE3 /* Common */,
+				3E82684E249EB23C00B12FE3 /* Contact Tracing */,
+				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
 			path = Home;
