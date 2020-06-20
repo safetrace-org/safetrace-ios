@@ -1,31 +1,24 @@
 import UIKit
-import SafeTrace
 import WebKit
 
-final class ContactCenterViewController: UIViewController {
+final class WebViewController: UIViewController {
 
     private let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     private let loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
-    private let url = URL(string: Constants.contactCenterUrl)!
+
+    var url: URL?
+
+    /// Load a URL
+    func loadUrl(_ url: URL) {
+        self.url = url
+
+        requestWebPage()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.tintColor = .white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: NSLocalizedString("Log Out", comment: "Log Out Button Title"),
-            style: .plain,
-            target: self,
-            action: #selector(logout))
-
-        #if STAGING || DEBUG
-        navigationItem.setRightBarButton(makeDebugTracingButton(), animated: true)
-        #endif
-
         layoutUI()
-
-        requestWebPage()
     }
 
     private func layoutUI() {
@@ -68,39 +61,17 @@ final class ContactCenterViewController: UIViewController {
     }
 
     private func requestWebPage() {
+        guard let url = url else {
+            return
+        }
         let request = URLRequest(url: url)
         webView.load(request)
 
         loadingIndicator.startAnimating()
     }
-
-    @objc private func logout() {
-        SafeTrace.session.logout()
-
-        (navigationController as? MainNavigationController)?.logout()
-    }
-
-    @objc private func toggleTracing() {
-        if SafeTrace.isTracing {
-            SafeTrace.stopTracing()
-        } else {
-            SafeTrace.startTracing()
-        }
-        navigationItem.setRightBarButton(makeDebugTracingButton(), animated: true)
-    }
-
-    private func makeDebugTracingButton() -> UIBarButtonItem {
-        let title = SafeTrace.isTracing ? "Tracing: On" : "Tracing: Off"
-        return UIBarButtonItem(
-            title: title,
-            style: .plain,
-            target: self,
-            action: #selector(toggleTracing)
-        )
-    }
 }
 
-extension ContactCenterViewController: WKNavigationDelegate, WKUIDelegate {
+extension WebViewController: WKNavigationDelegate, WKUIDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.requestWebPage() // retry
     }

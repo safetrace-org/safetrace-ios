@@ -44,7 +44,7 @@
 		DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
-		DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */; };
+		DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
 		DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
 		DC0E0FA1249826CD00D3C9FC /* BluetoothPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */; };
 		DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
@@ -54,7 +54,7 @@
 		DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
 		DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
 		DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
-		DC31D07024994F7D0039FD6B /* ContactCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */; };
+		DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
 		DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
 		DC31D07224994F7D0039FD6B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
@@ -191,7 +191,7 @@
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0E0F972498261700D3C9FC /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCenterViewController.swift; sourceTree = "<group>"; };
+		DC0E0F992498263E00D3C9FC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DC0E0F9B2498267800D3C9FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DC0E0FA0249826CD00D3C9FC /* BluetoothPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissions.swift; sourceTree = "<group>"; };
 		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
@@ -468,7 +468,7 @@
 			children = (
 				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
 				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
-				DC0E0F992498263E00D3C9FC /* ContactCenterViewController.swift */,
+				DC0E0F992498263E00D3C9FC /* WebViewController.swift */,
 				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
 			path = Home;
@@ -743,7 +743,7 @@
 				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
-				DC0E0F9A2498263E00D3C9FC /* ContactCenterViewController.swift in Sources */,
+				DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
@@ -774,7 +774,7 @@
 				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
 				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
-				DC31D07024994F7D0039FD6B /* ContactCenterViewController.swift in Sources */,
+				DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */,
 				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,

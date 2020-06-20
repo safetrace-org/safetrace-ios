@@ -121,8 +121,10 @@ class ContactTracingViewController: UIViewController {
         openWebView
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues { url in
-                // TODO
+            .observeValues { [weak self] url in
+                let webViewController = WebViewController()
+                webViewController.loadUrl(url)
+                self?.present(webViewController, animated: true)
             }
 
         displayAlert
