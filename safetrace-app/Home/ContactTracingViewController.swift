@@ -121,8 +121,10 @@ class ContactTracingViewController: UIViewController {
         openWebView
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues { url in
-                // TODO
+            .observeValues { [weak self] url in
+                let webViewController = WebViewController()
+                webViewController.loadUrl(url)
+                self?.present(webViewController, animated: true)
             }
 
         displayAlert
@@ -136,7 +138,7 @@ class ContactTracingViewController: UIViewController {
 
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
         let tracingEnabled = viewData.contactTracingEnabled
-        toggle.setOn(viewData.contactTracingEnabled, animated: true)
+        toggle.setOn(viewData.contactTracingEnabled, animated: false)
         let enabledLabelColor: UIColor = tracingEnabled
             ? .stPurpleAccentUp
             : .stGrey40
@@ -228,17 +230,7 @@ class ContactTracingViewController: UIViewController {
             textContainer: notificationLabel
         )
 
-        let privacyTextView = TappableTextView()
-        privacyTextView.font = .bodyBold
-        privacyTextView.textColor = .stGrey40
-        privacyTextView.text = "By enabling COVID-19 SafeTrace, you agree to the [Privacy Policy](privacyPolicy) and [Terms of Use](terms)." // TODO Stylize
-        privacyTextView.linkHandler = { [weak self] url in
-            if url.absoluteString == "privacyPolicy" {
-                self?.tapPrivacyTextPipe.input.send(value: ())
-            } else {
-                self?.tapTermsTextPipe.input.send(value: ())
-            }
-        }
+        let privacyTextView = makePrivacyAndTermsTextView()
 
         let privacyTextContainer = layoutImageLabel(
             imageView: UIImageView(),
@@ -313,6 +305,49 @@ class ContactTracingViewController: UIViewController {
         ])
 
         return stackView
+    }
+
+    private func makePrivacyAndTermsTextView() -> TappableTextView {
+        let privacyAndTermsTextView = TappableTextView()
+
+        let privacyPolicyText = NSLocalizedString("Privacy Policy", comment: "Privacy policy text")
+        let termsOfUseText = NSLocalizedString("Supplemental Terms", comment: "Supplemental terms text")
+        let termsAndConditionsTemplate = NSLocalizedString(
+            "By enabling Citizen SafeTrace, you agree to the %1$@ and %2$@.",
+            comment: "Terms of use and privacy policy text template"
+        )
+        let termsAndConditionsText = String(format: termsAndConditionsTemplate, privacyPolicyText, termsOfUseText)
+
+        let attributedString = NSMutableAttributedString(
+            string: termsAndConditionsText,
+            attributes: [
+                .font: UIFont.bodyBold,
+                .foregroundColor: UIColor.stGrey40,
+            ])
+
+        let privacyPolicyCharacterRange = attributedString.mutableString.range(of: privacyPolicyText)
+        let termsOfUseCharacterRange = attributedString.mutableString.range(of: termsOfUseText)
+        [
+            privacyPolicyCharacterRange: "privacyPolicy",
+            termsOfUseCharacterRange: "supplementalTerms"
+        ]
+        .forEach {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .link: $0.1,
+                .foregroundColor: UIColor.stBlueMutedUp
+            ]
+            attributedString.addAttributes(attributes, range: $0.0)
+        }
+
+        privacyAndTermsTextView.attributedText = attributedString
+        privacyAndTermsTextView.linkHandler = { [weak self] url in
+            if url.absoluteString == "privacyPolicy" {
+                self?.tapPrivacyTextPipe.input.send(value: ())
+            } else {
+                self?.tapTermsTextPipe.input.send(value: ())
+            }
+        }
+        return privacyAndTermsTextView
     }
 
 }

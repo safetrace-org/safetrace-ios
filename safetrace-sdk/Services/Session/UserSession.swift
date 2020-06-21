@@ -83,11 +83,15 @@ class UserSession: UserSessionProtocol {
 
     private func updateStoredValues(token: String?, userID: String?) {
         if let token = token {
-            keychain.set(token, forKey: authTokenKeychainIdentifier, withAccess: .accessibleAfterFirstUnlockThisDeviceOnly)
+            keychain.set(token, forKey: authTokenKeychainIdentifier, withAccess: .accessibleAfterFirstUnlock)
+        } else {
+            keychain.delete(authTokenKeychainIdentifier)
         }
         
         if let userID = userID {
             keychain.set(userID, forKey: userIDKeychainIdentifier, withAccess: .accessibleAfterFirstUnlock)
+        } else {
+            keychain.delete(userIDKeychainIdentifier)
         }
         
         updateLocalValues(token: token, userID: userID)
@@ -98,29 +102,43 @@ class UserSession: UserSessionProtocol {
         self.authToken = token
         authenticationDelegate?.authenticationTokenDidChange(forSession: self)
 
-        DispatchQueue.main.async {
-            self.updateAuthTokenWebViewCookie(authToken: self.authToken)
-        }
+        updateAuthTokenWebViewCookie(authToken: token)
     }
 
     private func updateAuthTokenWebViewCookie(authToken: String?) {
-        let authorizedDomains = [
-            "staging.sp0n.io",
-            "citizen.com"
-        ]
-        for domain in authorizedDomains {
-            guard let cookie = HTTPCookie(properties: [
-                .domain: domain,
-                .path: "/",
-                .name: "citizen:auth:token",
-                .value: authToken ?? "",
-                .secure: "TRUE",
-                .expires: Date(timeIntervalSinceNow: 86400) // cookie expires in one day
-            ]) else {
-                assertionFailure("Cannot create cookie for authToken host: \(domain)")
-                return
+        DispatchQueue.main.async {
+            let authorizedCookieDict = [
+                ".sp0n.io": "citizen:auth:token",
+                ".citizen.com": "citizen:auth:token",
+                ".thesafetrace.org": "safetrace:auth:token"
+            ]
+            let dataStore = WKWebsiteDataStore.default()
+
+            if let authToken = authToken {
+                for (domain, cookieName) in authorizedCookieDict {
+                    guard let cookie = HTTPCookie(properties: [
+                        .domain: domain,
+                        .path: "/",
+                        .name: cookieName,
+                        .value: authToken,
+                        .secure: "TRUE",
+                        .expires: Date(timeIntervalSinceNow: 31536000) // cookie expires in one year
+                    ]) else {
+                        assertionFailure("Cannot create cookie for authToken host: \(domain)")
+                        return
+                    }
+                    dataStore.httpCookieStore.setCookie(cookie)
+                    HTTPCookieStorage.shared.setCookie(cookie)
+                }
+            } else {
+                // Clear all web data
+                // From https://gist.github.com/insidegui/4a5de215a920885e0f36294d51263a15
+                dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+                    records.forEach { record in
+                        dataStore.removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                    }
+                }
             }
-            WKWebsiteDataStore.default().httpCookieStore.setCookie(cookie)
         }
     }
 
