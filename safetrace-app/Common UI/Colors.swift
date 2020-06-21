@@ -29,6 +29,8 @@ extension UIColor {
     static let stPurpleAccentUp = #colorLiteral(red: 0.8823529412, green: 0.6509803922, blue: 1, alpha: 1)
     /// #8CB3D9
     static let stBlueMutedUp = #colorLiteral(red: 0.5490196078, green: 0.7019607843, blue: 0.8509803922, alpha: 1)
+    /// #4DA6FF
+    static let stBlue = #colorLiteral(red: 0.3019607843, green: 0.6509803922, blue: 1, alpha: 1)
     /// #FF2640
     static let stRed = #colorLiteral(red: 1, green: 0.1490196078, blue: 0.2509803922, alpha: 1)
 }

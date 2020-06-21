@@ -4,6 +4,23 @@ import SafeTrace
 import UIKit
 import UserNotifications
 
+struct ContactTracingStyle {
+    static func imageLabelStackView(_ stackView: UIStackView) {
+        stackView.axis = .horizontal
+        stackView.spacing = 7
+        stackView.alignment = .top
+        stackView.distribution = .fill
+    }
+
+    static func imageLabelIcon(_ imageView: UIImageView) {
+        imageView.contentMode = .center
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 10),
+            imageView.heightAnchor.constraint(equalToConstant: 16),
+        ])
+    }
+}
+
 class ContactTracingViewController: UIViewController {
     private let environment: Environment
 
@@ -11,10 +28,9 @@ class ContactTracingViewController: UIViewController {
     private let titleLabel = UILabel()
     private let enabledLabel = UILabel()
     private let toggle = UISwitch()
-    private let bluetoothImageView = UIImageView()
-    private let bluetoothLabel = UILabel()
-    private let notificationImageView = UIImageView()
-    private let notificationLabel = UILabel()
+
+    private let bluetoothIconLabelView = PermissionIconLabelView(permissionType: .bluetooth)
+    private let notificationIconLabelView = PermissionIconLabelView(permissionType: .notification)
 
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 80
     private let trayTopSpacingToToggle: CGFloat = 20
@@ -150,7 +166,7 @@ class ContactTracingViewController: UIViewController {
 
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
         let tracingEnabled = viewData.contactTracingEnabled
-        toggle.setOn(viewData.contactTracingEnabled, animated: false)
+        toggle.setOn(viewData.contactTracingEnabled, animated: true)
         let enabledLabelColor: UIColor = tracingEnabled
             ? .stPurpleAccentUp
             : .stGrey40
@@ -160,19 +176,8 @@ class ContactTracingViewController: UIViewController {
         enabledLabel.textColor = enabledLabelColor
         enabledLabel.text = enabledText
 
-        bluetoothLabel.text = viewData.bluetoothDenied
-            ? "*Bluetooth permissions are required.*\n**Go to Settings** to enable."
-            : "Bluetooth permissions are required."
-        bluetoothImageView.tintColor = viewData.bluetoothDenied
-            ? .stRed
-            : .stGrey40
-
-        notificationLabel.text = viewData.notificationDenied
-            ? "*Notification permissions are required.*\n**Go to Settings** to enable."
-            : "Notification permissions are required."
-        notificationImageView.tintColor = viewData.notificationDenied
-            ? .stRed
-            : .stGrey40
+        bluetoothIconLabelView.showErrorState = viewData.bluetoothDenied
+        notificationIconLabelView.showErrorState = viewData.notificationDenied
     }
 
     private func layoutUI() {
@@ -194,61 +199,47 @@ class ContactTracingViewController: UIViewController {
         let toggleContainer = UIView()
         toggleContainer.addSubview(toggle)
 
-        toggle.isOn = false
+        toggle.isOn = environment.safeTrace.isOptedIn
         toggle.onTintColor = .stPurple
         toggle.scale(by: 2.5)
         toggle.setOffColor(.stGrey25)
 
         let descriptionLabel = UILabel()
-        descriptionLabel.font = .titleH3
-        descriptionLabel.textColor = .stGrey55
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = "Protect yourself, your loved ones, and your community from COVID-19 by **enabling SafeTrace**." // TODO stylize
+
+        let enableText = NSLocalizedString("enabling Citizen SafeTrace", comment: "enable safetrace highlighted text")
+        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Safetrace description template")
+        let descriptionText = String(format: descriptionTemplate, enableText)
+
+        let descriptionAttributedText = NSMutableAttributedString(
+            string: descriptionText,
+            attributes: [
+                .font: UIFont.titleH3,
+                .foregroundColor: UIColor.stGrey55,
+            ])
+        descriptionAttributedText.addAttributes(
+            [.foregroundColor: UIColor.stPurpleAccentUp],
+            range: descriptionAttributedText.mutableString.range(of: enableText))
+        descriptionLabel.attributedText = descriptionAttributedText
 
         descriptionLabel.isUserInteractionEnabled = true
         let descriptionLabelRecognizer = UITapGestureRecognizer()
         descriptionLabel.addGestureRecognizer(descriptionLabelRecognizer)
         tapDescriptionTextPipe.input <~ descriptionLabelRecognizer.reactive.stateChanged.map(value: ())
 
-        bluetoothLabel.text = "Bluetooth permissions are required." // TODO stylize
-        bluetoothLabel.numberOfLines = 0
-        bluetoothLabel.isUserInteractionEnabled = true
-        bluetoothLabel.font = .bodyBold
-        bluetoothLabel.textColor = .stGrey40
+        tapBluetoothPermissionsTextPipe.input <~ bluetoothIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
 
-        let bluetoothTextRecognizer = UITapGestureRecognizer()
-        bluetoothLabel.addGestureRecognizer(bluetoothTextRecognizer)
-        tapBluetoothPermissionsTextPipe.input <~ bluetoothTextRecognizer.reactive.stateChanged.map(value: ())
+        tapBluetoothPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
 
-        let bluetoothTextContainer = layoutImageLabel(
-            imageView: bluetoothImageView,
-            image: UIImage(named: "contactTracingBluetoothIcon")!.withRenderingMode(.alwaysTemplate),
-            textContainer: bluetoothLabel
-        )
-
-        notificationLabel.text = "Notification permissions are required." // TODO stylize
-        notificationLabel.numberOfLines = 0
-        notificationLabel.isUserInteractionEnabled = true
-        notificationLabel.font = .bodyBold
-        notificationLabel.textColor = .stGrey40
-
-        let notificationTextRecognizer = UITapGestureRecognizer()
-        notificationLabel.addGestureRecognizer(notificationTextRecognizer)
-        tapNotificationPermissionsTextPipe.input <~ notificationTextRecognizer.reactive.stateChanged.map(value: ())
-
-        let notificationTextContainer = layoutImageLabel(
-            imageView: notificationImageView,
-            image: UIImage(named: "contactTracingNotificationIcon")!.withRenderingMode(.alwaysTemplate),
-            textContainer: notificationLabel
-        )
+        let privacyIcon = UIImageView()
+        privacyIcon.image = UIImage(named: "contactTracingPrivacyIcon")!
+        update(privacyIcon, ContactTracingStyle.imageLabelIcon)
 
         let privacyTextView = makePrivacyAndTermsTextView()
+        privacyTextView.setContentCompressionResistancePriority(.required, for: .horizontal)
 
-        let privacyTextContainer = layoutImageLabel(
-            imageView: UIImageView(),
-            image: UIImage(named: "contactTracingPrivacyIcon")!,
-            textContainer: privacyTextView
-        )
+        let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
+        update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
 
         let stackView = UIStackView(arrangedSubviews: [
             citizenLogoView,
@@ -256,9 +247,9 @@ class ContactTracingViewController: UIViewController {
             enabledLabel,
             toggleContainer,
             descriptionLabel,
-            bluetoothTextContainer,
-            notificationTextContainer,
-            privacyTextContainer
+            bluetoothIconLabelView,
+            notificationIconLabelView,
+            privacyImageLabelView
         ])
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -267,9 +258,9 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(20, after: enabledLabel)
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? trayTopSpacingToToggle : 34, after: toggleContainer)
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
-        stackView.setCustomSpacing(12, after: bluetoothTextContainer)
-        stackView.setCustomSpacing(12, after: notificationTextContainer)
-        stackView.setCustomSpacing(16, after: privacyTextContainer)
+        stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
+        stackView.setCustomSpacing(12, after: notificationIconLabelView)
+        stackView.setCustomSpacing(16, after: privacyImageLabelView)
 
         view.addSubview(stackView)
 
@@ -290,33 +281,6 @@ class ContactTracingViewController: UIViewController {
         ])
 
         view.layoutIfNeeded()
-    }
-
-    private func layoutImageLabel(
-        imageView: UIImageView,
-        image: UIImage,
-        textContainer: UIView
-    ) -> UIStackView {
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFit
-
-        textContainer.setContentCompressionResistancePriority(.required, for: .horizontal)
-
-        let stackView = UIStackView(arrangedSubviews: [
-            imageView,
-            textContainer
-        ])
-        stackView.axis = .horizontal
-        stackView.spacing = 7
-        stackView.alignment = .top
-        stackView.distribution = .fill
-
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 8),
-            imageView.heightAnchor.constraint(equalToConstant: 16),
-        ])
-
-        return stackView
     }
 
     private func makePrivacyAndTermsTextView() -> TappableTextView {
