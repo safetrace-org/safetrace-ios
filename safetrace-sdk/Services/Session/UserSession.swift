@@ -7,8 +7,32 @@ enum SessionError: Error {
 }
 
 struct AuthData: Codable {
-    let uid: String
-    let userToken: String
+    enum CodingKeys: String, CodingKey {
+        case userId = "uid"
+        case userToken
+        case email
+        case errorMessageToDisplay = "message"
+        case isLogin = "registered"
+    }
+
+    public let isLogin: Bool?
+    // These two sent together on success
+    public let userId: String?
+    public let userToken: String?
+    // These two sent together if needs to validate email
+    public let email: String?
+    public let errorMessageToDisplay: String?
+}
+
+public enum LoginResponseContext {
+    public struct EmailVerificationData {
+        public let email: String
+        public let phoneNumber: String
+        public let deviceID: String?
+    }
+
+    case loginSuccess
+    case requiresEmailVerification(EmailVerificationData)
 }
 
 private let authTokenKeychainIdentifier = "UserToken"
@@ -59,17 +83,55 @@ class UserSession: UserSessionProtocol {
         environment.network.requestAuthCode(phone: phone, completion: completion)
     }
 
-    func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        environment.network.authenticateWithCode(code, phone: phone) { result in
+    func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void) {
+        let adManager = ASIdentifierManager.shared()
+        let deviceID: String? = adManager.isAdvertisingTrackingEnabled ? adManager.advertisingIdentifier.uuidString : nil
+
+        environment.network.authenticateWithCode(code, phone: phone, deviceID: deviceID) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
                 
-            case .success(let auth):    
-                self.authenticate(withUserID: auth.uid, authToken: auth.userToken)
-                completion(.success(()))
+            case .success(let auth):
+                if let emailToVerify = auth.email {
+                    completion(.success(
+                        .requiresEmailVerification(
+                            .init(
+                                email: emailToVerify,
+                                phoneNumber: phone,
+                                deviceID: deviceID
+                            )
+                        )
+                    ))
+                } else if let userId = auth.userId, let userToken = auth.userToken {
+                    self.authenticate(withUserID: userId, authToken: userToken)
+                    completion(.success(.loginSuccess))
+                } else {
+                    completion(.failure(SessionError.notLoggedIn))
+                }
             }
         }
+    }
+
+    func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        environment.network.authenticateWithEmailCode(code, phone: phone) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+
+            case .success(let auth):
+                if let userId = auth.userId, let userToken = auth.userToken {
+                    self.authenticate(withUserID: userId, authToken: userToken)
+                    completion(.success(()))
+                } else {
+                    completion(.failure(SessionError.notLoggedIn))
+                }
+            }
+        }
+    }
+
+    func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void) {
+        environment.network.resendEmailAuthCode(phone: phone, deviceID: deviceID, completion: completion)
     }
     
     func setAPNSToken(_ token: Data) {

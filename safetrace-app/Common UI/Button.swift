@@ -5,6 +5,11 @@ enum ButtonStyle {
     case secondary
 }
 
+enum ButtonSize {
+    case large
+    case small
+}
+
 class Button: UIButton {
     lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -31,12 +36,18 @@ class Button: UIButton {
         }
     }
 
-    init(style: ButtonStyle) {
+    init(style: ButtonStyle, size: ButtonSize = .large) {
         self.style = style
         super.init(frame: .zero)
 
-        heightAnchor.constraint(equalToConstant: 48).isActive = true
-        layer.cornerRadius = 24
+        switch size {
+        case .large:
+            heightAnchor.constraint(equalToConstant: 48).isActive = true
+            layer.cornerRadius = 24
+        case .small:
+            heightAnchor.constraint(equalToConstant: 32).isActive = true
+            layer.cornerRadius = 16
+        }
         layer.masksToBounds = true
 
         titleLabel?.font = .titleH3

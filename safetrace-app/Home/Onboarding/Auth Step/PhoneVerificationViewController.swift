@@ -36,11 +36,11 @@ final class PhoneVerificationViewController: OnboardingViewController {
         subtitleLabel.text = phone
         subtitleLabel.textAlignment = .left
 
-        let phoneNumberLabel = UILabel()
-        phoneNumberLabel.font = .titleH6
-        phoneNumberLabel.textColor = .stGrey40
-        phoneNumberLabel.text = NSLocalizedString("Enter Code", comment: "Phone veritifcation code label").uppercased(with: Locale.current)
-        phoneNumberLabel.textAlignment = .left
+        let enterCodeLabel = UILabel()
+        enterCodeLabel.font = .titleH6
+        enterCodeLabel.textColor = .stGrey40
+        enterCodeLabel.text = NSLocalizedString("Enter Code", comment: "Phone verification code label").uppercased(with: .current)
+        enterCodeLabel.textAlignment = .left
 
         codeTextField.keyboardType = .numberPad
         codeTextField.delegate = self
@@ -55,7 +55,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
             backButton,
             titleLabel,
             subtitleLabel,
-            phoneNumberLabel,
+            enterCodeLabel,
             codeTextField,
             resendButton
         ])
@@ -78,7 +78,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
         stackView.setCustomSpacing(23, after: backButton)
         stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
-        stackView.setCustomSpacing(8, after: phoneNumberLabel)
+        stackView.setCustomSpacing(8, after: enterCodeLabel)
         stackView.setCustomSpacing(58, after: codeTextField)
     }
 
@@ -94,11 +94,23 @@ final class PhoneVerificationViewController: OnboardingViewController {
 
     private func verifyCode(_ code: String) {
         environment.safeTrace.session.authenticateWithCode(code, phone: phone) { [weak self] result in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                if case .success = result {
-                    self?.onboardingStep.stepCompleted()
-                } else {
-                    self?.codeTextField.setState(.error)
+                switch result {
+                case .success(let context):
+                    switch context {
+                    case .loginSuccess:
+                        self.onboardingStep.stepCompleted()
+                    case .requiresEmailVerification(let emailVerificationContext):
+                        let emailVerificationViewController = EmailVerificationViewController(
+                            environment: self.environment,
+                            verificationContext: emailVerificationContext,
+                            onboardingStep: self.onboardingStep
+                        )
+                        self.navigationController?.pushViewController(emailVerificationViewController, animated: true)
+                    }
+                case .failure:
+                    self.codeTextField.setState(.error)
                 }
             }
         }

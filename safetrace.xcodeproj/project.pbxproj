@@ -12,6 +12,8 @@
 		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
 		3E0E3A24244C0886006520E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
+		3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
+		3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
@@ -177,6 +179,7 @@
 		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -320,6 +323,7 @@
 				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
 				DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */,
 				3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */,
+				3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */,
 			);
 			path = "Auth Step";
 			sourceTree = "<group>";
@@ -812,6 +816,7 @@
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3E6A4510249EF627001E94A8 /* Update.swift in Sources */,
 				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
+				3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
 				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
 				3E826849249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
@@ -871,6 +876,7 @@
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
+				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
 				DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
