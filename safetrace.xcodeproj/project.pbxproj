@@ -28,8 +28,8 @@
 		3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
 		3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
-		3EB4386C249D4A4200AA80DF /* Signal+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Signal+.swift */; };
-		3EB4386D249D4A4200AA80DF /* Signal+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Signal+.swift */; };
+		3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
+		3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
 		3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
@@ -186,7 +186,7 @@
 		3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProviding.swift; sourceTree = "<group>"; };
 		3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProvider.swift; sourceTree = "<group>"; };
 		3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsProviding.swift; sourceTree = "<group>"; };
-		3EB4386B249D4A4200AA80DF /* Signal+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+.swift"; sourceTree = "<group>"; };
+		3EB4386B249D4A4200AA80DF /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 				3E0E3A27244C1959006520E4 /* UIView+.swift */,
 				3EEFCB4E249AC93700B74759 /* UIScreen+.swift */,
 				3EEFCB64249BFD1100B74759 /* UIViewController+.swift */,
-				3EB4386B249D4A4200AA80DF /* Signal+.swift */,
+				3EB4386B249D4A4200AA80DF /* Reactive+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -818,7 +818,7 @@
 				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
 				DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */,
-				3EB4386C249D4A4200AA80DF /* Signal+.swift in Sources */,
+				3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
 				3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
@@ -857,7 +857,7 @@
 				DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */,
 				DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */,
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
-				3EB4386D249D4A4200AA80DF /* Signal+.swift in Sources */,
+				3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
 				3E6A450A249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
