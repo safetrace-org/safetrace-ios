@@ -93,6 +93,7 @@ extension Encodable {
 
 enum NetworkError: Error {
     case noData
+    case errorResponseCode
 }
 
 extension URLSession {
@@ -102,8 +103,12 @@ extension URLSession {
         dateDecodingStrategy: JSONDecoder.DateDecodingStrategy? = nil,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        
         sendRequest(with: request) { result in
+            if case .failure(let error) = result {
+                completion(.failure(error))
+                return
+            }
+
             completion(result.flatMap { data in
                 if let data = data {
                     do {
@@ -140,6 +145,14 @@ extension URLSession {
             dataTask(with: r) { (data, response, error) in
                 if let error = error {
                     completion(.failure(error))
+                    return
+                }
+
+                if
+                    let urlResponse = response as? HTTPURLResponse,
+                    urlResponse.statusCode >= 400 && urlResponse.statusCode <= 599
+                {
+                    completion(.failure(NetworkError.errorResponseCode))
                     return
                 }
                 

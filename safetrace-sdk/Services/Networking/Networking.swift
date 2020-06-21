@@ -1,9 +1,12 @@
+import AdSupport
 import UIKit
 
 //sourcery:AutoMockable
 protocol NetworkProtocol {
     func requestAuthCode(phone: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func authenticateWithCode(_ token: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
+    func authenticateWithCode(_ token: String, phone: String, deviceID: String?, completion: @escaping (Result<AuthData, Error>) -> Void)
+    func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
+    func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     
     func setTracingEnabled(_ enabled: Bool, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
     func syncPushToken(_ token: Data, completion: @escaping (Result<Void, Error>) -> Void)
@@ -40,19 +43,61 @@ struct Network: NetworkProtocol {
             completion: completion)
     }
 
-    func authenticateWithCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void) {
+    func authenticateWithCode(_ code: String, phone: String, deviceID: String?, completion: @escaping (Result<AuthData, Error>) -> Void) {
+        var parameters: [String: String] = [
+            "code": code,
+            "phoneNumber": phone
+        ]
+        if let deviceID = deviceID {
+            parameters["deviceId"] = deviceID
+        }
+
         urlSession.sendRequest(
             with: try URLRequest(
-                endpoint: "v1/auth/validate_code",
+                endpoint: "v1.2/auth/validate_code",
+                method: .post,
+                host: .sp0n,
+                token: environment.session.authToken,
+                body: parameters
+            ),
+            resultType: AuthData.self,
+            completion: completion
+        )
+    }
+
+    func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void) {
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "v1/auth/validate_email_code",
                 method: .post,
                 host: .sp0n,
                 token: environment.session.authToken,
                 body: [
-                    "phoneNumber": phone,
-                    "code": code
-                ]),
+                    "code": code,
+                    "phoneNumber": phone
+                ]
+            ),
             resultType: AuthData.self,
-            completion: completion)
+            completion: completion
+        )
+    }
+
+    func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void) {
+        var parameters = ["phoneNumber": phone]
+        if let deviceId = deviceID {
+            parameters["deviceId"] = deviceId
+        }
+
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "v1/auth/request_email_code",
+                method: .post,
+                host: .sp0n,
+                token: environment.session.authToken,
+                body: parameters
+            ),
+            completion: completion
+        )
     }
     
     // MARK: - Permissions Sync

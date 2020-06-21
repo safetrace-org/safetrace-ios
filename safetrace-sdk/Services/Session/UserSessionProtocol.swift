@@ -19,7 +19,9 @@ public protocol SafeTraceSession {
     var isAuthenticated: Bool { get }
  
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
+    func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     func setAPNSToken(_ token: Data)
     func logout()
 }
@@ -34,5 +36,5 @@ protocol UserSessionProtocol: AnyObject, SafeTraceSession {
 
     func logout()
 
-    func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
 }
