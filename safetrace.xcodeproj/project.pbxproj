@@ -14,6 +14,8 @@
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
+		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
+		3E6A450A249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
 		3E826841249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
 		3E826842249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
 		3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826843249EA00E00B12FE3 /* AppEnvironment.swift */; };
@@ -175,6 +177,7 @@
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		3E826840249E9D8100B12FE3 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		3E826843249EA00E00B12FE3 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProviding.swift; sourceTree = "<group>"; };
@@ -352,6 +355,7 @@
 			children = (
 				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
 				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
+				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
 			);
 			path = "Contact Tracing";
 			sourceTree = "<group>";
@@ -807,6 +811,7 @@
 				3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
 				3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */,
+				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
@@ -840,6 +845,7 @@
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
 				3EB4386D249D4A4200AA80DF /* Signal.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
+				3E6A450A249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
 				3E826842249E9D8100B12FE3 /* Environment.swift in Sources */,
 				3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
