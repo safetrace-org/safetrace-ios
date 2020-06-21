@@ -162,16 +162,20 @@ class ContactTracingViewController: UIViewController {
     }
 
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
-        let tracingEnabled = viewData.contactTracingEnabled
-        toggle.setOn(viewData.contactTracingEnabled, animated: true)
-        let enabledLabelColor: UIColor = tracingEnabled
-            ? .stPurpleAccentUp
-            : .stGrey40
-        let enabledText = tracingEnabled
-            ? "Enabled"
-            : "Disabled"
-        enabledLabel.textColor = enabledLabelColor
-        enabledLabel.text = enabledText
+        toggle.setOn(viewData.isOptedIn, animated: true)
+
+        enabledLabel.text = viewData.tracingStatus == .enabled
+            ? NSLocalizedString("Enabled", comment: "Enabled contact tracing status")
+            : NSLocalizedString("Disabled", comment: "Disabled contact tracing status")
+
+        switch viewData.tracingStatus {
+        case .defaultDisabled:
+            enabledLabel.textColor = .stGrey40
+        case .enabled:
+            enabledLabel.textColor = .stPurpleAccentUp
+        case .error:
+            enabledLabel.textColor = .stRed
+        }
 
         bluetoothIconLabelView.showErrorState = viewData.bluetoothDenied
         notificationIconLabelView.showErrorState = viewData.notificationDenied

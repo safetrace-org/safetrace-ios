@@ -4,7 +4,14 @@ import SafeTrace
 import UserNotifications
 
 struct ContactTracingViewData {
-    let contactTracingEnabled: Bool
+    enum TracingStatus {
+        case defaultDisabled
+        case enabled
+        case error
+    }
+
+    let isOptedIn: Bool
+    let tracingStatus: TracingStatus
     let bluetoothDenied: Bool
     let notificationDenied: Bool
 }
@@ -82,8 +89,18 @@ func contactTracingViewModel(
             isOptedIn
         )
         .map { bluetoothPermissions, notificationPermissions, isOptedIn in
+            let tracingStatus: ContactTracingViewData.TracingStatus
+            if !isOptedIn {
+                tracingStatus = .defaultDisabled
+            } else if bluetoothPermissions == .denied || notificationPermissions == .denied {
+                tracingStatus = .error
+            } else {
+                tracingStatus = .enabled
+            }
+
             return ContactTracingViewData(
-                contactTracingEnabled: isOptedIn,
+                isOptedIn: isOptedIn,
+                tracingStatus: tracingStatus,
                 bluetoothDenied: bluetoothPermissions == .denied,
                 notificationDenied: notificationPermissions == .denied
             )
