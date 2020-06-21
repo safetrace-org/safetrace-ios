@@ -1498,12 +1498,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 		perform?(`phone`, `completion`)
     }
 
-    open func authenticateWithToken(_: String, userID: String) {
-        addInvocation(.m_authenticateWithToken__userIDuserID(Parameter<String>.value(`userID`)))
-		let perform = methodPerformValue(.m_authenticateWithToken__userIDuserID(Parameter<String>.value(`userID`))) as? (String) -> Void
-		perform?(`userID`)
-    }
-
     open func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         addInvocation(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
 		let perform = methodPerformValue(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, @escaping (Result<Void, Error>) -> Void) -> Void
@@ -1520,7 +1514,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
     fileprivate enum MethodType {
         case m_logout
         case m_authenticateWithCode__phonephone_completioncompletion(Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
-        case m_authenticateWithToken__userIDuserID(Parameter<String>)
         case m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_setAPNSToken__token(Parameter<Data>)
         case p_authenticationDelegate_get
@@ -1536,9 +1529,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case (.m_authenticateWithCode__phonephone_completioncompletion(let lhsPhone, let lhsCompletion), .m_authenticateWithCode__phonephone_completioncompletion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
-                return true 
-            case (.m_authenticateWithToken__userIDuserID(let lhsUserid), .m_authenticateWithToken__userIDuserID(let rhsUserid)):
-                guard Parameter.compare(lhs: lhsUserid, rhs: rhsUserid, with: matcher) else { return false } 
                 return true 
             case (.m_requestAuthenticationCode__for_phonecompletion_completion(let lhsPhone, let lhsCompletion), .m_requestAuthenticationCode__for_phonecompletion_completion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
@@ -1560,7 +1550,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             switch self {
             case .m_logout: return 0
             case let .m_authenticateWithCode__phonephone_completioncompletion(p0, p1): return p0.intValue + p1.intValue
-            case let .m_authenticateWithToken__userIDuserID(p0): return p0.intValue
             case let .m_requestAuthenticationCode__for_phonecompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_setAPNSToken__token(p0): return p0.intValue
             case .p_authenticationDelegate_get: return 0
@@ -1600,7 +1589,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 
         public static func logout() -> Verify { return Verify(method: .m_logout)}
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`))}
-        public static func authenticateWithToken(userID: Parameter<String>) -> Verify { return Verify(method: .m_authenticateWithToken__userIDuserID(`userID`))}
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`))}
         public static func setAPNSToken(_ token: Parameter<Data>) -> Verify { return Verify(method: .m_setAPNSToken__token(`token`))}
         public static var authenticationDelegate: Verify { return Verify(method: .p_authenticationDelegate_get) }
@@ -1619,9 +1607,6 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         }
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`), performs: perform)
-        }
-        public static func authenticateWithToken(userID: Parameter<String>, perform: @escaping (String) -> Void) -> Perform {
-            return Perform(method: .m_authenticateWithToken__userIDuserID(`userID`), performs: perform)
         }
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`), performs: perform)

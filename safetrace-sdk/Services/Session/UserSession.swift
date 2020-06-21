@@ -15,10 +15,10 @@ private let authTokenKeychainIdentifier = "UserToken"
 private let userIDKeychainIdentifier = "UserId"
 
 #if INTERNAL
-private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-app-dev"
+private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-dev"
 private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilantedev"
 #else
-private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-app"
+private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace"
 private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilante"
 #endif
 
@@ -71,17 +71,11 @@ class UserSession: UserSessionProtocol {
             }
         }
     }
-        
-    func authenticateWithToken(_ token: String, userID: String) {
-        self.updateStoredValues(token: token, userID: userID)
-        self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
-    }
     
     func setAPNSToken(_ token: Data) {
         environment.network.syncPushToken(token, completion: { _ in })
     }
-    
-    // legacy Citizen auth
+
     private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
