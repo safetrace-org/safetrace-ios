@@ -42,7 +42,7 @@ class ContactTracingViewController: UIViewController {
     private let tapPrivacyTextPipe = Signal<Void, Never>.pipe()
     private let tapTermsTextPipe = Signal<Void, Never>.pipe()
     private let goToSettingsAlertActionPipe = Signal<Void, Never>.pipe()
-    private let notificationPermissionsPipe = Signal<UNAuthorizationStatus, Never>.pipe()
+    private let notificationPermissionsChangedPipe = Signal<UNAuthorizationStatus, Never>.pipe()
 
     init(environment: Environment) {
         self.environment = environment
@@ -62,9 +62,6 @@ class ContactTracingViewController: UIViewController {
 
         defer {
             viewDidLoadPipe.input.send(value: ())
-            environment.notificationPermissions.getCurrentAuthorization { [weak self] in
-                self?.notificationPermissionsPipe.input.send(value: $0)
-            }
         }
 
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -92,13 +89,13 @@ class ContactTracingViewController: UIViewController {
             environment: environment,
             toggleIsOn: toggle.reactive.controlEvents(.valueChanged).map { $0.isOn },
             appBecameActive: appBecameActiveSignal,
+            notificationPermissionsChanged: notificationPermissionsChangedPipe.output,
             tapDescriptionText: tapDescriptionTextPipe.output,
             tapBluetoothPermissionsText: tapBluetoothPermissionsTextPipe.output,
             tapNotificationPermissionsText: tapNotificationPermissionsTextPipe.output,
             tapPrivacyText: tapPrivacyTextPipe.output,
             tapTermsText: tapTermsTextPipe.output,
             goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
-            notificationPermissions: notificationPermissionsPipe.output,
             viewDidLoad: viewDidLoadPipe.output
         )
 
@@ -135,7 +132,7 @@ class ContactTracingViewController: UIViewController {
             .observe(on: UIScheduler())
             .observeValues { [weak self] in
                 self?.environment.notificationPermissions.requestPushNotifications { [weak self] success in
-                    self?.notificationPermissionsPipe.input.send(value: success ? .authorized : .denied)
+                    self?.notificationPermissionsChangedPipe.input.send(value: success ? .authorized : .denied)
                 }
             }
 
@@ -229,7 +226,7 @@ class ContactTracingViewController: UIViewController {
 
         tapBluetoothPermissionsTextPipe.input <~ bluetoothIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
 
-        tapBluetoothPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
+        tapNotificationPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
 
         let privacyIcon = UIImageView()
         privacyIcon.image = UIImage(named: "contactTracingPrivacyIcon")!

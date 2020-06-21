@@ -15,13 +15,13 @@ func contactTracingViewModel(
     environment: Environment,
     toggleIsOn: Signal<Bool, Never>,
     appBecameActive: Signal<Void, Never>,
+    notificationPermissionsChanged: Signal<UNAuthorizationStatus, Never>,
     tapDescriptionText: Signal<Void, Never>,
     tapBluetoothPermissionsText: Signal<Void, Never>,
     tapNotificationPermissionsText: Signal<Void, Never>,
     tapPrivacyText: Signal<Void, Never>,
     tapTermsText: Signal<Void, Never>,
     goToSettingsAlertAction: Signal<Void, Never>,
-    notificationPermissions: Signal<UNAuthorizationStatus, Never>,
     viewDidLoad: Signal<Void, Never>
 ) -> (
     viewData: Signal<ContactTracingViewData, Never>,
@@ -54,6 +54,23 @@ func contactTracingViewModel(
             appBecameActive
         )
         .map { environment.bluetoothPermissions.currentAuthorization }
+        .skipRepeats()
+
+    // MARK: - Notification Permissions
+
+    let notificationPermissions = Signal
+        .merge(
+            viewDidLoad,
+            appBecameActive
+        )
+        .flatMap(.latest) { _ -> SignalProducer<UNAuthorizationStatus, Never> in
+            SignalProducer<UNAuthorizationStatus, Never> { completion in
+                environment.notificationPermissions.getCurrentAuthorization { status in
+                    completion(status)
+                }
+            }
+        }
+        .merge(with: notificationPermissionsChanged)
         .skipRepeats()
 
     // MARK: - View Data
