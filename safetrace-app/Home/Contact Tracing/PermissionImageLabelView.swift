@@ -22,10 +22,7 @@ class PermissionIconLabelView: UIStackView {
         self.permissionType = permissionType
         super.init(frame: .zero)
 
-        axis = .horizontal
-        spacing = 7
-        alignment = .top
-        distribution = .fill
+        update(self, ContactTracingStyle.imageLabelStackView)
 
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
@@ -33,15 +30,10 @@ class PermissionIconLabelView: UIStackView {
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         imageView.image = permissionType.image
-        imageView.contentMode = .center
+        update(imageView, ContactTracingStyle.imageLabelIcon)
 
         addArrangedSubview(imageView)
         addArrangedSubview(label)
-
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 10),
-            imageView.heightAnchor.constraint(equalToConstant: 16),
-        ])
 
         updateUI()
     }

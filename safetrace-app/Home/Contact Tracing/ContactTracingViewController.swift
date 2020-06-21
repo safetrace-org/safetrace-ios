@@ -4,6 +4,23 @@ import SafeTrace
 import UIKit
 import UserNotifications
 
+struct ContactTracingStyle {
+    static func imageLabelStackView(_ stackView: UIStackView) {
+        stackView.axis = .horizontal
+        stackView.spacing = 7
+        stackView.alignment = .top
+        stackView.distribution = .fill
+    }
+
+    static func imageLabelIcon(_ imageView: UIImageView) {
+        imageView.contentMode = .center
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 10),
+            imageView.heightAnchor.constraint(equalToConstant: 16),
+        ])
+    }
+}
+
 class ContactTracingViewController: UIViewController {
     private let environment: Environment
 
@@ -202,13 +219,15 @@ class ContactTracingViewController: UIViewController {
 
         tapBluetoothPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
 
-        let privacyTextView = makePrivacyAndTermsTextView()
+        let privacyIcon = UIImageView()
+        privacyIcon.image = UIImage(named: "contactTracingPrivacyIcon")!
+        update(privacyIcon, ContactTracingStyle.imageLabelIcon)
 
-        let privacyTextContainer = layoutImageLabel(
-            imageView: UIImageView(),
-            image: UIImage(named: "contactTracingPrivacyIcon")!,
-            textContainer: privacyTextView
-        )
+        let privacyTextView = makePrivacyAndTermsTextView()
+        privacyTextView.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
+        update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
 
         let stackView = UIStackView(arrangedSubviews: [
             citizenLogoView,
@@ -218,7 +237,7 @@ class ContactTracingViewController: UIViewController {
             descriptionLabel,
             bluetoothIconLabelView,
             notificationIconLabelView,
-            privacyTextContainer
+            privacyImageLabelView
         ])
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -229,7 +248,7 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
         stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
         stackView.setCustomSpacing(12, after: notificationIconLabelView)
-        stackView.setCustomSpacing(16, after: privacyTextContainer)
+        stackView.setCustomSpacing(16, after: privacyImageLabelView)
 
         view.addSubview(stackView)
 
@@ -250,33 +269,6 @@ class ContactTracingViewController: UIViewController {
         ])
 
         view.layoutIfNeeded()
-    }
-
-    private func layoutImageLabel(
-        imageView: UIImageView,
-        image: UIImage,
-        textContainer: UIView
-    ) -> UIStackView {
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFit
-
-        textContainer.setContentCompressionResistancePriority(.required, for: .horizontal)
-
-        let stackView = UIStackView(arrangedSubviews: [
-            imageView,
-            textContainer
-        ])
-        stackView.axis = .horizontal
-        stackView.spacing = 7
-        stackView.alignment = .top
-        stackView.distribution = .fill
-
-        NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 8),
-            imageView.heightAnchor.constraint(equalToConstant: 16),
-        ])
-
-        return stackView
     }
 
     private func makePrivacyAndTermsTextView() -> TappableTextView {
