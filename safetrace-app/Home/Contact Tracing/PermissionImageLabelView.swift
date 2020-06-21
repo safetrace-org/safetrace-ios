@@ -76,10 +76,12 @@ private extension PermissionIconLabelView.PermissionType {
             permissionsText = NSLocalizedString("Notification permissions are required.", comment: "Notification permissions required text")
         }
 
-        return NSAttributedString(string: permissionsText, attributes: [
-            .font: UIFont.bodyBold,
-            .foregroundColor: UIColor.stGrey40
-        ])
+        return NSAttributedString(
+            string: permissionsText,
+            attributes: [
+                .font: UIFont.bodyBold,
+                .foregroundColor: UIColor.stGrey40
+            ])
     }
 
     private var errorStateAttributedText: NSAttributedString {

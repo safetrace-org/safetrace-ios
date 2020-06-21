@@ -205,10 +205,22 @@ class ContactTracingViewController: UIViewController {
         toggle.setOffColor(.stGrey25)
 
         let descriptionLabel = UILabel()
-        descriptionLabel.font = .titleH3
-        descriptionLabel.textColor = .stGrey55
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = "Protect yourself, your loved ones, and your community from COVID-19 by **enabling SafeTrace**." // TODO stylize
+
+        let enableText = NSLocalizedString("enabling Citizen SafeTrace", comment: "enable safetrace highlighted text")
+        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Safetrace description template")
+        let descriptionText = String(format: descriptionTemplate, enableText)
+
+        let descriptionAttributedText = NSMutableAttributedString(
+            string: descriptionText,
+            attributes: [
+                .font: UIFont.titleH3,
+                .foregroundColor: UIColor.stGrey55,
+            ])
+        descriptionAttributedText.addAttributes(
+            [.foregroundColor: UIColor.stPurpleAccentUp],
+            range: descriptionAttributedText.mutableString.range(of: enableText))
+        descriptionLabel.attributedText = descriptionAttributedText
 
         descriptionLabel.isUserInteractionEnabled = true
         let descriptionLabelRecognizer = UITapGestureRecognizer()
