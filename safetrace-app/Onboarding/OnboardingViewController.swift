@@ -1,10 +1,11 @@
 import UIKit
 
 class OnboardingViewController: UIViewController {
+    let environment: Environment
+    let onboardingStep: OnboardingStep
 
-    var onboardingStep: OnboardingStep
-
-    init(onboardingStep: OnboardingStep) {
+    init(environment: Environment, onboardingStep: OnboardingStep) {
+        self.environment = environment
         self.onboardingStep = onboardingStep
         super.init(nibName: nil, bundle: nil)
     }

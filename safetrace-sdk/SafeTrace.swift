@@ -60,11 +60,6 @@ public final class SafeTrace {
         }
     }
 
-    /// Vends a view controller contaning the Contact Center web app.
-    public static func contactCenterViewController() -> UIViewController {
-        fatalError("not implemented")
-    }
-
     /// Must be called from the corresponding App Delegate method.
     ///
     /// Will start tracing, if enabled. If the app is being launched in the
@@ -92,10 +87,6 @@ public final class SafeTrace {
     
     public static func applicationDidEnterBackground(_ application: UIApplication) {
         sendHealthCheck()
-    }
-
-    public static func setNetworkingEnvironment(_ env: NetworkEnvironment) {
-        networkEnvironment = env
     }
     
     public static func registerErrorHandler(_ handler: @escaping (TraceError) -> Void) {

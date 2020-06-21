@@ -6,9 +6,9 @@ final class PhoneVerificationViewController: OnboardingViewController {
     private let codeTextField = TextField()
     private let resendButton = UIButton()
 
-    init(onboardingStep: OnboardingStep, phone: String) {
+    init(environment: Environment, onboardingStep: OnboardingStep, phone: String) {
         self.phone = phone
-        super.init(onboardingStep: onboardingStep)
+        super.init(environment: environment, onboardingStep: onboardingStep)
     }
 
     required init?(coder: NSCoder) {
@@ -93,7 +93,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
     }
 
     private func verifyCode(_ code: String) {
-        SafeTrace.session.authenticateWithCode(code, phone: phone) { [weak self] result in
+        environment.safeTrace.session.authenticateWithCode(code, phone: phone) { [weak self] result in
             DispatchQueue.main.async {
                 if case .success = result {
                     self?.onboardingStep.stepCompleted()

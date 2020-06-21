@@ -5,7 +5,7 @@ import UIKit
 final class PhoneEnterViewController: OnboardingViewController {
     private let phoneTextField = TextField()
     private let sendCodeButton = Button(style: .primary)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -130,11 +130,11 @@ final class PhoneEnterViewController: OnboardingViewController {
     @objc private func didTapSendCode() {
         guard let phone = phoneTextField.text, !phone.isEmpty else { return }
 
-        SafeTrace.session.requestAuthenticationCode(for: phone) { [weak self] result in
+        environment.safeTrace.session.requestAuthenticationCode(for: phone) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if case .success = result {
-                    let vc = PhoneVerificationViewController(onboardingStep: self.onboardingStep, phone: phone)
+                    let vc = PhoneVerificationViewController(environment: self.environment, onboardingStep: self.onboardingStep, phone: phone)
                      self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     self.phoneTextField.setState(.error)

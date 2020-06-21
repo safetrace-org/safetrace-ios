@@ -1,55 +1,61 @@
 import CoreBluetooth
 import UIKit
 
-struct BluetoothPermissions {
+enum BluetoothAuthorization {
+    case notDetermined
+    case enabled
+    case denied
+}
+
+protocol BluetoothPermissionsProviding {
+    var currentAuthorization: BluetoothAuthorization { get }
+    func requestPermissions()
+    func openSettings()
+}
+
+struct BluetoothPermissionsProvider: BluetoothPermissionsProviding {
     static var centralManager: CBCentralManager?
 
-    enum BluetoothAuthorization {
-        case notDetermined
-        case enabled
-        case denied
-    }
-
-    static var currentAuthorization: BluetoothAuthorization {
-        if BluetoothPermissions.isNotDetermined {
+    var currentAuthorization: BluetoothAuthorization {
+        if isNotDetermined {
             return .notDetermined
-        } else if BluetoothPermissions.isEnabled {
+        } else if isEnabled {
             return .enabled
         } else {
             return .denied
         }
     }
 
-    static var isEnabled: Bool {
+    private var isEnabled: Bool {
         if #available(iOS 13.1, *) {
             return CBCentralManager.authorization == .allowedAlways
         }
         return CBPeripheralManager.authorizationStatus() == .authorized
     }
 
-    static var isDenied: Bool {
+    private var isDenied: Bool {
         if #available(iOS 13.1, *) {
             return CBCentralManager.authorization == .denied
         }
         return CBPeripheralManager.authorizationStatus() == .denied
     }
 
-    static var isNotDetermined: Bool {
+    private var isNotDetermined: Bool {
         if #available(iOS 13.1, *) {
             return CBCentralManager.authorization == .notDetermined
         }
         return CBPeripheralManager.authorizationStatus() == .notDetermined
     }
 
-    static func requestPermissions() {
+    func requestPermissions() {
         // Initializing CBCentralManager prompts for bluetooth permissions
-        centralManager = CBCentralManager()
+        BluetoothPermissionsProvider.centralManager = CBCentralManager()
         DispatchQueue(label: "bluetoothPermissions").asyncAfter(deadline: .now() + 3) {
-            centralManager = nil
+            BluetoothPermissionsProvider.centralManager = nil
         }
     }
 
-    static func openSettings() {
+    func openSettings() {
         guard
             let settingsUrl = URL(string: UIApplication.openSettingsURLString),
             UIApplication.shared.canOpenURL(settingsUrl)
