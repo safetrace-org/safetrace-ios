@@ -94,6 +94,7 @@ class ContactTracingViewController: UIViewController {
             askNotificationPermissions: askNotificationPermissions,
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
+            openCitizenAppOrAppStore: openCitizenAppOrAppStore,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
             environment: environment,
@@ -107,6 +108,7 @@ class ContactTracingViewController: UIViewController {
             tapTermsText: tapTermsTextPipe.output,
             tapLearnMoreButton: learnMoreButton.reactive.controlEvents(.touchUpInside).map(value: ()),
             tapReportTestResult: reportTestResultView.gestureRecognizer.reactive.stateChanged.map(value: ()),
+            tapCitizenUpsell: getCitizenAppView.gestureRecognizer.reactive.stateChanged.map(value: ()),
             goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
             viewDidLoad: viewDidLoadPipe.output
         )
@@ -163,6 +165,13 @@ class ContactTracingViewController: UIViewController {
                 webViewController.loadUrl(url)
                 webViewController.modalPresentationStyle = .fullScreen
                 self?.present(webViewController, animated: true)
+            }
+
+        openCitizenAppOrAppStore
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] url in
+                self?.environment.citizen.open()
             }
 
         displayAlert

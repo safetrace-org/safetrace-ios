@@ -14,6 +14,7 @@ struct ContactTracingViewData {
     let tracingStatus: TracingStatus
     let bluetoothDenied: Bool
     let notificationDenied: Bool
+    let isCitizenInstalled: Bool
 }
 
 typealias ContactTracingAlertData = AlertData<Void>
@@ -30,6 +31,7 @@ func contactTracingViewModel(
     tapTermsText: Signal<Void, Never>,
     tapLearnMoreButton: Signal<Void, Never>,
     tapReportTestResult: Signal<Void, Never>,
+    tapCitizenUpsell: Signal<Void, Never>,
     goToSettingsAlertAction: Signal<Void, Never>,
     viewDidLoad: Signal<Void, Never>
 ) -> (
@@ -40,6 +42,7 @@ func contactTracingViewModel(
     askNotificationPermissions: Signal<Void, Never>,
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
+    openCitizenAppOrAppStore: Signal<Void, Never>,
     displayAlert: Signal<ContactTracingAlertData, Never>
 ) {
     let optInPipe = Signal<Bool, Never>.pipe()
@@ -82,15 +85,26 @@ func contactTracingViewModel(
         .merge(with: notificationPermissionsChanged)
         .skipRepeats()
 
+    // MARK: - Is Citizen Installed
+
+    let isCitizenInstalled = Signal
+        .merge(
+            viewDidLoad,
+            appBecameActive
+        )
+        .map { environment.citizen.isInstalled }
+        .skipRepeats()
+
     // MARK: - View Data
 
     let viewData: Signal<ContactTracingViewData, Never> = Signal
         .combineLatest(
             bluetoothPermissions,
             notificationPermissions,
-            isOptedIn
+            isOptedIn,
+            isCitizenInstalled
         )
-        .map { bluetoothPermissions, notificationPermissions, isOptedIn in
+        .map { bluetoothPermissions, notificationPermissions, isOptedIn, isCitizenInstalled in
             let tracingStatus: ContactTracingViewData.TracingStatus
             if !isOptedIn {
                 tracingStatus = .defaultDisabled
@@ -104,7 +118,8 @@ func contactTracingViewModel(
                 isOptedIn: isOptedIn,
                 tracingStatus: tracingStatus,
                 bluetoothDenied: bluetoothPermissions == .denied,
-                notificationDenied: notificationPermissions == .denied
+                notificationDenied: notificationPermissions == .denied,
+                isCitizenInstalled: isCitizenInstalled
             )
         }
 
@@ -226,6 +241,7 @@ func contactTracingViewModel(
         askNotificationPermissions: askNotificationPermissions,
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
+        openCitizenAppOrAppStore: tapCitizenUpsell,
         displayAlert: displayAlert
     )
 }
