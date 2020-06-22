@@ -95,6 +95,8 @@ class ContactTracingViewController: UIViewController {
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
             openCitizenAppOrAppStore: openCitizenAppOrAppStore,
+            optInSuccessChanged: optInSuccessChanged,
+            redirectToCitizen: redirectToCitizen,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
             environment: environment,
@@ -170,7 +172,21 @@ class ContactTracingViewController: UIViewController {
         openCitizenAppOrAppStore
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues { [weak self] url in
+            .observeValues { [weak self] in
+                self?.environment.citizen.openSafepass()
+            }
+
+        optInSuccessChanged
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] isSuccess in
+                self?.environment.safeTrace.setLastSuccessfullyOptedIn(isSuccess)
+            }
+
+        redirectToCitizen
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] in
                 self?.environment.citizen.openSafepass()
             }
 
