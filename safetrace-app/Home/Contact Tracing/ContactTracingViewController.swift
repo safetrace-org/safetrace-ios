@@ -151,6 +151,7 @@ class ContactTracingViewController: UIViewController {
             .observeValues { [weak self] url in
                 let webViewController = WebViewController()
                 webViewController.loadUrl(url)
+                webViewController.modalPresentationStyle = .fullScreen
                 self?.present(webViewController, animated: true)
             }
 
