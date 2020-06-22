@@ -76,6 +76,7 @@ public final class SafeTrace {
             environment.tracer.startScanning()
             environment.traceIDs.refreshIfNeeded()
             environment.tracer.reportPendingTraces()
+            sendHealthCheck()
         }
     }
     
