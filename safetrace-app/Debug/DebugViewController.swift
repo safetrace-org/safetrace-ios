@@ -39,9 +39,14 @@ internal final class DebugViewController: UIViewController {
             debugSwitch
         ])
 
+        let logoutButton = UIButton(type: .system)
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+
         let mainStackView = UIStackView(arrangedSubviews: [
             envStackView,
-            debugStackView
+            debugStackView,
+            logoutButton
         ])
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical
@@ -66,6 +71,10 @@ internal final class DebugViewController: UIViewController {
     
     @objc private func debugValueChanged(sender: UISwitch) {
         SafeTrace.debug_notificationsEnabled = sender.isOn
+    }
+
+    @objc private func logout() {
+        SafeTrace.session.logout()
     }
     
     required init?(coder: NSCoder) {
