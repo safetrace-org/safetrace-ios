@@ -16,6 +16,16 @@
 		3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
 		3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
+		3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
+		3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
+		3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
+		3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
+		3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
+		3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
+		3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
+		3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
+		3E5A060224A143AB0052A242 /* CitizenProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A060124A143AB0052A242 /* CitizenProviding.swift */; };
+		3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A060124A143AB0052A242 /* CitizenProviding.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
@@ -183,6 +193,11 @@
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
+		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTestResultView.swift; sourceTree = "<group>"; };
+		3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenUpsellView.swift; sourceTree = "<group>"; };
+		3E5A05FD24A13F070052A242 /* TappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableView.swift; sourceTree = "<group>"; };
+		3E5A060124A143AB0052A242 /* CitizenProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenProviding.swift; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -331,6 +346,26 @@
 			path = "Auth Step";
 			sourceTree = "<group>";
 		};
+		3E5A05F624A135370052A242 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
+				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
+				3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */,
+				3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */,
+				3E5A05FD24A13F070052A242 /* TappableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3E5A060024A1439E0052A242 /* Citizen */ = {
+			isa = PBXGroup;
+			children = (
+				3E5A060124A143AB0052A242 /* CitizenProviding.swift */,
+			);
+			path = Citizen;
+			sourceTree = "<group>";
+		};
 		3E6A450E249EF619001E94A8 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +377,7 @@
 		3E82683F249E9D6B00B12FE3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3E5A060024A1439E0052A242 /* Citizen */,
 				3E826847249EA67D00B12FE3 /* SafeTrace */,
 				3E826846249EA66F00B12FE3 /* Permissions */,
 				3E826840249E9D8100B12FE3 /* Environment.swift */,
@@ -373,7 +409,7 @@
 			children = (
 				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
 				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
-				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
+				3E5A05F624A135370052A242 /* Views */,
 			);
 			path = "Contact Tracing";
 			sourceTree = "<group>";
@@ -810,10 +846,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
 				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
+				3E5A060224A143AB0052A242 /* CitizenProviding.swift in Sources */,
 				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
+				3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
+				3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
@@ -837,6 +877,7 @@
 				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
+				3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */,
 				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
@@ -853,6 +894,7 @@
 				DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */,
 				3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
 				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
+				3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */,
 				3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
 				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
@@ -861,12 +903,14 @@
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
+				3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
 				3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
 				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
 				DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */,
 				DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */,
+				3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */,
 				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
 				3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */,
 				DC31D07724994F7D0039FD6B /* MainViewController.swift in Sources */,
@@ -878,11 +922,13 @@
 				3EEFCB66249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
+				3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */,
 				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
 				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
+				3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */,
 				DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

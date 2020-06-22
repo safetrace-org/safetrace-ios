@@ -43,5 +43,4 @@ struct SafeTraceProvider: SafeTraceProviding {
         SafeTrace.applicationDidEnterBackground(application)
     }
 
-
 }

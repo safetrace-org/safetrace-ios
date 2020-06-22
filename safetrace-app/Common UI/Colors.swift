@@ -29,6 +29,8 @@ extension UIColor {
     static let stPurpleGradientEnd = #colorLiteral(red: 0.7411764706, green: 0.5254901961, blue: 1, alpha: 1)
     /// #E1A6FF
     static let stPurpleAccentUp = #colorLiteral(red: 0.8823529412, green: 0.6509803922, blue: 1, alpha: 1)
+    /// #637D98
+    static let stBlueMutedDown = #colorLiteral(red: 0.3882352941, green: 0.4901960784, blue: 0.5960784314, alpha: 1)
     /// #8CB3D9
     static let stBlueMutedUp = #colorLiteral(red: 0.5490196078, green: 0.7019607843, blue: 0.8509803922, alpha: 1)
     /// #4DA6FF
