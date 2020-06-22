@@ -138,7 +138,7 @@ class EmailVerificationViewController: OnboardingViewController {
 
     @objc private func didTapNeedHelpButton() {
         let webViewController = WebViewController()
-        webViewController.loadUrl(URL(string: Constants.contactCitizenUrl)!)
+        webViewController.loadUrl(Constants.contactCitizenUrl)
         present(webViewController, animated: true)
     }
 
