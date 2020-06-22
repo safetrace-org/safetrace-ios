@@ -75,6 +75,7 @@ internal final class DebugViewController: UIViewController {
 
     @objc private func logout() {
         SafeTrace.session.logout()
+        fatalError()
     }
     
     required init?(coder: NSCoder) {
