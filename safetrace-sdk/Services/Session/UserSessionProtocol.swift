@@ -17,6 +17,7 @@ protocol UserSessionAuthenticationDelegate: AnyObject {
 
 public protocol SafeTraceSession {
     var isAuthenticated: Bool { get }
+    var isCitizenAuthenticated: Bool { get }
  
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
@@ -31,6 +32,7 @@ protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     var authenticationDelegate: UserSessionAuthenticationDelegate? { get set }
     
     var isAuthenticated: Bool { get }
+    var isCitizenAuthenticated: Bool { get }
     var userID: String? { get }
     var authToken: String? { get }
 

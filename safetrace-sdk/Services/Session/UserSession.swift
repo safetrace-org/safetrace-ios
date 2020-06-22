@@ -54,11 +54,22 @@ class UserSession: UserSessionProtocol {
         return authToken != nil
     }
 
+    var isCitizenAuthenticated: Bool {
+        guard
+            let _ = getCachedAuthToken(from: groupKeychain),
+            let _ = getCachedUserID(from: groupKeychain)
+        else {
+            return false
+        }
+        return true
+    }
+
     private(set) var userID: String?
     private(set) var authToken: String?
     
     private let environment: Environment
     private let keychain: KeychainProtocol
+    private let groupKeychain: KeychainProtocol
     
     init(
         environment: Environment,
@@ -67,6 +78,7 @@ class UserSession: UserSessionProtocol {
     ) {
         self.environment = environment
         self.keychain = appKeychain
+        self.groupKeychain = groupKeychain
         attemptToLoadCachedValues()
         
         if !isAuthenticated {

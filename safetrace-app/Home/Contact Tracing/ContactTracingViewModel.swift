@@ -140,7 +140,11 @@ func contactTracingViewModel(
         }
 
     let redirectToCitizen = optInSuccessChanged
-        .filter{ $0 && environment.citizen.isInstalled }
+        .filter{
+            $0
+                && environment.citizen.isInstalled
+                && environment.safeTrace.session.isCitizenAuthenticated
+        }
         .map(value: ())
         .delay(0.7, on: QueueScheduler.main)
 
