@@ -105,14 +105,17 @@ func contactTracingViewModel(
             isOptedIn,
             isCitizenInstalled
         )
-        .map { bluetoothPermissions, notificationPermissions, isOptedIn, isCitizenInstalled in
+        .compactMap { bluetoothPermissions, notificationPermissions, isOptedIn, isCitizenInstalled in
             let tracingStatus: ContactTracingViewData.TracingStatus
             if !isOptedIn {
                 tracingStatus = .defaultDisabled
             } else if bluetoothPermissions == .denied || notificationPermissions == .denied {
                 tracingStatus = .error
-            } else {
+            } else if bluetoothPermissions == .enabled && notificationPermissions == .authorized {
                 tracingStatus = .enabled
+            } else {
+                // In the middle of asking for permissions
+                return nil
             }
 
             return ContactTracingViewData(
