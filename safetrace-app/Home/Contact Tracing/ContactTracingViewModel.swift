@@ -199,10 +199,10 @@ func contactTracingViewModel(
     // MARK: - Web Views
 
     let openPrivacyWebView = tapPrivacyText
-        .map(value: Constants.contactTracingPrivacyUrl)
+        .map(value: Constants.privacyPolicyUrl)
 
     let openTermsWebView = tapTermsText
-        .map(value: Constants.contactTracingTermsUrl)
+        .map(value: Constants.termsOfUseUrl)
 
     let openHowItWorksWebView = tapLearnMoreButton
         .map(value: Constants.contactTracingLearnMoreUrl)

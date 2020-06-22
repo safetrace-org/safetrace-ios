@@ -404,7 +404,7 @@ class ContactTracingViewController: UIViewController {
         let attributedString = NSMutableAttributedString(
             string: termsAndConditionsText,
             attributes: [
-                .font: UIFont.bodyBold,
+                .font: shortened ? UIFont.smallRegular : UIFont.bodyBold,
                 .foregroundColor: UIColor.stGrey40,
             ])
 
