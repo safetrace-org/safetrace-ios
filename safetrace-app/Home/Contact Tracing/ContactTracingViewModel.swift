@@ -94,8 +94,10 @@ func contactTracingViewModel(
             viewDidLoad,
             appBecameActive
         )
+        .observe(on: QueueScheduler.main)
         .map { environment.citizen.isInstalled }
         .skipRepeats()
+
     // MARK: - View Data
 
     let viewData: Signal<ContactTracingViewData, Never> = Signal
@@ -140,6 +142,7 @@ func contactTracingViewModel(
         }
 
     let redirectToCitizen = optInSuccessChanged
+        .observe(on: QueueScheduler.main)
         .filter{
             $0
                 && environment.citizen.isInstalled
