@@ -54,7 +54,7 @@ class Button: UIButton {
 
         switch style {
         case .primary:
-            setTitleColor(.white, for: .normal)
+            setTitleColor(.stWhite, for: .normal)
             layer.insertSublayer(gradientLayer, at: 0)
         case .secondary:
             setTitleColor(.stWhite, for: .normal)
