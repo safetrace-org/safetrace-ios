@@ -33,6 +33,9 @@ class ContactTracingViewController: UIViewController {
     private let bluetoothIconLabelView = PermissionIconLabelView(permissionType: .bluetooth)
     private let notificationIconLabelView = PermissionIconLabelView(permissionType: .notification)
 
+    private lazy var tracingActiveContentView = makeTracingActiveContentStackView()
+    private lazy var tracingDisabledContentView = makeTracingDisabledContentStackView()
+
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 80
     private let trayTopSpacingToToggle: CGFloat = 20
 
@@ -167,9 +170,12 @@ class ContactTracingViewController: UIViewController {
     private func updateWithViewData(_ viewData: ContactTracingViewData) {
         toggle.setOn(viewData.isOptedIn, animated: true)
 
-        enabledLabel.text = viewData.tracingStatus == .enabled
+        let tracingActive = viewData.tracingStatus == .enabled
+        enabledLabel.text = tracingActive
             ? NSLocalizedString("Enabled", comment: "Enabled contact tracing status")
             : NSLocalizedString("Disabled", comment: "Disabled contact tracing status")
+        tracingActiveContentView.isHidden = !tracingActive
+        tracingDisabledContentView.isHidden = tracingActive
 
         switch viewData.tracingStatus {
         case .defaultDisabled:
@@ -211,55 +217,18 @@ class ContactTracingViewController: UIViewController {
         toggle.scale(by: 2.5)
         toggle.setOffColor(.stGrey25)
 
-        let descriptionLabel = UILabel()
-        descriptionLabel.numberOfLines = 0
-
-        let enableText = NSLocalizedString("enabling Citizen SafeTrace", comment: "enable safetrace highlighted text")
-        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Safetrace description template")
-        let descriptionText = String(format: descriptionTemplate, enableText)
-
-        let descriptionAttributedText = NSMutableAttributedString(
-            string: descriptionText,
-            attributes: [
-                .font: UIFont.titleH3,
-                .foregroundColor: UIColor.stGrey55,
-            ])
-        descriptionAttributedText.addAttributes(
-            [.foregroundColor: UIColor.stPurpleAccentUp],
-            range: descriptionAttributedText.mutableString.range(of: enableText))
-        descriptionLabel.attributedText = descriptionAttributedText
-
-        descriptionLabel.isUserInteractionEnabled = true
-        let descriptionLabelRecognizer = UITapGestureRecognizer()
-        descriptionLabel.addGestureRecognizer(descriptionLabelRecognizer)
-        tapDescriptionTextPipe.input <~ descriptionLabelRecognizer.reactive.stateChanged.map(value: ())
-
-        tapBluetoothPermissionsTextPipe.input <~ bluetoothIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
-
-        tapNotificationPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
-
-        let privacyIcon = UIImageView()
-        privacyIcon.image = UIImage(named: "contactTracingPrivacyIcon")!
-        update(privacyIcon, ContactTracingStyle.imageLabelIcon)
-
-        let privacyTextView = makePrivacyAndTermsTextView()
-        privacyTextView.setContentCompressionResistancePriority(.required, for: .horizontal)
-
-        let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
-        update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
-
         let spacer = UIView()
         spacer.setContentHuggingPriority(.defaultLow, for: .vertical)
+
+        tracingActiveContentView.isHidden = true
 
         let stackView = UIStackView(arrangedSubviews: [
             citizenLogoView,
             titleLabel,
             enabledLabel,
             toggleContainer,
-            descriptionLabel,
-            bluetoothIconLabelView,
-            notificationIconLabelView,
-            privacyImageLabelView,
+            tracingActiveContentView,
+            tracingDisabledContentView,
             spacer
         ])
         stackView.axis = .vertical
@@ -268,10 +237,6 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(12, after: citizenLogoView)
         stackView.setCustomSpacing(20, after: enabledLabel)
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? trayTopSpacingToToggle : 34, after: toggleContainer)
-        stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
-        stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
-        stackView.setCustomSpacing(12, after: notificationIconLabelView)
-        stackView.setCustomSpacing(16, after: privacyImageLabelView)
 
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
@@ -315,20 +280,115 @@ class ContactTracingViewController: UIViewController {
             toggleContainer.widthAnchor.constraint(equalToConstant: 144),
             toggleContainer.heightAnchor.constraint(equalToConstant: 80),
 
+            tracingActiveContentView.widthAnchor.constraint(equalTo: stackView.layoutMarginsGuide.widthAnchor),
+            tracingDisabledContentView.widthAnchor.constraint(equalTo: stackView.layoutMarginsGuide.widthAnchor),
+
             learnMoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             learnMoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             learnMoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
         ])
-
-        view.layoutIfNeeded()
     }
 
-    private func makePrivacyAndTermsTextView() -> TappableTextView {
+    private func makeTracingDisabledContentStackView() -> UIStackView {
+        let descriptionLabel = UILabel()
+        descriptionLabel.numberOfLines = 0
+
+        let enableText = NSLocalizedString("enabling Citizen SafeTrace", comment: "enable safetrace highlighted text")
+        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Safetrace description template")
+        let descriptionText = String(format: descriptionTemplate, enableText)
+
+        let descriptionAttributedText = NSMutableAttributedString(
+            string: descriptionText,
+            attributes: [
+                .font: UIFont.titleH3,
+                .foregroundColor: UIColor.stGrey55,
+            ])
+        descriptionAttributedText.addAttributes(
+            [.foregroundColor: UIColor.stPurpleAccentUp],
+            range: descriptionAttributedText.mutableString.range(of: enableText))
+        descriptionLabel.attributedText = descriptionAttributedText
+
+        descriptionLabel.isUserInteractionEnabled = true
+        let descriptionLabelRecognizer = UITapGestureRecognizer()
+        descriptionLabel.addGestureRecognizer(descriptionLabelRecognizer)
+        tapDescriptionTextPipe.input <~ descriptionLabelRecognizer.reactive.stateChanged.map(value: ())
+
+        tapBluetoothPermissionsTextPipe.input <~ bluetoothIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
+
+        tapNotificationPermissionsTextPipe.input <~ notificationIconLabelView.tapRecognizer.reactive.stateChanged.map(value: ())
+
+        let privacyIcon = UIImageView()
+        privacyIcon.image = UIImage(named: "contactTracingPrivacyIcon")!
+        update(privacyIcon, ContactTracingStyle.imageLabelIcon)
+
+        let privacyTextView = makePrivacyAndTermsTextView(shortened: false)
+        privacyTextView.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
+        update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
+
+        let stackView = UIStackView(arrangedSubviews: [
+            descriptionLabel,
+            bluetoothIconLabelView,
+            notificationIconLabelView,
+            privacyImageLabelView
+        ])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+
+        stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
+        stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
+        stackView.setCustomSpacing(12, after: notificationIconLabelView)
+
+        return stackView
+    }
+
+    private func makeTracingActiveContentStackView() -> UIStackView {
+        let keepOpenLabel = UILabel()
+        keepOpenLabel.font = .smallSemibold
+        keepOpenLabel.textColor = .stGrey55
+        keepOpenLabel.numberOfLines = 0
+        keepOpenLabel.text = NSLocalizedString("For the most accurate and timely contact tracing experience, keep the app open and bluetooth and notifications enabled.", comment: "Message to remind users to keep app open")
+
+        let reportTestResultView = UIView()
+        reportTestResultView.backgroundColor = .stGrey10
+
+        let getCitizenAppView = UIView()
+        getCitizenAppView.backgroundColor = .stBlueMutedUp
+
+        let shortedPrivacyLinksView = makePrivacyAndTermsTextView(shortened: true)
+
+        let stackView = UIStackView(arrangedSubviews: [
+            keepOpenLabel,
+            reportTestResultView,
+            SeparatorView(),
+            getCitizenAppView,
+            SeparatorView(),
+            shortedPrivacyLinksView
+        ])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 26
+
+        reportTestResultView.translatesAutoresizingMaskIntoConstraints = false
+        getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            reportTestResultView.heightAnchor.constraint(equalToConstant: 100),
+            getCitizenAppView.heightAnchor.constraint(equalToConstant: 70)
+        ])
+
+        return stackView
+    }
+
+    private func makePrivacyAndTermsTextView(shortened: Bool) -> TappableTextView {
         let privacyAndTermsTextView = TappableTextView()
 
         let privacyPolicyText = NSLocalizedString("Privacy Policy", comment: "Privacy policy text")
         let termsOfUseText = NSLocalizedString("Supplemental Terms", comment: "Supplemental terms text")
-        let termsAndConditionsTemplate = NSLocalizedString(
+        let termsAndConditionsTemplate = shortened
+            ? NSLocalizedString("%1$@ and %2$@", comment: "Shortened terms of use and privacy policy text template")
+            : NSLocalizedString(
             "By enabling Citizen SafeTrace, you agree to the %1$@ and %2$@.",
             comment: "Terms of use and privacy policy text template"
         )
