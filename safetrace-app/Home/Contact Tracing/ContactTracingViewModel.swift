@@ -43,6 +43,8 @@ func contactTracingViewModel(
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
     openCitizenAppOrAppStore: Signal<Void, Never>,
+    optInSuccessChanged: Signal<Bool, Never>,
+    redirectToCitizen: Signal<Void, Never>,
     displayAlert: Signal<ContactTracingAlertData, Never>
 ) {
     let optInPipe = Signal<Bool, Never>.pipe()
@@ -94,7 +96,6 @@ func contactTracingViewModel(
         )
         .map { environment.citizen.isInstalled }
         .skipRepeats()
-
     // MARK: - View Data
 
     let viewData: Signal<ContactTracingViewData, Never> = Signal
@@ -122,6 +123,23 @@ func contactTracingViewModel(
                 isCitizenInstalled: isCitizenInstalled
             )
         }
+
+    // MARK: - Redirect to Citizen Logic
+    let optInSuccessChanged = viewData
+        .compactMap { viewData -> Bool? in
+            let tracingActive = viewData.tracingStatus == .enabled
+            let lastSuccessfullyOptedIn = environment.safeTrace.getLastSuccessfullyOptedIn()
+
+            if tracingActive != lastSuccessfullyOptedIn {
+                return tracingActive
+            }
+            return nil
+        }
+
+    let redirectToCitizen = optInSuccessChanged
+        .filter{ $0 && environment.citizen.isInstalled }
+        .map(value: ())
+        .delay(0.7, on: QueueScheduler.main)
 
     // MARK: - Handle Toggle Tap
 
@@ -242,6 +260,8 @@ func contactTracingViewModel(
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
         openCitizenAppOrAppStore: tapCitizenUpsell,
+        optInSuccessChanged: optInSuccessChanged,
+        redirectToCitizen: redirectToCitizen,
         displayAlert: displayAlert
     )
 }
