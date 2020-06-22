@@ -6,7 +6,7 @@ import UIKit
 class EmailVerificationViewController: OnboardingViewController {
 
     private let verificationContext: LoginResponseContext.EmailVerificationData
-    private let codeTextField = TextField()
+    private let enterCodeInputView = OnboardingInputView()
     private let resendButton = Button(style: .secondary, size: .small)
     private let needHelpButton = UIButton()
 
@@ -51,15 +51,11 @@ class EmailVerificationViewController: OnboardingViewController {
         subtitleLabel.text = String(format: subtitleTemplate, verificationContext.email)
         subtitleLabel.textAlignment = .left
 
-        let enterCodeLabel = UILabel()
-        enterCodeLabel.font = .titleH6
-        enterCodeLabel.textColor = .stGrey40
-        enterCodeLabel.text = NSLocalizedString("Enter Code", comment: "Email verification code label")
+        enterCodeInputView.nameLabel.text = NSLocalizedString("Enter Code", comment: "Email verification code label")
             .uppercased(with: .current)
-        enterCodeLabel.textAlignment = .left
 
-        codeTextField.keyboardType = .numberPad
-        codeTextField.delegate = self
+        enterCodeInputView.textField.keyboardType = .numberPad
+        enterCodeInputView.textField.delegate = self
 
         resendButton.setTitle(
             NSLocalizedString("Resend Email", comment: "Email verification resend email button title")
@@ -84,8 +80,7 @@ class EmailVerificationViewController: OnboardingViewController {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
             subtitleLabel,
-            enterCodeLabel,
-            codeTextField,
+            enterCodeInputView,
             resendButton,
             needHelpButton
         ])
@@ -96,21 +91,18 @@ class EmailVerificationViewController: OnboardingViewController {
         view.addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        codeTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             titleLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             subtitleLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            enterCodeLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            codeTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            enterCodeInputView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
 
         stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
-        stackView.setCustomSpacing(8, after: enterCodeLabel)
-        stackView.setCustomSpacing(48, after: codeTextField)
+        stackView.setCustomSpacing(20, after: enterCodeInputView)
         stackView.setCustomSpacing(25, after: resendButton)
     }
 
@@ -142,6 +134,9 @@ class EmailVerificationViewController: OnboardingViewController {
                             .uppercased(with: .current),
                         for: .normal
                     )
+                    self.enterCodeInputView.showError(
+                        NSLocalizedString("Failed to resend code. Try again.", comment: "Error label when resending email pin failed")
+                    )
                 }
             }
         }
@@ -161,7 +156,10 @@ class EmailVerificationViewController: OnboardingViewController {
                 case .success:
                     self.onboardingStep.stepCompleted()
                 case .failure:
-                    self.codeTextField.setState(.error)
+                    self.enterCodeInputView.textField.setState(.error)
+                    self.enterCodeInputView.showError(
+                        NSLocalizedString("Reminder: email pin is not the same as SMS code.", comment: "Error label when entering the wrong email pin")
+                    )
                 }
             }
         }
@@ -170,6 +168,10 @@ class EmailVerificationViewController: OnboardingViewController {
 
 extension EmailVerificationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // hide error label when typing
+        enterCodeInputView.hideError()
+        enterCodeInputView.textField.setState(.focus)
+
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
 

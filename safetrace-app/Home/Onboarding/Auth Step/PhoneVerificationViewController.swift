@@ -3,7 +3,7 @@ import UIKit
 
 final class PhoneVerificationViewController: OnboardingViewController {
     private let phone: String
-    private let codeTextField = TextField()
+    private let enterCodeInputView = OnboardingInputView()
     private let resendButton = UIButton()
 
     init(environment: Environment, onboardingStep: OnboardingStep, phone: String) {
@@ -36,14 +36,12 @@ final class PhoneVerificationViewController: OnboardingViewController {
         subtitleLabel.text = phone
         subtitleLabel.textAlignment = .left
 
-        let enterCodeLabel = UILabel()
-        enterCodeLabel.font = .titleH6
-        enterCodeLabel.textColor = .stGrey40
-        enterCodeLabel.text = NSLocalizedString("Enter Code", comment: "Phone verification code label").uppercased(with: .current)
-        enterCodeLabel.textAlignment = .left
+        enterCodeInputView.nameLabel.text = NSLocalizedString("Enter Code", comment: "Phone verification code label").uppercased(with: .current)
 
-        codeTextField.keyboardType = .numberPad
-        codeTextField.delegate = self
+        enterCodeInputView.textField.keyboardType = .numberPad
+        enterCodeInputView.textField.delegate = self
+
+        enterCodeInputView.errorLabel.text = NSLocalizedString("Invalid Code", comment: "Phone veritifcation code error label")
 
         resendButton.setTitle(NSLocalizedString("Didn’t receive it? Resend", comment: "Phone verification resend button title"), for: .normal)
         resendButton.titleLabel?.font = .smallSemibold
@@ -55,8 +53,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
             backButton,
             titleLabel,
             subtitleLabel,
-            enterCodeLabel,
-            codeTextField,
+            enterCodeInputView,
             resendButton
         ])
         stackView.axis = .vertical
@@ -66,26 +63,24 @@ final class PhoneVerificationViewController: OnboardingViewController {
         view.addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        codeTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
-            codeTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            enterCodeInputView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             resendButton.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
 
         stackView.setCustomSpacing(23, after: backButton)
         stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
-        stackView.setCustomSpacing(8, after: enterCodeLabel)
-        stackView.setCustomSpacing(58, after: codeTextField)
+        stackView.setCustomSpacing(30, after: enterCodeInputView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        codeTextField.becomeFirstResponder()
+        enterCodeInputView.textField.becomeFirstResponder()
     }
 
     @objc private func didTapResendButton() {
@@ -110,7 +105,8 @@ final class PhoneVerificationViewController: OnboardingViewController {
                         self.navigationController?.pushViewController(emailVerificationViewController, animated: true)
                     }
                 case .failure:
-                    self.codeTextField.setState(.error)
+                    self.enterCodeInputView.textField.setState(.error)
+                    self.enterCodeInputView.showError()
                 }
             }
         }
@@ -119,6 +115,10 @@ final class PhoneVerificationViewController: OnboardingViewController {
 
 extension PhoneVerificationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // hide error label when typing
+        enterCodeInputView.hideError()
+        enterCodeInputView.textField.setState(.focus)
+
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
 
