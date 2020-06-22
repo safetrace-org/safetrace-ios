@@ -36,7 +36,7 @@ class ContactTracingViewController: UIViewController {
     private lazy var tracingActiveContentView = makeTracingActiveContentStackView()
     private lazy var tracingDisabledContentView = makeTracingDisabledContentStackView()
 
-    private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 80
+    private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 60
     private let trayTopSpacingToToggle: CGFloat = 20
 
     private let viewDidLoadPipe = Signal<Void, Never>.pipe()
@@ -47,6 +47,9 @@ class ContactTracingViewController: UIViewController {
     private let tapTermsTextPipe = Signal<Void, Never>.pipe()
     private let goToSettingsAlertActionPipe = Signal<Void, Never>.pipe()
     private let notificationPermissionsChangedPipe = Signal<UNAuthorizationStatus, Never>.pipe()
+
+    private var scrollViewBottomConstraintToButton: NSLayoutConstraint!
+    private var scrollViewBottomConstraintToView: NSLayoutConstraint!
 
     init(environment: Environment) {
         self.environment = environment
@@ -177,6 +180,14 @@ class ContactTracingViewController: UIViewController {
         tracingActiveContentView.isHidden = !tracingActive
         tracingDisabledContentView.isHidden = tracingActive
 
+        // Deactivate both constraints first to avoid conflicts
+        scrollViewBottomConstraintToView.isActive = false
+        scrollViewBottomConstraintToButton.isActive = false
+
+        scrollViewBottomConstraintToView.isActive = tracingActive
+        scrollViewBottomConstraintToButton.isActive = !tracingActive
+        learnMoreButton.isHidden = tracingActive
+
         switch viewData.tracingStatus {
         case .defaultDisabled:
             enabledLabel.textColor = .stGrey40
@@ -258,11 +269,14 @@ class ContactTracingViewController: UIViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = .init(top: stackViewTopSpacing, left: 28, bottom: 0, right: 28)
 
+        scrollViewBottomConstraintToButton = scrollView.bottomAnchor.constraint(equalTo: learnMoreButton.topAnchor, constant: -20)
+        scrollViewBottomConstraintToView = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: learnMoreButton.topAnchor, constant: -20),
+            scrollViewBottomConstraintToButton,
 
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -410,7 +424,7 @@ class ContactTracingViewController: UIViewController {
         .forEach {
             let attributes: [NSAttributedString.Key: Any] = [
                 .link: $0.1,
-                .foregroundColor: UIColor.stBlueMutedUp
+                .foregroundColor: shortened ? UIColor.stBlueMutedDown : UIColor.stBlueMutedUp
             ]
             attributedString.addAttributes(attributes, range: $0.0)
         }
