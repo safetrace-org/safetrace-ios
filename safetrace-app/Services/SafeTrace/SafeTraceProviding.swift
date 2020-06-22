@@ -11,7 +11,7 @@ protocol SafeTraceProviding {
     func startTracing()
     func stopTracing()
 
-    func sendHealthCheck(completion: (() -> Void)?)
+    func sendHealthCheck(fromNotification: Bool, completion: (() -> Void)?)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     func applicationWillEnterForeground(_ application: UIApplication)

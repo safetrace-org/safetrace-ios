@@ -657,10 +657,10 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 		perform?(`token`, `completion`)
     }
 
-    open func sendHealthCheck(        userID: String,        bluetoothEnabled: Bool,        notificationsEnabled: Bool,        completion: @escaping (Result<Void, Error>) -> Void    ) {
-        addInvocation(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void
-		perform?(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `completion`)
+    open func sendHealthCheck(        userID: String,        bluetoothEnabled: Bool,        notificationsEnabled: Bool,        fromNotification: Bool,        completion: @escaping (Result<Void, Error>) -> Void    ) {
+        addInvocation(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<Bool>.value(`fromNotification`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<Bool>.value(`fromNotification`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, Bool, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void
+		perform?(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`)
     }
 
     open func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void) {
@@ -683,7 +683,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         case m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(Parameter<String>, Parameter<String?>, Parameter<(Result<Void, Error>) -> Void>)
         case m_setTracingEnabled__enableduserID_userIDcompletion_completion(Parameter<Bool>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_syncPushToken__tokencompletion_completion(Parameter<Data>, Parameter<(Result<Void, Error>) -> Void>)
-        case m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(Parameter<String>, Parameter<Bool>, Parameter<Bool>, Parameter<(Result<Void, Error>) -> Void>)
+        case m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>, Parameter<Bool>, Parameter<Bool>, Parameter<Bool>, Parameter<(Result<Void, Error>) -> Void>)
         case m_getTraceIDs__userID_userIDcompletion_completion(Parameter<String>, Parameter<(Result<[TraceIDRecord], Error>) -> Void>)
         case m_uploadTraces__tracesuserID_userIDcompletion_completion(Parameter<ContactTraces>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
 
@@ -718,10 +718,11 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
                 guard Parameter.compare(lhs: lhsToken, rhs: rhsToken, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
-            case (.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(let lhsUserid, let lhsBluetoothenabled, let lhsNotificationsenabled, let lhsCompletion), .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(let rhsUserid, let rhsBluetoothenabled, let rhsNotificationsenabled, let rhsCompletion)):
+            case (.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(let lhsUserid, let lhsBluetoothenabled, let lhsNotificationsenabled, let lhsFromnotification, let lhsCompletion), .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(let rhsUserid, let rhsBluetoothenabled, let rhsNotificationsenabled, let rhsFromnotification, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsUserid, rhs: rhsUserid, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsBluetoothenabled, rhs: rhsBluetoothenabled, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsNotificationsenabled, rhs: rhsNotificationsenabled, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsFromnotification, rhs: rhsFromnotification, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
             case (.m_getTraceIDs__userID_userIDcompletion_completion(let lhsUserid, let lhsCompletion), .m_getTraceIDs__userID_userIDcompletion_completion(let rhsUserid, let rhsCompletion)):
@@ -745,7 +746,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
             case let .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_setTracingEnabled__enableduserID_userIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_syncPushToken__tokencompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            case let .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(p0, p1, p2, p3): return p0.intValue + p1.intValue + p2.intValue + p3.intValue
+            case let .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(p0, p1, p2, p3, p4): return p0.intValue + p1.intValue + p2.intValue + p3.intValue + p4.intValue
             case let .m_getTraceIDs__userID_userIDcompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_uploadTraces__tracesuserID_userIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             }
@@ -772,7 +773,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         public static func resendEmailAuthCode(phone: Parameter<String>, deviceID: Parameter<String?>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(`phone`, `deviceID`, `completion`))}
         public static func setTracingEnabled(_ enabled: Parameter<Bool>, userID: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_setTracingEnabled__enableduserID_userIDcompletion_completion(`enabled`, `userID`, `completion`))}
         public static func syncPushToken(_ token: Parameter<Data>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_syncPushToken__tokencompletion_completion(`token`, `completion`))}
-        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `completion`))}
+        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, fromNotification: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`))}
         public static func getTraceIDs(userID: Parameter<String>, completion: Parameter<(Result<[TraceIDRecord], Error>) -> Void>) -> Verify { return Verify(method: .m_getTraceIDs__userID_userIDcompletion_completion(`userID`, `completion`))}
         public static func uploadTraces(_ traces: Parameter<ContactTraces>, userID: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_uploadTraces__tracesuserID_userIDcompletion_completion(`traces`, `userID`, `completion`))}
     }
@@ -799,8 +800,8 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         public static func syncPushToken(_ token: Parameter<Data>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (Data, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_syncPushToken__tokencompletion_completion(`token`, `completion`), performs: perform)
         }
-        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `completion`), performs: perform)
+        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, fromNotification: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, Bool, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`), performs: perform)
         }
         public static func getTraceIDs(userID: Parameter<String>, completion: Parameter<(Result<[TraceIDRecord], Error>) -> Void>, perform: @escaping (String, @escaping (Result<[TraceIDRecord], Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_getTraceIDs__userID_userIDcompletion_completion(`userID`, `completion`), performs: perform)

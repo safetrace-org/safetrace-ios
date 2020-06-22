@@ -44,7 +44,7 @@ public final class SafeTrace {
         }
     }
     
-    public static func sendHealthCheck(completion: (() -> Void)? = nil) {
+    public static func sendHealthCheck(fromNotification: Bool = false, completion: (() -> Void)? = nil) {
         guard let userID = environment.session.userID else { return }
         
         let bluetoothEnabled = environment.tracer.isBluetoothPermissionEnabled
@@ -54,7 +54,8 @@ public final class SafeTrace {
             environment.network.sendHealthCheck(
                 userID: userID,
                 bluetoothEnabled: bluetoothEnabled,
-                notificationsEnabled: pushEnabled) { _ in
+                notificationsEnabled: pushEnabled,
+                fromNotification: fromNotification) { _ in
                     completion?()
                 }
         }

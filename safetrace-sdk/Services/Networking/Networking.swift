@@ -14,6 +14,7 @@ protocol NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        fromNotification: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
     )
 
@@ -147,6 +148,7 @@ struct Network: NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        fromNotification: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         urlSession.sendRequest(
@@ -156,7 +158,8 @@ struct Network: NetworkProtocol {
                 host: .sp0n, token: environment.session.authToken,
                 body: [
                     "notifications_enabled": notificationsEnabled,
-                    "bluetooth_enabled": bluetoothEnabled
+                    "bluetooth_enabled": bluetoothEnabled,
+                    "received_silent_notification": fromNotification,
                 ]), completion: completion)
     }
 

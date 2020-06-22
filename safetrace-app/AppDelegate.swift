@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        environment.safeTrace.sendHealthCheck {
+        environment.safeTrace.sendHealthCheck(fromNotification: false) {
             completionHandler(.newData)
         }
     }
@@ -54,7 +54,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        environment.safeTrace.sendHealthCheck {
+        environment.safeTrace.sendHealthCheck(fromNotification: true) {
             completionHandler(.newData)
         }
     }
