@@ -171,7 +171,7 @@ class ContactTracingViewController: UIViewController {
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] url in
-                self?.environment.citizen.open()
+                self?.environment.citizen.openSafepass()
             }
 
         displayAlert

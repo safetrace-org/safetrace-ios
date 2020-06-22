@@ -2,7 +2,7 @@ import UIKit
 
 protocol CitizenProviding {
     var isInstalled: Bool { get }
-    func open()
+    func openSafepass()
 }
 
 struct CitizenProvider: CitizenProviding {
@@ -11,9 +11,9 @@ struct CitizenProvider: CitizenProviding {
         return UIApplication.shared.canOpenURL(url)
     }
 
-    func open() {
+    func openSafepass() {
         let url = isInstalled
-            ? Constants.citizenDeeplinkUrl
+            ? Constants.citizenSafepassDeeplinkUrl
             : Constants.citizenAppStoreLink
 
         if UIApplication.shared.canOpenURL(url) {
