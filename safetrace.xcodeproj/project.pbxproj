@@ -18,6 +18,8 @@
 		3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
 		3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
 		3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
+		3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
+		3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
@@ -186,6 +188,7 @@
 		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
 		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTestResultView.swift; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -334,6 +337,16 @@
 			path = "Auth Step";
 			sourceTree = "<group>";
 		};
+		3E5A05F624A135370052A242 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
+				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
+				3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3E6A450E249EF619001E94A8 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,8 +389,7 @@
 			children = (
 				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
 				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
-				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
-				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
+				3E5A05F624A135370052A242 /* Views */,
 			);
 			path = "Contact Tracing";
 			sourceTree = "<group>";
@@ -817,6 +829,7 @@
 				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
 				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
 				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
+				3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
@@ -858,6 +871,7 @@
 				DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */,
 				3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
 				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
+				3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */,
 				3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
 				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,

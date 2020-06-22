@@ -364,8 +364,7 @@ class ContactTracingViewController: UIViewController {
         keepOpenLabel.numberOfLines = 0
         keepOpenLabel.text = NSLocalizedString("For the most accurate and timely contact tracing experience, keep the app open and bluetooth and notifications enabled.", comment: "Message to remind users to keep app open")
 
-        let reportTestResultView = UIView()
-        reportTestResultView.backgroundColor = .stGrey10
+        let reportTestResultView = ReportTestResultView()
 
         let getCitizenAppView = UIView()
         getCitizenAppView.backgroundColor = .stBlueMutedUp
@@ -388,7 +387,6 @@ class ContactTracingViewController: UIViewController {
         getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            reportTestResultView.heightAnchor.constraint(equalToConstant: 100),
             getCitizenAppView.heightAnchor.constraint(equalToConstant: 70)
         ])
 
