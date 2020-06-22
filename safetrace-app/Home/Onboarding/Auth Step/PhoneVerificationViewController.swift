@@ -18,7 +18,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .stBlack
 
         // MARK: - UI Components
 
@@ -26,13 +26,13 @@ final class PhoneVerificationViewController: OnboardingViewController {
 
         let titleLabel = UILabel()
         titleLabel.font = .titleH2
-        titleLabel.textColor = .stBlack
+        titleLabel.textColor = .stWhite
         titleLabel.text = NSLocalizedString("We just sent a code to", comment: "Phone verification title")
         titleLabel.textAlignment = .left
 
         let subtitleLabel = UILabel()
         subtitleLabel.font = .titleH2
-        subtitleLabel.textColor = .stPurple
+        subtitleLabel.textColor = .stPurpleAccentUp
         subtitleLabel.text = phone
         subtitleLabel.textAlignment = .left
 
@@ -45,8 +45,8 @@ final class PhoneVerificationViewController: OnboardingViewController {
 
         resendButton.setTitle(NSLocalizedString("Didn’t receive it? Resend", comment: "Phone verification resend button title"), for: .normal)
         resendButton.titleLabel?.font = .smallSemibold
-        resendButton.setTitleColor(.stPurple, for: .normal)
-        resendButton.setTitleColor(UIColor.stPurple.withAlphaComponent(0.8), for: .highlighted)
+        resendButton.setTitleColor(.stBlueMutedUp, for: .normal)
+        resendButton.setTitleColor(UIColor.stBlueMutedUp.withAlphaComponent(0.8), for: .highlighted)
         resendButton.addTarget(self, action: #selector(didTapResendButton), for: .touchUpInside)
 
         let stackView = UIStackView(arrangedSubviews: [
@@ -74,7 +74,7 @@ final class PhoneVerificationViewController: OnboardingViewController {
         stackView.setCustomSpacing(23, after: backButton)
         stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
-        stackView.setCustomSpacing(30, after: enterCodeInputView)
+        stackView.setCustomSpacing(26, after: enterCodeInputView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

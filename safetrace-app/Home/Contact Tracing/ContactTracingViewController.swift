@@ -171,10 +171,13 @@ class ContactTracingViewController: UIViewController {
         switch viewData.tracingStatus {
         case .defaultDisabled:
             enabledLabel.textColor = .stGrey40
+            toggle.alpha = 1
         case .enabled:
             enabledLabel.textColor = .stPurpleAccentUp
+            toggle.alpha = 1
         case .error:
             enabledLabel.textColor = .stRed
+            toggle.alpha = 0.6
         }
 
         bluetoothIconLabelView.showErrorState = viewData.bluetoothDenied

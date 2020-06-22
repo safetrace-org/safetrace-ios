@@ -3,6 +3,8 @@ import UIKit
 extension UIColor {
     /// #030303
     static let stBlack = #colorLiteral(red: 0.01176470588, green: 0.01176470588, blue: 0.01176470588, alpha: 1)
+    /// #1A1A1A
+    static let stGrey10 = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
     /// #212121
     static let stGrey15 = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
     /// #404040

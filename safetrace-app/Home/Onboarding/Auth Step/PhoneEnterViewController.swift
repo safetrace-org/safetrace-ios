@@ -9,7 +9,7 @@ final class PhoneEnterViewController: OnboardingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .stBlack
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         // MARK: - UI Components
@@ -18,14 +18,14 @@ final class PhoneEnterViewController: OnboardingViewController {
 
         let titleLabel = UILabel()
         titleLabel.font = .titleH2
-        titleLabel.textColor = .stBlack
+        titleLabel.textColor = .stWhite
         titleLabel.text = NSLocalizedString("Enter your phone number", comment: "Phone auth title")
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 0
 
         let subtitleLabel = UILabel()
         subtitleLabel.font = .titleH2
-        subtitleLabel.textColor = .stGrey40
+        subtitleLabel.textColor = .stGrey70
         subtitleLabel.text = NSLocalizedString("to sign up or log in.", comment: "Phone auth subtitle")
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
@@ -88,7 +88,7 @@ final class PhoneEnterViewController: OnboardingViewController {
             string: termsAndConditionsText,
             attributes: [
                 .font: UIFont.smallSemibold,
-                .foregroundColor: UIColor.stGrey40,
+                .foregroundColor: UIColor.stGrey55,
                 .paragraphStyle: paragraphStyle
             ])
 
@@ -101,7 +101,7 @@ final class PhoneEnterViewController: OnboardingViewController {
         .forEach {
             let attributes: [NSAttributedString.Key: Any] = [
                 .link: $0.1,
-                .foregroundColor: UIColor.stPurple
+                .foregroundColor: UIColor.stBlueMutedUp
             ]
             attributedString.addAttributes(attributes, range: $0.0)
         }

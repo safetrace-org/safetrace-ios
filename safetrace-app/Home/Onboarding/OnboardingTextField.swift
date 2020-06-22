@@ -9,14 +9,14 @@ class OnboardingInputView: UIStackView {
         super.init(frame: .zero)
 
         nameLabel.font = .titleH6
-        nameLabel.textColor = .stGrey40
+        nameLabel.textColor = .stGrey55
         nameLabel.textAlignment = .left
 
         errorLabel.font = .smallSemibold
         errorLabel.textColor = .stRed
         errorLabel.alpha = 0
         errorLabel.numberOfLines = 0
-        errorLabel.text = ""
+        errorLabel.text = "Error" // This makes sure label takes up 1 line. Should be overwritten.
 
         addArrangedSubview(nameLabel)
         addArrangedSubview(textField)
@@ -27,7 +27,7 @@ class OnboardingInputView: UIStackView {
         distribution = .fill
 
         setCustomSpacing(8, after: nameLabel)
-        setCustomSpacing(4, after: textField)
+        setCustomSpacing(8, after: textField)
     }
 
     required init(coder: NSCoder) {

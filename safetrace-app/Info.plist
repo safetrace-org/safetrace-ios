@@ -34,9 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Citizen uses Bluetooth to determine if you have come in nearby contact with someone who has reported testing positive for COVID-19.</string>
+	<string>SafeTrace uses Bluetooth to determine if you have come in nearby contact with someone who has tested positive for COVID-19.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Citizen uses Bluetooth to determine if you have come in nearby contact with someone who has reported testing positive for COVID-19.</string>
+	<string>SafeTrace uses Bluetooth to determine if you have come in nearby contact with someone who has tested positive for COVID-19.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-peripheral</string>
