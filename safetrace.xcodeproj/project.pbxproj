@@ -20,6 +20,8 @@
 		3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
 		3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
 		3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
+		3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
+		3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
@@ -189,6 +191,7 @@
 		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
 		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTestResultView.swift; sourceTree = "<group>"; };
+		3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenUpsellView.swift; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -343,6 +346,7 @@
 				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
 				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
 				3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */,
+				3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -826,6 +830,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
 				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
 				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
@@ -880,6 +885,7 @@
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
+				3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
 				3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,

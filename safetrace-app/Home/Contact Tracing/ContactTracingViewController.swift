@@ -366,8 +366,7 @@ class ContactTracingViewController: UIViewController {
 
         let reportTestResultView = ReportTestResultView()
 
-        let getCitizenAppView = UIView()
-        getCitizenAppView.backgroundColor = .stBlueMutedUp
+        let getCitizenAppView = CitizenUpsellView()
 
         let shortedPrivacyLinksView = makePrivacyAndTermsTextView(shortened: true)
 
@@ -385,10 +384,6 @@ class ContactTracingViewController: UIViewController {
 
         reportTestResultView.translatesAutoresizingMaskIntoConstraints = false
         getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            getCitizenAppView.heightAnchor.constraint(equalToConstant: 70)
-        ])
 
         return stackView
     }
