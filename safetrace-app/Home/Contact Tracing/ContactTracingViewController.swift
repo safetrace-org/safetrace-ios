@@ -36,6 +36,9 @@ class ContactTracingViewController: UIViewController {
     private lazy var tracingActiveContentView = makeTracingActiveContentStackView()
     private lazy var tracingDisabledContentView = makeTracingDisabledContentStackView()
 
+    private let reportTestResultView = ReportTestResultView()
+    private let getCitizenAppView = CitizenUpsellView()
+
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 60
     private let trayTopSpacingToToggle: CGFloat = 20
 
@@ -103,6 +106,7 @@ class ContactTracingViewController: UIViewController {
             tapPrivacyText: tapPrivacyTextPipe.output,
             tapTermsText: tapTermsTextPipe.output,
             tapLearnMoreButton: learnMoreButton.reactive.controlEvents(.touchUpInside).map(value: ()),
+            tapReportTestResult: reportTestResultView.gestureRecognizer.reactive.stateChanged.map(value: ()),
             goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
             viewDidLoad: viewDidLoadPipe.output
         )
@@ -363,10 +367,6 @@ class ContactTracingViewController: UIViewController {
         keepOpenLabel.textColor = .stGrey55
         keepOpenLabel.numberOfLines = 0
         keepOpenLabel.text = NSLocalizedString("For the most accurate and timely contact tracing experience, keep the app open and bluetooth and notifications enabled.", comment: "Message to remind users to keep app open")
-
-        let reportTestResultView = ReportTestResultView()
-
-        let getCitizenAppView = CitizenUpsellView()
 
         let shortedPrivacyLinksView = makePrivacyAndTermsTextView(shortened: true)
 

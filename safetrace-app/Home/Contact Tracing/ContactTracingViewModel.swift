@@ -29,6 +29,7 @@ func contactTracingViewModel(
     tapPrivacyText: Signal<Void, Never>,
     tapTermsText: Signal<Void, Never>,
     tapLearnMoreButton: Signal<Void, Never>,
+    tapReportTestResult: Signal<Void, Never>,
     goToSettingsAlertAction: Signal<Void, Never>,
     viewDidLoad: Signal<Void, Never>
 ) -> (
@@ -207,10 +208,14 @@ func contactTracingViewModel(
     let openHowItWorksWebView = tapLearnMoreButton
         .map(value: Constants.contactTracingLearnMoreUrl)
 
+    let openReportTestResultWebView = tapReportTestResult
+        .map(value: Constants.reportTestResultUrl)
+
     let openWebView = Signal.merge(
         openPrivacyWebView,
         openTermsWebView,
-        openHowItWorksWebView
+        openHowItWorksWebView,
+        openReportTestResultWebView
     )
 
     return (

@@ -22,6 +22,8 @@
 		3E5A05F924A1354F0052A242 /* ReportTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */; };
 		3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
 		3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */; };
+		3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
+		3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
 		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
 		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
 		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
@@ -192,6 +194,7 @@
 		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTestResultView.swift; sourceTree = "<group>"; };
 		3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenUpsellView.swift; sourceTree = "<group>"; };
+		3E5A05FD24A13F070052A242 /* TappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableView.swift; sourceTree = "<group>"; };
 		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -347,6 +350,7 @@
 				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
 				3E5A05F724A1354F0052A242 /* ReportTestResultView.swift */,
 				3E5A05FA24A139930052A242 /* CitizenUpsellView.swift */,
+				3E5A05FD24A13F070052A242 /* TappableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -860,6 +864,7 @@
 				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
+				3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */,
 				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
@@ -904,6 +909,7 @@
 				3EEFCB66249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
+				3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */,
 				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,

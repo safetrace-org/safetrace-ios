@@ -1,6 +1,6 @@
 import UIKit
 
-class CitizenUpsellView: UIView {
+class CitizenUpsellView: TappableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 

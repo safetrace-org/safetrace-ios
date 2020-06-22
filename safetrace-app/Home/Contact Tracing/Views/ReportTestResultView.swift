@@ -1,6 +1,6 @@
 import UIKit
 
-class ReportTestResultView: UIView {
+class ReportTestResultView: TappableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
