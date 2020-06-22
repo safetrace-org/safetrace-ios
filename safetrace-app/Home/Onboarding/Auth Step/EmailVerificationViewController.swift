@@ -23,14 +23,10 @@ class EmailVerificationViewController: OnboardingViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .stBlack
 
         // MARK: - UI Components
 
@@ -63,8 +59,6 @@ class EmailVerificationViewController: OnboardingViewController {
             for: .normal
         )
         resendButton.titleLabel?.font = .smallSemibold
-        resendButton.setTitleColor(.stPurple, for: .normal)
-        resendButton.setTitleColor(UIColor.stPurple.withAlphaComponent(0.8), for: .highlighted)
         resendButton.addTarget(self, action: #selector(didTapResendButton), for: .touchUpInside)
         resendButton.contentEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 12)
 
@@ -73,8 +67,8 @@ class EmailVerificationViewController: OnboardingViewController {
             for: .normal
         )
         needHelpButton.titleLabel?.font = .smallSemibold
-        needHelpButton.setTitleColor(.stPurple, for: .normal)
-        needHelpButton.setTitleColor(UIColor.stPurple.withAlphaComponent(0.8), for: .highlighted)
+        needHelpButton.setTitleColor(.stBlueMutedUp, for: .normal)
+        needHelpButton.setTitleColor(UIColor.stBlueMutedUp.withAlphaComponent(0.8), for: .highlighted)
         needHelpButton.addTarget(self, action: #selector(didTapNeedHelpButton), for: .touchUpInside)
 
         let stackView = UIStackView(arrangedSubviews: [

@@ -32,7 +32,7 @@ class Button: UIButton {
 
     override var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1 : 0.5
+            alpha = isEnabled ? 1 : 0.6
         }
     }
 
@@ -57,8 +57,9 @@ class Button: UIButton {
             setTitleColor(.white, for: .normal)
             layer.insertSublayer(gradientLayer, at: 0)
         case .secondary:
-            setTitleColor(.stGrey15, for: .normal)
-            layer.borderColor = UIColor.stBlack.withAlphaComponent(0.3).cgColor
+            setTitleColor(.stWhite, for: .normal)
+            backgroundColor = .stGrey15
+            layer.borderColor = UIColor.stGrey25.cgColor
             layer.borderWidth = 1
         }
     }

@@ -14,6 +14,10 @@ class OnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     func goBack() {
         navigationController?.popViewController(animated: true)
     }

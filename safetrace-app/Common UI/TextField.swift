@@ -14,12 +14,12 @@ class TextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: .zero)
 
-        backgroundColor = .stGrey90
+        backgroundColor = .stGrey10
         textAlignment = .left
-        textColor = .stBlack
+        textColor = .stWhite
         layer.borderWidth = 1
         layer.cornerRadius = 12
-        tintColor = .stPurple
+        tintColor = .stPurpleAccentUp
         autocorrectionType = .no
         isHighlighted = false
 
@@ -43,7 +43,7 @@ class TextField: UITextField {
     func setState(_ state: State) {
         switch state {
         case .none:
-            layer.borderColor = UIColor.stGrey70.cgColor
+            layer.borderColor = UIColor.stGrey25.cgColor
             errorIconView.isHidden = true
         case .focus:
             layer.borderColor = UIColor.stPurple.cgColor
