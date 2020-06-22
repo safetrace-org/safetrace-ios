@@ -16,6 +16,7 @@ class IntroViewController: OnboardingViewController {
         let titleLabel = UILabel()
         titleLabel.font = .titleH2
         titleLabel.textColor = .stWhite
+        titleLabel.numberOfLines = 0
         titleLabel.text = NSLocalizedString("Welcome to Citizen SafeTrace", comment: "Safetrace intro title")
         titleLabel.textAlignment = .left
 

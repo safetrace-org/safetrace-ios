@@ -23,6 +23,13 @@ final class WebViewController: UIViewController {
 
     private func layoutUI() {
         view.backgroundColor = .stBlack
+
+        let closeButton = UIButton()
+        closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
+        closeButton.setImage(UIImage(named: "closeIcon")!, for: .normal)
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Closes the displayed modal.")
+        view.addSubview(closeButton)
+
         webView.isOpaque = false
         webView.backgroundColor = .stBlack
         webView.scrollView.backgroundColor = .stBlack
@@ -32,12 +39,19 @@ final class WebViewController: UIViewController {
         webView.uiDelegate = self
 
         view.addSubview(webView)
+
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalToConstant: 32),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            webView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         view.addSubview(loadingIndicator)
@@ -68,6 +82,10 @@ final class WebViewController: UIViewController {
         webView.load(request)
 
         loadingIndicator.startAnimating()
+    }
+
+    @objc private func tapCloseButton() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

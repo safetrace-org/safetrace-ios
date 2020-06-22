@@ -151,6 +151,7 @@ class ContactTracingViewController: UIViewController {
             .observeValues { [weak self] url in
                 let webViewController = WebViewController()
                 webViewController.loadUrl(url)
+                webViewController.modalPresentationStyle = .fullScreen
                 self?.present(webViewController, animated: true)
             }
 
@@ -247,6 +248,9 @@ class ContactTracingViewController: UIViewController {
         let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
         update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
 
+        let spacer = UIView()
+        spacer.setContentHuggingPriority(.defaultLow, for: .vertical)
+
         let stackView = UIStackView(arrangedSubviews: [
             citizenLogoView,
             titleLabel,
@@ -255,7 +259,8 @@ class ContactTracingViewController: UIViewController {
             descriptionLabel,
             bluetoothIconLabelView,
             notificationIconLabelView,
-            privacyImageLabelView
+            privacyImageLabelView,
+            spacer
         ])
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -268,30 +273,51 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(12, after: notificationIconLabelView)
         stackView.setCustomSpacing(16, after: privacyImageLabelView)
 
-        view.addSubview(stackView)
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.addSubview(stackView)
+
+        view.addSubview(scrollView)
 
         learnMoreButton.setTitle(NSLocalizedString("Learn more", comment: "Learn more button title"), for: .normal)
         view.addSubview(learnMoreButton)
 
-        let titleTopConstraint = stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: stackViewTopSpacing)
+        let stackViewHeightConstraint = stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        stackViewHeightConstraint.priority = .defaultLow
 
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         toggle.translatesAutoresizingMaskIntoConstraints = false
         learnMoreButton.translatesAutoresizingMaskIntoConstraints = false
 
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(top: stackViewTopSpacing, left: 28, bottom: 0, right: 28)
+
         NSLayoutConstraint.activate([
-            titleTopConstraint,
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: learnMoreButton.topAnchor, constant: -20),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: learnMoreButton.topAnchor, constant: -20),
+
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackViewHeightConstraint,
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
             citizenLogoView.widthAnchor.constraint(equalToConstant: 58),
             citizenLogoView.heightAnchor.constraint(equalToConstant: 32),
+
+            toggle.leadingAnchor.constraint(equalTo: toggleContainer.leadingAnchor),
+            toggle.topAnchor.constraint(equalTo: toggleContainer.topAnchor),
+
             toggleContainer.widthAnchor.constraint(equalToConstant: 144),
             toggleContainer.heightAnchor.constraint(equalToConstant: 80),
 
-            learnMoreButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            learnMoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            learnMoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            learnMoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            learnMoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            learnMoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
         ])
 
         view.layoutIfNeeded()
