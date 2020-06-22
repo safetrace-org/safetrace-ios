@@ -8,7 +8,8 @@ class TextField: UITextField {
         case none
     }
 
-    var currentState: State = .none
+    private let errorIconView = UIImageView(image: UIImage(named: "errorX")!)
+    private var currentState: State = .none
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -21,9 +22,18 @@ class TextField: UITextField {
         tintColor = .stPurple
         autocorrectionType = .no
         isHighlighted = false
+
+        errorIconView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(errorIconView)
         setState(.none)
 
-        heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: 48.0),
+            errorIconView.widthAnchor.constraint(equalToConstant: 24),
+            errorIconView.heightAnchor.constraint(equalToConstant: 24),
+            errorIconView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            errorIconView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0)
+        ])
     }
 
     required init?(coder: NSCoder) {
@@ -34,10 +44,13 @@ class TextField: UITextField {
         switch state {
         case .none:
             layer.borderColor = UIColor.stGrey70.cgColor
+            errorIconView.isHidden = true
         case .focus:
             layer.borderColor = UIColor.stPurple.cgColor
+            errorIconView.isHidden = true
         case .error:
             layer.borderColor = UIColor.stRed.cgColor
+            errorIconView.isHidden = false
         }
     }
 

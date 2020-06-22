@@ -3,7 +3,7 @@ import SafeTrace
 import UIKit
 
 final class PhoneEnterViewController: OnboardingViewController {
-    private let phoneTextField = TextField()
+    private let phoneEnterInputView = OnboardingInputView()
     private let sendCodeButton = Button(style: .primary)
 
     override func viewDidLoad() {
@@ -30,14 +30,12 @@ final class PhoneEnterViewController: OnboardingViewController {
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
 
-        let phoneNumberLabel = UILabel()
-        phoneNumberLabel.font = .titleH6
-        phoneNumberLabel.textColor = .stGrey40
-        phoneNumberLabel.text = NSLocalizedString("Phone Number", comment: "Phone auth phone number label").uppercased(with: Locale.current)
-        phoneNumberLabel.textAlignment = .left
+        phoneEnterInputView.nameLabel.text = NSLocalizedString("Phone Number", comment: "Phone auth phone number label").uppercased(with: Locale.current)
 
-        phoneTextField.keyboardType = .numberPad
-        phoneTextField.delegate = self
+        phoneEnterInputView.textField.keyboardType = .numberPad
+        phoneEnterInputView.textField.delegate = self
+
+        phoneEnterInputView.errorLabel.text = NSLocalizedString("Cannot complete request. Please try again.", comment: "Phone auth error message")
 
         sendCodeButton.isEnabled = false
         sendCodeButton.setTitle(NSLocalizedString("Send code", comment: "Phone auth send code button title"), for: .normal)
@@ -49,8 +47,7 @@ final class PhoneEnterViewController: OnboardingViewController {
             backButton,
             titleLabel,
             subtitleLabel,
-            phoneNumberLabel,
-            phoneTextField,
+            phoneEnterInputView,
             sendCodeButton,
             privacyAndTermsTextView
         ])
@@ -61,12 +58,11 @@ final class PhoneEnterViewController: OnboardingViewController {
         view.addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        phoneTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
-            phoneTextField.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            phoneEnterInputView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             sendCodeButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             privacyAndTermsTextView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
@@ -74,8 +70,7 @@ final class PhoneEnterViewController: OnboardingViewController {
         stackView.setCustomSpacing(23, after: backButton)
         stackView.setCustomSpacing(3, after: titleLabel)
         stackView.setCustomSpacing(30, after: subtitleLabel)
-        stackView.setCustomSpacing(8, after: phoneNumberLabel)
-        stackView.setCustomSpacing(40, after: phoneTextField)
+        stackView.setCustomSpacing(12, after: phoneEnterInputView)
         stackView.setCustomSpacing(33, after: sendCodeButton)
     }
 
@@ -128,7 +123,8 @@ final class PhoneEnterViewController: OnboardingViewController {
     }
     
     @objc private func didTapSendCode() {
-        guard let phone = phoneTextField.text, !phone.isEmpty else { return }
+        guard let phone = phoneEnterInputView.textField.text, !phone.isEmpty else { return }
+        self.phoneEnterInputView.hideError()
 
         environment.safeTrace.session.requestAuthenticationCode(for: phone) { [weak self] result in
             guard let self = self else { return }
@@ -137,7 +133,8 @@ final class PhoneEnterViewController: OnboardingViewController {
                     let vc = PhoneVerificationViewController(environment: self.environment, onboardingStep: self.onboardingStep, phone: phone)
                      self.navigationController?.pushViewController(vc, animated: true)
                 } else {
-                    self.phoneTextField.setState(.error)
+                    self.phoneEnterInputView.textField.setState(.error)
+                    self.phoneEnterInputView.showError()
                 }
             }
         }
@@ -146,6 +143,10 @@ final class PhoneEnterViewController: OnboardingViewController {
 
 extension PhoneEnterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // hide error label when typing
+        phoneEnterInputView.hideError()
+        phoneEnterInputView.textField.setState(.focus)
+
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
 
