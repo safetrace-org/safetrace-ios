@@ -1,13 +1,15 @@
 import UIKit
 
 class CitizenUpsellView: TappableView {
+
+    let titleLabel = UILabel()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         let iconView = UIImageView(image: UIImage(named: "citizenAppIcon")!)
         iconView.contentMode = .scaleAspectFit
 
-        let titleLabel = UILabel()
         titleLabel.font = .bodyLargeBold
         titleLabel.textColor = .stBlue
         titleLabel.text = NSLocalizedString("Get the Citizen app", comment: "Citizen app upsell title")
