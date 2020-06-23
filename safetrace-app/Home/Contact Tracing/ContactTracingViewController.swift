@@ -233,7 +233,7 @@ class ContactTracingViewController: UIViewController {
         notificationIconLabelView.showErrorState = viewData.notificationDenied
 
         getCitizenAppView.titleLabel.text = viewData.isCitizenInstalled
-            ? NSLocalizedString("Open SafePass in Citizen ", comment: "Citizen app upsell title if citizen is installed")
+            ? NSLocalizedString("Open Citizen ", comment: "Citizen app upsell title if citizen is installed")
             : NSLocalizedString("Get the Citizen app", comment: "Citizen app upsell title to download citizen")
     }
 

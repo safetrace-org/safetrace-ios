@@ -67,6 +67,7 @@ public final class SafeTrace {
     /// foreground, or for background fetch activity, will initiate batch
     /// reporting and update the traceID cache.
     public static func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        setFirstTimeDefaultIfNeeded()
         if (launchOptions?[.bluetoothCentrals] != nil
             || launchOptions?[.bluetoothPeripherals] != nil) {
   
@@ -79,6 +80,14 @@ public final class SafeTrace {
             environment.tracer.reportPendingTraces()
             sendHealthCheck()
         }
+    }
+
+    /// Since we save userID and token on keychain, its persisted even if app is deleted
+    static func setFirstTimeDefaultIfNeeded() {
+        guard !UserDefaults.standard.bool(forKey: "org.ctzn.firstInstall") else { return }
+
+        UserDefaults.standard.set(true, forKey: "org.ctzn.firstInstall")
+        environment.session.logout()
     }
     
     public static func applicationWillEnterForeground(_ application: UIApplication) {
