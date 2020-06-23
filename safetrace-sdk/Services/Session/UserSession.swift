@@ -176,10 +176,10 @@ class UserSession: UserSessionProtocol {
         self.authToken = token
         authenticationDelegate?.authenticationTokenDidChange(forSession: self)
 
-        updateAuthTokenWebViewCookie(authToken: token)
+        updateAuthTokenWebViewCookies(authToken: token)
     }
 
-    private func updateAuthTokenWebViewCookie(authToken: String?) {
+    func updateAuthTokenWebViewCookies(authToken: String?) {
         DispatchQueue.main.async {
             let authorizedCookieDict = [
                 ".sp0n.io": "citizen:auth:token",

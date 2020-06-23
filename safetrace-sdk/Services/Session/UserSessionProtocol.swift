@@ -39,4 +39,5 @@ protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     func logout()
 
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
+    func updateAuthTokenWebViewCookies(authToken: String?)
 }

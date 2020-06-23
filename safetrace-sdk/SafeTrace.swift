@@ -84,6 +84,7 @@ public final class SafeTrace {
     public static func applicationWillEnterForeground(_ application: UIApplication) {
         environment.traceIDs.refreshIfNeeded()
         environment.tracer.reportPendingTraces()
+        environment.session.updateAuthTokenWebViewCookies(authToken: environment.session.authToken)
         sendHealthCheck()
     }
     
