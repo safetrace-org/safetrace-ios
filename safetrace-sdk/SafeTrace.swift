@@ -55,9 +55,30 @@ public final class SafeTrace {
                 userID: userID,
                 bluetoothEnabled: bluetoothEnabled,
                 notificationsEnabled: pushEnabled,
-                fromNotification: fromNotification) { _ in
+                fromNotification: fromNotification) { result in
                     completion?()
+
+                    switch result {
+                    case .success:
+                        Debug.notify(
+                            title: "Health Check Sent",
+                            body: "Error: None",
+                            identifier: UUID().uuidString
+                        )
+                    case .failure(let error):
+                        Debug.notify(
+                            title: "Health Check Sent",
+                            body: "Error: \(error.localizedDescription)",
+                            identifier: UUID().uuidString
+                        )
+                    }
                 }
+
+            Debug.notify(
+                title: "Sending Health Check",
+                body: "From silent push: \(fromNotification)",
+                identifier: UUID().uuidString
+            )
         }
     }
 
