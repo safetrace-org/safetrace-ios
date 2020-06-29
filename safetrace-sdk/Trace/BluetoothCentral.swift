@@ -60,6 +60,9 @@ internal final class BluetoothCentral: NSObject {
     private func removeConnectedPeripheral(_ peripheral: CBPeripheral) {
         pendingTraceDataByPeripheralUUID.removeValue(forKey: peripheral.identifier)
         connectedPeripherals.removeAll(where: { $0 == peripheral })
+        if peripheral.state == .connected || peripheral.state == .connecting {
+            centralManager?.cancelPeripheralConnection(peripheral)
+        }
     }
 }
 
