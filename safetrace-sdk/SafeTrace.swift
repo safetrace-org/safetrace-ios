@@ -99,7 +99,12 @@ public final class SafeTrace {
             environment.tracer.startScanning()
             environment.traceIDs.refreshIfNeeded()
             environment.tracer.reportPendingTraces()
-            sendHealthCheck()
+            
+            let isFromRemotePush = launchOptions?[.remoteNotification] != nil
+            let task = UIApplication.shared.beginBackgroundTask()
+            sendHealthCheck(fromNotification: isFromRemotePush) {
+                UIApplication.shared.endBackgroundTask(task)
+            }
         }
     }
 

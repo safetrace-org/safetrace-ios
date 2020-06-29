@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = MainNavigationController(environment: environment)
         self.window?.makeKeyAndVisible()
         
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         return true
     }
     
