@@ -79,6 +79,8 @@ class UserSession: UserSessionProtocol {
         self.environment = environment
         self.keychain = appKeychain
         self.groupKeychain = groupKeychain
+
+        setFirstTimeDefaultIfNeeded()
         attemptToLoadCachedValues()
         
         if !isAuthenticated {
@@ -243,6 +245,14 @@ class UserSession: UserSessionProtocol {
     
     private func getCachedUserID(from keychain: KeychainProtocol) -> String? {
         return keychain.get(userIDKeychainIdentifier)
+    }
+
+    /// Since we save userID and token on keychain, it's persisted even if app is deleted
+    private func setFirstTimeDefaultIfNeeded() {
+        guard !UserDefaults.standard.bool(forKey: "org.ctzn.firstInstall") else { return }
+
+        UserDefaults.standard.set(true, forKey: "org.ctzn.firstInstall")
+        logout()
     }
 }
 
