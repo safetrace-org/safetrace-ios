@@ -9,6 +9,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let environment: Environment = AppEnvironment()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        SafeTrace.registerErrorHandler { error in
+            self.environment.analytics.track(event: "trace_error", params: [
+                "error": error.error,
+                "context": error.context
+            ])
+        }
+        
         environment.safeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
         UNUserNotificationCenter.current().delegate = self
         
@@ -16,8 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = MainNavigationController(environment: environment)
         self.window?.makeKeyAndVisible()
         
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-        
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        environment.analytics.track(event: "app_launch", params: [
+            "bluetooth": launchOptions?[.bluetoothCentrals] != nil
+                || launchOptions?[.bluetoothPeripherals] != nil,
+            "notification": launchOptions?[.remoteNotification] != nil
+        ])
+
         return true
     }
     

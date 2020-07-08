@@ -69,6 +69,7 @@
 		DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
 		DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC0D959324B4E6D5003E38E0 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = DC0D959224B4E6D5003E38E0 /* Analytics */; };
 		DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
 		DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
 		DC0E0F9C2498267800D3C9FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainViewController.swift */; };
@@ -98,6 +99,7 @@
 		DC31D08324994F7D0039FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
 		DC31D08424994F7D0039FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4624469C9C00B18911 /* Assets.xcassets */; };
 		DC31D08624994F7D0039FD6B /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC53525924B51044002977C3 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = DC53525824B51044002977C3 /* Analytics */; };
 		DC738ACB247F02CA000BF99E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC738ACA247F02CA000BF99E /* LocationProvider.swift */; };
 		DC7AC09924475486000FF13D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09824475486000FF13D /* Networking.swift */; };
 		DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09B24478B3A000FF13D /* URLSession+.swift */; };
@@ -118,6 +120,8 @@
 		DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
 		DCB94CCE249D62DC00D616AD /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */; };
 		DCB94CD0249D651800D616AD /* Data+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCF249D651700D616AD /* Data+HexString.swift */; };
+		DCE2DC5124B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */; };
+		DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */; };
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
 		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
@@ -229,6 +233,7 @@
 		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTracker.swift; sourceTree = "<group>"; };
 		DC0E0F972498261700D3C9FC /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		DC0E0F992498263E00D3C9FC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DC0E0F9B2498267800D3C9FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */,
+				DC0D959324B4E6D5003E38E0 /* Analytics in Frameworks */,
 				3EEFCB5E249BE3AB00B74759 /* ReactiveCocoa in Frameworks */,
 				3EEFCB57249BE06400B74759 /* ReactiveSwift in Frameworks */,
 			);
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC31D08124994F7D0039FD6B /* SafeTrace.framework in Frameworks */,
+				DC53525924B51044002977C3 /* Analytics in Frameworks */,
 				3EEFCB60249BE4AE00B74759 /* ReactiveCocoa in Frameworks */,
 				3EEFCB59249BE07500B74759 /* ReactiveSwift in Frameworks */,
 			);
@@ -382,6 +389,7 @@
 				3E826846249EA66F00B12FE3 /* Permissions */,
 				3E826840249E9D8100B12FE3 /* Environment.swift */,
 				3E826843249EA00E00B12FE3 /* AppEnvironment.swift */,
+				DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -686,6 +694,7 @@
 			packageProductDependencies = (
 				3EEFCB56249BE06400B74759 /* ReactiveSwift */,
 				3EEFCB5D249BE3AB00B74759 /* ReactiveCocoa */,
+				DC0D959224B4E6D5003E38E0 /* Analytics */,
 			);
 			productName = "trace-sdk-demo";
 			productReference = DC0BBB3B24469C9900B18911 /* SafeTrace.app */;
@@ -709,6 +718,7 @@
 			packageProductDependencies = (
 				3EEFCB58249BE07500B74759 /* ReactiveSwift */,
 				3EEFCB5F249BE4AE00B74759 /* ReactiveCocoa */,
+				DC53525824B51044002977C3 /* Analytics */,
 			);
 			productName = "trace-sdk-demo";
 			productReference = DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */;
@@ -751,6 +761,7 @@
 				DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */,
 				3EEFCB55249BE06400B74759 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
 				3EEFCB5A249BE39C00B74759 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
+				DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */,
 			);
 			productRefGroup = DC0BBB1324468E5B00B18911 /* Products */;
 			projectDirPath = "";
@@ -883,6 +894,7 @@
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
 				3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */,
+				DCE2DC5124B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
 				3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,6 +916,7 @@
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
 				3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */,
+				DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
 				3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
@@ -1201,6 +1214,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
@@ -1209,6 +1223,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
@@ -1224,6 +1239,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
@@ -1232,6 +1248,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
@@ -1428,6 +1445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "safetrace-app/Info.plist";
@@ -1436,6 +1454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
@@ -1517,6 +1536,14 @@
 				version = 11.0.0;
 			};
 		};
+		DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/segmentio/analytics-ios/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.3;
+			};
+		};
 		DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MakeAWishFoundation/SwiftyMocky.git";
@@ -1547,6 +1574,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3EEFCB5A249BE39C00B74759 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
 			productName = ReactiveCocoa;
+		};
+		DC0D959224B4E6D5003E38E0 /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */;
+			productName = Analytics;
+		};
+		DC53525824B51044002977C3 /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */;
+			productName = Analytics;
 		};
 		DCE94623244F8ADE001AB10D /* SwiftyMocky */ = {
 			isa = XCSwiftPackageProductDependency;

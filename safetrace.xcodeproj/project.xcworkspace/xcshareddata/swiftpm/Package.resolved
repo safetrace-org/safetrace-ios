@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "Analytics",
+        "repositoryURL": "https://github.com/segmentio/analytics-ios/",
+        "state": {
+          "branch": null,
+          "revision": "fd234bf745c37bc7c5873dfb75da289505e0bdf9",
+          "version": "4.0.3"
+        }
+      },
+      {
         "package": "Chalk",
         "repositoryURL": "https://github.com/luoxiu/Chalk",
         "state": {
