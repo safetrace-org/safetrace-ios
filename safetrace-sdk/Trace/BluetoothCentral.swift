@@ -5,7 +5,7 @@ import CoreLocation
 //sourcery:AutoMockable
 protocol BluetoothCentralDelegate: AnyObject {
     func didFinishTrace(_ trace: ContactTrace)
-    func logError(_: String, context _: String)
+    func logError(_: String, context _: String, meta: [String: Any]?)
 }
 
 // Traces are assembled from multiple separate async methods — this
@@ -53,8 +53,8 @@ internal final class BluetoothCentral: NSObject {
         centralManager = nil
     }
     
-    private func logError(_ error: String, context: String) {
-        delegate?.logError(error, context: context)
+    private func logError(_ error: String, context: String, meta: [String: Any]? = nil) {
+        delegate?.logError(error, context: context, meta: meta)
     }
     
     private func removeConnectedPeripheral(_ peripheral: CBPeripheral) {
@@ -133,7 +133,10 @@ extension BluetoothCentral: CBPeripheralDelegate {
             peripheral.discoverCharacteristics([tracePacketCharacteristicIdentifier], for: service)
         } else {
             notifyPeripheralError(peripheral: peripheral, context: "didDiscoverServices", error: error)
-            logError("Service Not Found", context: "didDiscoverServices")
+            logError("Service Not Found", context: "didDiscoverServices", meta: [
+                "service_count": peripheral.services?.count ?? 0,
+                "service_uuids": peripheral.services?.map(\.uuid.uuidString) ?? []
+            ])
             removeConnectedPeripheral(peripheral)
         }
     }
