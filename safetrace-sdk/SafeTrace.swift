@@ -1,5 +1,13 @@
 import UIKit
 
+public enum WakeReason: String, Encodable {
+    case appOpen = "app_open"
+    case silentNotification = "silent_notification"
+    case backgroundFetch = "background_fetch"
+    case appForeground = "app_foreground"
+    case appBackground = "app_background"
+}
+
 public final class SafeTrace {
     private static let environment = TracerEnvironment()
     
@@ -44,10 +52,17 @@ public final class SafeTrace {
         }
     }
     
-    public static func sendHealthCheck(fromNotification: Bool = false, completion: (() -> Void)? = nil) {
+    public static func sendHealthCheck(wakeReason: WakeReason, completion: (() -> Void)? = nil) {
         guard let userID = environment.session.userID else { return }
         
         let bluetoothEnabled = environment.tracer.isBluetoothPermissionEnabled
+        let isOptedIn = environment.tracer.isTracingEnabled
+        let appVersion = UIApplication.clientApplicationVersionShortDescription
+        let bluetoothHardwareEnabled = environment.tracer.isBluetoothHardwareEnabled
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let batteryLevel = Int(UIDevice.current.batteryLevel * 100)
+        let isLowPowerMode = ProcessInfo.processInfo.isLowPowerModeEnabled
+
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let pushEnabled = settings.authorizationStatus == .authorized
             
@@ -55,7 +70,13 @@ public final class SafeTrace {
                 userID: userID,
                 bluetoothEnabled: bluetoothEnabled,
                 notificationsEnabled: pushEnabled,
-                fromNotification: fromNotification) { result in
+                wakeReason: wakeReason,
+                isOptedIn: isOptedIn,
+                appVersion: appVersion,
+                bluetoothHardwareEnabled: bluetoothHardwareEnabled,
+                batteryLevel: batteryLevel,
+                isLowPowerMode: isLowPowerMode
+            ) { result in
                     completion?()
 
                     switch result {
@@ -76,7 +97,7 @@ public final class SafeTrace {
 
             Debug.notify(
                 title: "Sending Health Check",
-                body: "From silent push: \(fromNotification)",
+                body: "Wake Reason: \(wakeReason.rawValue)",
                 identifier: UUID().uuidString
             )
         }
@@ -101,7 +122,7 @@ public final class SafeTrace {
             
             let isFromRemotePush = launchOptions?[.remoteNotification] != nil
             let task = UIApplication.shared.beginBackgroundTask()
-            sendHealthCheck(fromNotification: isFromRemotePush) {
+            sendHealthCheck(wakeReason: isFromRemotePush ? .silentNotification : .appOpen) {
                 UIApplication.shared.endBackgroundTask(task)
             }
         }
@@ -112,11 +133,14 @@ public final class SafeTrace {
         environment.traceIDs.refreshIfNeeded()
         environment.tracer.reportPendingTraces()
         environment.session.updateAuthTokenWebViewCookies(authToken: environment.session.authToken)
-        sendHealthCheck()
+        sendHealthCheck(wakeReason: .appForeground)
     }
     
     public static func applicationDidEnterBackground(_ application: UIApplication) {
-        sendHealthCheck()
+        let task = UIApplication.shared.beginBackgroundTask()
+        sendHealthCheck(wakeReason: .appBackground) {
+            UIApplication.shared.endBackgroundTask(task)
+        }
     }
     
     public static func registerErrorHandler(_ handler: @escaping (TraceError) -> Void) {

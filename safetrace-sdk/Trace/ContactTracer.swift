@@ -44,6 +44,10 @@ internal final class ContactTracer: NSObject {
         return CBPeripheralManager.authorizationStatus() == .denied
     }
 
+    var isBluetoothHardwareEnabled: Bool {
+        return central.centralManager?.state == .some(.poweredOn)
+    }
+
     var isTracingEnabled: Bool {
         return environment.defaults.bool(forKey: isEnabledDefaultsIdentifier)
     }

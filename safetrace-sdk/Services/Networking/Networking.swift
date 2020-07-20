@@ -16,7 +16,12 @@ protocol NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
-        fromNotification: Bool,
+        wakeReason: WakeReason,
+        isOptedIn: Bool,
+        appVersion: String,
+        bluetoothHardwareEnabled: Bool,
+        batteryLevel: Int,
+        isLowPowerMode: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
     )
 
@@ -155,19 +160,41 @@ class Network: NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
-        fromNotification: Bool,
+        wakeReason: WakeReason,
+        isOptedIn: Bool,
+        appVersion: String,
+        bluetoothHardwareEnabled: Bool,
+        batteryLevel: Int,
+        isLowPowerMode: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
+        struct HealthCheckPayload: Encodable {
+            let bluetooth_enabled: Bool
+            let notifications_enabled: Bool
+            let wake_reason: WakeReason
+            let is_opted_in: Bool
+            let app_version: String
+            let bluetooth_hardware_enabled: Bool
+            let battery_level: Int
+            let is_low_power_mode: Bool
+        }
+
         urlSession.sendRequest(
             with: try URLRequest(
                 endpoint: "v1/sidecar/users/\(userID)/active",
                 method: .post,
                 host: .sp0n, token: environment.session.authToken,
-                body: [
-                    "notifications_enabled": notificationsEnabled,
-                    "bluetooth_enabled": bluetoothEnabled,
-                    "received_silent_notification": fromNotification,
-                ]), completion: completion)
+                body: HealthCheckPayload(
+                    bluetooth_enabled: bluetoothEnabled,
+                    notifications_enabled: notificationsEnabled,
+                    wake_reason: wakeReason,
+                    is_opted_in: isOptedIn,
+                    app_version: appVersion,
+                    bluetooth_hardware_enabled: bluetoothHardwareEnabled,
+                    battery_level: batteryLevel,
+                    is_low_power_mode: isLowPowerMode
+                )
+            ), completion: completion)
     }
 
     // MARK: - Trace

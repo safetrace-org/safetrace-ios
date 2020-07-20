@@ -4,7 +4,7 @@ extension UIApplication {
 
     /// Returns a string that describes the app's short version and build number version
     ///
-    /// Example: "0.916.0-2343"
+    /// Example: "1.0-2343"
     ///
     /// Where the semantic version and build number are separated by a -
     static var clientApplicationVersionDescription: String {
@@ -24,5 +24,12 @@ extension UIApplication {
         let osVersion = ProcessInfo().operatingSystemVersion
         return "\(osVersion.majorVersion).\(osVersion.minorVersion)"
             + ".\(osVersion.patchVersion)"
+    }
+
+    /// Example: "1.1"
+    static var clientApplicationVersionShortDescription: String {
+        return Bundle
+        .main
+        .infoDictionary?["CFBundleShortVersionString"] as? String ?? "error"
     }
 }
