@@ -2,16 +2,21 @@ import Analytics
 import Foundation
 
 protocol AnalyticsTracking {
-    func track(event: String, params: [String: Any])
+    func track<E: AnalyticsEvent>(event: E)
+    func track<E: AnalyticsEvent>(event: E, params: [String: Any])
 }
 
 internal final class AnalyticsTracker: AnalyticsTracking {
     init() {
         configure()
     }
-    
-    func track(event: String, params: [String: Any]) {
-        Analytics.shared().track(event, properties: params)
+
+    func track<E>(event: E) where E : AnalyticsEvent {
+        track(event: event, params: [:])
+    }
+
+    func track<E: AnalyticsEvent>(event: E, params: [String: Any]) {
+        Analytics.shared().track(event.rawValue, properties: params)
     }
 
     private func configure() {

@@ -66,23 +66,24 @@ open class BluetoothCentralDelegateMock: BluetoothCentralDelegate, Mock {
 		perform?(`trace`)
     }
 
-    open func logError(_: String, context _: String) {
-        addInvocation(.m_logError__context)
-		let perform = methodPerformValue(.m_logError__context) as? () -> Void
-		perform?()
+    open func logError(_: String, context _: String, meta: [String: Any]?) {
+        addInvocation(.m_logError__metacontextmeta(Parameter<[String: Any]?>.value(`meta`)))
+		let perform = methodPerformValue(.m_logError__metacontextmeta(Parameter<[String: Any]?>.value(`meta`))) as? ([String: Any]?) -> Void
+		perform?(`meta`)
     }
 
 
     fileprivate enum MethodType {
         case m_didFinishTrace__trace(Parameter<ContactTrace>)
-        case m_logError__context
+        case m_logError__metacontextmeta(Parameter<[String: Any]?>)
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
             case (.m_didFinishTrace__trace(let lhsTrace), .m_didFinishTrace__trace(let rhsTrace)):
                 guard Parameter.compare(lhs: lhsTrace, rhs: rhsTrace, with: matcher) else { return false } 
                 return true 
-            case (.m_logError__context, .m_logError__context):
+            case (.m_logError__metacontextmeta(let lhsMeta), .m_logError__metacontextmeta(let rhsMeta)):
+                guard Parameter.compare(lhs: lhsMeta, rhs: rhsMeta, with: matcher) else { return false } 
                 return true 
             default: return false
             }
@@ -91,7 +92,7 @@ open class BluetoothCentralDelegateMock: BluetoothCentralDelegate, Mock {
         func intValue() -> Int {
             switch self {
             case let .m_didFinishTrace__trace(p0): return p0.intValue
-            case .m_logError__context: return 0
+            case let .m_logError__metacontextmeta(p0): return p0.intValue
             }
         }
     }
@@ -111,7 +112,7 @@ open class BluetoothCentralDelegateMock: BluetoothCentralDelegate, Mock {
         fileprivate var method: MethodType
 
         public static func didFinishTrace(_ trace: Parameter<ContactTrace>) -> Verify { return Verify(method: .m_didFinishTrace__trace(`trace`))}
-        public static func logError() -> Verify { return Verify(method: .m_logError__context)}
+        public static func logError(meta: Parameter<[String: Any]?>) -> Verify { return Verify(method: .m_logError__metacontextmeta(`meta`))}
     }
 
     public struct Perform {
@@ -121,8 +122,8 @@ open class BluetoothCentralDelegateMock: BluetoothCentralDelegate, Mock {
         public static func didFinishTrace(_ trace: Parameter<ContactTrace>, perform: @escaping (ContactTrace) -> Void) -> Perform {
             return Perform(method: .m_didFinishTrace__trace(`trace`), performs: perform)
         }
-        public static func logError(perform: @escaping () -> Void) -> Perform {
-            return Perform(method: .m_logError__context, performs: perform)
+        public static func logError(meta: Parameter<[String: Any]?>, perform: @escaping ([String: Any]?) -> Void) -> Perform {
+            return Perform(method: .m_logError__metacontextmeta(`meta`), performs: perform)
         }
     }
 
