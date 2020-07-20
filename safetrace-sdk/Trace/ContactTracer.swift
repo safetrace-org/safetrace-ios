@@ -114,12 +114,17 @@ internal final class ContactTracer: NSObject {
         
         let traceData = ContactTraces(traces: traces, phoneModel: environment.device.model())
         
-        environment.network.uploadTraces(traceData, userID: userID) { result in
+        environment.network.uploadTraces(traceData, userID: userID) { [weak self] result in
             Debug.notify(
                 title: "UPLOADED \(traces.count) TRACES",
                 body: "Error: \(result.error?.localizedDescription ?? "none")",
                 identifier: "bt_upload")
-            success?()
+            switch result {
+            case .success:
+                success?()
+            case .failure(let error):
+                self?.logError(error.localizedDescription, context: "uploadTraces", meta: nil)
+            }
         }
     }
 
