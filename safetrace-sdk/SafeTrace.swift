@@ -57,6 +57,11 @@ public final class SafeTrace {
         
         let bluetoothEnabled = environment.tracer.isBluetoothPermissionEnabled
         let isOptedIn = environment.tracer.isTracingEnabled
+        let appVersion = UIApplication.clientApplicationVersionShortDescription
+        let bluetoothHardwareEnabled = environment.tracer.isBluetoothHardwareEnabled
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        let batteryLevel = Int(UIDevice.current.batteryLevel * 100)
+        let isLowPowerMode = ProcessInfo.processInfo.isLowPowerModeEnabled
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let pushEnabled = settings.authorizationStatus == .authorized
@@ -67,10 +72,10 @@ public final class SafeTrace {
                 notificationsEnabled: pushEnabled,
                 wakeReason: wakeReason,
                 isOptedIn: isOptedIn,
-                appVersion: "1.1",
-                bluetoothHardwareEnabled: true,
-                batteryLevel: 100,
-                isLowPowerMode: false
+                appVersion: appVersion,
+                bluetoothHardwareEnabled: bluetoothHardwareEnabled,
+                batteryLevel: batteryLevel,
+                isLowPowerMode: isLowPowerMode
             ) { result in
                     completion?()
 
