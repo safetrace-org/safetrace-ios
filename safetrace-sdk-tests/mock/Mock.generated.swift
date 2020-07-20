@@ -1517,6 +1517,12 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 	}
 	private var __p_authenticationDelegate: (UserSessionAuthenticationDelegate)?
 
+    public var userIDDidChange: ((_ userID: String?) -> Void)? {
+		get {	invocations.append(.p_userIDDidChange_get); return __p_userIDDidChange ?? optionalGivenGetterValue(.p_userIDDidChange_get, "UserSessionProtocolMock - stub value for userIDDidChange was not defined") }
+		set {	invocations.append(.p_userIDDidChange_set(.value(newValue))); __p_userIDDidChange = newValue }
+	}
+	private var __p_userIDDidChange: ((_ userID: String?) -> Void)?
+
     public var isAuthenticated: Bool {
 		get {	invocations.append(.p_isAuthenticated_get); return __p_isAuthenticated ?? givenGetterValue(.p_isAuthenticated_get, "UserSessionProtocolMock - stub value for isAuthenticated was not defined") }
 		@available(*, deprecated, message: "Using setters on readonly variables is deprecated, and will be removed in 3.1. Use Given to define stubbed property return value.")
@@ -1602,6 +1608,8 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         case m_setAPNSToken__token(Parameter<Data>)
         case p_authenticationDelegate_get
 		case p_authenticationDelegate_set(Parameter<UserSessionAuthenticationDelegate?>)
+        case p_userIDDidChange_get
+		case p_userIDDidChange_set(Parameter<((_ userID: String?) -> Void)?>)
         case p_isAuthenticated_get
         case p_isCitizenAuthenticated_get
         case p_userID_get
@@ -1637,6 +1645,8 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
                 return true 
             case (.p_authenticationDelegate_get,.p_authenticationDelegate_get): return true
 			case (.p_authenticationDelegate_set(let left),.p_authenticationDelegate_set(let right)): return Parameter<UserSessionAuthenticationDelegate?>.compare(lhs: left, rhs: right, with: matcher)
+            case (.p_userIDDidChange_get,.p_userIDDidChange_get): return true
+			case (.p_userIDDidChange_set(let left),.p_userIDDidChange_set(let right)): return Parameter<((_ userID: String?) -> Void)?>.compare(lhs: left, rhs: right, with: matcher)
             case (.p_isAuthenticated_get,.p_isAuthenticated_get): return true
             case (.p_isCitizenAuthenticated_get,.p_isCitizenAuthenticated_get): return true
             case (.p_userID_get,.p_userID_get): return true
@@ -1656,6 +1666,8 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case let .m_setAPNSToken__token(p0): return p0.intValue
             case .p_authenticationDelegate_get: return 0
 			case .p_authenticationDelegate_set(let newValue): return newValue.intValue
+            case .p_userIDDidChange_get: return 0
+			case .p_userIDDidChange_set(let newValue): return newValue.intValue
             case .p_isAuthenticated_get: return 0
             case .p_isCitizenAuthenticated_get: return 0
             case .p_userID_get: return 0
@@ -1674,6 +1686,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 
         public static func authenticationDelegate(getter defaultValue: UserSessionAuthenticationDelegate?...) -> PropertyStub {
             return Given(method: .p_authenticationDelegate_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
+        }
+        public static func userIDDidChange(getter defaultValue: ((_ userID: String?) -> Void)?...) -> PropertyStub {
+            return Given(method: .p_userIDDidChange_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
         public static func isAuthenticated(getter defaultValue: Bool...) -> PropertyStub {
             return Given(method: .p_isAuthenticated_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
@@ -1702,6 +1717,8 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         public static func setAPNSToken(_ token: Parameter<Data>) -> Verify { return Verify(method: .m_setAPNSToken__token(`token`))}
         public static var authenticationDelegate: Verify { return Verify(method: .p_authenticationDelegate_get) }
 		public static func authenticationDelegate(set newValue: Parameter<UserSessionAuthenticationDelegate?>) -> Verify { return Verify(method: .p_authenticationDelegate_set(newValue)) }
+        public static var userIDDidChange: Verify { return Verify(method: .p_userIDDidChange_get) }
+		public static func userIDDidChange(set newValue: Parameter<((_ userID: String?) -> Void)?>) -> Verify { return Verify(method: .p_userIDDidChange_set(newValue)) }
         public static var isAuthenticated: Verify { return Verify(method: .p_isAuthenticated_get) }
         public static var isCitizenAuthenticated: Verify { return Verify(method: .p_isCitizenAuthenticated_get) }
         public static var userID: Verify { return Verify(method: .p_userID_get) }

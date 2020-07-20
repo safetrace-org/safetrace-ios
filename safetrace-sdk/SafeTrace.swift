@@ -146,6 +146,11 @@ public final class SafeTrace {
     public static func registerErrorHandler(_ handler: @escaping (TraceError) -> Void) {
         environment.tracer.errorHandler = handler
     }
+
+    public static func registerUserIDChangeHandler(_ handler: @escaping (String?) -> Void) {
+        environment.session.userIDDidChange = handler
+        handler(environment.session.userID)
+    }
 }
 
 extension SafeTrace {

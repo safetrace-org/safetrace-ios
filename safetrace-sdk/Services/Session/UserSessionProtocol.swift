@@ -30,7 +30,8 @@ public protocol SafeTraceSession {
 //sourcery: AutoMockable
 protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     var authenticationDelegate: UserSessionAuthenticationDelegate? { get set }
-    
+    var userIDDidChange: ((_ userID: String?) -> Void)? { get set }
+
     var isAuthenticated: Bool { get }
     var isCitizenAuthenticated: Bool { get }
     var userID: String? { get }
