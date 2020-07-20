@@ -35,8 +35,8 @@ struct SafeTraceProvider: SafeTraceProviding {
         SafeTrace.stopTracing()
     }
 
-    func sendHealthCheck(fromNotification: Bool = false, completion: (() -> Void)? = nil) {
-        SafeTrace.sendHealthCheck(fromNotification: fromNotification, completion: completion)
+    func sendHealthCheck(wakeReason: WakeReason, completion: (() -> Void)? = nil) {
+        SafeTrace.sendHealthCheck(wakeReason: wakeReason, completion: completion)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
