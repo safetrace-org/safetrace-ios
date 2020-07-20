@@ -657,10 +657,10 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 		perform?(`token`, `completion`)
     }
 
-    open func sendHealthCheck(        userID: String,        bluetoothEnabled: Bool,        notificationsEnabled: Bool,        fromNotification: Bool,        completion: @escaping (Result<Void, Error>) -> Void    ) {
-        addInvocation(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<Bool>.value(`fromNotification`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<Bool>.value(`fromNotification`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, Bool, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void
-		perform?(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`)
+    open func sendHealthCheck(        userID: String,        bluetoothEnabled: Bool,        notificationsEnabled: Bool,        wakeReason: WakeReason,        isOptedIn: Bool,        appVersion: String,        bluetoothHardwareEnabled: Bool,        batteryLevel: Int,        isLowPowerMode: Bool,        completion: @escaping (Result<Void, Error>) -> Void    ) {
+        addInvocation(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<WakeReason>.value(`wakeReason`), Parameter<Bool>.value(`isOptedIn`), Parameter<String>.value(`appVersion`), Parameter<Bool>.value(`bluetoothHardwareEnabled`), Parameter<Int>.value(`batteryLevel`), Parameter<Bool>.value(`isLowPowerMode`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(Parameter<String>.value(`userID`), Parameter<Bool>.value(`bluetoothEnabled`), Parameter<Bool>.value(`notificationsEnabled`), Parameter<WakeReason>.value(`wakeReason`), Parameter<Bool>.value(`isOptedIn`), Parameter<String>.value(`appVersion`), Parameter<Bool>.value(`bluetoothHardwareEnabled`), Parameter<Int>.value(`batteryLevel`), Parameter<Bool>.value(`isLowPowerMode`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, Bool, Bool, WakeReason, Bool, String, Bool, Int, Bool, @escaping (Result<Void, Error>) -> Void) -> Void
+		perform?(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `wakeReason`, `isOptedIn`, `appVersion`, `bluetoothHardwareEnabled`, `batteryLevel`, `isLowPowerMode`, `completion`)
     }
 
     open func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void) {
@@ -683,7 +683,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         case m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(Parameter<String>, Parameter<String?>, Parameter<(Result<Void, Error>) -> Void>)
         case m_setTracingEnabled__enableduserID_userIDcompletion_completion(Parameter<Bool>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_syncPushToken__tokencompletion_completion(Parameter<Data>, Parameter<(Result<Void, Error>) -> Void>)
-        case m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(Parameter<String>, Parameter<Bool>, Parameter<Bool>, Parameter<Bool>, Parameter<(Result<Void, Error>) -> Void>)
+        case m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(Parameter<String>, Parameter<Bool>, Parameter<Bool>, Parameter<WakeReason>, Parameter<Bool>, Parameter<String>, Parameter<Bool>, Parameter<Int>, Parameter<Bool>, Parameter<(Result<Void, Error>) -> Void>)
         case m_getTraceIDs__userID_userIDcompletion_completion(Parameter<String>, Parameter<(Result<[TraceIDRecord], Error>) -> Void>)
         case m_uploadTraces__tracesuserID_userIDcompletion_completion(Parameter<ContactTraces>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
 
@@ -718,11 +718,16 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
                 guard Parameter.compare(lhs: lhsToken, rhs: rhsToken, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
-            case (.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(let lhsUserid, let lhsBluetoothenabled, let lhsNotificationsenabled, let lhsFromnotification, let lhsCompletion), .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(let rhsUserid, let rhsBluetoothenabled, let rhsNotificationsenabled, let rhsFromnotification, let rhsCompletion)):
+            case (.m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(let lhsUserid, let lhsBluetoothenabled, let lhsNotificationsenabled, let lhsWakereason, let lhsIsoptedin, let lhsAppversion, let lhsBluetoothhardwareenabled, let lhsBatterylevel, let lhsIslowpowermode, let lhsCompletion), .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(let rhsUserid, let rhsBluetoothenabled, let rhsNotificationsenabled, let rhsWakereason, let rhsIsoptedin, let rhsAppversion, let rhsBluetoothhardwareenabled, let rhsBatterylevel, let rhsIslowpowermode, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsUserid, rhs: rhsUserid, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsBluetoothenabled, rhs: rhsBluetoothenabled, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsNotificationsenabled, rhs: rhsNotificationsenabled, with: matcher) else { return false } 
-                guard Parameter.compare(lhs: lhsFromnotification, rhs: rhsFromnotification, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsWakereason, rhs: rhsWakereason, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsIsoptedin, rhs: rhsIsoptedin, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsAppversion, rhs: rhsAppversion, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsBluetoothhardwareenabled, rhs: rhsBluetoothhardwareenabled, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsBatterylevel, rhs: rhsBatterylevel, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsIslowpowermode, rhs: rhsIslowpowermode, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
             case (.m_getTraceIDs__userID_userIDcompletion_completion(let lhsUserid, let lhsCompletion), .m_getTraceIDs__userID_userIDcompletion_completion(let rhsUserid, let rhsCompletion)):
@@ -746,7 +751,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
             case let .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_setTracingEnabled__enableduserID_userIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_syncPushToken__tokencompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            case let .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(p0, p1, p2, p3, p4): return p0.intValue + p1.intValue + p2.intValue + p3.intValue + p4.intValue
+            case let .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9): return p0.intValue + p1.intValue + p2.intValue + p3.intValue + p4.intValue + p5.intValue + p6.intValue + p7.intValue + p8.intValue + p9.intValue
             case let .m_getTraceIDs__userID_userIDcompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_uploadTraces__tracesuserID_userIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             }
@@ -773,7 +778,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         public static func resendEmailAuthCode(phone: Parameter<String>, deviceID: Parameter<String?>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(`phone`, `deviceID`, `completion`))}
         public static func setTracingEnabled(_ enabled: Parameter<Bool>, userID: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_setTracingEnabled__enableduserID_userIDcompletion_completion(`enabled`, `userID`, `completion`))}
         public static func syncPushToken(_ token: Parameter<Data>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_syncPushToken__tokencompletion_completion(`token`, `completion`))}
-        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, fromNotification: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`))}
+        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, wakeReason: Parameter<WakeReason>, isOptedIn: Parameter<Bool>, appVersion: Parameter<String>, bluetoothHardwareEnabled: Parameter<Bool>, batteryLevel: Parameter<Int>, isLowPowerMode: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `wakeReason`, `isOptedIn`, `appVersion`, `bluetoothHardwareEnabled`, `batteryLevel`, `isLowPowerMode`, `completion`))}
         public static func getTraceIDs(userID: Parameter<String>, completion: Parameter<(Result<[TraceIDRecord], Error>) -> Void>) -> Verify { return Verify(method: .m_getTraceIDs__userID_userIDcompletion_completion(`userID`, `completion`))}
         public static func uploadTraces(_ traces: Parameter<ContactTraces>, userID: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_uploadTraces__tracesuserID_userIDcompletion_completion(`traces`, `userID`, `completion`))}
     }
@@ -800,8 +805,8 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         public static func syncPushToken(_ token: Parameter<Data>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (Data, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_syncPushToken__tokencompletion_completion(`token`, `completion`), performs: perform)
         }
-        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, fromNotification: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, Bool, Bool, Bool, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledfromNotification_fromNotificationcompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `fromNotification`, `completion`), performs: perform)
+        public static func sendHealthCheck(userID: Parameter<String>, bluetoothEnabled: Parameter<Bool>, notificationsEnabled: Parameter<Bool>, wakeReason: Parameter<WakeReason>, isOptedIn: Parameter<Bool>, appVersion: Parameter<String>, bluetoothHardwareEnabled: Parameter<Bool>, batteryLevel: Parameter<Int>, isLowPowerMode: Parameter<Bool>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, Bool, Bool, WakeReason, Bool, String, Bool, Int, Bool, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_sendHealthCheck__userID_userIDbluetoothEnabled_bluetoothEnablednotificationsEnabled_notificationsEnabledwakeReason_wakeReasonisOptedIn_isOptedInappVersion_appVersionbluetoothHardwareEnabled_bluetoothHardwareEnabledbatteryLevel_batteryLevelisLowPowerMode_isLowPowerModecompletion_completion(`userID`, `bluetoothEnabled`, `notificationsEnabled`, `wakeReason`, `isOptedIn`, `appVersion`, `bluetoothHardwareEnabled`, `batteryLevel`, `isLowPowerMode`, `completion`), performs: perform)
         }
         public static func getTraceIDs(userID: Parameter<String>, completion: Parameter<(Result<[TraceIDRecord], Error>) -> Void>, perform: @escaping (String, @escaping (Result<[TraceIDRecord], Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_getTraceIDs__userID_userIDcompletion_completion(`userID`, `completion`), performs: perform)
@@ -1504,6 +1509,13 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 	}
 	private var __p_isAuthenticated: (Bool)?
 
+    public var isCitizenAuthenticated: Bool {
+		get {	invocations.append(.p_isCitizenAuthenticated_get); return __p_isCitizenAuthenticated ?? givenGetterValue(.p_isCitizenAuthenticated_get, "UserSessionProtocolMock - stub value for isCitizenAuthenticated was not defined") }
+		@available(*, deprecated, message: "Using setters on readonly variables is deprecated, and will be removed in 3.1. Use Given to define stubbed property return value.")
+		set {	__p_isCitizenAuthenticated = newValue }
+	}
+	private var __p_isCitizenAuthenticated: (Bool)?
+
     public var userID: String? {
 		get {	invocations.append(.p_userID_get); return __p_userID ?? optionalGivenGetterValue(.p_userID_get, "UserSessionProtocolMock - stub value for userID was not defined") }
 		@available(*, deprecated, message: "Using setters on readonly variables is deprecated, and will be removed in 3.1. Use Given to define stubbed property return value.")
@@ -1534,6 +1546,12 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 		perform?(`phone`, `completion`)
     }
 
+    open func updateAuthTokenWebViewCookies(authToken: String?) {
+        addInvocation(.m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>.value(`authToken`)))
+		let perform = methodPerformValue(.m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>.value(`authToken`))) as? (String?) -> Void
+		perform?(`authToken`)
+    }
+
     open func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         addInvocation(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
 		let perform = methodPerformValue(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, @escaping (Result<Void, Error>) -> Void) -> Void
@@ -1562,6 +1580,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
     fileprivate enum MethodType {
         case m_logout
         case m_authenticateWithCode__phonephone_completioncompletion(Parameter<String>, Parameter<(Result<LoginResponseContext, Error>) -> Void>)
+        case m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>)
         case m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_authenticateWithEmailCode__codephone_phonecompletion_completion(Parameter<String>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(Parameter<String>, Parameter<String?>, Parameter<(Result<Void, Error>) -> Void>)
@@ -1569,6 +1588,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         case p_authenticationDelegate_get
 		case p_authenticationDelegate_set(Parameter<UserSessionAuthenticationDelegate?>)
         case p_isAuthenticated_get
+        case p_isCitizenAuthenticated_get
         case p_userID_get
         case p_authToken_get
 
@@ -1579,6 +1599,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case (.m_authenticateWithCode__phonephone_completioncompletion(let lhsPhone, let lhsCompletion), .m_authenticateWithCode__phonephone_completioncompletion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
+                return true 
+            case (.m_updateAuthTokenWebViewCookies__authToken_authToken(let lhsAuthtoken), .m_updateAuthTokenWebViewCookies__authToken_authToken(let rhsAuthtoken)):
+                guard Parameter.compare(lhs: lhsAuthtoken, rhs: rhsAuthtoken, with: matcher) else { return false } 
                 return true 
             case (.m_requestAuthenticationCode__for_phonecompletion_completion(let lhsPhone, let lhsCompletion), .m_requestAuthenticationCode__for_phonecompletion_completion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
@@ -1600,6 +1623,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case (.p_authenticationDelegate_get,.p_authenticationDelegate_get): return true
 			case (.p_authenticationDelegate_set(let left),.p_authenticationDelegate_set(let right)): return Parameter<UserSessionAuthenticationDelegate?>.compare(lhs: left, rhs: right, with: matcher)
             case (.p_isAuthenticated_get,.p_isAuthenticated_get): return true
+            case (.p_isCitizenAuthenticated_get,.p_isCitizenAuthenticated_get): return true
             case (.p_userID_get,.p_userID_get): return true
             case (.p_authToken_get,.p_authToken_get): return true
             default: return false
@@ -1610,6 +1634,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             switch self {
             case .m_logout: return 0
             case let .m_authenticateWithCode__phonephone_completioncompletion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_updateAuthTokenWebViewCookies__authToken_authToken(p0): return p0.intValue
             case let .m_requestAuthenticationCode__for_phonecompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_authenticateWithEmailCode__codephone_phonecompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
@@ -1617,6 +1642,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case .p_authenticationDelegate_get: return 0
 			case .p_authenticationDelegate_set(let newValue): return newValue.intValue
             case .p_isAuthenticated_get: return 0
+            case .p_isCitizenAuthenticated_get: return 0
             case .p_userID_get: return 0
             case .p_authToken_get: return 0
             }
@@ -1637,6 +1663,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         public static func isAuthenticated(getter defaultValue: Bool...) -> PropertyStub {
             return Given(method: .p_isAuthenticated_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
+        public static func isCitizenAuthenticated(getter defaultValue: Bool...) -> PropertyStub {
+            return Given(method: .p_isCitizenAuthenticated_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
+        }
         public static func userID(getter defaultValue: String?...) -> PropertyStub {
             return Given(method: .p_userID_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
@@ -1651,6 +1680,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 
         public static func logout() -> Verify { return Verify(method: .m_logout)}
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<LoginResponseContext, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`))}
+        public static func updateAuthTokenWebViewCookies(authToken: Parameter<String?>) -> Verify { return Verify(method: .m_updateAuthTokenWebViewCookies__authToken_authToken(`authToken`))}
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`))}
         public static func authenticateWithEmailCode(_ code: Parameter<String>, phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithEmailCode__codephone_phonecompletion_completion(`code`, `phone`, `completion`))}
         public static func resendEmailAuthCode(phone: Parameter<String>, deviceID: Parameter<String?>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(`phone`, `deviceID`, `completion`))}
@@ -1658,6 +1688,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         public static var authenticationDelegate: Verify { return Verify(method: .p_authenticationDelegate_get) }
 		public static func authenticationDelegate(set newValue: Parameter<UserSessionAuthenticationDelegate?>) -> Verify { return Verify(method: .p_authenticationDelegate_set(newValue)) }
         public static var isAuthenticated: Verify { return Verify(method: .p_isAuthenticated_get) }
+        public static var isCitizenAuthenticated: Verify { return Verify(method: .p_isCitizenAuthenticated_get) }
         public static var userID: Verify { return Verify(method: .p_userID_get) }
         public static var authToken: Verify { return Verify(method: .p_authToken_get) }
     }
@@ -1671,6 +1702,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         }
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<LoginResponseContext, Error>) -> Void>, perform: @escaping (String, @escaping (Result<LoginResponseContext, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`), performs: perform)
+        }
+        public static func updateAuthTokenWebViewCookies(authToken: Parameter<String?>, perform: @escaping (String?) -> Void) -> Perform {
+            return Perform(method: .m_updateAuthTokenWebViewCookies__authToken_authToken(`authToken`), performs: perform)
         }
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`), performs: perform)
