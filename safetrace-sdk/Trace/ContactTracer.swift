@@ -7,6 +7,7 @@ import UserNotifications
 public struct TraceError: Error {
     public let error: String
     public let context: String
+    public let meta: [String: Any]
 }
 
 // The data sent OTA between devices
@@ -95,8 +96,8 @@ internal final class ContactTracer: NSObject {
         }
     }
     
-    func logError(_ error: String, context: String) {
-        errorHandler?(TraceError(error: error, context: context))
+    func logError(_ error: String, context: String, meta: [String: Any]?) {
+        errorHandler?(TraceError(error: error, context: context, meta: meta ?? [:]))
     }
 
     // MARK: - Contact Reporting

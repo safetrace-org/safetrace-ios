@@ -10,10 +10,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SafeTrace.registerErrorHandler { error in
-            self.environment.analytics.track(event: "trace_error", params: [
-                "error": error.error,
-                "context": error.context
-            ])
+            var params = error.meta
+            params["error"] = error.error
+            params["context"] = error.context
+            self.environment.analytics.track(event: "trace_error", params: params)
         }
         
         environment.safeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)

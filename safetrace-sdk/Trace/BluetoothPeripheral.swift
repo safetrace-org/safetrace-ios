@@ -2,7 +2,7 @@ import CoreBluetooth
 import Foundation
 
 protocol BluetoothPeripheralDelegate: AnyObject {
-    func logError(_: String, context _: String)
+    func logError(_: String, context _: String, meta: [String: Any]?)
 }
 
 class BluetoothPeripheral: NSObject {
@@ -52,8 +52,8 @@ class BluetoothPeripheral: NSObject {
         peripheralManager?.add(service)
     }
     
-    private func logError(_ error: String, context: String) {
-        delegate?.logError(error, context: context)
+    private func logError(_ error: String, context: String, meta: [String: Any]? = nil) {
+        delegate?.logError(error, context: context, meta: meta)
     }
 }
 
