@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var params = error.meta
             params["error"] = error.error
             params["context"] = error.context
-            self.environment.analytics.track(event: "trace_error", params: params)
+            self.environment.analytics.track(event: TracingAnalytic.traceError, params: params)
         }
         
         environment.safeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -24,16 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        environment.analytics.track(event: "app_launch", params: [
+        environment.analytics.track(event: SystemAnalytic.appLaunch, params: [
             "bluetooth": launchOptions?[.bluetoothCentrals] != nil
                 || launchOptions?[.bluetoothPeripherals] != nil,
-            "notification": launchOptions?[.remoteNotification] != nil
+            "notification": launchOptions?[.remoteNotification] != nil,
+            "isBackground": application.applicationState == .background
         ])
 
         return true
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        environment.analytics.track(event: SystemAnalytic.appForeground)
         environment.safeTrace.applicationWillEnterForeground(application)
         
         // Re-sync push token in case it changed
@@ -47,7 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        environment.analytics.track(event: SystemAnalytic.appBackground)
         environment.safeTrace.applicationDidEnterBackground(application)
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        environment.analytics.track(event: SystemAnalytic.appTerminated)
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
