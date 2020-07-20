@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             params["context"] = error.context
             self.environment.analytics.track(event: TracingAnalytic.traceError, params: params)
         }
+        SafeTrace.registerUserIDChangeHandler { userID in
+            guard let userID = userID else { return }
+            self.environment.analytics.identify(userID: userID)
+        }
         
         environment.safeTrace.application(application, didFinishLaunchingWithOptions: launchOptions)
         UNUserNotificationCenter.current().delegate = self

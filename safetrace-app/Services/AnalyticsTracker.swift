@@ -2,6 +2,7 @@ import Analytics
 import Foundation
 
 protocol AnalyticsTracking {
+    func identify(userID: String)
     func track<E: AnalyticsEvent>(event: E)
     func track<E: AnalyticsEvent>(event: E, params: [String: Any])
 }
@@ -9,6 +10,10 @@ protocol AnalyticsTracking {
 internal final class AnalyticsTracker: AnalyticsTracking {
     init() {
         configure()
+    }
+
+    func identify(userID: String) {
+        Analytics.shared().identify(userID)
     }
 
     func track<E>(event: E) where E : AnalyticsEvent {

@@ -49,6 +49,7 @@ private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilante"
 class UserSession: UserSessionProtocol {
     
     weak var authenticationDelegate: UserSessionAuthenticationDelegate?
+    var userIDDidChange: ((_ userID: String?) -> Void)?
     
     var isAuthenticated: Bool {
         return authToken != nil
@@ -176,7 +177,8 @@ class UserSession: UserSessionProtocol {
     private func updateLocalValues(token: String?, userID: String?) {
         self.userID = userID
         self.authToken = token
-        authenticationDelegate?.authenticationTokenDidChange(forSession: self)
+        self.authenticationDelegate?.authenticationTokenDidChange(forSession: self)
+        self.userIDDidChange?(userID)
 
         updateAuthTokenWebViewCookies(authToken: token)
     }
