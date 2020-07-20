@@ -421,7 +421,7 @@ class ContactTracingViewController: UIViewController {
         let privacyAndTermsTextView = TappableTextView()
 
         let privacyPolicyText = NSLocalizedString("Privacy Policy", comment: "Privacy policy text")
-        let termsOfUseText = NSLocalizedString("Supplemental Terms", comment: "Supplemental terms text")
+        let termsOfUseText = NSLocalizedString("Terms", comment: "Terms text")
         let termsAndConditionsTemplate = shortened
             ? NSLocalizedString("%1$@ and %2$@", comment: "Shortened terms of use and privacy policy text template")
             : NSLocalizedString(
@@ -441,7 +441,7 @@ class ContactTracingViewController: UIViewController {
         let termsOfUseCharacterRange = attributedString.mutableString.range(of: termsOfUseText)
         [
             privacyPolicyCharacterRange: "privacyPolicy",
-            termsOfUseCharacterRange: "supplementalTerms"
+            termsOfUseCharacterRange: "terms"
         ]
         .forEach {
             let attributes: [NSAttributedString.Key: Any] = [
