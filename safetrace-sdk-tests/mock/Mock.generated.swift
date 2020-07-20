@@ -621,6 +621,12 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 
 
 
+    open func resetURLSession() {
+        addInvocation(.m_resetURLSession)
+		let perform = methodPerformValue(.m_resetURLSession) as? () -> Void
+		perform?()
+    }
+
     open func requestAuthCode(phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         addInvocation(.m_requestAuthCode__phone_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
 		let perform = methodPerformValue(.m_requestAuthCode__phone_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, @escaping (Result<Void, Error>) -> Void) -> Void
@@ -677,6 +683,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 
 
     fileprivate enum MethodType {
+        case m_resetURLSession
         case m_requestAuthCode__phone_phonecompletion_completion(Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_authenticateWithCode__tokenphone_phonedeviceID_deviceIDcompletion_completion(Parameter<String>, Parameter<String>, Parameter<String?>, Parameter<(Result<AuthData, Error>) -> Void>)
         case m_authenticateWithEmailCode__codephone_phonecompletion_completion(Parameter<String>, Parameter<String>, Parameter<(Result<AuthData, Error>) -> Void>)
@@ -689,6 +696,8 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
+            case (.m_resetURLSession, .m_resetURLSession):
+                return true 
             case (.m_requestAuthCode__phone_phonecompletion_completion(let lhsPhone, let lhsCompletion), .m_requestAuthCode__phone_phonecompletion_completion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
@@ -740,6 +749,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
 
         func intValue() -> Int {
             switch self {
+            case .m_resetURLSession: return 0
             case let .m_requestAuthCode__phone_phonecompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_authenticateWithCode__tokenphone_phonedeviceID_deviceIDcompletion_completion(p0, p1, p2, p3): return p0.intValue + p1.intValue + p2.intValue + p3.intValue
             case let .m_authenticateWithEmailCode__codephone_phonecompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
@@ -767,6 +777,7 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
     public struct Verify {
         fileprivate var method: MethodType
 
+        public static func resetURLSession() -> Verify { return Verify(method: .m_resetURLSession)}
         public static func requestAuthCode(phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_requestAuthCode__phone_phonecompletion_completion(`phone`, `completion`))}
         public static func authenticateWithCode(_ token: Parameter<String>, phone: Parameter<String>, deviceID: Parameter<String?>, completion: Parameter<(Result<AuthData, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithCode__tokenphone_phonedeviceID_deviceIDcompletion_completion(`token`, `phone`, `deviceID`, `completion`))}
         public static func authenticateWithEmailCode(_ code: Parameter<String>, phone: Parameter<String>, completion: Parameter<(Result<AuthData, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithEmailCode__codephone_phonecompletion_completion(`code`, `phone`, `completion`))}
@@ -782,6 +793,9 @@ open class NetworkProtocolMock: NetworkProtocol, Mock {
         fileprivate var method: MethodType
         var performs: Any
 
+        public static func resetURLSession(perform: @escaping () -> Void) -> Perform {
+            return Perform(method: .m_resetURLSession, performs: perform)
+        }
         public static func requestAuthCode(phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_requestAuthCode__phone_phonecompletion_completion(`phone`, `completion`), performs: perform)
         }
@@ -1504,6 +1518,13 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 	}
 	private var __p_isAuthenticated: (Bool)?
 
+    public var isCitizenAuthenticated: Bool {
+		get {	invocations.append(.p_isCitizenAuthenticated_get); return __p_isCitizenAuthenticated ?? givenGetterValue(.p_isCitizenAuthenticated_get, "UserSessionProtocolMock - stub value for isCitizenAuthenticated was not defined") }
+		@available(*, deprecated, message: "Using setters on readonly variables is deprecated, and will be removed in 3.1. Use Given to define stubbed property return value.")
+		set {	__p_isCitizenAuthenticated = newValue }
+	}
+	private var __p_isCitizenAuthenticated: (Bool)?
+
     public var userID: String? {
 		get {	invocations.append(.p_userID_get); return __p_userID ?? optionalGivenGetterValue(.p_userID_get, "UserSessionProtocolMock - stub value for userID was not defined") }
 		@available(*, deprecated, message: "Using setters on readonly variables is deprecated, and will be removed in 3.1. Use Given to define stubbed property return value.")
@@ -1534,6 +1555,12 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 		perform?(`phone`, `completion`)
     }
 
+    open func updateAuthTokenWebViewCookies(authToken: String?) {
+        addInvocation(.m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>.value(`authToken`)))
+		let perform = methodPerformValue(.m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>.value(`authToken`))) as? (String?) -> Void
+		perform?(`authToken`)
+    }
+
     open func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void) {
         addInvocation(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`)))
 		let perform = methodPerformValue(.m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>.value(`phone`), Parameter<(Result<Void, Error>) -> Void>.value(`completion`))) as? (String, @escaping (Result<Void, Error>) -> Void) -> Void
@@ -1562,6 +1589,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
     fileprivate enum MethodType {
         case m_logout
         case m_authenticateWithCode__phonephone_completioncompletion(Parameter<String>, Parameter<(Result<LoginResponseContext, Error>) -> Void>)
+        case m_updateAuthTokenWebViewCookies__authToken_authToken(Parameter<String?>)
         case m_requestAuthenticationCode__for_phonecompletion_completion(Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_authenticateWithEmailCode__codephone_phonecompletion_completion(Parameter<String>, Parameter<String>, Parameter<(Result<Void, Error>) -> Void>)
         case m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(Parameter<String>, Parameter<String?>, Parameter<(Result<Void, Error>) -> Void>)
@@ -1569,6 +1597,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         case p_authenticationDelegate_get
 		case p_authenticationDelegate_set(Parameter<UserSessionAuthenticationDelegate?>)
         case p_isAuthenticated_get
+        case p_isCitizenAuthenticated_get
         case p_userID_get
         case p_authToken_get
 
@@ -1579,6 +1608,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case (.m_authenticateWithCode__phonephone_completioncompletion(let lhsPhone, let lhsCompletion), .m_authenticateWithCode__phonephone_completioncompletion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
+                return true 
+            case (.m_updateAuthTokenWebViewCookies__authToken_authToken(let lhsAuthtoken), .m_updateAuthTokenWebViewCookies__authToken_authToken(let rhsAuthtoken)):
+                guard Parameter.compare(lhs: lhsAuthtoken, rhs: rhsAuthtoken, with: matcher) else { return false } 
                 return true 
             case (.m_requestAuthenticationCode__for_phonecompletion_completion(let lhsPhone, let lhsCompletion), .m_requestAuthenticationCode__for_phonecompletion_completion(let rhsPhone, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsPhone, rhs: rhsPhone, with: matcher) else { return false } 
@@ -1600,6 +1632,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case (.p_authenticationDelegate_get,.p_authenticationDelegate_get): return true
 			case (.p_authenticationDelegate_set(let left),.p_authenticationDelegate_set(let right)): return Parameter<UserSessionAuthenticationDelegate?>.compare(lhs: left, rhs: right, with: matcher)
             case (.p_isAuthenticated_get,.p_isAuthenticated_get): return true
+            case (.p_isCitizenAuthenticated_get,.p_isCitizenAuthenticated_get): return true
             case (.p_userID_get,.p_userID_get): return true
             case (.p_authToken_get,.p_authToken_get): return true
             default: return false
@@ -1610,6 +1643,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             switch self {
             case .m_logout: return 0
             case let .m_authenticateWithCode__phonephone_completioncompletion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_updateAuthTokenWebViewCookies__authToken_authToken(p0): return p0.intValue
             case let .m_requestAuthenticationCode__for_phonecompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_authenticateWithEmailCode__codephone_phonecompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
             case let .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(p0, p1, p2): return p0.intValue + p1.intValue + p2.intValue
@@ -1617,6 +1651,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
             case .p_authenticationDelegate_get: return 0
 			case .p_authenticationDelegate_set(let newValue): return newValue.intValue
             case .p_isAuthenticated_get: return 0
+            case .p_isCitizenAuthenticated_get: return 0
             case .p_userID_get: return 0
             case .p_authToken_get: return 0
             }
@@ -1637,6 +1672,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         public static func isAuthenticated(getter defaultValue: Bool...) -> PropertyStub {
             return Given(method: .p_isAuthenticated_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
+        public static func isCitizenAuthenticated(getter defaultValue: Bool...) -> PropertyStub {
+            return Given(method: .p_isCitizenAuthenticated_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
+        }
         public static func userID(getter defaultValue: String?...) -> PropertyStub {
             return Given(method: .p_userID_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
@@ -1651,6 +1689,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
 
         public static func logout() -> Verify { return Verify(method: .m_logout)}
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<LoginResponseContext, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`))}
+        public static func updateAuthTokenWebViewCookies(authToken: Parameter<String?>) -> Verify { return Verify(method: .m_updateAuthTokenWebViewCookies__authToken_authToken(`authToken`))}
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`))}
         public static func authenticateWithEmailCode(_ code: Parameter<String>, phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_authenticateWithEmailCode__codephone_phonecompletion_completion(`code`, `phone`, `completion`))}
         public static func resendEmailAuthCode(phone: Parameter<String>, deviceID: Parameter<String?>, completion: Parameter<(Result<Void, Error>) -> Void>) -> Verify { return Verify(method: .m_resendEmailAuthCode__phone_phonedeviceID_deviceIDcompletion_completion(`phone`, `deviceID`, `completion`))}
@@ -1658,6 +1697,7 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         public static var authenticationDelegate: Verify { return Verify(method: .p_authenticationDelegate_get) }
 		public static func authenticationDelegate(set newValue: Parameter<UserSessionAuthenticationDelegate?>) -> Verify { return Verify(method: .p_authenticationDelegate_set(newValue)) }
         public static var isAuthenticated: Verify { return Verify(method: .p_isAuthenticated_get) }
+        public static var isCitizenAuthenticated: Verify { return Verify(method: .p_isCitizenAuthenticated_get) }
         public static var userID: Verify { return Verify(method: .p_userID_get) }
         public static var authToken: Verify { return Verify(method: .p_authToken_get) }
     }
@@ -1671,6 +1711,9 @@ open class UserSessionProtocolMock: UserSessionProtocol, Mock {
         }
         public static func authenticateWithCode(phone: Parameter<String>, completion: Parameter<(Result<LoginResponseContext, Error>) -> Void>, perform: @escaping (String, @escaping (Result<LoginResponseContext, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_authenticateWithCode__phonephone_completioncompletion(`phone`, `completion`), performs: perform)
+        }
+        public static func updateAuthTokenWebViewCookies(authToken: Parameter<String?>, perform: @escaping (String?) -> Void) -> Perform {
+            return Perform(method: .m_updateAuthTokenWebViewCookies__authToken_authToken(`authToken`), performs: perform)
         }
         public static func requestAuthenticationCode(for phone: Parameter<String>, completion: Parameter<(Result<Void, Error>) -> Void>, perform: @escaping (String, @escaping (Result<Void, Error>) -> Void) -> Void) -> Perform {
             return Perform(method: .m_requestAuthenticationCode__for_phonecompletion_completion(`phone`, `completion`), performs: perform)

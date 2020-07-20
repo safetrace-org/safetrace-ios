@@ -3,6 +3,8 @@ import UIKit
 
 //sourcery:AutoMockable
 protocol NetworkProtocol {
+    func resetURLSession()
+
     func requestAuthCode(phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithCode(_ token: String, phone: String, deviceID: String?, completion: @escaping (Result<AuthData, Error>) -> Void)
     func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
@@ -20,14 +22,19 @@ protocol NetworkProtocol {
 
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void)
     func uploadTraces(_ traces: ContactTraces, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
+    
 }
 
-struct Network: NetworkProtocol {
+class Network: NetworkProtocol {
     private let environment: Environment
-    private let urlSession: URLSession = .shared
+    private var urlSession = URLSession(configuration: .default)
     
     init(environment: Environment) {
         self.environment = environment
+    }
+    
+    func resetURLSession() {
+        urlSession = URLSession(configuration: .default)
     }
 
     // MARK: - Auth
