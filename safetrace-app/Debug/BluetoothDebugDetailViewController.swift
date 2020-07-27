@@ -36,7 +36,7 @@ class BluetoothDebugDetailViewController: UITableViewController {
         let record = records[indexPath.row]
 
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BluetoothDebugDetailCell.self), for: indexPath) as! BluetoothDebugDetailCell
-        cell.configure(record: record)
+        cell.configure(record: record, index: indexPath.row)
 
         return cell
     }

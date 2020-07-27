@@ -49,8 +49,8 @@ class BluetoothDebugDetailCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(record: PeripheralRecord) {
-        scanDateLabel.text = "Detected: \(dateFormatter.string(from: record.scanDate))"
+    func configure(record: PeripheralRecord, index: Int) {
+        scanDateLabel.text = "\(index + 1). Detected: \(dateFormatter.string(from: record.scanDate))"
 
         let traceCreatedDisplay = record.traceGeneratedDate != nil
             ? dateFormatter.string(from: record.traceGeneratedDate!)

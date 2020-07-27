@@ -81,10 +81,6 @@ extension BluetoothCentral: CBCentralManagerDelegate {
     }
 
     func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-
-        print("Advertisement Data:")
-        print(advertisementData)
-
         guard !connectedPeripherals.contains(peripheral) else {
             Debug.recordPeripheralDiscovery(peripheral, advertisementData: advertisementData, rssi: RSSI, isSkipped: true)
             return

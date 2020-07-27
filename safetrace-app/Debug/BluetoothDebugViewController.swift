@@ -18,9 +18,9 @@ struct PeripheralDevice {
 
     var records: [PeripheralRecord]
 
-    init(records: [PeripheralRecord]) {
+    init?(records: [PeripheralRecord]) {
         if records.isEmpty {
-            assertionFailure("records cannot be empty")
+            return nil
         }
 
         let count = records.count
@@ -48,9 +48,7 @@ struct PeripheralDevice {
 
         self.name = name
         self.count = count
-        self.averageRSSI = count > 0
-            ? totalRSSI / count
-            : 0
+        self.averageRSSI = totalRSSI / count
         self.averageDiscoveryInterval = count > 1
             ? totalInterval / Double(count - 1)
             : nil
@@ -107,7 +105,7 @@ class PeripheralRecord {
     }
 }
 
-class BluetoothDebugViewController: UITableViewController {
+class BluetoothDebugViewController: UIViewController {
 
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -115,16 +113,23 @@ class BluetoothDebugViewController: UITableViewController {
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
+    private let optionsViewHeight: CGFloat = 50
 
     private var debugPeripheralsByUUID = [UUID: [DebugDiscoveredPeripheral]]()
     private var debugTracesByUUID = [UUID: [DebugTrace]]()
     private var debugTraceUploadsByUUID = [UUID: [DebugTraceUpload]]()
     private var debugTraceErrorsByUUID = [UUID: [DebugTraceError]]()
-
     // For easily matching uploads to traces
     private var traceIDMap = [String: Set<DebugTrace>]()
-
     private var displayData = [PeripheralDevice]()
+
+    private var shouldDeduplicate: Bool = false
+    private var filterBackgroundOnly: Bool = false
+
+    // MARK: - Views
+
+    private let tableView = UITableView()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +138,7 @@ class BluetoothDebugViewController: UITableViewController {
         navigationItem.leftBarButtonItem = .init(title: "Clear", style: .plain, target: self, action: #selector(clearRecords))
         navigationItem.rightBarButtonItem = .init(title: "Close", style: .done, target: self, action: #selector(dismissVC))
 
+        layoutUI()
         initialLoad()
 
         Debug.debugPeripheralHandler = { [weak self] discovery in
@@ -151,6 +157,69 @@ class BluetoothDebugViewController: UITableViewController {
             self?.addTraceUploads(uploads)
             self?.processAndReloadData()
         }
+    }
+
+    private func layoutUI() {
+        tableView.contentInset.top = optionsViewHeight
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        view.addSubview(tableView)
+
+        let backgroundOnlySwitch = UISwitch()
+        backgroundOnlySwitch.addTarget(self, action: #selector(backgroundOnlyToggled), for: .valueChanged)
+
+        let backgroundOnlyLabel = UILabel()
+        backgroundOnlyLabel.font = .bodyRegular
+        backgroundOnlyLabel.text = "Background only"
+        let backgroundOnlyStack = UIStackView(arrangedSubviews: [backgroundOnlyLabel, backgroundOnlySwitch])
+        backgroundOnlyStack.distribution = .fillProportionally
+
+        let deduplicateSwitch = UISwitch()
+        deduplicateSwitch.addTarget(self, action: #selector(deduplicateToggled), for: .valueChanged)
+
+        let dedupeLabel = UILabel()
+        dedupeLabel.font = .bodyRegular
+        dedupeLabel.text = "Dedupe"
+        let deduplicateStack = UIStackView(arrangedSubviews: [dedupeLabel, deduplicateSwitch])
+        deduplicateStack.distribution = .fillProportionally
+
+        let optionsStack = UIStackView(arrangedSubviews: [backgroundOnlyStack, deduplicateStack])
+        optionsStack.distribution = .fillEqually
+        optionsStack.alignment = .center
+        optionsStack.spacing = 10
+        optionsStack.backgroundColor = .white
+
+        let optionsView = UIView()
+        if #available(iOS 13.0, *) {
+            optionsView.backgroundColor = .systemBackground
+        } else {
+            optionsView.backgroundColor = .white
+        }
+        optionsView.addSubview(optionsStack)
+
+        view.addSubview(optionsView)
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        optionsStack.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            optionsStack.leadingAnchor.constraint(equalTo: optionsView.leadingAnchor),
+            optionsStack.topAnchor.constraint(equalTo: optionsView.topAnchor),
+            optionsStack.trailingAnchor.constraint(equalTo: optionsView.trailingAnchor),
+            optionsStack.bottomAnchor.constraint(equalTo: optionsView.bottomAnchor),
+
+            optionsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            optionsView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            optionsView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            optionsView.heightAnchor.constraint(equalToConstant: optionsViewHeight)
+        ])
     }
 
     private func initialLoad() {
@@ -177,6 +246,16 @@ class BluetoothDebugViewController: UITableViewController {
 
     @objc private func dismissVC() {
         self.dismiss(animated: true)
+    }
+
+    @objc private func backgroundOnlyToggled() {
+        filterBackgroundOnly.toggle()
+        processAndReloadData()
+    }
+
+    @objc private func deduplicateToggled() {
+        shouldDeduplicate.toggle()
+        processAndReloadData()
     }
 
     // MARK: - Helper functions
@@ -250,7 +329,7 @@ class BluetoothDebugViewController: UITableViewController {
             self.displayData = []
             for (uuid, discoveries) in self.debugPeripheralsByUUID {
 
-                let baseRecords = discoveries.map {
+                var baseRecords = discoveries.map {
                     PeripheralRecord(
                         name: $0.peripheral.name,
                         rssi: $0.rssi,
@@ -258,6 +337,10 @@ class BluetoothDebugViewController: UITableViewController {
                         foreground: $0.foreground,
                         scanDate: $0.scanDate
                     )
+                }
+
+                if self.filterBackgroundOnly {
+                    baseRecords = baseRecords.filter { !$0.foreground }
                 }
 
                 // Hydrate discoveries
@@ -309,8 +392,9 @@ class BluetoothDebugViewController: UITableViewController {
                     recordIndex += 1
                 }
 
-                let peripheralDevice = PeripheralDevice(records: baseRecords)
-                self.displayData.append(peripheralDevice)
+                if let peripheralDevice = PeripheralDevice(records: baseRecords) {
+                    self.displayData.append(peripheralDevice)
+                }
             }
             self.displayData = self.displayData.sorted { $0.lastDiscoveryDate > $1.lastDiscoveryDate }
             self.tableView.reloadData()
@@ -318,11 +402,11 @@ class BluetoothDebugViewController: UITableViewController {
     }
 }
 
-extension BluetoothDebugViewController {
+extension BluetoothDebugViewController: UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - UITableViewDelegate
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let records = displayData[indexPath.row].records
         let detailVC = BluetoothDebugDetailViewController()
         detailVC.setRecords(records: records)
@@ -334,11 +418,11 @@ extension BluetoothDebugViewController {
 
     // MARK: - UITableViewDataSource
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         displayData.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let peripheral = displayData[indexPath.row]
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
