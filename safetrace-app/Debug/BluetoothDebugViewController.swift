@@ -259,6 +259,7 @@ class BluetoothDebugViewController: UITableViewController {
                             // do not attribute trace to this record
                         } else {
                             currentRecord.traceGeneratedDate = currentTrace.createdDate
+                            currentRecord.phoneModel = currentTrace.phoneModel
                             traceIndex += 1
                         }
                     }
