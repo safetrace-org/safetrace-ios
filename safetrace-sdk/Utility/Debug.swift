@@ -31,7 +31,7 @@ public struct DebugDiscoveredPeripheral: Codable {
     public var scanDate: Date
 }
 
-public struct DebugTrace: Codable {
+public struct DebugTrace: Codable, Hashable {
     public var peripheralUUID: UUID
     public var traceID: String
     public var senderForeground: Bool

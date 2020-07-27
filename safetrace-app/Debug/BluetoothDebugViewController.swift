@@ -118,7 +118,8 @@ class BluetoothDebugViewController: UITableViewController {
     private var debugTraceUploadsByUUID = [UUID: [DebugTraceUpload]]()
     private var debugTraceErrorsByUUID = [UUID: [DebugTraceError]]()
 
-    private var traceIDMap = [String: UUID]()
+    // For easily matching uploads to traces
+    private var traceIDMap = [String: Set<DebugTrace>]()
 
     private var displayData = [PeripheralDevice]()
 
@@ -191,8 +192,15 @@ class BluetoothDebugViewController: UITableViewController {
 
     private func addTraces(_ traces: [DebugTrace]) {
         traces.forEach { trace in
+            let traceID = trace.traceID
+            if var tracesForTraceID = traceIDMap[traceID] {
+                tracesForTraceID.insert(trace)
+                traceIDMap[traceID] = tracesForTraceID
+            } else {
+                traceIDMap[traceID] = Set<DebugTrace>([trace])
+            }
+
             let uuid = trace.peripheralUUID
-            traceIDMap[trace.traceID] = uuid
             if var tracesForDevice = debugTracesByUUID[uuid] {
                 tracesForDevice.append(trace)
                 debugTracesByUUID[uuid] = tracesForDevice
@@ -217,7 +225,11 @@ class BluetoothDebugViewController: UITableViewController {
     private func addTraceUploads(_ uploads: [DebugTraceUpload]) {
         for upload in uploads {
             let id = upload.traceID
-            if let uuid = traceIDMap[id] {
+            if
+                let uuidSet = traceIDMap[id],
+                let matchingTrace = uuidSet.first(where: { upload.createdDate == $0.createdDate })
+            {
+                let uuid = matchingTrace.peripheralUUID
                 if var uploadsForDevice = debugTraceUploadsByUUID[uuid] {
                     uploadsForDevice.append(upload)
                     debugTraceUploadsByUUID[uuid] = uploadsForDevice
