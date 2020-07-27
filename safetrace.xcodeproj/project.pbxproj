@@ -116,6 +116,8 @@
 		DC7F32F824493A82009B61B8 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F724493A82009B61B8 /* Debug.swift */; };
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC897BA52450F65F00C80DF9 /* BluetoothCentralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */; };
+		DC8DF29624CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */; };
+		DC8DF29724CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */; };
 		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
 		DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */; };
 		DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
@@ -261,6 +263,7 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentralTests.swift; sourceTree = "<group>"; };
+		DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitcherOverlayViewController.swift; sourceTree = "<group>"; };
 		DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Debug.swift"; sourceTree = "<group>"; };
 		DCB94CCA249BC43200D616AD /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
@@ -497,7 +500,7 @@
 				DCB94CC6249BC01800D616AD /* Debug */,
 				3E0E3A1E244BFF76006520E4 /* Common UI */,
 				3E0E3A1B244BFE1F006520E4 /* Extensions */,
-				DC9650A0244BE03800CFB202 /* Home */,
+				DC9650A0244BE03800CFB202 /* Features */,
 				3E82683F249E9D6B00B12FE3 /* Services */,
 				3E6A450E249EF619001E94A8 /* Utility */,
 				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
@@ -583,15 +586,24 @@
 			path = "TraceID Storage";
 			sourceTree = "<group>";
 		};
-		DC9650A0244BE03800CFB202 /* Home */ = {
+		DC8DF29424CF7F0C00077C24 /* App Switcher Overlay */ = {
 			isa = PBXGroup;
 			children = (
+				DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */,
+			);
+			path = "App Switcher Overlay";
+			sourceTree = "<group>";
+		};
+		DC9650A0244BE03800CFB202 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				DC8DF29424CF7F0C00077C24 /* App Switcher Overlay */,
 				3E82684F249EB2A400B12FE3 /* Common */,
 				3E82684E249EB23C00B12FE3 /* Contact Tracing */,
 				DC0E0F9D249826B500D3C9FC /* Onboarding */,
 				DC0E0F9B2498267800D3C9FC /* MainViewController.swift */,
 			);
-			path = Home;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		DCB94CC6249BC01800D616AD /* Debug */ = {
@@ -871,6 +883,7 @@
 				3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */,
+				DC8DF29624CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3E6A4510249EF627001E94A8 /* Update.swift in Sources */,
@@ -945,6 +958,7 @@
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
+				DC8DF29724CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */,
 				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
 				3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */,
 				3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */,
