@@ -86,8 +86,10 @@ internal final class DebugViewController: UIViewController {
     }
 
     @objc private func openDebugger() {
-        let debugVC = BluetoothDebugViewController()
-        present(debugVC, animated: true, completion: nil)
+        let vc = BluetoothDebugViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true, completion: nil)
     }
     
     required init?(coder: NSCoder) {

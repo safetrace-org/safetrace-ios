@@ -106,46 +106,66 @@ class BluetoothDebugViewController: UITableViewController {
         return dateFormatter
     }()
 
-    var debugPeripheralsByUUID = [UUID: [DebugDiscoveredPeripheral]]()
-    var debugTracesByUUID = [UUID: [DebugTrace]]()
-    var debugTraceUploadsByUUID = [UUID: [DebugTraceUpload]]()
-    var debugTraceErrorsByUUID = [UUID: [DebugTraceError]]()
+    private var debugPeripheralsByUUID = [UUID: [DebugDiscoveredPeripheral]]()
+    private var debugTracesByUUID = [UUID: [DebugTrace]]()
+    private var debugTraceUploadsByUUID = [UUID: [DebugTraceUpload]]()
+    private var debugTraceErrorsByUUID = [UUID: [DebugTraceError]]()
 
-    var traceIDMap = [String: UUID]()
+    private var traceIDMap = [String: UUID]()
 
-    var displayData = [PeripheralDevice]()
+    private var displayData = [PeripheralDevice]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        Debug.clearDebugRecords()
+        navigationItem.title = "Bluetooth Debugger"
+        navigationItem.leftBarButtonItem = .init(title: "Clear", style: .plain, target: self, action: #selector(clearRecords))
+        navigationItem.rightBarButtonItem = .init(title: "Close", style: .done, target: self, action: #selector(dismissVC))
 
-        // Import existing traces
-        addPeripheralDiscoveries(Debug.debugPeripherals)
+        initialLoad()
+
         Debug.debugPeripheralHandler = { [weak self] discovery in
             self?.addPeripheralDiscoveries([discovery])
             self?.processAndReloadData()
         }
-
-        addTraces(Debug.debugTraces)
         Debug.debugTraceHandler = {[weak self] trace in
             self?.addTraces([trace])
             self?.processAndReloadData()
         }
-
-        addTraceErrors(Debug.traceErrors)
         Debug.traceErrorHandler = { [weak self] error in
             self?.addTraceErrors([error])
             self?.processAndReloadData()
         }
-
-        addTraceUploads(Debug.traceUploads)
         Debug.tracesUploadedHandler = { [weak self] uploads in
             self?.addTraceUploads(uploads)
             self?.processAndReloadData()
         }
+    }
+
+    private func initialLoad() {
+        // Import existing traces
+        addPeripheralDiscoveries(Debug.debugPeripherals)
+        addTraces(Debug.debugTraces)
+        addTraceErrors(Debug.traceErrors)
+        addTraceUploads(Debug.traceUploads)
 
         processAndReloadData()
+    }
+
+    @objc private func clearRecords() {
+        Debug.clearDebugRecords()
+
+        debugPeripheralsByUUID = [:]
+        debugTracesByUUID = [:]
+        debugTraceUploadsByUUID = [:]
+        debugTraceErrorsByUUID = [:]
+        traceIDMap = [:]
+
+        initialLoad()
+    }
+
+    @objc private func dismissVC() {
+        self.dismiss(animated: true)
     }
 
     // MARK: - Helper functions

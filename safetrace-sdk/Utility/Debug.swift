@@ -71,6 +71,11 @@ public enum Debug {
 
     public static func clearDebugRecords() {
         #if INTERNAL
+        debugPeripherals = []
+        debugTraces = []
+        traceUploads = []
+        traceErrors = []
+
         saveDiscoveredPeripherals([])
         saveDebugTraces([])
         saveTracesUploads([])
