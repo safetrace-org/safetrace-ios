@@ -14,6 +14,7 @@ struct PeripheralDevice {
     var errorCount: Int
     var phoneModel: String?
     var lastUploadedDate: Date?
+    var lastUpdatedDate: Date
 
     init(records: [PeripheralRecord]) {
         if records.isEmpty {
@@ -61,6 +62,12 @@ struct PeripheralDevice {
         self.tracesUploaded = uploads.count
         self.errorCount = records.filter { $0.error != nil }.count
         self.phoneModel = records.first(where: { $0.phoneModel != nil })?.phoneModel
+
+        if let lastUploadedDate = lastUploadedDate, lastUploadedDate > lastDiscoveryDate {
+            self.lastUpdatedDate = lastUploadedDate
+        } else {
+            self.lastUpdatedDate = lastDiscoveryDate
+        }
     }
 }
 
@@ -327,7 +334,7 @@ extension BluetoothDebugViewController {
         let displayInterval = peripheral.averageDiscoveryInterval != nil
             ? "\(Int(peripheral.averageDiscoveryInterval!))"
             : "n/a"
-        let subtitle = "RSSI: \(Int(peripheral.averageRSSI)) | Interval: \(displayInterval) s | Updated: \(dateFormatter.string(from: peripheral.lastDiscoveryDate))"
+        let subtitle = "RSSI: \(Int(peripheral.averageRSSI)) | Interval: \(displayInterval) s | Updated: \(dateFormatter.string(from: peripheral.lastUpdatedDate))"
         cell.detailTextLabel?.text = subtitle
 
         return cell
