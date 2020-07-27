@@ -53,7 +53,8 @@ internal final class BluetoothCentral: NSObject {
         centralManager = nil
     }
     
-    private func logError(_ error: String, context: String, meta: [String: Any]? = nil) {
+    private func logError(_ error: String, context: String, meta: [String: Any]? = nil, peripheral: CBPeripheral) {
+        Debug.recordTraceError(error, context: context, peripheral: peripheral)
         delegate?.logError(error, context: context, meta: meta)
     }
     
@@ -80,12 +81,20 @@ extension BluetoothCentral: CBCentralManagerDelegate {
     }
 
     func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        guard !connectedPeripherals.contains(peripheral) else { return }
+
+        print("Advertisement Data:")
+        print(advertisementData)
+
+        guard !connectedPeripherals.contains(peripheral) else {
+            Debug.recordPeripheralDiscovery(peripheral, advertisementData: advertisementData, rssi: RSSI, isSkipped: true)
+            return
+        }
         
         if let manufacturer = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
             let androidIdentifierData = manufacturer.subdata(in: 2..<manufacturer.count)
             if discoveredAndroidManufacturerData.contains(androidIdentifierData) {
                 // Android device has already been discovered
+                Debug.recordPeripheralDiscovery(peripheral, advertisementData: advertisementData, rssi: RSSI, isSkipped: true)
                 return
             } else {
                 peripheral.delegate = self
@@ -100,6 +109,8 @@ extension BluetoothCentral: CBCentralManagerDelegate {
         } else {
             connect(to: peripheral, rssi: RSSI)
         }
+
+        Debug.recordPeripheralDiscovery(peripheral, advertisementData: advertisementData, rssi: RSSI, isSkipped: false)
     }
 
     private func connect(to peripheral: CBPeripheral, rssi: NSNumber) {
@@ -117,7 +128,7 @@ extension BluetoothCentral: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         notifyPeripheralError(peripheral: peripheral, context: "didFailToConnect", error: error)
-        logError(error?.localizedDescription ?? "none", context: "didFailToConnect")
+        logError(error?.localizedDescription ?? "none", context: "didFailToConnect", peripheral: peripheral)
         removeConnectedPeripheral(peripheral)
     }
 }
@@ -127,7 +138,7 @@ extension BluetoothCentral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
             notifyPeripheralError(peripheral: peripheral, context: "didDiscoverServices", error: error)
-            logError(error.localizedDescription, context: "didDiscoverServices")
+            logError(error.localizedDescription, context: "didDiscoverServices", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         } else if let service = peripheral.services?.first(where: { $0.uuid == contactTracingServiceIdentifier }) {
             peripheral.discoverCharacteristics([tracePacketCharacteristicIdentifier], for: service)
@@ -136,7 +147,7 @@ extension BluetoothCentral: CBPeripheralDelegate {
             logError("Service Not Found", context: "didDiscoverServices", meta: [
                 "service_count": peripheral.services?.count ?? 0,
                 "service_uuids": peripheral.services?.map(\.uuid.uuidString) ?? []
-            ])
+            ], peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         }
     }
@@ -144,13 +155,13 @@ extension BluetoothCentral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let error = error {
             notifyPeripheralError(peripheral: peripheral, context: "didDiscoverCharacteristics", error: error)
-            logError(error.localizedDescription, context: "didDiscoverCharacteristics")
+            logError(error.localizedDescription, context: "didDiscoverCharacteristics", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         } else if let characteristic = service.characteristics?.first(where: { $0.uuid == tracePacketCharacteristicIdentifier }) {
             peripheral.readValue(for: characteristic)
         } else {
             notifyPeripheralError(peripheral: peripheral, context: "didDiscoverCharacteristics", error: nil)
-            logError("Characteristic Not Found", context: "didDiscoverCharacteristics")
+            logError("Characteristic Not Found", context: "didDiscoverCharacteristics", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         }
     }
@@ -158,7 +169,7 @@ extension BluetoothCentral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
             notifyPeripheralError(peripheral: peripheral, context: "didUpdateValue", error: error)
-            logError(error.localizedDescription, context: "didUpdateValue")
+            logError(error.localizedDescription, context: "didUpdateValue", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         } else if let data = characteristic.value {
             do {
@@ -166,12 +177,12 @@ extension BluetoothCentral: CBPeripheralDelegate {
                 processPacket(packet, for: peripheral)
             } catch let error {
                 notifyPeripheralError(peripheral: peripheral, context: "didUpdateValue", error: error)
-                logError(error.localizedDescription, context: "didUpdateValue")
+                logError(error.localizedDescription, context: "didUpdateValue", peripheral: peripheral)
                 removeConnectedPeripheral(peripheral)
             }
         } else {
             notifyPeripheralError(peripheral: peripheral, context: "didUpdateValue", error: nil)
-            logError("No Value Sent", context: "didUpdateValue")
+            logError("No Value Sent", context: "didUpdateValue", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         }
     }
@@ -190,7 +201,7 @@ extension BluetoothCentral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         if let error = error {
             notifyPeripheralError(peripheral: peripheral, context: "didReadRSSI", error: error)
-            logError(error.localizedDescription, context: "didReadRSSI")
+            logError(error.localizedDescription, context: "didReadRSSI", peripheral: peripheral)
             removeConnectedPeripheral(peripheral)
         } else {
             processRSSI(RSSI, for: peripheral)
@@ -221,6 +232,8 @@ extension BluetoothCentral: CBPeripheralDelegate {
         delegate?.didFinishTrace(trace)
         notifyPeripheralDiscovery(peripheral: peripheral, rssi: rssi, value: packet.description)
         removeConnectedPeripheral(peripheral)
+
+        Debug.recordTraceCreation(packet, peripheral: peripheral, timestamp: trace.receiver.timestamp)
     }
 }
 

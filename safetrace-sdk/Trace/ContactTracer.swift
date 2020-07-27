@@ -122,6 +122,7 @@ internal final class ContactTracer: NSObject {
             switch result {
             case .success:
                 success?()
+                Debug.recordTraceUploads(traces)
             case .failure(let error):
                 self?.logError(error.localizedDescription, context: "uploadTraces", meta: nil)
             }

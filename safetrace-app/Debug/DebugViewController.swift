@@ -39,14 +39,21 @@ internal final class DebugViewController: UIViewController {
             debugSwitch
         ])
 
-        let logoutButton = UIButton(type: .system)
+        let logoutButton = Button(style: .secondary, size: .small)
+        logoutButton.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+
+        let debuggerButton = Button(style: .primary, size: .small)
+        debuggerButton.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+        debuggerButton.setTitle("Open Debugger", for: .normal)
+        debuggerButton.addTarget(self, action: #selector(openDebugger), for: .touchUpInside)
 
         let mainStackView = UIStackView(arrangedSubviews: [
             envStackView,
             debugStackView,
-            logoutButton
+            logoutButton,
+            debuggerButton
         ])
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical
@@ -76,6 +83,11 @@ internal final class DebugViewController: UIViewController {
     @objc private func logout() {
         SafeTrace.session.logout()
         fatalError()
+    }
+
+    @objc private func openDebugger() {
+        let debugVC = BluetoothDebugViewController()
+        present(debugVC, animated: true, completion: nil)
     }
     
     required init?(coder: NSCoder) {
