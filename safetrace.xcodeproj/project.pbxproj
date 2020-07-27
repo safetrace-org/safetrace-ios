@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E09C8B424CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C8B324CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift */; };
+		3E09C8B624CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C8B524CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift */; };
 		3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
 		3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
 		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
@@ -192,6 +194,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E09C8B324CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDebugDetailViewController.swift; sourceTree = "<group>"; };
+		3E09C8B524CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDebugDetailCell.swift; sourceTree = "<group>"; };
 		3E0E3A19244BFD41006520E4 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		3E0E3A1F244BFFA4006520E4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 				DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */,
 				DCB94CCA249BC43200D616AD /* DebugViewController.swift */,
 				3ED5586024C8F15200B97155 /* BluetoothDebugViewController.swift */,
+				3E09C8B324CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift */,
+				3E09C8B524CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -916,11 +922,13 @@
 				3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
 				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
+				3E09C8B424CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift in Sources */,
 				DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */,
 				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
+				3E09C8B624CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift in Sources */,
 				3E5A05FC24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,

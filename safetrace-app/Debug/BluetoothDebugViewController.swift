@@ -16,6 +16,8 @@ struct PeripheralDevice {
     var lastUploadedDate: Date?
     var lastUpdatedDate: Date
 
+    var records: [PeripheralRecord]
+
     init(records: [PeripheralRecord]) {
         if records.isEmpty {
             assertionFailure("records cannot be empty")
@@ -68,6 +70,7 @@ struct PeripheralDevice {
         } else {
             self.lastUpdatedDate = lastDiscoveryDate
         }
+        self.records = records
     }
 }
 
@@ -320,7 +323,11 @@ extension BluetoothDebugViewController {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
+        let records = displayData[indexPath.row].records
+        let detailVC = BluetoothDebugDetailViewController()
+        detailVC.setRecords(records: records)
+
+        navigationController?.pushViewController(detailVC, animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
