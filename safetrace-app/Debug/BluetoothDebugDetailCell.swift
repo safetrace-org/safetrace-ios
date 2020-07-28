@@ -1,13 +1,21 @@
 import SafeTrace
 import UIKit
 
+private func makeLabel() -> UILabel {
+    let label = UILabel()
+    label.font = .bodyRegular
+    label.numberOfLines = 0
+    return label
+}
+
 class BluetoothDebugDetailCell: UITableViewCell {
-    let scanDateLabel = UILabel()
-    let traceCreatedDateLabel = UILabel()
-    let uploadedDateLabel = UILabel()
-    let detailLabel = UILabel()
-    let traceIDLabel = UILabel()
-    let errorLabel = UILabel()
+    let scanDateLabel = makeLabel()
+    let traceCreatedDateLabel = makeLabel()
+    let uploadedDateLabel = makeLabel()
+    let uuidLabel = makeLabel()
+    let detailLabel = makeLabel()
+    let traceIDLabel = makeLabel()
+    let errorLabel = makeLabel()
 
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -20,18 +28,12 @@ class BluetoothDebugDetailCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         scanDateLabel.font = .bodyBold
-        traceCreatedDateLabel.font = .bodyRegular
-        uploadedDateLabel.font = .bodyRegular
-        detailLabel.font = .bodyRegular
-        traceIDLabel.font = .bodyRegular
-        traceIDLabel.numberOfLines = 0
-        errorLabel.font = .bodyRegular
-        errorLabel.numberOfLines = 0
 
         let stackView = UIStackView(arrangedSubviews: [
             scanDateLabel,
             traceCreatedDateLabel,
             uploadedDateLabel,
+            uuidLabel,
             detailLabel,
             traceIDLabel,
             errorLabel
@@ -66,6 +68,8 @@ class BluetoothDebugDetailCell: UITableViewCell {
             ? dateFormatter.string(from: record.traceUploadedDate!)
             : "null"
         uploadedDateLabel.text = "Uploaded: \(traceUploadedDisplay)"
+
+        uuidLabel.text = "UUID: \(record.uuid.uuidString)"
 
         detailLabel.text = "RSSI: \(Int(record.rssi)) | Foreground: \(record.foreground) | Skipped: \(record.isSkipped)"
 

@@ -81,6 +81,7 @@ struct PeripheralDevice {
 class PeripheralRecord {
     // Scan info
     var name: String?
+    var uuid: UUID
     var rssi: Int
     var isSkipped: Bool
     var foreground: Bool
@@ -99,12 +100,14 @@ class PeripheralRecord {
 
     init(
         name: String?,
+        uuid: UUID,
         rssi: Int,
         isSkipped: Bool,
         foreground: Bool,
         scanDate: Date
     ) {
         self.name = name
+        self.uuid = uuid
         self.rssi = rssi
         self.isSkipped = isSkipped
         self.foreground = foreground
@@ -341,6 +344,7 @@ class BluetoothDebugViewController: UIViewController {
                 var baseRecords = discoveries.map {
                     PeripheralRecord(
                         name: $0.peripheral.name,
+                        uuid: uuid,
                         rssi: $0.rssi,
                         isSkipped: $0.isSkipped,
                         foreground: $0.foreground,
@@ -462,7 +466,7 @@ extension BluetoothDebugViewController: UITableViewDelegate, UITableViewDataSour
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
-        var title = peripheral.name ?? "null"
+        var title = "\(indexPath.row + 1). " + (peripheral.name ?? "null")
         if let phoneModel = peripheral.phoneModel {
             title += " [\(phoneModel)]"
         }
