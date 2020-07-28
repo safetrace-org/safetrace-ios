@@ -313,7 +313,7 @@ class BluetoothDebugViewController: UIViewController {
     }
 
     private func addTraceUploads(_ uploads: [DebugTraceUpload]) {
-        for upload in uploads {
+        for upload in uploads.sorted(by: { $0.createdDate < $1.createdDate }) {
             let id = upload.traceID
             if
                 let uuidSet = traceIDMap[id],
