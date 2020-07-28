@@ -16,6 +16,7 @@ struct PeripheralDevice {
     var lastUploadedDate: Date?
     var lastUpdatedDate: Date
 
+    var traceIDs = Set<String>()
     var records: [PeripheralRecord]
 
     init?(records: [PeripheralRecord]) {
@@ -23,14 +24,19 @@ struct PeripheralDevice {
             return nil
         }
 
-        let count = records.count
+        let sortedRecords = records.sorted(by: { $0.scanDate < $1.scanDate })
+        let count = sortedRecords.count
 
         var totalRSSI: Int = 0
         var totalInterval: Double = 0
         var name: String?
 
-        for (index, record) in records.enumerated() {
+        for (index, record) in sortedRecords.enumerated() {
             totalRSSI += record.rssi
+
+            if let traceID = record.traceID {
+                traceIDs.insert(traceID)
+            }
 
             if
                 name == nil,
@@ -40,7 +46,7 @@ struct PeripheralDevice {
             }
 
             if index >= 1 {
-                let lastRecord = records[index - 1]
+                let lastRecord = sortedRecords[index - 1]
                 let scanInterval = record.scanDate.timeIntervalSince1970 - lastRecord.scanDate.timeIntervalSince1970
                 totalInterval += scanInterval
             }
@@ -52,23 +58,23 @@ struct PeripheralDevice {
         self.averageDiscoveryInterval = count > 1
             ? totalInterval / Double(count - 1)
             : nil
-        self.lastDiscoveryDate = records.last!.scanDate
+        self.lastDiscoveryDate = sortedRecords.last!.scanDate
 
-        let uploads = records.filter { $0.traceUploadedDate != nil }
+        let uploads = sortedRecords.filter { $0.traceUploadedDate != nil }
 
         self.lastUploadedDate = uploads.last?.traceUploadedDate
-        self.skippedCount = records.filter { $0.isSkipped }.count
-        self.tracesCreated = records.filter { $0.traceGeneratedDate != nil }.count
+        self.skippedCount = sortedRecords.filter { $0.isSkipped }.count
+        self.tracesCreated = sortedRecords.filter { $0.traceGeneratedDate != nil }.count
         self.tracesUploaded = uploads.count
-        self.errorCount = records.filter { $0.error != nil }.count
-        self.phoneModel = records.first(where: { $0.phoneModel != nil })?.phoneModel
+        self.errorCount = sortedRecords.filter { $0.error != nil }.count
+        self.phoneModel = sortedRecords.first(where: { $0.phoneModel != nil })?.phoneModel
 
         if let lastUploadedDate = lastUploadedDate, lastUploadedDate > lastDiscoveryDate {
             self.lastUpdatedDate = lastUploadedDate
         } else {
             self.lastUpdatedDate = lastDiscoveryDate
         }
-        self.records = records
+        self.records = sortedRecords
     }
 }
 
@@ -81,6 +87,7 @@ class PeripheralRecord {
     var scanDate: Date
 
     // Trace info
+    var traceID: String?
     var traceGeneratedDate: Date?
     var phoneModel: String?
 
@@ -121,6 +128,7 @@ class BluetoothDebugViewController: UIViewController {
     private var debugTraceErrorsByUUID = [UUID: [DebugTraceError]]()
     // For easily matching uploads to traces
     private var traceIDMap = [String: Set<DebugTrace>]()
+
     private var displayData = [PeripheralDevice]()
 
     private var shouldDeduplicate: Bool = false
@@ -327,6 +335,7 @@ class BluetoothDebugViewController: UIViewController {
     private func processAndReloadData() {
         DispatchQueue.main.async {
             self.displayData = []
+
             for (uuid, discoveries) in self.debugPeripheralsByUUID {
 
                 var baseRecords = discoveries.map {
@@ -363,6 +372,7 @@ class BluetoothDebugViewController: UIViewController {
                         if let nextRecord = nextRecord, nextRecord.scanDate < timestamp {
                             // do not attribute trace to this record
                         } else {
+                            currentRecord.traceID = currentTrace.traceID
                             currentRecord.traceGeneratedDate = currentTrace.createdDate
                             currentRecord.phoneModel = currentTrace.phoneModel
                             traceIndex += 1
@@ -393,9 +403,34 @@ class BluetoothDebugViewController: UIViewController {
                 }
 
                 if let peripheralDevice = PeripheralDevice(records: baseRecords) {
-                    self.displayData.append(peripheralDevice)
+                    if !self.shouldDeduplicate {
+                        self.displayData.append(peripheralDevice)
+                    } else {
+                        var combineIndex: Int? = nil
+                        for (index, existingDevice) in self.displayData.enumerated() {
+                            let sameName = existingDevice.name != nil && existingDevice.name == peripheralDevice.name
+                            let samePhoneModel = existingDevice.phoneModel != nil && existingDevice.phoneModel == peripheralDevice.phoneModel
+                            let overlappingTraceID = !existingDevice.traceIDs.intersection(peripheralDevice.traceIDs).isEmpty
+
+                            let shouldCombine = sameName || samePhoneModel || overlappingTraceID
+                            if shouldCombine {
+                                combineIndex = index
+                                break
+                            }
+                        }
+
+                        if
+                            let combineIndex = combineIndex,
+                            let combinedPeripheralDevice = PeripheralDevice(records: self.displayData[combineIndex].records + peripheralDevice.records)
+                        {
+                            self.displayData[combineIndex] = combinedPeripheralDevice
+                        } else {
+                            self.displayData.append(peripheralDevice)
+                        }
+                    }
                 }
             }
+
             self.displayData = self.displayData.sorted { $0.lastDiscoveryDate > $1.lastDiscoveryDate }
             self.tableView.reloadData()
         }
@@ -433,12 +468,14 @@ extension BluetoothDebugViewController: UITableViewDelegate, UITableViewDataSour
         }
         title += " (\(peripheral.count) / \(peripheral.tracesCreated) / \(peripheral.tracesUploaded) / \(peripheral.errorCount) / \(peripheral.skippedCount))"
         cell.textLabel?.text = title
+        cell.textLabel?.numberOfLines = 0
 
         let displayInterval = peripheral.averageDiscoveryInterval != nil
             ? "\(Int(peripheral.averageDiscoveryInterval!))"
             : "n/a"
         let subtitle = "RSSI: \(Int(peripheral.averageRSSI)) | Interval: \(displayInterval) s | Updated: \(dateFormatter.string(from: peripheral.lastUpdatedDate))"
         cell.detailTextLabel?.text = subtitle
+        cell.detailTextLabel?.numberOfLines = 0
 
         return cell
     }
