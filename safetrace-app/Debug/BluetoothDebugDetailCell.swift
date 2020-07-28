@@ -6,6 +6,7 @@ class BluetoothDebugDetailCell: UITableViewCell {
     let traceCreatedDateLabel = UILabel()
     let uploadedDateLabel = UILabel()
     let detailLabel = UILabel()
+    let traceIDLabel = UILabel()
     let errorLabel = UILabel()
 
     let dateFormatter: DateFormatter = {
@@ -22,13 +23,17 @@ class BluetoothDebugDetailCell: UITableViewCell {
         traceCreatedDateLabel.font = .bodyRegular
         uploadedDateLabel.font = .bodyRegular
         detailLabel.font = .bodyRegular
+        traceIDLabel.font = .bodyRegular
+        traceIDLabel.numberOfLines = 0
         errorLabel.font = .bodyRegular
+        errorLabel.numberOfLines = 0
 
         let stackView = UIStackView(arrangedSubviews: [
             scanDateLabel,
             traceCreatedDateLabel,
             uploadedDateLabel,
             detailLabel,
+            traceIDLabel,
             errorLabel
         ])
         stackView.axis = .vertical
@@ -63,6 +68,8 @@ class BluetoothDebugDetailCell: UITableViewCell {
         uploadedDateLabel.text = "Uploaded: \(traceUploadedDisplay)"
 
         detailLabel.text = "RSSI: \(Int(record.rssi)) | Foreground: \(record.foreground) | Skipped: \(record.isSkipped)"
+
+        traceIDLabel.text = "Trace ID: \(record.traceID ?? "null")"
 
         errorLabel.text = "Error: \(formatError(record.error))"
     }

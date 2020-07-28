@@ -26,6 +26,22 @@ class BluetoothDebugDetailViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let record = records[indexPath.row]
+        UIPasteboard.general.string = record.traceID ?? "null"
+
+        let alert = UIAlertController(title: "Trace ID Copied", message: nil, preferredStyle: .alert)
+        present(alert, animated: true)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true)
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
