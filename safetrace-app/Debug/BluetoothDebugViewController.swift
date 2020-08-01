@@ -260,7 +260,7 @@ class BluetoothDebugViewController: UIViewController {
     }
 
     @objc private func clearRecords() {
-        Debug.clearDebugRecords()
+        Debug.clearDebugTraceRecords()
 
         debugPeripheralsByUUID = [:]
         debugTracesByUUID = [:]

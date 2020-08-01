@@ -10,6 +10,7 @@ private let peripheralDiscoveriesIdentifier = "org.ctzn.debug_discoveries"
 private let debugTracesIdentifier = "org.ctzn.debug_traces"
 private let debugTraceUploadsIdentifier = "org.ctzn.debug_trace_uploads"
 private let debugTraceErrorsIdentifier = "org.ctzn.debug_trace_errors"
+private let debugHealthCheckIdentifier = "org.ctzn.debug_health_checks"
 
 public struct DebugPeripheral: Codable {
     public var identifier: UUID
@@ -52,6 +53,34 @@ public struct DebugTraceUpload: Codable {
     public var uploadedDate: Date
 }
 
+public class DebugHealthCheck: Codable {
+    public var wakeReason: WakeReason
+    public var bluetoothEnabled: Bool
+    public var pushEnabled: Bool
+    public var isOptedIn: Bool
+    public var bluetoothHardwareEnabled: Bool
+    public var timestamp: Date
+
+    public var succeeded: Bool?
+    public var error: String?
+
+    init(
+        wakeReason: WakeReason,
+        bluetoothEnabled: Bool,
+        pushEnabled: Bool,
+        isOptedIn: Bool,
+        bluetoothHardwareEnabled: Bool,
+        timestamp: Date
+    ) {
+        self.wakeReason = wakeReason
+        self.bluetoothEnabled = bluetoothEnabled
+        self.pushEnabled = pushEnabled
+        self.isOptedIn = isOptedIn
+        self.bluetoothHardwareEnabled = bluetoothHardwareEnabled
+        self.timestamp = timestamp
+    }
+}
+
 public enum Debug {
 
     public static var debugPeripherals: [DebugDiscoveredPeripheral] = loadDiscoveredPeripherals()
@@ -66,10 +95,12 @@ public enum Debug {
     public static var traceErrors: [DebugTraceError] = loadTraceErrors()
     public static var traceErrorHandler: ((DebugTraceError) -> Void)?
 
+    public static var healthChecks: [DebugHealthCheck] = loadHealthChecks()
+    public static var healthCheckHandler: ((DebugHealthCheck) -> Void)?
 
     // MARK: Clear Debug Records
 
-    public static func clearDebugRecords() {
+    public static func clearDebugTraceRecords() {
         #if INTERNAL
         debugPeripherals = []
         debugTraces = []
@@ -80,6 +111,14 @@ public enum Debug {
         saveDebugTraces([])
         saveTracesUploads([])
         saveTracesErrors([])
+        #endif
+    }
+
+    public static func clearHealthCheckRecords() {
+        #if INTERNAL
+        healthChecks = []
+
+        saveHealthChecks([])
         #endif
     }
 
@@ -263,6 +302,51 @@ public enum Debug {
     private static func loadTraceErrors() -> [DebugTraceError] {
         if let json = UserDefaults.standard.data(forKey: debugTraceErrorsIdentifier),
             let errors = try? JSONDecoder().decode([DebugTraceError].self, from: json) {
+
+            return errors
+        }
+
+        return []
+    }
+
+    // MARK: Debugger Health Checks
+
+    static func recordNewHealthCheck(_ healthCheck: DebugHealthCheck) {
+        #if INTERNAL
+
+        healthChecks.append(healthCheck)
+        healthCheckHandler?(healthCheck)
+
+        saveHealthChecks(healthChecks)
+        #endif
+    }
+
+    static func recordHealthCheckCompleted(healthCheck: DebugHealthCheck, error: String?) {
+        #if INTERNAL
+
+        if let matchingHealthCheck = healthChecks.first(where: { $0.timestamp == healthCheck.timestamp }) {
+            matchingHealthCheck.succeeded = error == nil
+            matchingHealthCheck.error = error
+            healthCheckHandler?(matchingHealthCheck)
+
+            saveHealthChecks(healthChecks)
+        }
+
+        #endif
+    }
+
+    private static func saveHealthChecks(_ data: [DebugHealthCheck]) {
+        guard let json = try? JSONEncoder().encode(data) else {
+            assertionFailure("Could not serialize debug health check")
+            return
+        }
+
+        UserDefaults.standard.set(json, forKey: debugHealthCheckIdentifier)
+    }
+
+    private static func loadHealthChecks() -> [DebugHealthCheck] {
+        if let json = UserDefaults.standard.data(forKey: debugHealthCheckIdentifier),
+            let errors = try? JSONDecoder().decode([DebugHealthCheck].self, from: json) {
 
             return errors
         }

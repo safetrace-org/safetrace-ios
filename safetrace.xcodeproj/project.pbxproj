@@ -42,6 +42,7 @@
 		3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */; };
 		3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
 		3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
+		3EA469FF24D61052001E3BD6 /* HealthCheckDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA469FE24D61052001E3BD6 /* HealthCheckDebugViewController.swift */; };
 		3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
@@ -216,6 +217,7 @@
 		3E826843249EA00E00B12FE3 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProviding.swift; sourceTree = "<group>"; };
 		3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProvider.swift; sourceTree = "<group>"; };
+		3EA469FE24D61052001E3BD6 /* HealthCheckDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckDebugViewController.swift; sourceTree = "<group>"; };
 		3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsProviding.swift; sourceTree = "<group>"; };
 		3EB4386B249D4A4200AA80DF /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
 		3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvents.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */,
 				DCB94CCA249BC43200D616AD /* DebugViewController.swift */,
 				3ED5586024C8F15200B97155 /* BluetoothDebugViewController.swift */,
+				3EA469FE24D61052001E3BD6 /* HealthCheckDebugViewController.swift */,
 				3E09C8B324CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift */,
 				3E09C8B524CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift */,
 			);
@@ -955,6 +958,7 @@
 				3ED5586124C8F15200B97155 /* BluetoothDebugViewController.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
+				3EA469FF24D61052001E3BD6 /* HealthCheckDebugViewController.swift in Sources */,
 				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
 				3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */,
 				3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */,

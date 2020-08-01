@@ -49,14 +49,20 @@ internal final class DebugViewController: UIViewController {
 
         let debuggerButton = Button(style: .primary, size: .small)
         debuggerButton.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-        debuggerButton.setTitle("Open Debugger", for: .normal)
-        debuggerButton.addTarget(self, action: #selector(openDebugger), for: .touchUpInside)
+        debuggerButton.setTitle("🔵 Bluetooth Debugger", for: .normal)
+        debuggerButton.addTarget(self, action: #selector(openBluetoothDebugger), for: .touchUpInside)
+
+        let healthCheckDebuggerButton = Button(style: .primary, size: .small)
+        healthCheckDebuggerButton.contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+        healthCheckDebuggerButton.setTitle("❤️ Health Check Debugger", for: .normal)
+        healthCheckDebuggerButton.addTarget(self, action: #selector(openHealthCheckDebugger), for: .touchUpInside)
 
         let mainStackView = UIStackView(arrangedSubviews: [
             envStackView,
             debugStackView,
             logoutButton,
-            debuggerButton
+            debuggerButton,
+            healthCheckDebuggerButton
         ])
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.axis = .vertical
@@ -92,8 +98,15 @@ internal final class DebugViewController: UIViewController {
         fatalError()
     }
 
-    @objc private func openDebugger() {
+    @objc private func openBluetoothDebugger() {
         let vc = BluetoothDebugViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true, completion: nil)
+    }
+
+    @objc private func openHealthCheckDebugger() {
+        let vc = HealthCheckDebugViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true, completion: nil)

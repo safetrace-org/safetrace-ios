@@ -1,6 +1,6 @@
 import UIKit
 
-public enum WakeReason: String, Encodable {
+public enum WakeReason: String, Codable {
     case appOpen = "app_open"
     case silentNotification = "silent_notification"
     case backgroundFetch = "background_fetch"
@@ -65,7 +65,20 @@ public final class SafeTrace {
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let pushEnabled = settings.authorizationStatus == .authorized
-            
+
+            #if INTERNAL
+            let debugHealthCheck = DebugHealthCheck(
+                wakeReason: wakeReason,
+                bluetoothEnabled: bluetoothEnabled,
+                pushEnabled: pushEnabled,
+                isOptedIn: isOptedIn,
+                bluetoothHardwareEnabled: bluetoothHardwareEnabled,
+                timestamp: Date()
+            )
+
+            Debug.recordNewHealthCheck(debugHealthCheck)
+            #endif
+
             environment.network.sendHealthCheck(
                 userID: userID,
                 bluetoothEnabled: bluetoothEnabled,
@@ -79,27 +92,15 @@ public final class SafeTrace {
             ) { result in
                     completion?()
 
+                    #if INTERNAL
                     switch result {
                     case .success:
-                        Debug.notify(
-                            title: "Health Check Sent",
-                            body: "Error: None",
-                            identifier: UUID().uuidString
-                        )
+                        Debug.recordHealthCheckCompleted(healthCheck: debugHealthCheck, error: nil)
                     case .failure(let error):
-                        Debug.notify(
-                            title: "Health Check Sent",
-                            body: "Error: \(error.localizedDescription)",
-                            identifier: UUID().uuidString
-                        )
+                        Debug.recordHealthCheckCompleted(healthCheck: debugHealthCheck, error: error.localizedDescription)
                     }
+                    #endif
                 }
-
-            Debug.notify(
-                title: "Sending Health Check",
-                body: "Wake Reason: \(wakeReason.rawValue)",
-                identifier: UUID().uuidString
-            )
         }
     }
 
