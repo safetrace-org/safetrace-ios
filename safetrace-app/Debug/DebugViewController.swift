@@ -6,6 +6,9 @@ internal final class DebugViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+
+        navigationItem.rightBarButtonItem = .init(title: "Close", style: .plain, target: self, action: #selector(dismissVC))
+
         let envSwitch = UISegmentedControl()
         envSwitch.insertSegment(withTitle: "Staging", at: 0, animated: false)
         envSwitch.insertSegment(withTitle: "Production", at: 1, animated: false)
@@ -68,6 +71,10 @@ internal final class DebugViewController: UIViewController {
         ])
         
         view.backgroundColor = .white
+    }
+
+    @objc private func dismissVC() {
+        dismiss(animated: true)
     }
     
     @objc private func environmentValueChanged(sender: UISegmentedControl) {

@@ -8,7 +8,9 @@ extension UIWindow {
         
         if let rootVC = self.rootViewController {
             let debugVC = DebugViewController()
-            rootVC.present(debugVC, animated: true, completion: nil)
+            let navVC = UINavigationController(rootViewController: debugVC)
+            navVC.modalPresentationStyle = .fullScreen
+            rootVC.present(navVC, animated: true, completion: nil)
         }
     }
 }

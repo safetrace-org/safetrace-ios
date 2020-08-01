@@ -71,7 +71,7 @@ class BluetoothDebugDetailCell: UITableViewCell {
 
         uuidLabel.text = "UUID: \(record.uuid.uuidString)"
 
-        detailLabel.text = "RSSI: \(Int(record.rssi)) | Foreground: \(record.foreground) | Skipped: \(record.isSkipped)"
+        detailLabel.text = "RSSI: \(Int(record.rssi)) | Foreground: \(record.foreground) | Sender Foreground: \(record.senderForeground?.description ?? "nil") | Skipped: \(record.isSkipped)"
 
         traceIDLabel.text = "Trace ID: \(record.traceID ?? "null")"
 

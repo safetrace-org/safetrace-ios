@@ -91,6 +91,7 @@ class PeripheralRecord {
     var traceID: String?
     var traceGeneratedDate: Date?
     var phoneModel: String?
+    var senderForeground: Bool?
 
     // Upload info
     var traceUploadedDate: Date?
@@ -112,6 +113,21 @@ class PeripheralRecord {
         self.isSkipped = isSkipped
         self.foreground = foreground
         self.scanDate = scanDate
+    }
+
+    func updateWithTrace(_ trace: DebugTrace) {
+        traceID = trace.traceID
+        traceGeneratedDate = trace.createdDate
+        phoneModel = trace.phoneModel
+        senderForeground = trace.senderForeground
+    }
+
+    func updateWithUpload(_ upload: DebugTraceUpload) {
+        traceUploadedDate = upload.uploadedDate
+    }
+
+    func updateWithError(_ error: DebugTraceError) {
+        self.error = error
     }
 }
 
@@ -376,9 +392,7 @@ class BluetoothDebugViewController: UIViewController {
                         if let nextRecord = nextRecord, nextRecord.scanDate < timestamp {
                             // do not attribute trace to this record
                         } else {
-                            currentRecord.traceID = currentTrace.traceID
-                            currentRecord.traceGeneratedDate = currentTrace.createdDate
-                            currentRecord.phoneModel = currentTrace.phoneModel
+                            currentRecord.updateWithTrace(currentTrace)
                             traceIndex += 1
                         }
                     }
@@ -386,7 +400,7 @@ class BluetoothDebugViewController: UIViewController {
                     if let uploads = self.debugTraceUploadsByUUID[uuid], uploadIndex < uploads.count {
                         let currentUpload = uploads[uploadIndex]
                         if currentRecord.traceGeneratedDate == currentUpload.createdDate {
-                            currentRecord.traceUploadedDate = currentUpload.uploadedDate
+                            currentRecord.updateWithUpload(currentUpload)
                             uploadIndex += 1
                         }
                     }
@@ -398,12 +412,17 @@ class BluetoothDebugViewController: UIViewController {
                         if let nextRecord = nextRecord, nextRecord.scanDate < timestamp {
                             // do not attribute error to this record
                         } else {
-                            currentRecord.error = currentError
+                            currentRecord.updateWithError(currentError)
                             errorIndex += 1
                         }
                     }
 
                     recordIndex += 1
+                }
+
+                if self.filterBackgroundOnly {
+                    // Secondary filtering to make sure the sender was also in background
+                    baseRecords = baseRecords.filter { $0.senderForeground == .some(false) }
                 }
 
                 if let peripheralDevice = PeripheralDevice(records: baseRecords) {
