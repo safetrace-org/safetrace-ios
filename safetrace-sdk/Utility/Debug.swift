@@ -101,7 +101,6 @@ public enum Debug {
     // MARK: Clear Debug Records
 
     public static func clearDebugTraceRecords() {
-        #if INTERNAL
         debugPeripherals = []
         debugTraces = []
         traceUploads = []
@@ -111,15 +110,12 @@ public enum Debug {
         saveDebugTraces([])
         saveTracesUploads([])
         saveTracesErrors([])
-        #endif
     }
 
     public static func clearHealthCheckRecords() {
-        #if INTERNAL
         healthChecks = []
 
         saveHealthChecks([])
-        #endif
     }
 
     // MARK: Notifications
@@ -154,7 +150,6 @@ public enum Debug {
     // MARK: - Debugger Peripheral Discovery
 
     static func recordPeripheralDiscovery(_ peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber, isSkipped: Bool) {
-        #if INTERNAL
         let nameCharacteristic = advertisementData[CBAdvertisementDataLocalNameKey] as? String
         let uuidCharacteristic = (advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID])?.map { $0.uuidString }
 
@@ -172,7 +167,6 @@ public enum Debug {
         debugPeripheralHandler?(peripheralDiscovery)
 
         saveDiscoveredPeripherals(debugPeripherals)
-        #endif
     }
 
     private static func saveDiscoveredPeripherals(_ data: [DebugDiscoveredPeripheral]) {
@@ -197,7 +191,6 @@ public enum Debug {
     // MARK: Debugger Trace Creation
 
     static func recordTraceCreation(_ packet: TracePacket, peripheral: CBPeripheral, timestamp: Date) {
-        #if INTERNAL
         let trace = DebugTrace(
             peripheralUUID: peripheral.identifier,
             traceID: packet.traceID,
@@ -210,7 +203,6 @@ public enum Debug {
         debugTraceHandler?(trace)
 
         saveDebugTraces(debugTraces)
-        #endif
     }
 
     private static func saveDebugTraces(_ data: [DebugTrace]) {
@@ -235,7 +227,6 @@ public enum Debug {
     // MARK: Debugger Trace Uploads
 
     static func recordTraceUploads(_ traces: [ContactTrace]) {
-        #if INTERNAL
         let uploadedDate = Date()
 
         let uploads = traces.map {
@@ -250,7 +241,6 @@ public enum Debug {
         tracesUploadedHandler?(uploads)
 
         saveTracesUploads(traceUploads)
-        #endif
     }
 
     private static func saveTracesUploads(_ data: [DebugTraceUpload]) {
@@ -275,7 +265,6 @@ public enum Debug {
     // MARK: Debugger Trace Errors
 
     static func recordTraceError(_ error: String, context: String, peripheral: CBPeripheral) {
-        #if INTERNAL
         let error = DebugTraceError(
             peripheralUUID: peripheral.identifier,
             description: error,
@@ -287,7 +276,6 @@ public enum Debug {
         traceErrorHandler?(error)
 
         saveTracesErrors(traceErrors)
-        #endif
     }
 
     private static func saveTracesErrors(_ data: [DebugTraceError]) {
@@ -312,18 +300,13 @@ public enum Debug {
     // MARK: Debugger Health Checks
 
     static func recordNewHealthCheck(_ healthCheck: DebugHealthCheck) {
-        #if INTERNAL
-
         healthChecks.append(healthCheck)
         healthCheckHandler?(healthCheck)
 
         saveHealthChecks(healthChecks)
-        #endif
     }
 
     static func recordHealthCheckCompleted(healthCheck: DebugHealthCheck, error: String?) {
-        #if INTERNAL
-
         if let matchingHealthCheck = healthChecks.first(where: { $0.timestamp == healthCheck.timestamp }) {
             matchingHealthCheck.succeeded = error == nil
             matchingHealthCheck.error = error
@@ -331,8 +314,6 @@ public enum Debug {
 
             saveHealthChecks(healthChecks)
         }
-
-        #endif
     }
 
     private static func saveHealthChecks(_ data: [DebugHealthCheck]) {

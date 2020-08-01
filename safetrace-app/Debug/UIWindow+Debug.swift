@@ -1,4 +1,3 @@
-#if INTERNAL
 import UIKit
 
 extension UIWindow {
@@ -14,4 +13,3 @@ extension UIWindow {
         }
     }
 }
-#endif

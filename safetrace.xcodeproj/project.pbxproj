@@ -43,6 +43,12 @@
 		3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
 		3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
 		3EA469FF24D61052001E3BD6 /* HealthCheckDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA469FE24D61052001E3BD6 /* HealthCheckDebugViewController.swift */; };
+		3EA46A0024D61871001E3BD6 /* UIWindow+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */; };
+		3EA46A0124D61874001E3BD6 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
+		3EA46A0224D61876001E3BD6 /* BluetoothDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED5586024C8F15200B97155 /* BluetoothDebugViewController.swift */; };
+		3EA46A0324D61878001E3BD6 /* HealthCheckDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA469FE24D61052001E3BD6 /* HealthCheckDebugViewController.swift */; };
+		3EA46A0424D6187A001E3BD6 /* BluetoothDebugDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C8B324CF662A00D65EF4 /* BluetoothDebugDetailViewController.swift */; };
+		3EA46A0524D6187D001E3BD6 /* BluetoothDebugDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C8B524CF6B3700D65EF4 /* BluetoothDebugDetailCell.swift */; };
 		3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
 		3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
@@ -872,19 +878,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA46A0324D61878001E3BD6 /* HealthCheckDebugViewController.swift in Sources */,
 				3E5A05FB24A139940052A242 /* CitizenUpsellView.swift in Sources */,
 				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
 				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
 				3E5A060224A143AB0052A242 /* CitizenProviding.swift in Sources */,
+				3EA46A0524D6187D001E3BD6 /* BluetoothDebugDetailCell.swift in Sources */,
 				3E5A05F824A1354F0052A242 /* ReportTestResultView.swift in Sources */,
 				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
 				3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */,
 				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
 				DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */,
+				3EA46A0424D6187A001E3BD6 /* BluetoothDebugDetailViewController.swift in Sources */,
 				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
 				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
 				3E6A4510249EF627001E94A8 /* Update.swift in Sources */,
 				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
+				3EA46A0124D61874001E3BD6 /* DebugViewController.swift in Sources */,
 				3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
 				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
 				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
@@ -903,8 +913,10 @@
 				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
+				3EA46A0024D61871001E3BD6 /* UIWindow+Debug.swift in Sources */,
 				3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */,
 				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
+				3EA46A0224D61876001E3BD6 /* BluetoothDebugViewController.swift in Sources */,
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
@@ -1274,6 +1286,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = SafeTrace;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

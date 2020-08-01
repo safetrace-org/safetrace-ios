@@ -1,4 +1,3 @@
-#if INTERNAL
 import SafeTrace
 import UIKit
 
@@ -116,5 +115,3 @@ internal final class DebugViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-#endif

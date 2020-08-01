@@ -66,7 +66,6 @@ public final class SafeTrace {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let pushEnabled = settings.authorizationStatus == .authorized
 
-            #if INTERNAL
             let debugHealthCheck = DebugHealthCheck(
                 wakeReason: wakeReason,
                 bluetoothEnabled: bluetoothEnabled,
@@ -77,7 +76,6 @@ public final class SafeTrace {
             )
 
             Debug.recordNewHealthCheck(debugHealthCheck)
-            #endif
 
             environment.network.sendHealthCheck(
                 userID: userID,
@@ -92,14 +90,12 @@ public final class SafeTrace {
             ) { result in
                     completion?()
 
-                    #if INTERNAL
                     switch result {
                     case .success:
                         Debug.recordHealthCheckCompleted(healthCheck: debugHealthCheck, error: nil)
                     case .failure(let error):
                         Debug.recordHealthCheckCompleted(healthCheck: debugHealthCheck, error: error.localizedDescription)
                     }
-                    #endif
                 }
         }
     }
