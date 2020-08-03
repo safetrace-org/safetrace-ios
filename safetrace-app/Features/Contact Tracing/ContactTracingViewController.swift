@@ -389,7 +389,7 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
         stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
         stackView.setCustomSpacing(12, after: notificationIconLabelView)
-        stackView.setCustomSpacing(8, after: privacyImageLabelView)
+        stackView.setCustomSpacing(24, after: privacyImageLabelView)
 
         return stackView
     }
