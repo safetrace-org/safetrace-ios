@@ -71,6 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.newData)
         }
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme == "safetrace" && url.host == "citizen" {
+            UIApplication.shared.open(URL(string: "citizen://")!, options: [:], completionHandler: nil)
+            return true
+        }
+        
+        return false
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
