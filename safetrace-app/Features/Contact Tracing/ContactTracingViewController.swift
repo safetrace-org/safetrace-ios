@@ -373,12 +373,15 @@ class ContactTracingViewController: UIViewController {
 
         let privacyImageLabelView = UIStackView(arrangedSubviews: [privacyIcon, privacyTextView])
         update(privacyImageLabelView, ContactTracingStyle.imageLabelStackView)
+        
+        let versionLabel = makeAppVersionLabel()
 
         let stackView = UIStackView(arrangedSubviews: [
             descriptionLabel,
             bluetoothIconLabelView,
             notificationIconLabelView,
-            privacyImageLabelView
+            privacyImageLabelView,
+            versionLabel
         ])
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -386,30 +389,34 @@ class ContactTracingViewController: UIViewController {
         stackView.setCustomSpacing(UIScreen.main.isSmallScreen ? 14 : 30, after: descriptionLabel)
         stackView.setCustomSpacing(12, after: bluetoothIconLabelView)
         stackView.setCustomSpacing(12, after: notificationIconLabelView)
+        stackView.setCustomSpacing(24, after: privacyImageLabelView)
 
         return stackView
     }
 
     private func makeTracingActiveContentStackView() -> UIStackView {
         let keepOpenLabel = UILabel()
-        keepOpenLabel.font = .smallSemibold
-        keepOpenLabel.textColor = .stGrey55
+        keepOpenLabel.font = .bodyBold
+        keepOpenLabel.textColor = .stPurpleAccentUp
         keepOpenLabel.numberOfLines = 0
-        keepOpenLabel.text = NSLocalizedString("For the most accurate and timely contact tracing experience, keep the app open and bluetooth and notifications enabled.", comment: "Message to remind users to keep app open")
+        keepOpenLabel.text = NSLocalizedString("Keep this app opened with bluetooth and notifications enabled for the most accurate and timely contact tracing experience.", comment: "Message to remind users to keep app open")
 
         let shortedPrivacyLinksView = makePrivacyAndTermsTextView(shortened: true)
-
+        let versionLabel = makeAppVersionLabel()
+        
         let stackView = UIStackView(arrangedSubviews: [
             keepOpenLabel,
             reportTestResultView,
             SeparatorView(),
             getCitizenAppView,
             SeparatorView(),
-            shortedPrivacyLinksView
+            shortedPrivacyLinksView,
+            versionLabel
         ])
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 26
+        stackView.setCustomSpacing(8, after: shortedPrivacyLinksView)
 
         reportTestResultView.translatesAutoresizingMaskIntoConstraints = false
         getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
@@ -460,6 +467,20 @@ class ContactTracingViewController: UIViewController {
             }
         }
         return privacyAndTermsTextView
+    }
+    
+    private func makeAppVersionLabel() -> UILabel {
+        let versionLabel = UILabel()
+        versionLabel.font = .smallRegular
+        versionLabel.textColor = .stGrey40
+        versionLabel.isHidden = true
+        
+        if let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String, let b = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            versionLabel.text = "v\(v) (\(b))"
+            versionLabel.isHidden = false
+        }
+
+        return versionLabel
     }
 
 }

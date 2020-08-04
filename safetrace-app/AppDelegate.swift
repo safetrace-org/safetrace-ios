@@ -8,6 +8,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let environment: Environment = AppEnvironment()
     
+    private var appSwitcherOverlayWindow: UIWindow?
+
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SafeTrace.registerErrorHandler { error in
             var params = error.meta
@@ -26,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow()        
         self.window?.rootViewController = MainNavigationController(environment: environment)
         self.window?.makeKeyAndVisible()
-        
+                
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         environment.analytics.track(event: SystemAnalytic.appLaunch, params: [
             "bluetooth": launchOptions?[.bluetoothCentrals] != nil
@@ -39,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        hideAppSwitcherOverlay()
         environment.analytics.track(event: SystemAnalytic.appForeground)
         environment.safeTrace.applicationWillEnterForeground(application)
         
@@ -53,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        showAppSwitcherOverlay()
         environment.analytics.track(event: SystemAnalytic.appBackground)
         environment.safeTrace.applicationDidEnterBackground(application)
     }
@@ -65,6 +70,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         environment.safeTrace.sendHealthCheck(wakeReason: .backgroundFetch) {
             completionHandler(.newData)
         }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme == "safetrace" && url.host == "citizen" {
+            UIApplication.shared.open(URL(string: "citizen://")!, options: [:], completionHandler: nil)
+            return true
+        }
+        
+        return false
     }
 }
 
@@ -86,5 +100,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         environment.safeTrace.session.setAPNSToken(deviceToken)
+    }
+}
+
+// MARK: - App Switcher Overlay
+extension AppDelegate {
+    private func showAppSwitcherOverlay() {
+        appSwitcherOverlayWindow = UIWindow()
+        appSwitcherOverlayWindow?.rootViewController = AppSwitcherOverlayViewController()
+        appSwitcherOverlayWindow?.windowLevel = .alert + 1
+        appSwitcherOverlayWindow?.backgroundColor = .clear
+        appSwitcherOverlayWindow?.makeKeyAndVisible()
+    }
+
+    private func hideAppSwitcherOverlay() {
+        appSwitcherOverlayWindow?.isHidden = true
+        appSwitcherOverlayWindow = nil
     }
 }
