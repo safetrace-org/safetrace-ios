@@ -114,6 +114,7 @@ internal final class ContactTracer: NSObject {
         
         let traceData = ContactTraces(traces: traces, phoneModel: environment.device.model())
         
+        let task = UIApplication.shared.beginBackgroundTask()
         environment.network.uploadTraces(traceData, userID: userID) { [weak self] result in
             Debug.notify(
                 title: "UPLOADED \(traces.count) TRACES",
@@ -125,6 +126,7 @@ internal final class ContactTracer: NSObject {
             case .failure(let error):
                 self?.logError(error.localizedDescription, context: "uploadTraces", meta: nil)
             }
+            UIApplication.shared.endBackgroundTask(task)
         }
     }
 
