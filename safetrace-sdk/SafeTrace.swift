@@ -6,6 +6,7 @@ public enum WakeReason: String, Encodable {
     case backgroundFetch = "background_fetch"
     case appForeground = "app_foreground"
     case appBackground = "app_background"
+    case bluetooth = "bluetooth"
 }
 
 public final class SafeTrace {
@@ -63,6 +64,8 @@ public final class SafeTrace {
         let batteryLevel = Int(UIDevice.current.batteryLevel * 100)
         let isLowPowerMode = ProcessInfo.processInfo.isLowPowerModeEnabled
 
+        let task = UIApplication.shared.beginBackgroundTask()
+        
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let pushEnabled = settings.authorizationStatus == .authorized
             
@@ -93,6 +96,8 @@ public final class SafeTrace {
                             identifier: UUID().uuidString
                         )
                     }
+                
+                    UIApplication.shared.endBackgroundTask(task)
                 }
 
             Debug.notify(
@@ -115,16 +120,14 @@ public final class SafeTrace {
             // If we're launching for bluetooth background activity, start scanning only
             // but do not perform any networking side effects
             environment.tracer.startScanning()
+            sendHealthCheckForBluetoothWakeIfNeeded()
         } else {
             environment.tracer.startScanning()
             environment.traceIDs.refreshIfNeeded()
             environment.tracer.reportPendingTraces()
             
             let isFromRemotePush = launchOptions?[.remoteNotification] != nil
-            let task = UIApplication.shared.beginBackgroundTask()
-            sendHealthCheck(wakeReason: isFromRemotePush ? .silentNotification : .appOpen) {
-                UIApplication.shared.endBackgroundTask(task)
-            }
+            sendHealthCheck(wakeReason: isFromRemotePush ? .silentNotification : .appOpen)
         }
     }
     
@@ -150,6 +153,25 @@ public final class SafeTrace {
     public static func registerUserIDChangeHandler(_ handler: @escaping (String?) -> Void) {
         environment.session.userIDDidChange = handler
         handler(environment.session.userID)
+    }
+    
+    private static func sendHealthCheckForBluetoothWakeIfNeeded() {
+        let key = "org.ctzn.last_bluetooth_health_check"
+        let now = Date()
+
+        let sendCheck = {
+            sendHealthCheck(wakeReason: .bluetooth)
+            environment.tracer.reportPendingTraces()
+            environment.defaults.set(now, forKey: key)
+        }
+
+        if let lastWake = environment.defaults.object(forKey: key) as? Date {
+            if lastWake.addingTimeInterval(3600) <= now {
+                sendCheck()
+            }
+        } else {
+            sendCheck()
+        }
     }
 }
 
