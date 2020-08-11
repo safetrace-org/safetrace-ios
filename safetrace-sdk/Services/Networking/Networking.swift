@@ -19,7 +19,7 @@ protocol NetworkProtocol {
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
-        bluetoothHardwareEnabled: Bool,
+        bluetoothHardwareEnabled: Bool?,
         batteryLevel: Int,
         isLowPowerMode: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
@@ -163,7 +163,7 @@ class Network: NetworkProtocol {
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
-        bluetoothHardwareEnabled: Bool,
+        bluetoothHardwareEnabled: Bool?,
         batteryLevel: Int,
         isLowPowerMode: Bool,
         completion: @escaping (Result<Void, Error>) -> Void
@@ -174,7 +174,7 @@ class Network: NetworkProtocol {
             let wake_reason: WakeReason
             let is_opted_in: Bool
             let app_version: String
-            let bluetooth_hardware_enabled: Bool
+            let bluetooth_hardware_enabled: Bool?
             let battery_level: Int
             let is_low_power_mode: Bool
         }
