@@ -179,9 +179,8 @@ class ContactTracingViewController: UIViewController {
         transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues {
-                // TODO
-                print("Opening SafePass")
+            .observeValues { [weak self] in
+                (self?.navigationController as? MainNavigationController)?.transitionToSafePass()
             }
 
         displayAlert
