@@ -22,9 +22,9 @@ struct SafeTraceProvider: SafeTraceProviding {
     var safePassURL: URL {
         switch SafeTrace.apiEnvironment {
         case .staging:
-            return URL(string: "https://staging.sp0n.io/tracing/center")!
+            return URL(string: "https://staging.sp0n.io/tracing/safepass")!
         case .production:
-            return URL(string: "https://citizen.com/tracing/center")!
+            return URL(string: "https://citizen.com/tracing/safepass")!
         }
     }
 
