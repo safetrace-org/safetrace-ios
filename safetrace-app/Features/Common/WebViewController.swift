@@ -157,6 +157,8 @@ extension WebViewController: WKScriptMessageHandler {
 
                 let javascriptToRun: String = "_tracing.setIsCitizenInstalled(\(isCitizenInstalled))"
                 runJavaScript(javascriptToRun)
+            } else if body == "optInToTracing" {
+                environment.safeTrace.startTracing()
             }
         case "user":
 //            if body == "getLocation" {
@@ -175,6 +177,8 @@ extension WebViewController: WKScriptMessageHandler {
                     .infoDictionary?["CFBundleShortVersionString"] as? String ?? "error"
                 let javascriptToRun = "_user.setAppVersion('\(appVersion)')"
                 runJavaScript(javascriptToRun)
+            } else if body == "goToSettings" {
+                environment.bluetoothPermissions.openSettings()
             }
         case "webView":
             presentWebViewWithURLString(urlString: body)
