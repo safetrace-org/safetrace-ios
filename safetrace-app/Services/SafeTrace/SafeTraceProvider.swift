@@ -28,7 +28,7 @@ struct SafeTraceProvider: SafeTraceProviding {
         }
     }
 
-    func setHasOptedInOnce() {
+    private func setHasOptedInOnce() {
         UserDefaults.standard.set(true, forKey: "org.ctzn.hasOptedInOnce")
     }
 
@@ -38,6 +38,7 @@ struct SafeTraceProvider: SafeTraceProviding {
 
     func startTracing() {
         SafeTrace.startTracing()
+        setHasOptedInOnce()
     }
 
     func stopTracing() {
