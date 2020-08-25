@@ -19,12 +19,12 @@ struct SafeTraceProvider: SafeTraceProviding {
         set { SafeTrace.apiEnvironment = newValue }
     }
 
-    func setLastSuccessfullyOptedIn(_ success: Bool) {
-        UserDefaults.standard.set(success, forKey: "org.ctzn.isLastSuccessfullyOptedIn")
+    func setHasOptedInOnce() {
+        UserDefaults.standard.set(true, forKey: "org.ctzn.hasOptedInOnce")
     }
 
-    func getLastSuccessfullyOptedIn() -> Bool {
-        return UserDefaults.standard.bool(forKey: "org.ctzn.isLastSuccessfullyOptedIn")
+    func getHasOptedInOnce() -> Bool {
+        return UserDefaults.standard.bool(forKey: "org.ctzn.hasOptedInOnce")
     }
 
     func startTracing() {

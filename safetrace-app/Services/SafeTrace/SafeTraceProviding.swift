@@ -17,6 +17,6 @@ protocol SafeTraceProviding {
     func applicationWillEnterForeground(_ application: UIApplication)
     func applicationDidEnterBackground(_ application: UIApplication)
 
-    func setLastSuccessfullyOptedIn(_ success: Bool)
-    func getLastSuccessfullyOptedIn() -> Bool
+    func setHasOptedInOnce()
+    func getHasOptedInOnce() -> Bool
 }

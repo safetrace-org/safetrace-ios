@@ -15,6 +15,7 @@ struct ContactTracingViewData {
     let bluetoothDenied: Bool
     let notificationDenied: Bool
     let isCitizenInstalled: Bool
+    let hasFinishedAskingPermissions: Bool
 }
 
 typealias ContactTracingAlertData = AlertData<Void>
@@ -43,8 +44,7 @@ func contactTracingViewModel(
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
     openCitizenAppOrAppStore: Signal<Void, Never>,
-    optInSuccessChanged: Signal<Bool, Never>,
-    redirectToCitizen: Signal<Void, Never>,
+    transitionToSafePass: Signal<Void, Never>,
     displayAlert: Signal<ContactTracingAlertData, Never>
 ) {
     let optInPipe = Signal<Bool, Never>.pipe()
@@ -120,36 +120,26 @@ func contactTracingViewModel(
                 return nil
             }
 
+            let hasFinishedAskingPermissions = bluetoothPermissions != .notDetermined
+                && notificationPermissions != .notDetermined
+
             return ContactTracingViewData(
                 isOptedIn: isOptedIn,
                 tracingStatus: tracingStatus,
                 bluetoothDenied: bluetoothPermissions == .denied,
                 notificationDenied: notificationPermissions == .denied,
-                isCitizenInstalled: isCitizenInstalled
+                isCitizenInstalled: isCitizenInstalled,
+                hasFinishedAskingPermissions: hasFinishedAskingPermissions
             )
         }
 
-    // MARK: - Redirect to Citizen Logic
-    let optInSuccessChanged = viewData
-        .compactMap { viewData -> Bool? in
-            let tracingActive = viewData.tracingStatus == .enabled
-            let lastSuccessfullyOptedIn = environment.safeTrace.getLastSuccessfullyOptedIn()
-
-            if tracingActive != lastSuccessfullyOptedIn {
-                return tracingActive
-            }
-            return nil
+    // MARK: - Redirect to SafePass Logic
+    let transitionToSafePass = viewData
+        .filter {
+            $0.isOptedIn && $0.hasFinishedAskingPermissions
         }
-
-    let redirectToCitizen = optInSuccessChanged
-        .observe(on: QueueScheduler.main)
-        .filter{
-            $0
-                && environment.citizen.isInstalled
-                && environment.safeTrace.session.isCitizenAuthenticated
-        }
-        .map(value: ())
         .delay(0.7, on: QueueScheduler.main)
+        .map(value: ())
 
     // MARK: - Handle Toggle Tap
 
@@ -270,8 +260,7 @@ func contactTracingViewModel(
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
         openCitizenAppOrAppStore: tapCitizenUpsell,
-        optInSuccessChanged: optInSuccessChanged,
-        redirectToCitizen: redirectToCitizen,
+        transitionToSafePass: transitionToSafePass,
         displayAlert: displayAlert
     )
 }

@@ -95,8 +95,7 @@ class ContactTracingViewController: UIViewController {
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
             openCitizenAppOrAppStore: openCitizenAppOrAppStore,
-            optInSuccessChanged: optInSuccessChanged,
-            redirectToCitizen: redirectToCitizen,
+            transitionToSafePass: transitionToSafePass,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
             environment: environment,
@@ -176,18 +175,12 @@ class ContactTracingViewController: UIViewController {
                 self?.environment.citizen.openSafepass()
             }
 
-        optInSuccessChanged
+        transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
-            .observeValues { [weak self] isSuccess in
-                self?.environment.safeTrace.setLastSuccessfullyOptedIn(isSuccess)
-            }
-
-        redirectToCitizen
-            .take(during: self.reactive.lifetime)
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] in
-                self?.environment.citizen.openSafepass()
+            .observeValues {
+                // TODO
+                print("Opening SafePass")
             }
 
         displayAlert
@@ -225,12 +218,12 @@ class ContactTracingViewController: UIViewController {
             enabledLabel.textColor = .stPurpleAccentUp
             toggle.alpha = 1
         case .error:
-            enabledLabel.textColor = .stRed
-            toggle.alpha = 0.6
+            enabledLabel.textColor = .stPurpleAccentUp
+            toggle.alpha = 1
         }
 
-        bluetoothIconLabelView.showErrorState = viewData.bluetoothDenied
-        notificationIconLabelView.showErrorState = viewData.notificationDenied
+        bluetoothIconLabelView.showErrorState = false
+        notificationIconLabelView.showErrorState = false
 
         getCitizenAppView.titleLabel.text = viewData.isCitizenInstalled
             ? NSLocalizedString("Open Citizen ", comment: "Citizen app upsell title if citizen is installed")
