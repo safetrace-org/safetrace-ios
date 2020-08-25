@@ -137,7 +137,7 @@ class EmailVerificationViewController: OnboardingViewController {
     }
 
     @objc private func didTapNeedHelpButton() {
-        let webViewController = WebViewController()
+        let webViewController = WebViewController(environment: environment, showCloseButton: true)
         webViewController.loadUrl(Constants.contactCitizenUrl)
         webViewController.modalPresentationStyle = .fullScreen
         present(webViewController, animated: true)

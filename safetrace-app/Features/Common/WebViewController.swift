@@ -6,7 +6,21 @@ final class WebViewController: UIViewController {
     private let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     private let loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
+    private let environment: Environment
+    private let showCloseButton: Bool
+
     var url: URL?
+
+    init(environment: Environment, showCloseButton: Bool) {
+        self.environment = environment
+        self.showCloseButton = showCloseButton
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     /// Load a URL
     func loadUrl(_ url: URL) {
@@ -24,11 +38,26 @@ final class WebViewController: UIViewController {
     private func layoutUI() {
         view.backgroundColor = .stBlack
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+
+        view.addSubview(stackView)
+
+        // Close Button
+        let closeButtonContainerView = UIView()
         let closeButton = UIButton()
         closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         closeButton.setImage(UIImage(named: "closeIcon")!, for: .normal)
         closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Closes the displayed modal.")
-        view.addSubview(closeButton)
+
+        closeButtonContainerView.addSubview(closeButton)
+        stackView.addArrangedSubview(closeButtonContainerView)
+
+        closeButtonContainerView.isHidden = !showCloseButton
+
+        // WebView
 
         webView.isOpaque = false
         webView.backgroundColor = .stBlack
@@ -38,20 +67,21 @@ final class WebViewController: UIViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
 
-        view.addSubview(webView)
+        stackView.addArrangedSubview(webView)
 
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        webView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.widthAnchor.constraint(equalToConstant: 32),
             closeButton.heightAnchor.constraint(equalToConstant: 32),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            closeButton.topAnchor.constraint(equalTo: closeButtonContainerView.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: closeButtonContainerView.trailingAnchor, constant: -20),
+            closeButton.bottomAnchor.constraint(equalTo: closeButtonContainerView.bottomAnchor, constant: -12),
 
-            webView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         view.addSubview(loadingIndicator)

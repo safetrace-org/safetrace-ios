@@ -31,6 +31,11 @@ class MainNavigationController: UINavigationController {
             } else {
                 pushViewController(nextOnboardingController, animated: true)
             }
+        } else if environment.safeTrace.getHasOptedInOnce() || environment.safeTrace.isOptedIn {
+            let webViewController = WebViewController(environment: environment, showCloseButton: false)
+            webViewController.loadUrl(environment.safeTrace.safePassURL)
+
+            setViewControllers([webViewController], animated: true)
         } else {
             setViewControllers([ContactTracingViewController(environment: environment)], animated: true)
         }

@@ -19,6 +19,15 @@ struct SafeTraceProvider: SafeTraceProviding {
         set { SafeTrace.apiEnvironment = newValue }
     }
 
+    var safePassURL: URL {
+        switch SafeTrace.apiEnvironment {
+        case .staging:
+            return URL(string: "https://staging.sp0n.io/tracing/center")!
+        case .production:
+            return URL(string: "https://citizen.com/tracing/center")!
+        }
+    }
+
     func setHasOptedInOnce() {
         UserDefaults.standard.set(true, forKey: "org.ctzn.hasOptedInOnce")
     }

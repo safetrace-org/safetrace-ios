@@ -162,10 +162,11 @@ class ContactTracingViewController: UIViewController {
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] url in
-                let webViewController = WebViewController()
+                guard let self = self else { return }
+                let webViewController = WebViewController(environment: self.environment, showCloseButton: true)
                 webViewController.loadUrl(url)
                 webViewController.modalPresentationStyle = .fullScreen
-                self?.present(webViewController, animated: true)
+                self.present(webViewController, animated: true)
             }
 
         openCitizenAppOrAppStore

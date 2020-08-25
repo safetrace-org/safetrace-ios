@@ -7,6 +7,7 @@ protocol SafeTraceProviding {
     var isTracing: Bool { get }
     var session: SafeTraceSession { get }
     var apiEnvironment: NetworkEnvironment { get set }
+    var safePassURL: URL { get }
 
     func startTracing()
     func stopTracing()
