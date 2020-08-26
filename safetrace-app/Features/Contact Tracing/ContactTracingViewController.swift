@@ -36,9 +36,6 @@ class ContactTracingViewController: UIViewController {
     private lazy var tracingActiveContentView = makeTracingActiveContentStackView()
     private lazy var tracingDisabledContentView = makeTracingDisabledContentStackView()
 
-    private let reportTestResultView = ReportTestResultView()
-    private let getCitizenAppView = CitizenUpsellView()
-
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 60
     private let trayTopSpacingToToggle: CGFloat = 20
 
@@ -94,7 +91,6 @@ class ContactTracingViewController: UIViewController {
             askNotificationPermissions: askNotificationPermissions,
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
-            openCitizenAppOrAppStore: openCitizenAppOrAppStore,
             transitionToSafePass: transitionToSafePass,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
@@ -108,8 +104,6 @@ class ContactTracingViewController: UIViewController {
             tapPrivacyText: tapPrivacyTextPipe.output,
             tapTermsText: tapTermsTextPipe.output,
             tapLearnMoreButton: learnMoreButton.reactive.controlEvents(.touchUpInside).map(value: ()),
-            tapReportTestResult: reportTestResultView.gestureRecognizer.reactive.stateChanged.map(value: ()),
-            tapCitizenUpsell: getCitizenAppView.gestureRecognizer.reactive.stateChanged.map(value: ()),
             goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
             viewDidLoad: viewDidLoadPipe.output
         )
@@ -169,13 +163,6 @@ class ContactTracingViewController: UIViewController {
                 self.present(webViewController, animated: true)
             }
 
-        openCitizenAppOrAppStore
-            .take(during: self.reactive.lifetime)
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] in
-                self?.environment.citizen.openSafepass()
-            }
-
         transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
@@ -224,10 +211,6 @@ class ContactTracingViewController: UIViewController {
 
         bluetoothIconLabelView.showErrorState = false
         notificationIconLabelView.showErrorState = false
-
-        getCitizenAppView.titleLabel.text = viewData.isCitizenInstalled
-            ? NSLocalizedString("Open Citizen ", comment: "Citizen app upsell title if citizen is installed")
-            : NSLocalizedString("Get the Citizen app", comment: "Citizen app upsell title to download citizen")
     }
 
     private func layoutUI() {
@@ -399,9 +382,7 @@ class ContactTracingViewController: UIViewController {
         
         let stackView = UIStackView(arrangedSubviews: [
             keepOpenLabel,
-            reportTestResultView,
-            SeparatorView(),
-            getCitizenAppView,
+            UIView(),
             SeparatorView(),
             shortedPrivacyLinksView,
             versionLabel
@@ -410,9 +391,6 @@ class ContactTracingViewController: UIViewController {
         stackView.alignment = .fill
         stackView.spacing = 26
         stackView.setCustomSpacing(8, after: shortedPrivacyLinksView)
-
-        reportTestResultView.translatesAutoresizingMaskIntoConstraints = false
-        getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
     }
