@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SafePass uses your location to tell you where you were exposed to COVID-19.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>SafePass uses your location to tell you where you were exposed to COVID-19.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -43,6 +47,7 @@
 	<string>SafeTrace uses Bluetooth to determine if you have come in nearby contact with someone who has tested positive for COVID-19.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>location</string>
 		<string>bluetooth-peripheral</string>
 		<string>bluetooth-central</string>
 		<string>fetch</string>
