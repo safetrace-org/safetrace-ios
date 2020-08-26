@@ -23,12 +23,14 @@ struct ContactTracingStyle {
 
 class ContactTracingViewController: UIViewController {
     private let environment: Environment
+    private let showCloseButton: Bool
 
     private let citizenLogoView = UIImageView()
     private let titleLabel = UILabel()
     private let enabledLabel = UILabel()
     private let toggle = UISwitch()
     private let learnMoreButton = Button(style: .secondary)
+    private let closeButton = UIButton()
 
     private let bluetoothIconLabelView = PermissionIconLabelView(permissionType: .bluetooth)
     private let notificationIconLabelView = PermissionIconLabelView(permissionType: .notification)
@@ -51,8 +53,9 @@ class ContactTracingViewController: UIViewController {
     private var scrollViewBottomConstraintToButton: NSLayoutConstraint!
     private var scrollViewBottomConstraintToView: NSLayoutConstraint!
 
-    init(environment: Environment) {
+    init(environment: Environment, showCloseButton: Bool) {
         self.environment = environment
+        self.showCloseButton = showCloseButton
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -310,6 +313,30 @@ class ContactTracingViewController: UIViewController {
             learnMoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             learnMoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
         ])
+
+        if showCloseButton {
+            addCloseButton()
+        }
+    }
+
+    private func addCloseButton() {
+        closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
+        closeButton.setImage(UIImage(named: "closeIcon")!, for: .normal)
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Closes the displayed modal.")
+
+        view.addSubview(closeButton)
+
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalToConstant: 32),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+    }
+
+    @objc func tapCloseButton() {
+        dismiss(animated: true)
     }
 
     private func makeTracingDisabledContentStackView() -> UIStackView {

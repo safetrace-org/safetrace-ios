@@ -204,7 +204,7 @@ extension WebViewController: WKScriptMessageHandler {
     }
 
     private func presentContactTracingController() {
-        let viewController = ContactTracingViewController(environment: environment)
+        let viewController = ContactTracingViewController(environment: environment, showCloseButton: true)
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }

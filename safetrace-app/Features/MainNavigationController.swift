@@ -34,7 +34,8 @@ class MainNavigationController: UINavigationController {
         } else if environment.safeTrace.getHasOptedInOnce() || environment.safeTrace.isOptedIn {
             transitionToSafePass()
         } else {
-            setViewControllers([ContactTracingViewController(environment: environment)], animated: true)
+            let contactTracingViewController = ContactTracingViewController(environment: environment, showCloseButton: false)
+            setViewControllers([contactTracingViewController], animated: true)
         }
     }
 
