@@ -90,6 +90,8 @@ class UserSession: UserSessionProtocol {
     }
 
     func logout() {
+        SafeTrace.stopTracing()
+
         updateStoredValues(token: nil, userID: nil)
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
