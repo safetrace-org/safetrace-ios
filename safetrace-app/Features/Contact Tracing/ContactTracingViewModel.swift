@@ -14,7 +14,6 @@ struct ContactTracingViewData {
     let tracingStatus: TracingStatus
     let bluetoothDenied: Bool
     let notificationDenied: Bool
-    let isCitizenInstalled: Bool
     let hasFinishedAskingPermissions: Bool
 }
 
@@ -31,8 +30,6 @@ func contactTracingViewModel(
     tapPrivacyText: Signal<Void, Never>,
     tapTermsText: Signal<Void, Never>,
     tapLearnMoreButton: Signal<Void, Never>,
-    tapReportTestResult: Signal<Void, Never>,
-    tapCitizenUpsell: Signal<Void, Never>,
     goToSettingsAlertAction: Signal<Void, Never>,
     viewDidLoad: Signal<Void, Never>
 ) -> (
@@ -43,7 +40,6 @@ func contactTracingViewModel(
     askNotificationPermissions: Signal<Void, Never>,
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
-    openCitizenAppOrAppStore: Signal<Void, Never>,
     transitionToSafePass: Signal<Void, Never>,
     displayAlert: Signal<ContactTracingAlertData, Never>
 ) {
@@ -87,27 +83,15 @@ func contactTracingViewModel(
         .merge(with: notificationPermissionsChanged)
         .skipRepeats()
 
-    // MARK: - Is Citizen Installed
-
-    let isCitizenInstalled = Signal
-        .merge(
-            viewDidLoad,
-            appBecameActive
-        )
-        .observe(on: QueueScheduler.main)
-        .map { environment.citizen.isInstalled }
-        .skipRepeats()
-
     // MARK: - View Data
 
     let viewData: Signal<ContactTracingViewData, Never> = Signal
         .combineLatest(
             bluetoothPermissions,
             notificationPermissions,
-            isOptedIn,
-            isCitizenInstalled
+            isOptedIn
         )
-        .compactMap { bluetoothPermissions, notificationPermissions, isOptedIn, isCitizenInstalled in
+        .compactMap { bluetoothPermissions, notificationPermissions, isOptedIn in
             let tracingStatus: ContactTracingViewData.TracingStatus
             if !isOptedIn {
                 tracingStatus = .defaultDisabled
@@ -128,7 +112,6 @@ func contactTracingViewModel(
                 tracingStatus: tracingStatus,
                 bluetoothDenied: bluetoothPermissions == .denied,
                 notificationDenied: notificationPermissions == .denied,
-                isCitizenInstalled: isCitizenInstalled,
                 hasFinishedAskingPermissions: hasFinishedAskingPermissions
             )
         }
@@ -241,14 +224,10 @@ func contactTracingViewModel(
     let openHowItWorksWebView = tapLearnMoreButton
         .map(value: Constants.contactTracingLearnMoreUrl)
 
-    let openReportTestResultWebView = tapReportTestResult
-        .map(value: Constants.reportTestResultUrl)
-
     let openWebView = Signal.merge(
         openPrivacyWebView,
         openTermsWebView,
-        openHowItWorksWebView,
-        openReportTestResultWebView
+        openHowItWorksWebView
     )
 
     return (
@@ -259,7 +238,6 @@ func contactTracingViewModel(
         askNotificationPermissions: askNotificationPermissions,
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
-        openCitizenAppOrAppStore: tapCitizenUpsell,
         transitionToSafePass: transitionToSafePass,
         displayAlert: displayAlert
     )

@@ -23,21 +23,20 @@ struct ContactTracingStyle {
 
 class ContactTracingViewController: UIViewController {
     private let environment: Environment
+    private let showCloseButton: Bool
 
     private let citizenLogoView = UIImageView()
     private let titleLabel = UILabel()
     private let enabledLabel = UILabel()
     private let toggle = UISwitch()
     private let learnMoreButton = Button(style: .secondary)
+    private let closeButton = UIButton()
 
     private let bluetoothIconLabelView = PermissionIconLabelView(permissionType: .bluetooth)
     private let notificationIconLabelView = PermissionIconLabelView(permissionType: .notification)
 
     private lazy var tracingActiveContentView = makeTracingActiveContentStackView()
     private lazy var tracingDisabledContentView = makeTracingDisabledContentStackView()
-
-    private let reportTestResultView = ReportTestResultView()
-    private let getCitizenAppView = CitizenUpsellView()
 
     private let stackViewTopSpacing: CGFloat = UIScreen.main.isSmallScreen ? 10 : 60
     private let trayTopSpacingToToggle: CGFloat = 20
@@ -54,8 +53,9 @@ class ContactTracingViewController: UIViewController {
     private var scrollViewBottomConstraintToButton: NSLayoutConstraint!
     private var scrollViewBottomConstraintToView: NSLayoutConstraint!
 
-    init(environment: Environment) {
+    init(environment: Environment, showCloseButton: Bool) {
         self.environment = environment
+        self.showCloseButton = showCloseButton
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -94,7 +94,6 @@ class ContactTracingViewController: UIViewController {
             askNotificationPermissions: askNotificationPermissions,
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
-            openCitizenAppOrAppStore: openCitizenAppOrAppStore,
             transitionToSafePass: transitionToSafePass,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
@@ -108,8 +107,6 @@ class ContactTracingViewController: UIViewController {
             tapPrivacyText: tapPrivacyTextPipe.output,
             tapTermsText: tapTermsTextPipe.output,
             tapLearnMoreButton: learnMoreButton.reactive.controlEvents(.touchUpInside).map(value: ()),
-            tapReportTestResult: reportTestResultView.gestureRecognizer.reactive.stateChanged.map(value: ()),
-            tapCitizenUpsell: getCitizenAppView.gestureRecognizer.reactive.stateChanged.map(value: ()),
             goToSettingsAlertAction: goToSettingsAlertActionPipe.output,
             viewDidLoad: viewDidLoadPipe.output
         )
@@ -169,13 +166,6 @@ class ContactTracingViewController: UIViewController {
                 self.present(webViewController, animated: true)
             }
 
-        openCitizenAppOrAppStore
-            .take(during: self.reactive.lifetime)
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] in
-                self?.environment.citizen.openSafepass()
-            }
-
         transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
@@ -224,10 +214,6 @@ class ContactTracingViewController: UIViewController {
 
         bluetoothIconLabelView.showErrorState = false
         notificationIconLabelView.showErrorState = false
-
-        getCitizenAppView.titleLabel.text = viewData.isCitizenInstalled
-            ? NSLocalizedString("Open Citizen ", comment: "Citizen app upsell title if citizen is installed")
-            : NSLocalizedString("Get the Citizen app", comment: "Citizen app upsell title to download citizen")
     }
 
     private func layoutUI() {
@@ -327,6 +313,30 @@ class ContactTracingViewController: UIViewController {
             learnMoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             learnMoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
         ])
+
+        if showCloseButton {
+            addCloseButton()
+        }
+    }
+
+    private func addCloseButton() {
+        closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
+        closeButton.setImage(UIImage(named: "closeIcon")!, for: .normal)
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Closes the displayed modal.")
+
+        view.addSubview(closeButton)
+
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalToConstant: 32),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+    }
+
+    @objc func tapCloseButton() {
+        dismiss(animated: true)
     }
 
     private func makeTracingDisabledContentStackView() -> UIStackView {
@@ -399,9 +409,7 @@ class ContactTracingViewController: UIViewController {
         
         let stackView = UIStackView(arrangedSubviews: [
             keepOpenLabel,
-            reportTestResultView,
-            SeparatorView(),
-            getCitizenAppView,
+            UIView(),
             SeparatorView(),
             shortedPrivacyLinksView,
             versionLabel
@@ -410,9 +418,6 @@ class ContactTracingViewController: UIViewController {
         stackView.alignment = .fill
         stackView.spacing = 26
         stackView.setCustomSpacing(8, after: shortedPrivacyLinksView)
-
-        reportTestResultView.translatesAutoresizingMaskIntoConstraints = false
-        getCitizenAppView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
     }
