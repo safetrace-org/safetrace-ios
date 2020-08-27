@@ -40,6 +40,7 @@ func contactTracingViewModel(
     askNotificationPermissions: Signal<Void, Never>,
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
+    finishedAskingPermissions: Signal<Void, Never>,
     transitionToSafePass: Signal<Void, Never>,
     displayAlert: Signal<ContactTracingAlertData, Never>
 ) {
@@ -115,14 +116,6 @@ func contactTracingViewModel(
                 hasFinishedAskingPermissions: hasFinishedAskingPermissions
             )
         }
-
-    // MARK: - Redirect to SafePass Logic
-    let transitionToSafePass = viewData
-        .filter {
-            $0.isOptedIn && $0.hasFinishedAskingPermissions
-        }
-        .delay(0.7, on: QueueScheduler.main)
-        .map(value: ())
 
     // MARK: - Handle Toggle Tap
 
@@ -213,6 +206,24 @@ func contactTracingViewModel(
     toggleChanged
         .observe(optInPipe.input)
 
+    // MARK: - Redirect to SafePass Logic
+
+    let finishedAskingPermissions = Signal
+        .combineLatest(
+            viewData,
+            toggleChanged
+        )
+        .filter { viewData, toggleChanged in
+            viewData.isOptedIn
+                && viewData.hasFinishedAskingPermissions
+                && toggleChanged
+        }
+        .map(value: ())
+        .take(first: 1)
+
+    let transitionToSafePass = finishedAskingPermissions
+        .delay(0.7, on: QueueScheduler.main)
+
     // MARK: - Web Views
 
     let openPrivacyWebView = tapPrivacyText
@@ -238,6 +249,7 @@ func contactTracingViewModel(
         askNotificationPermissions: askNotificationPermissions,
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
+        finishedAskingPermissions: finishedAskingPermissions,
         transitionToSafePass: transitionToSafePass,
         displayAlert: displayAlert
     )

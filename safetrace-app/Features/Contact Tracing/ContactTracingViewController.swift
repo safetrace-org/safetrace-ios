@@ -94,6 +94,7 @@ class ContactTracingViewController: UIViewController {
             askNotificationPermissions: askNotificationPermissions,
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
+            finishedAskingPermissions: finishedAskingPermissions,
             transitionToSafePass: transitionToSafePass,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
@@ -166,11 +167,17 @@ class ContactTracingViewController: UIViewController {
                 self.present(webViewController, animated: true)
             }
 
+        finishedAskingPermissions
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] in
+                self?.environment.safeTrace.sendHealthCheck(wakeReason: .permissionsAsked, completion: nil)
+            }
+
         transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] in
-                SafeTrace.sendHealthCheck(wakeReason: .permissionsAsked)
                 (self?.navigationController as? MainNavigationController)?.transitionToSafePass()
             }
 
