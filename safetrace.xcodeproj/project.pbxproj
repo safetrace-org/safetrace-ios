@@ -1198,7 +1198,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeTrace.app/SafeTrace";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafePass.app/SafePass";
 			};
 			name = Debug;
 		};
@@ -1220,7 +1220,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "safetrace-sdk-tests/mock/Bluetooth/safetrace-sdk-tests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeTrace.app/SafeTrace";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafePass.app/SafePass";
 			};
 			name = Release;
 		};
@@ -1455,7 +1455,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "safetrace-sdk-tests/mock/Bluetooth/safetrace-sdk-tests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeTrace.app/SafeTrace";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafePass.app/SafePass";
 			};
 			name = Staging;
 		};
