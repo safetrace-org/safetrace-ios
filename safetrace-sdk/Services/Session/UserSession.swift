@@ -90,6 +90,8 @@ class UserSession: UserSessionProtocol {
     }
 
     func logout() {
+        SafeTrace.stopTracing()
+
         updateStoredValues(token: nil, userID: nil)
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
@@ -254,8 +256,7 @@ class UserSession: UserSessionProtocol {
         guard !UserDefaults.standard.bool(forKey: "org.ctzn.firstInstall") else { return }
 
         UserDefaults.standard.set(true, forKey: "org.ctzn.firstInstall")
-        // We need to revisit this when 1.0 users are at a negligible amount
-//        logout()
+        logout()
     }
 }
 

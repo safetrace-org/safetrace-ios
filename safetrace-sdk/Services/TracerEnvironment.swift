@@ -19,7 +19,6 @@ class TracerEnvironment: Environment {
 extension TracerEnvironment: UserSessionAuthenticationDelegate {
     func authenticationStatusDidChange(forSession: UserSessionProtocol) {
         if !session.isAuthenticated {
-            tracer.optOut()
             traceIDs.clear()
         }
     }
