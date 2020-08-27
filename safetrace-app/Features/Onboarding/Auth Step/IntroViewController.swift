@@ -17,18 +17,18 @@ class IntroViewController: OnboardingViewController {
         titleLabel.font = .titleH2
         titleLabel.textColor = .stWhite
         titleLabel.numberOfLines = 0
-        titleLabel.text = NSLocalizedString("Welcome to Citizen SafeTrace", comment: "Safetrace intro title")
+        titleLabel.text = NSLocalizedString("Welcome to Citizen SafePass", comment: "SafePass intro title")
         titleLabel.textAlignment = .left
 
         let subtitleLabel = UILabel()
         subtitleLabel.font = .titleH2
         subtitleLabel.textColor = .stGrey70
         subtitleLabel.numberOfLines = 0
-        subtitleLabel.text = NSLocalizedString("Get notified when you’ve been in contact with someone who tests positive with COVID-19.", comment: "Safetrace intro subtitle")
+        subtitleLabel.text = NSLocalizedString("Your SafePass is your hub for COVID-19 symptom tracking, testing sites, and contact tracing so you and your friends can stay safe.", comment: "Safepass intro subtitle")
         subtitleLabel.textAlignment = .left
 
         let getStartedButton = Button(style: .primary)
-        getStartedButton.setTitle(NSLocalizedString("Get started", comment: "Safetrace intro get started button"), for: .normal)
+        getStartedButton.setTitle(NSLocalizedString("Get started", comment: "Safepass intro get started button"), for: .normal)
         getStartedButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         let stackView = UIStackView(arrangedSubviews: [

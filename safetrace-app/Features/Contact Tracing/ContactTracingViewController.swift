@@ -227,7 +227,7 @@ class ContactTracingViewController: UIViewController {
         titleLabel.font = .titleH1
         titleLabel.numberOfLines = 0
 
-        titleLabel.text = NSLocalizedString("SafeTrace\nContact Tracing", comment: "Safetrace Title on Contact Tracing Page")
+        titleLabel.text = NSLocalizedString("Citizen\nContact Tracing", comment: "Title on Contact Tracing Page")
 
         enabledLabel.textColor = .stGrey40
         enabledLabel.font = .titleH1
@@ -344,8 +344,8 @@ class ContactTracingViewController: UIViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
 
-        let enableText = NSLocalizedString("enabling Citizen SafeTrace", comment: "enable safetrace highlighted text")
-        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Safetrace description template")
+        let enableText = NSLocalizedString("enabling Citizen contact tracing", comment: "enable contact tracing highlighted text")
+        let descriptionTemplate = NSLocalizedString("Protect yourself, your loved ones, and your community from COVID-19 by %@.", comment: "Contact tracing description template")
         let descriptionText = String(format: descriptionTemplate, enableText)
 
         let descriptionAttributedText = NSMutableAttributedString(
@@ -431,7 +431,7 @@ class ContactTracingViewController: UIViewController {
         let termsAndConditionsTemplate = shortened
             ? NSLocalizedString("%1$@ and %2$@", comment: "Shortened terms of use and privacy policy text template")
             : NSLocalizedString(
-            "By enabling Citizen SafeTrace, you agree to the %1$@ and %2$@.",
+            "By enabling Citizen contact tracing, you agree to the %1$@ and %2$@.",
             comment: "Terms of use and privacy policy text template"
         )
         let termsAndConditionsText = String(format: termsAndConditionsTemplate, privacyPolicyText, termsOfUseText)

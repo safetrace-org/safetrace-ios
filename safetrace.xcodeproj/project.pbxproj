@@ -230,7 +230,7 @@
 		DC0BBB2F2446957000B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
 		DC0BBB33244699E400B18911 /* ContactTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTrace.swift; sourceTree = "<group>"; };
 		DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorage.swift; sourceTree = "<group>"; };
-		DC0BBB3B24469C9900B18911 /* SafeTrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeTrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0BBB3B24469C9900B18911 /* SafePass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafePass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB3D24469C9900B18911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
-		DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeTraceDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC31D08B24994F7D0039FD6B /* SafePassDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafePassDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "safetrace-app-dev-Info.plist"; path = "/Users/maxmamis/code/safetrace-ios/safetrace-app-dev-Info.plist"; sourceTree = "<absolute>"; };
 		DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "safetrace-app-dev.entitlements"; sourceTree = "<group>"; };
 		DC738ACA247F02CA000BF99E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
@@ -448,8 +448,8 @@
 			children = (
 				DC0BBB1224468E5B00B18911 /* SafeTrace.framework */,
 				DC0BBB1B24468E5B00B18911 /* safetrace-sdk-tests.xctest */,
-				DC0BBB3B24469C9900B18911 /* SafeTrace.app */,
-				DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */,
+				DC0BBB3B24469C9900B18911 /* SafePass.app */,
+				DC31D08B24994F7D0039FD6B /* SafePassDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -709,7 +709,7 @@
 				DC0D959224B4E6D5003E38E0 /* Analytics */,
 			);
 			productName = "trace-sdk-demo";
-			productReference = DC0BBB3B24469C9900B18911 /* SafeTrace.app */;
+			productReference = DC0BBB3B24469C9900B18911 /* SafePass.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DC31D06724994F7D0039FD6B /* safetrace-app-dev */ = {
@@ -733,7 +733,7 @@
 				DC53525824B51044002977C3 /* Analytics */,
 			);
 			productName = "trace-sdk-demo";
-			productReference = DC31D08B24994F7D0039FD6B /* SafeTraceDev.app */;
+			productReference = DC31D08B24994F7D0039FD6B /* SafePassDev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1242,7 +1242,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTrace;
+				PRODUCT_NAME = SafePass;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1267,7 +1267,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTrace;
+				PRODUCT_NAME = SafePass;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1291,7 +1291,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTraceDev;
+				PRODUCT_NAME = SafePassDev;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1316,7 +1316,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTraceDev;
+				PRODUCT_NAME = SafePassDev;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1341,7 +1341,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTraceDev;
+				PRODUCT_NAME = SafePassDev;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = INTERNAL;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1477,7 +1477,7 @@
 				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafeTrace;
+				PRODUCT_NAME = SafePass;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
