@@ -7,6 +7,7 @@ public enum WakeReason: String, Encodable {
     case appForeground = "app_foreground"
     case appBackground = "app_background"
     case bluetooth = "bluetooth"
+    case permissionsAsked = "permissions_asked"
 }
 
 public final class SafeTrace {

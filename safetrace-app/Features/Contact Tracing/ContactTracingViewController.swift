@@ -170,6 +170,7 @@ class ContactTracingViewController: UIViewController {
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] in
+                SafeTrace.sendHealthCheck(wakeReason: .permissionsAsked)
                 (self?.navigationController as? MainNavigationController)?.transitionToSafePass()
             }
 
