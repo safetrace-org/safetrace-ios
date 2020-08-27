@@ -19,16 +19,26 @@ struct SafeTraceProvider: SafeTraceProviding {
         set { SafeTrace.apiEnvironment = newValue }
     }
 
-    func setLastSuccessfullyOptedIn(_ success: Bool) {
-        UserDefaults.standard.set(success, forKey: "org.ctzn.isLastSuccessfullyOptedIn")
+    var safePassURL: URL {
+        switch SafeTrace.apiEnvironment {
+        case .staging:
+            return URL(string: "https://staging.sp0n.io/tracing/safepass")!
+        case .production:
+            return URL(string: "https://citizen.com/tracing/safepass")!
+        }
     }
 
-    func getLastSuccessfullyOptedIn() -> Bool {
-        return UserDefaults.standard.bool(forKey: "org.ctzn.isLastSuccessfullyOptedIn")
+    private func setHasOptedInOnce() {
+        UserDefaults.standard.set(true, forKey: "org.ctzn.hasOptedInOnce")
+    }
+
+    func getHasOptedInOnce() -> Bool {
+        return UserDefaults.standard.bool(forKey: "org.ctzn.hasOptedInOnce")
     }
 
     func startTracing() {
         SafeTrace.startTracing()
+        setHasOptedInOnce()
     }
 
     func stopTracing() {

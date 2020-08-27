@@ -95,8 +95,7 @@ class ContactTracingViewController: UIViewController {
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
             openCitizenAppOrAppStore: openCitizenAppOrAppStore,
-            optInSuccessChanged: optInSuccessChanged,
-            redirectToCitizen: redirectToCitizen,
+            transitionToSafePass: transitionToSafePass,
             displayAlert: displayAlert
         ) = contactTracingViewModel(
             environment: environment,
@@ -163,10 +162,11 @@ class ContactTracingViewController: UIViewController {
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] url in
-                let webViewController = WebViewController()
+                guard let self = self else { return }
+                let webViewController = WebViewController(environment: self.environment, showCloseButton: true)
                 webViewController.loadUrl(url)
                 webViewController.modalPresentationStyle = .fullScreen
-                self?.present(webViewController, animated: true)
+                self.present(webViewController, animated: true)
             }
 
         openCitizenAppOrAppStore
@@ -176,18 +176,11 @@ class ContactTracingViewController: UIViewController {
                 self?.environment.citizen.openSafepass()
             }
 
-        optInSuccessChanged
-            .take(during: self.reactive.lifetime)
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] isSuccess in
-                self?.environment.safeTrace.setLastSuccessfullyOptedIn(isSuccess)
-            }
-
-        redirectToCitizen
+        transitionToSafePass
             .take(during: self.reactive.lifetime)
             .observe(on: UIScheduler())
             .observeValues { [weak self] in
-                self?.environment.citizen.openSafepass()
+                (self?.navigationController as? MainNavigationController)?.transitionToSafePass()
             }
 
         displayAlert
@@ -225,12 +218,12 @@ class ContactTracingViewController: UIViewController {
             enabledLabel.textColor = .stPurpleAccentUp
             toggle.alpha = 1
         case .error:
-            enabledLabel.textColor = .stRed
-            toggle.alpha = 0.6
+            enabledLabel.textColor = .stPurpleAccentUp
+            toggle.alpha = 1
         }
 
-        bluetoothIconLabelView.showErrorState = viewData.bluetoothDenied
-        notificationIconLabelView.showErrorState = viewData.notificationDenied
+        bluetoothIconLabelView.showErrorState = false
+        notificationIconLabelView.showErrorState = false
 
         getCitizenAppView.titleLabel.text = viewData.isCitizenInstalled
             ? NSLocalizedString("Open Citizen ", comment: "Citizen app upsell title if citizen is installed")

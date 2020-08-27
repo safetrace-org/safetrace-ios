@@ -7,6 +7,7 @@ protocol SafeTraceProviding {
     var isTracing: Bool { get }
     var session: SafeTraceSession { get }
     var apiEnvironment: NetworkEnvironment { get set }
+    var safePassURL: URL { get }
 
     func startTracing()
     func stopTracing()
@@ -17,6 +18,5 @@ protocol SafeTraceProviding {
     func applicationWillEnterForeground(_ application: UIApplication)
     func applicationDidEnterBackground(_ application: UIApplication)
 
-    func setLastSuccessfullyOptedIn(_ success: Bool)
-    func getLastSuccessfullyOptedIn() -> Bool
+    func getHasOptedInOnce() -> Bool
 }

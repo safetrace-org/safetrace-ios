@@ -83,7 +83,7 @@ class UserSession: UserSessionProtocol {
 
         setFirstTimeDefaultIfNeeded()
         attemptToLoadCachedValues()
-        
+
         if !isAuthenticated {
             attemptToLoadValuesFromAppGroup(groupKeychain: groupKeychain)
         }

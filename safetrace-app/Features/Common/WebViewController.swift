@@ -2,11 +2,36 @@ import UIKit
 import WebKit
 
 final class WebViewController: UIViewController {
+    var webViewConfiguration: WKWebViewConfiguration {
+        let config = WKWebViewConfiguration()
+        let userContentController = WKUserContentController()
+        userContentController.add(self, name: "contactTracing")
+        userContentController.add(self, name: "user")
+        userContentController.add(self, name: "webView")
+        userContentController.add(self, name: "deepLink")
+        config.userContentController = userContentController
 
-    private let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        return config
+    }
+
+    private lazy var webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
     private let loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
+    private let environment: Environment
+    private let showCloseButton: Bool
+
     var url: URL?
+
+    init(environment: Environment, showCloseButton: Bool) {
+        self.environment = environment
+        self.showCloseButton = showCloseButton
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     /// Load a URL
     func loadUrl(_ url: URL) {
@@ -24,11 +49,26 @@ final class WebViewController: UIViewController {
     private func layoutUI() {
         view.backgroundColor = .stBlack
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+
+        view.addSubview(stackView)
+
+        // Close Button
+        let closeButtonContainerView = UIView()
         let closeButton = UIButton()
         closeButton.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         closeButton.setImage(UIImage(named: "closeIcon")!, for: .normal)
         closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Closes the displayed modal.")
-        view.addSubview(closeButton)
+
+        closeButtonContainerView.addSubview(closeButton)
+        stackView.addArrangedSubview(closeButtonContainerView)
+
+        closeButtonContainerView.isHidden = !showCloseButton
+
+        // WebView
 
         webView.isOpaque = false
         webView.backgroundColor = .stBlack
@@ -38,20 +78,21 @@ final class WebViewController: UIViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
 
-        view.addSubview(webView)
+        stackView.addArrangedSubview(webView)
 
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        webView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.widthAnchor.constraint(equalToConstant: 32),
             closeButton.heightAnchor.constraint(equalToConstant: 32),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            closeButton.topAnchor.constraint(equalTo: closeButtonContainerView.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: closeButtonContainerView.trailingAnchor, constant: -20),
+            closeButton.bottomAnchor.constraint(equalTo: closeButtonContainerView.bottomAnchor, constant: -12),
 
-            webView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         view.addSubview(loadingIndicator)
@@ -86,6 +127,95 @@ final class WebViewController: UIViewController {
 
     @objc private func tapCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension WebViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+
+        guard let messageUrl = message.webView?.url, WebViewHelper.isAuthorizedDomain(url: messageUrl) else {
+            print("Unauthorized webview interface. Message body: \(message.body)")
+            return
+        }
+
+        guard let body = message.body as? String else {
+            print("Unexpected message body for \"\(message.name)\": \(message.body)")
+            return
+        }
+
+        switch message.name {
+        case "contactTracing":
+            if body == "getOptInStatus" {
+                let isOptedIn = environment.safeTrace.isOptedIn
+                let javascriptToRun: String = "_tracing.setOptedInStatus(\(isOptedIn))"
+                runJavaScript(javascriptToRun)
+            } else if body == "openOptInPage" {
+                presentContactTracingController()
+            } else if body == "getIsCitizenInstalled" {
+                let citizenURL = Constants.citizenDeeplinkUrl
+                let isCitizenInstalled = UIApplication.shared.canOpenURL(citizenURL)
+
+                let javascriptToRun: String = "_tracing.setIsCitizenInstalled(\(isCitizenInstalled))"
+                runJavaScript(javascriptToRun)
+            } else if body == "optInToTracing" {
+                environment.safeTrace.startTracing()
+            }
+        case "user":
+//            if body == "getLocation" {
+//                let javascriptToRun: String
+//                if let currentLocation = environment.location.current {
+//                    javascriptToRun = "_user.setLocation({'lat': \(currentLocation.coordinate.latitude), 'long': \(currentLocation.coordinate.longitude)})"
+//                } else {
+//                    javascriptToRun = "_user.setLocation(null)"
+//                }
+//                runJavaScript(javascriptToRun)
+//            } else
+
+            if body == "getAppVersion" {
+                let appVersion = Bundle
+                    .main
+                    .infoDictionary?["CFBundleShortVersionString"] as? String ?? "error"
+                let javascriptToRun = "_user.setAppVersion('\(appVersion)')"
+                runJavaScript(javascriptToRun)
+            } else if body == "goToSettings" {
+                environment.bluetoothPermissions.openSettings()
+            }
+        case "webView":
+            presentWebViewWithURLString(urlString: body)
+        case "deepLink":
+            guard
+                let url = URL(string: body),
+                UIApplication.shared.canOpenURL(url)
+            else {
+                return
+            }
+
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        default:
+            break
+        }
+    }
+
+    private func runJavaScript(_ script: String) {
+        webView.evaluateJavaScript(script) { _, error in
+            guard let error = error else { return }
+            print(error)
+        }
+    }
+
+    private func presentContactTracingController() {
+        let viewController = ContactTracingViewController(environment: environment)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
+    }
+
+    private func presentWebViewWithURLString(urlString: String) {
+        if let url = URL(string: urlString) {
+            let webViewController = WebViewController(environment: environment, showCloseButton: true)
+            webViewController.loadUrl(url)
+            webViewController.modalPresentationStyle = .fullScreen
+            present(webViewController, animated: true)
+        }
     }
 }
 
