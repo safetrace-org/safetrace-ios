@@ -8,10 +8,8 @@ struct AppEnvironment: Environment {
     var analytics: AnalyticsTracking = AnalyticsTracker()
 
     init() {
-        if Bundle.main.bundleIdentifier == "org.ctzn.safetrace-dev" {
-            safeTrace.apiEnvironment = .staging
-        } else {
-            safeTrace.apiEnvironment = .production
-        }
+        #if INTERNAL
+        safeTrace.apiEnvironment = .staging
+        #endif
     }
 }
