@@ -73,13 +73,14 @@ class UserSession: UserSessionProtocol {
     private let groupKeychain: KeychainProtocol
     
     init(
-        environment: Environment,
+        environment: Environment & UserSessionAuthenticationDelegate,
         appKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainAppIdentifier),
         groupKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainGroupIdentifier)
     ) {
         self.environment = environment
         self.keychain = appKeychain
         self.groupKeychain = groupKeychain
+        self.authenticationDelegate = environment
 
         setFirstTimeDefaultIfNeeded()
         attemptToLoadCachedValues()
@@ -182,19 +183,20 @@ class UserSession: UserSessionProtocol {
         self.authenticationDelegate?.authenticationTokenDidChange(forSession: self)
         self.userIDDidChange?(userID)
 
-        updateAuthTokenWebViewCookies(authToken: token)
+        syncAuthTokenWebviewCookies()
     }
 
-    func updateAuthTokenWebViewCookies(authToken: String?) {
+    func syncAuthTokenWebviewCookies(completion: (() -> Void)? = nil) {
+        let authorizedCookieDict = [
+            ".sp0n.io": "citizen:auth:token",
+            ".citizen.com": "citizen:auth:token"
+        ]
         DispatchQueue.main.async {
-            let authorizedCookieDict = [
-                ".sp0n.io": "citizen:auth:token",
-                ".citizen.com": "citizen:auth:token",
-                ".thesafetrace.org": "safetrace:auth:token"
-            ]
+            let dispatchGroup = DispatchGroup()
+
             let dataStore = WKWebsiteDataStore.default()
 
-            if let authToken = authToken {
+            if let authToken = self.authToken {
                 for (domain, cookieName) in authorizedCookieDict {
                     guard let cookie = HTTPCookie(properties: [
                         .domain: domain,
@@ -207,15 +209,29 @@ class UserSession: UserSessionProtocol {
                         assertionFailure("Cannot create cookie for authToken host: \(domain)")
                         return
                     }
-                    dataStore.httpCookieStore.setCookie(cookie)
+                    dispatchGroup.enter()
+                    dataStore.httpCookieStore.setCookie(cookie) {
+                        dispatchGroup.leave()
+                    }
                     HTTPCookieStorage.shared.setCookie(cookie)
+                }
+
+                dispatchGroup.notify(queue: .main) {
+                    completion?()
                 }
             } else {
                 // Clear all web data
                 // From https://gist.github.com/insidegui/4a5de215a920885e0f36294d51263a15
                 dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
                     records.forEach { record in
-                        dataStore.removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                        dispatchGroup.enter()
+                        dataStore.removeData(ofTypes: record.dataTypes, for: [record]) {
+                            dispatchGroup.leave()
+                        }
+                    }
+
+                    dispatchGroup.notify(queue: .main) {
+                        completion?()
                     }
                 }
             }
