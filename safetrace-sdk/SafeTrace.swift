@@ -173,6 +173,16 @@ public final class SafeTrace {
             sendCheck()
         }
     }
+
+    public static func syncLocation(_ location: LocationRequest, completion: (() -> Void)? = nil) {
+        guard let userID = environment.session.userID else { return }
+        let task = UIApplication.shared.beginBackgroundTask()
+
+        environment.network.syncLocation(location, userID: userID) { _ in
+            completion?()
+            UIApplication.shared.endBackgroundTask(task)
+        }
+    }
 }
 
 extension SafeTrace {

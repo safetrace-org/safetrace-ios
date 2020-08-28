@@ -14,6 +14,9 @@
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
 		3E32BDB524F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
 		3E32BDB624F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
+		3E32BDB924F9BAC400F5A2A8 /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB824F9BAC400F5A2A8 /* LocationRequest.swift */; };
+		3E32BDBB24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDBA24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift */; };
+		3E32BDBC24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDBA24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift */; };
 		3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
@@ -204,6 +207,8 @@
 		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		3E32BDB424F970A600F5A2A8 /* SLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLog.swift; sourceTree = "<group>"; };
+		3E32BDB824F9BAC400F5A2A8 /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
+		3E32BDBA24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate+.swift"; sourceTree = "<group>"; };
 		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
 		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -335,6 +340,7 @@
 				3EEFCB4E249AC93700B74759 /* UIScreen+.swift */,
 				3EEFCB64249BFD1100B74759 /* UIViewController+.swift */,
 				3EB4386B249D4A4200AA80DF /* Reactive+.swift */,
+				3E32BDBA24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,6 +368,14 @@
 				3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */,
 			);
 			path = "Auth Step";
+			sourceTree = "<group>";
+		};
+		3E32BDB724F9BA9000F5A2A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E32BDB824F9BAC400F5A2A8 /* LocationRequest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3E5A05F624A135370052A242 /* Views */ = {
@@ -556,6 +570,7 @@
 			children = (
 				DC7AC09824475486000FF13D /* Networking.swift */,
 				DC7AC09B24478B3A000FF13D /* URLSession+.swift */,
+				3E32BDB724F9BA9000F5A2A8 /* Models */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -847,6 +862,7 @@
 				DC7AC09F24478DF8000FF13D /* Environment.swift in Sources */,
 				DC0BBB2D24468EA500B18911 /* SafeTrace.swift in Sources */,
 				DC0BBB302446957000B18911 /* ContactTracer.swift in Sources */,
+				3E32BDB924F9BAC400F5A2A8 /* LocationRequest.swift in Sources */,
 				DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */,
 				DC7F32F4244933DA009B61B8 /* BluetoothPeripheral.swift in Sources */,
 				DC7AC0A524479495000FF13D /* UserSession.swift in Sources */,
@@ -900,6 +916,7 @@
 				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */,
 				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
 				DC0E0F9C2498267800D3C9FC /* MainNavigationController.swift in Sources */,
+				3E32BDBB24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift in Sources */,
 				3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
@@ -937,6 +954,7 @@
 				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
 				DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */,
 				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
+				3E32BDBC24F9BE4600F5A2A8 /* CLLocationCoordinate+.swift in Sources */,
 				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
 				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,

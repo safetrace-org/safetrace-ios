@@ -1,6 +1,8 @@
 import CoreLocation
 import Foundation
 import ReactiveSwift
+import SafeTrace
+import UIKit
 
 protocol ReactiveLocationProtocol {
     var current: SignalProducer<CLLocation?, Never> { get }
@@ -31,8 +33,7 @@ class LocationProvider: NSObject, LocationProviding {
 
     fileprivate let _reactive = ReactiveLocation()
     fileprivate let locationManager = CLLocationManager()
-    fileprivate let decimalPrecision = 5
-
+    fileprivate let decimalPrecision = 5 // 5 is precise to around 1 meter at the equator. More precision just causes unnecessary app updates
 
     var reactive: ReactiveLocationProtocol {
         return _reactive
@@ -65,8 +66,28 @@ extension LocationProvider: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
+        guard let location = locations.last?.withDecimalPrecision(decimalPrecision) else { return }
 
         _reactive._location.value = location
+
+        let isInBackground = UIApplication.shared.applicationState == .background
+        let locationRequest = LocationRequest(location: location, isBackground: isInBackground)
+
+        SafeTrace.syncLocation(locationRequest)
+    }
+
+}
+
+extension LocationRequest {
+    init(location: CLLocation, isBackground: Bool) {
+        self.init(
+            lat: location.coordinate.latitude,
+            long: location.coordinate.longitude,
+            hAccuracy: location.horizontalAccuracy,
+            vAccuracy: location.verticalAccuracy,
+            elevation: location.altitude,
+            speed: location.speed,
+            bearing: location.course,
+            background: isBackground)
     }
 }

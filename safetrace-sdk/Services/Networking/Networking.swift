@@ -27,6 +27,8 @@ protocol NetworkProtocol {
 
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void)
     func uploadTraces(_ traces: ContactTraces, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
+
+    func syncLocation(_ location: LocationRequest, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
     
 }
 
@@ -220,5 +222,20 @@ class Network: NetworkProtocol {
                 body: traces,
                 dateEncodingStrategy: .iso8601),
             completion:completion)
+    }
+
+    // MARK: - Location
+
+    func syncLocation(_ location: LocationRequest, userID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "v1/users/\(userID)/location",
+                method: .post,
+                host: .sp0n,
+                token: environment.session.authToken,
+                body: location
+            ),
+            completion: completion
+        )
     }
 }
