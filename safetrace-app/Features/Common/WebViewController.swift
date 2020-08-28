@@ -158,12 +158,12 @@ extension WebViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
         guard let messageUrl = message.webView?.url, WebViewHelper.isAuthorizedDomain(url: messageUrl) else {
-            print("Unauthorized webview interface. Message body: \(message.body)")
+            SLog.print("Unauthorized webview interface. Message body: \(message.body)")
             return
         }
 
         guard let body = message.body as? String else {
-            print("Unexpected message body for \"\(message.name)\": \(message.body)")
+            SLog.print("Unexpected message body for \"\(message.name)\": \(message.body)")
             return
         }
 
@@ -223,7 +223,7 @@ extension WebViewController: WKScriptMessageHandler {
     private func runJavaScript(_ script: String) {
         webView.evaluateJavaScript(script) { _, error in
             guard let error = error else { return }
-            print(error)
+            SLog.print(error)
         }
     }
 
@@ -250,7 +250,7 @@ extension WebViewController: WKNavigationDelegate, WKUIDelegate {
             // Happens when a resource load was cancelled. This does not indicate that the page failed to load
             return
         }
-        print("Error: Failed to request URL for web view. \(error) ")
+        SLog.print("Error: Failed to request URL for web view. \(error) ")
 
         showErrorOverlay(retryUrl: webView.url, errorCode: error.code, errorDomain: error.domain)
     }
@@ -261,7 +261,7 @@ extension WebViewController: WKNavigationDelegate, WKUIDelegate {
             // Happens when another request is made before the previous request is completed. This does not indicate that the page failed to load
             return
         }
-        print(error)
+        SLog.print(error)
 
         showErrorOverlay(retryUrl: webView.url, errorCode: error.code, errorDomain: error.domain)
     }
