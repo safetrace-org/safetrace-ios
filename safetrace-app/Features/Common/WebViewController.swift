@@ -185,17 +185,15 @@ extension WebViewController: WKScriptMessageHandler {
                 environment.safeTrace.startTracing()
             }
         case "user":
-//            if body == "getLocation" {
-//                let javascriptToRun: String
-//                if let currentLocation = environment.location.current {
-//                    javascriptToRun = "_user.setLocation({'lat': \(currentLocation.coordinate.latitude), 'long': \(currentLocation.coordinate.longitude)})"
-//                } else {
-//                    javascriptToRun = "_user.setLocation(null)"
-//                }
-//                runJavaScript(javascriptToRun)
-//            } else
-
-            if body == "getAppVersion" {
+            if body == "getLocation" {
+                let javascriptToRun: String
+                if let currentLocation = environment.location.currentLocation {
+                    javascriptToRun = "_user.setLocation({'lat': \(currentLocation.coordinate.latitude), 'long': \(currentLocation.coordinate.longitude)})"
+                } else {
+                    javascriptToRun = "_user.setLocation(null)"
+                }
+                runJavaScript(javascriptToRun)
+            } else if body == "getAppVersion" {
                 let appVersion = Bundle
                     .main
                     .infoDictionary?["CFBundleShortVersionString"] as? String ?? "error"

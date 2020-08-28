@@ -34,6 +34,9 @@ class LocationProvider: NSObject, LocationProviding {
     fileprivate let _reactive = ReactiveLocation()
     fileprivate let locationManager = CLLocationManager()
     fileprivate let decimalPrecision = 5 // 5 is precise to around 1 meter at the equator. More precision just causes unnecessary app updates
+    private let desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    private let distanceFilter: CLLocationDistance = 10
+
 
     var reactive: ReactiveLocationProtocol {
         return _reactive
@@ -52,10 +55,27 @@ class LocationProvider: NSObject, LocationProviding {
 
         locationManager.delegate = self
         _reactive._authorizationStatus.value = CLLocationManager.authorizationStatus()
+
+        startTrackingIfPossible()
     }
 
     func requestAlwaysLocationPermissions() {
         locationManager.requestAlwaysAuthorization()
+    }
+
+    fileprivate func startTrackingIfPossible() {
+        guard currentAuthorization == .authorizedAlways
+            || currentAuthorization == .authorizedWhenInUse
+        else {
+            return
+        }
+
+        locationManager.desiredAccuracy = desiredAccuracy
+        locationManager.distanceFilter = distanceFilter
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+
+        locationManager.startUpdatingLocation()
     }
 
 }
@@ -63,6 +83,7 @@ class LocationProvider: NSObject, LocationProviding {
 extension LocationProvider: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         _reactive._authorizationStatus.value = status
+        startTrackingIfPossible()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
