@@ -1,3 +1,4 @@
+import CoreLocation
 import Foundation
 import ReactiveSwift
 import SafeTrace
@@ -38,6 +39,7 @@ func contactTracingViewModel(
     optOut: Signal<Void, Never>,
     askBluetoothPermissions: Signal<Void, Never>,
     askNotificationPermissions: Signal<Void, Never>,
+    askLocationPermissions: Signal<Void, Never>,
     navigateToAppSettings: Signal<Void, Never>,
     openWebView: Signal<URL, Never>,
     finishedAskingPermissions: Signal<Void, Never>,
@@ -84,15 +86,24 @@ func contactTracingViewModel(
         .merge(with: notificationPermissionsChanged)
         .skipRepeats()
 
+    // MARK: - Location Permissions
+
+    let locationPermissions = viewDidLoad
+        .flatMap(.latest) {
+            environment.location.reactive.authorizationStatus
+        }
+        .skipRepeats()
+
     // MARK: - View Data
 
     let viewData: Signal<ContactTracingViewData, Never> = Signal
         .combineLatest(
             bluetoothPermissions,
             notificationPermissions,
+            locationPermissions,
             isOptedIn
         )
-        .compactMap { bluetoothPermissions, notificationPermissions, isOptedIn in
+        .compactMap { bluetoothPermissions, notificationPermissions, locationPermissions, isOptedIn in
             let tracingStatus: ContactTracingViewData.TracingStatus
             if !isOptedIn {
                 tracingStatus = .defaultDisabled
@@ -107,6 +118,7 @@ func contactTracingViewModel(
 
             let hasFinishedAskingPermissions = bluetoothPermissions != .notDetermined
                 && notificationPermissions != .notDetermined
+                && locationPermissions != .notDetermined
 
             return ContactTracingViewData(
                 isOptedIn: isOptedIn,
@@ -148,6 +160,19 @@ func contactTracingViewModel(
 
     let askNotificationPermissions = notificationPermissions
         .sample(on: toggledOnAndAskedBluetooth)
+        .filter { $0 == .notDetermined }
+        .map(value: ())
+
+    let toggleOnAndAskedNotificationPermissions = Signal
+        .combineLatest(
+            toggleOn,
+            notificationPermissions
+        )
+        .filter { $1 != .notDetermined }
+        .map(value: ())
+
+    let askLocationPermissions = locationPermissions
+        .sample(on: toggleOnAndAskedNotificationPermissions)
         .filter { $0 == .notDetermined }
         .map(value: ())
 
@@ -247,6 +272,7 @@ func contactTracingViewModel(
         optOut: optOut,
         askBluetoothPermissions: askBluetoothPermissions,
         askNotificationPermissions: askNotificationPermissions,
+        askLocationPermissions: askLocationPermissions,
         navigateToAppSettings: navigateToAppSettings,
         openWebView: openWebView,
         finishedAskingPermissions: finishedAskingPermissions,

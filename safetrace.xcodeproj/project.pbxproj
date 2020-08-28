@@ -44,12 +44,12 @@
 		3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
 		3EBA763124C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
 		3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
+		3EC759A224F6BA5500B42D81 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A124F6BA5500B42D81 /* LocationProviding.swift */; };
+		3EC759A324F6BA5500B42D81 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A124F6BA5500B42D81 /* LocationProviding.swift */; };
 		3EC759A524F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
 		3EC759A624F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
 		3EC759A824F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
 		3EC759A924F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
-		3EC759A224F6BA5500B42D81 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A124F6BA5500B42D81 /* LocationProviding.swift */; };
-		3EC759A324F6BA5500B42D81 /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A124F6BA5500B42D81 /* LocationProviding.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
 		3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
@@ -221,8 +221,8 @@
 		3EB4386B249D4A4200AA80DF /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
 		3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvents.swift; sourceTree = "<group>"; };
 		3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewHelper.swift; sourceTree = "<group>"; };
-		3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebErrorRetryView.swift; sourceTree = "<group>"; };
 		3EC759A124F6BA5500B42D81 /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
+		3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebErrorRetryView.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +253,6 @@
 		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
 		DC31D08B24994F7D0039FD6B /* SafePassDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafePassDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "safetrace-app-dev-Info.plist"; path = "/Users/maxmamis/code/safetrace-ios/safetrace-app-dev-Info.plist"; sourceTree = "<absolute>"; };
 		DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "safetrace-app-dev.entitlements"; sourceTree = "<group>"; };
 		DC738ACA247F02CA000BF99E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DC7AC09824475486000FF13D /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -519,7 +518,6 @@
 				DC0BBB4624469C9C00B18911 /* Assets.xcassets */,
 				DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */,
 				DC0BBB4B24469C9C00B18911 /* Info.plist */,
-				DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */,
 			);
 			path = "safetrace-app";
 			sourceTree = "<group>";
@@ -1300,7 +1298,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				INFOPLIST_FILE = "safetrace-app/info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1325,7 +1323,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				INFOPLIST_FILE = "safetrace-app/info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1350,7 +1348,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L5262XM8UA;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
+				INFOPLIST_FILE = "safetrace-app/info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

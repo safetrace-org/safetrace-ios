@@ -92,6 +92,7 @@ class ContactTracingViewController: UIViewController {
             optOut: optOut,
             askBluetoothPermissions: askBluetoothPermissions,
             askNotificationPermissions: askNotificationPermissions,
+            askLocationPermissions: askLocationPermissions,
             navigateToAppSettings: navigateToAppSettings,
             openWebView: openWebView,
             finishedAskingPermissions: finishedAskingPermissions,
@@ -147,6 +148,13 @@ class ContactTracingViewController: UIViewController {
                 self?.environment.notificationPermissions.requestPushNotifications { [weak self] success in
                     self?.notificationPermissionsChangedPipe.input.send(value: success ? .authorized : .denied)
                 }
+            }
+
+        askLocationPermissions
+            .take(during: self.reactive.lifetime)
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] in
+                self?.environment.location.requestAlwaysLocationPermissions()
             }
 
         navigateToAppSettings
