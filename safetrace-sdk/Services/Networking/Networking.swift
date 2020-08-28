@@ -16,6 +16,7 @@ protocol NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        locationEnabled: Bool,
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
@@ -162,6 +163,7 @@ class Network: NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        locationEnabled: Bool,
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
@@ -173,6 +175,7 @@ class Network: NetworkProtocol {
         struct HealthCheckPayload: Encodable {
             let bluetooth_enabled: Bool
             let notifications_enabled: Bool
+            let location_enabled: Bool
             let wake_reason: WakeReason
             let is_opted_in: Bool
             let app_version: String
@@ -189,6 +192,7 @@ class Network: NetworkProtocol {
                 body: HealthCheckPayload(
                     bluetooth_enabled: bluetoothEnabled,
                     notifications_enabled: notificationsEnabled,
+                    location_enabled: locationEnabled,
                     wake_reason: wakeReason,
                     is_opted_in: isOptedIn,
                     app_version: appVersion,
