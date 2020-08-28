@@ -16,6 +16,7 @@ final class WebViewController: UIViewController {
 
     private lazy var webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
     private let loadingIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private let errorOverlay = WebErrorRetryView()
 
     private let environment: Environment
     private let showCloseButton: Bool
@@ -128,18 +129,41 @@ final class WebViewController: UIViewController {
     @objc private func tapCloseButton() {
         dismiss(animated: true, completion: nil)
     }
+
+    fileprivate func showErrorOverlay(retryUrl: URL?, errorCode: Int, errorDomain: String) {
+        loadingIndicator.stopAnimating()
+        errorOverlay.removeFromSuperview()
+
+        errorOverlay.retryHandler = { [weak self] in
+            self?.requestWebPage()
+            self?.loadingIndicator.startAnimating()
+        }
+        webView.addSubview(errorOverlay)
+
+        errorOverlay.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorOverlay.leadingAnchor.constraint(equalTo: webView.leadingAnchor),
+            errorOverlay.trailingAnchor.constraint(equalTo: webView.trailingAnchor),
+            errorOverlay.topAnchor.constraint(equalTo: webView.topAnchor),
+            errorOverlay.bottomAnchor.constraint(equalTo: webView.bottomAnchor),
+        ])
+
+        if let currentUrl = retryUrl {
+            self.url = currentUrl
+        }
+    }
 }
 
 extension WebViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
         guard let messageUrl = message.webView?.url, WebViewHelper.isAuthorizedDomain(url: messageUrl) else {
-            print("Unauthorized webview interface. Message body: \(message.body)")
+            SLog.print("Unauthorized webview interface. Message body: \(message.body)")
             return
         }
 
         guard let body = message.body as? String else {
-            print("Unexpected message body for \"\(message.name)\": \(message.body)")
+            SLog.print("Unexpected message body for \"\(message.name)\": \(message.body)")
             return
         }
 
@@ -199,7 +223,7 @@ extension WebViewController: WKScriptMessageHandler {
     private func runJavaScript(_ script: String) {
         webView.evaluateJavaScript(script) { _, error in
             guard let error = error else { return }
-            print(error)
+            SLog.print(error)
         }
     }
 
@@ -221,10 +245,29 @@ extension WebViewController: WKScriptMessageHandler {
 
 extension WebViewController: WKNavigationDelegate, WKUIDelegate {
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.requestWebPage() // retry
+        let error = error as NSError
+        if error.code == NSURLErrorCancelled {
+            // Happens when a resource load was cancelled. This does not indicate that the page failed to load
+            return
+        }
+        SLog.print("Error: Failed to request URL for web view. \(error) ")
+
+        showErrorOverlay(retryUrl: webView.url, errorCode: error.code, errorDomain: error.domain)
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        let error = error as NSError
+        if error.code == NSURLErrorCancelled {
+            // Happens when another request is made before the previous request is completed. This does not indicate that the page failed to load
+            return
+        }
+        SLog.print(error)
+
+        showErrorOverlay(retryUrl: webView.url, errorCode: error.code, errorDomain: error.domain)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        errorOverlay.removeFromSuperview()
         loadingIndicator.stopAnimating()
     }
 

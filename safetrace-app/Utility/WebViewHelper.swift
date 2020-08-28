@@ -21,4 +21,20 @@ class WebViewHelper {
         let dottedDomain = "." + domain
         return host == domain || host.hasSuffix(dottedDomain)
     }
+
+    /// Starts the loading of given URL, and returns a `WebViewController` instance in the `launchHandler` block.
+    static func launchWebViewController(
+        url: URL,
+        showCloseButton: Bool,
+        environment: Environment,
+        launchHandler: @escaping (WebViewController) -> Void
+    ) {
+        environment.safeTrace.session.syncAuthTokenWebviewCookies() {
+            // Sync cookies again before launching webViewController, especially on simulator cookies may not have synced during app launch
+            let webViewController = WebViewController(environment: environment, showCloseButton: showCloseButton)
+            webViewController.loadUrl(url)
+            launchHandler(webViewController)
+        }
+    }
+
 }

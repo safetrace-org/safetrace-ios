@@ -136,7 +136,6 @@ public final class SafeTrace {
         environment.network.resetURLSession()
         environment.traceIDs.refreshIfNeeded()
         environment.tracer.reportPendingTraces()
-        environment.session.updateAuthTokenWebViewCookies(authToken: environment.session.authToken)
         sendHealthCheck(wakeReason: .appForeground)
     }
     

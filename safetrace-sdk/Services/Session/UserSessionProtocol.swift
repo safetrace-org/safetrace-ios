@@ -18,12 +18,13 @@ protocol UserSessionAuthenticationDelegate: AnyObject {
 public protocol SafeTraceSession {
     var isAuthenticated: Bool { get }
     var isCitizenAuthenticated: Bool { get }
- 
+
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
     func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     func setAPNSToken(_ token: Data)
+    func syncAuthTokenWebviewCookies(completion: (() -> Void)?)
     func logout()
 }
 
@@ -37,8 +38,5 @@ protocol UserSessionProtocol: AnyObject, SafeTraceSession {
     var userID: String? { get }
     var authToken: String? { get }
 
-    func logout()
-
     func authenticateWithCode(_: String, phone: String, completion: @escaping (Result<LoginResponseContext, Error>) -> Void)
-    func updateAuthTokenWebViewCookies(authToken: String?)
 }

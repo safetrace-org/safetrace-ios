@@ -12,6 +12,8 @@
 		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
 		3E0E3A24244C0886006520E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
 		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
+		3E32BDB524F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
+		3E32BDB624F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
 		3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
 		3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
@@ -42,8 +44,10 @@
 		3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
 		3EBA763124C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
 		3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
-		3EC7599F24F5C87F00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
-		3EC759A024F5C87F00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
+		3EC759A524F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
+		3EC759A624F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
+		3EC759A824F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
+		3EC759A924F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
 		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
 		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
 		3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
@@ -197,6 +201,7 @@
 		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		3E32BDB424F970A600F5A2A8 /* SLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLog.swift; sourceTree = "<group>"; };
 		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
 		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
 		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -214,6 +219,7 @@
 		3EB4386B249D4A4200AA80DF /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
 		3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvents.swift; sourceTree = "<group>"; };
 		3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewHelper.swift; sourceTree = "<group>"; };
+		3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebErrorRetryView.swift; sourceTree = "<group>"; };
 		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
 		3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +385,7 @@
 			children = (
 				3E6A450F249EF627001E94A8 /* Update.swift */,
 				3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */,
+				3E32BDB424F970A600F5A2A8 /* SLog.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				DC0E0F992498263E00D3C9FC /* WebViewController.swift */,
+				3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -892,13 +900,13 @@
 				DC0E0F9C2498267800D3C9FC /* MainNavigationController.swift in Sources */,
 				3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */,
 				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
-				3EC7599F24F5C87F00B42D81 /* WebViewHelper.swift in Sources */,
 				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
 				3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
 				3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
 				3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */,
 				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
+				3EC759A824F8818A00B42D81 /* WebErrorRetryView.swift in Sources */,
 				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
 				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
 				3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */,
@@ -906,9 +914,11 @@
 				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
 				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
 				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
+				3E32BDB524F970A600F5A2A8 /* SLog.swift in Sources */,
 				3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */,
 				DCE2DC5124B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
 				3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
+				3EC759A524F87CAD00B42D81 /* WebViewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +939,7 @@
 				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
 				DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
 				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
+				3E32BDB624F970A600F5A2A8 /* SLog.swift in Sources */,
 				3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
 				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
 				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
@@ -947,13 +958,14 @@
 				3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
 				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
 				3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */,
+				3EC759A924F8818A00B42D81 /* WebErrorRetryView.swift in Sources */,
 				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
 				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
 				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
 				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
 				DC8DF29724CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */,
+				3EC759A624F87CAD00B42D81 /* WebViewHelper.swift in Sources */,
 				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
-				3EC759A024F5C87F00B42D81 /* WebViewHelper.swift in Sources */,
 				3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */,
 				3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */,
 				DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */,

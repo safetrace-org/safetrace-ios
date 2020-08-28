@@ -40,10 +40,14 @@ class MainNavigationController: UINavigationController {
     }
 
     func transitionToSafePass() {
-        let webViewController = WebViewController(environment: environment, showCloseButton: false)
-        webViewController.loadUrl(environment.safeTrace.safePassURL)
+        WebViewHelper.launchWebViewController(
+            url: environment.safeTrace.safePassURL,
+            showCloseButton: false,
+            environment: self.environment
+        ) { webViewController in
 
-        setViewControllers([webViewController], animated: true)
+            self.setViewControllers([webViewController], animated: true)
+        }
     }
 
 }
