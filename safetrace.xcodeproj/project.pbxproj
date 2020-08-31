@@ -7,103 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
-		3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
-		3E0E3A22244C0085006520E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
-		3E0E3A24244C0886006520E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
-		3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
-		3E32BDB524F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
-		3E32BDB624F970A600F5A2A8 /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E32BDB424F970A600F5A2A8 /* SLog.swift */; };
-		3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
-		3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */; };
-		3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
-		3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */; };
-		3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
-		3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05F324A1194E0052A242 /* SeparatorView.swift */; };
-		3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
-		3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A05FD24A13F070052A242 /* TappableView.swift */; };
-		3E5A060224A143AB0052A242 /* CitizenProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A060124A143AB0052A242 /* CitizenProviding.swift */; };
-		3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5A060124A143AB0052A242 /* CitizenProviding.swift */; };
-		3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
-		3E5F6383245209D900C508A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
-		3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
-		3E6A450A249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */; };
-		3E6A4510249EF627001E94A8 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A450F249EF627001E94A8 /* Update.swift */; };
-		3E6A4511249EF627001E94A8 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A450F249EF627001E94A8 /* Update.swift */; };
-		3E826841249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
-		3E826842249E9D8100B12FE3 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826840249E9D8100B12FE3 /* Environment.swift */; };
-		3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826843249EA00E00B12FE3 /* AppEnvironment.swift */; };
-		3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826843249EA00E00B12FE3 /* AppEnvironment.swift */; };
-		3E826849249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */; };
-		3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */; };
-		3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
-		3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */; };
-		3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
-		3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */; };
-		3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
-		3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4386B249D4A4200AA80DF /* Reactive+.swift */; };
-		3EBA763124C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
-		3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */; };
-		3EC759A524F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
-		3EC759A624F87CAD00B42D81 /* WebViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */; };
-		3EC759A824F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
-		3EC759A924F8818A00B42D81 /* WebErrorRetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */; };
-		3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
-		3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
-		3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
-		3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4E249AC93700B74759 /* UIScreen+.swift */; };
-		3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */; };
-		3EEFCB51249ADAF200B74759 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB4E249AC93700B74759 /* UIScreen+.swift */; };
-		3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */; };
-		3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */; };
-		3EEFCB57249BE06400B74759 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3EEFCB56249BE06400B74759 /* ReactiveSwift */; };
-		3EEFCB59249BE07500B74759 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3EEFCB58249BE07500B74759 /* ReactiveSwift */; };
-		3EEFCB5E249BE3AB00B74759 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3EEFCB5D249BE3AB00B74759 /* ReactiveCocoa */; };
-		3EEFCB60249BE4AE00B74759 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3EEFCB5F249BE4AE00B74759 /* ReactiveCocoa */; };
-		3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB64249BFD1100B74759 /* UIViewController+.swift */; };
-		3EEFCB66249BFD1100B74759 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFCB64249BFD1100B74759 /* UIViewController+.swift */; };
 		DC0BBB1C24468E5B00B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
 		DC0BBB2324468E5B00B18911 /* safetrace_sdk.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0BBB2D24468EA500B18911 /* SafeTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2C24468EA500B18911 /* SafeTrace.swift */; };
 		DC0BBB302446957000B18911 /* ContactTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB2F2446957000B18911 /* ContactTracer.swift */; };
 		DC0BBB34244699E400B18911 /* ContactTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB33244699E400B18911 /* ContactTrace.swift */; };
 		DC0BBB3624469A5500B18911 /* TraceIDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */; };
-		DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
-		DC0BBB4724469C9C00B18911 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4624469C9C00B18911 /* Assets.xcassets */; };
-		DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
-		DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
-		DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC0D959324B4E6D5003E38E0 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = DC0D959224B4E6D5003E38E0 /* Analytics */; };
-		DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
-		DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
-		DC0E0F9C2498267800D3C9FC /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainNavigationController.swift */; };
-		DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */; };
-		DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
-		DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
-		DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
-		DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */; };
-		DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */; };
-		DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A19244BFD41006520E4 /* IntroViewController.swift */; };
-		DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0BBB3D24469C9900B18911 /* AppDelegate.swift */; };
-		DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F992498263E00D3C9FC /* WebViewController.swift */; };
-		DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A1F244BFFA4006520E4 /* Fonts.swift */; };
-		DC31D07224994F7D0039FD6B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970BE244CBB2000AAF2CF /* TextField.swift */; };
-		DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */; };
-		DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */; };
-		DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */; };
-		DC31D07624994F7D0039FD6B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A23244C0886006520E4 /* Button.swift */; };
-		DC31D07724994F7D0039FD6B /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F9B2498267800D3C9FC /* MainNavigationController.swift */; };
-		DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6380244FDCF900C508A4 /* TappableTextView.swift */; };
-		DC31D07924994F7D0039FD6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F6382245209D900C508A4 /* Constants.swift */; };
-		DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A27244C1959006520E4 /* UIView+.swift */; };
-		DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E3A21244C0085006520E4 /* Colors.swift */; };
-		DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E0F972498261700D3C9FC /* BackButton.swift */; };
-		DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
-		DC31D08124994F7D0039FD6B /* SafeTrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; };
-		DC31D08324994F7D0039FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */; };
-		DC31D08424994F7D0039FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0BBB4624469C9C00B18911 /* Assets.xcassets */; };
-		DC31D08624994F7D0039FD6B /* SafeTrace.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0BBB1224468E5B00B18911 /* SafeTrace.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC53525924B51044002977C3 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = DC53525824B51044002977C3 /* Analytics */; };
 		DC738ACB247F02CA000BF99E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC738ACA247F02CA000BF99E /* LocationProvider.swift */; };
 		DC7AC09924475486000FF13D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09824475486000FF13D /* Networking.swift */; };
 		DC7AC09C24478B3A000FF13D /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AC09B24478B3A000FF13D /* URLSession+.swift */; };
@@ -118,16 +27,8 @@
 		DC7F32F824493A82009B61B8 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F724493A82009B61B8 /* Debug.swift */; };
 		DC7F32FA244A180D009B61B8 /* BluetoothCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */; };
 		DC897BA52450F65F00C80DF9 /* BluetoothCentralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */; };
-		DC8DF29624CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */; };
-		DC8DF29724CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */; };
-		DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */; };
-		DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */; };
-		DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
-		DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCA249BC43200D616AD /* DebugViewController.swift */; };
 		DCB94CCE249D62DC00D616AD /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */; };
 		DCB94CD0249D651800D616AD /* Data+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB94CCF249D651700D616AD /* Data+HexString.swift */; };
-		DCE2DC5124B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */; };
-		DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */; };
 		DCE94621244F888F001AB10D /* TraceIDStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */; };
 		DCE94624244F8ADE001AB10D /* SwiftyMocky in Frameworks */ = {isa = PBXBuildFile; productRef = DCE94623244F8ADE001AB10D /* SwiftyMocky */; };
 		DCE94626244F8E33001AB10D /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE94625244F8E33001AB10D /* Mock.generated.swift */; };
@@ -147,86 +48,9 @@
 			remoteGlobalIDString = DC0BBB1124468E5B00B18911;
 			remoteInfo = "ctzntrace-sdk";
 		};
-		DC0BBB6024469DF400B18911 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC0BBB0924468E5B00B18911 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC0BBB1124468E5B00B18911;
-			remoteInfo = "ctzntrace-sdk";
-		};
-		DC31D06924994F7D0039FD6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC0BBB0924468E5B00B18911 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC0BBB1124468E5B00B18911;
-			remoteInfo = "ctzntrace-sdk";
-		};
-		DCEBE8862450AEDD003D7967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC0BBB0924468E5B00B18911 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC0BBB3A24469C9900B18911;
-			remoteInfo = "safetrace-app";
-		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		DC0BBB6224469DF400B18911 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				DC0BBB5F24469DF400B18911 /* SafeTrace.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC31D08524994F7D0039FD6B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				DC31D08624994F7D0039FD6B /* SafeTrace.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		3E0E3A19244BFD41006520E4 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		3E0E3A1F244BFFA4006520E4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		3E0E3A21244C0085006520E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		3E0E3A23244C0886006520E4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		3E0E3A27244C1959006520E4 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		3E32BDB424F970A600F5A2A8 /* SLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLog.swift; sourceTree = "<group>"; };
-		3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationViewController.swift; sourceTree = "<group>"; };
-		3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTextField.swift; sourceTree = "<group>"; };
-		3E5A05F324A1194E0052A242 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
-		3E5A05FD24A13F070052A242 /* TappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableView.swift; sourceTree = "<group>"; };
-		3E5A060124A143AB0052A242 /* CitizenProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenProviding.swift; sourceTree = "<group>"; };
-		3E5F6380244FDCF900C508A4 /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
-		3E5F6382245209D900C508A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionImageLabelView.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		3E6A450F249EF627001E94A8 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
-		3E826840249E9D8100B12FE3 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		3E826843249EA00E00B12FE3 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProviding.swift; sourceTree = "<group>"; };
-		3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTraceProvider.swift; sourceTree = "<group>"; };
-		3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsProviding.swift; sourceTree = "<group>"; };
-		3EB4386B249D4A4200AA80DF /* Reactive+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+.swift"; sourceTree = "<group>"; };
-		3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvents.swift; sourceTree = "<group>"; };
-		3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewHelper.swift; sourceTree = "<group>"; };
-		3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebErrorRetryView.swift; sourceTree = "<group>"; };
-		3EE970BE244CBB2000AAF2CF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
-		3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewController.swift; sourceTree = "<group>"; };
-		3EEFCB4E249AC93700B74759 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
-		3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracingViewModel.swift; sourceTree = "<group>"; };
-		3EEFCB64249BFD1100B74759 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "safetrace-app.entitlements"; sourceTree = "<group>"; };
 		DC0BBB1224468E5B00B18911 /* SafeTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafeTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0BBB1524468E5B00B18911 /* safetrace_sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = safetrace_sdk.h; sourceTree = "<group>"; };
 		DC0BBB1624468E5B00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,22 +60,6 @@
 		DC0BBB2F2446957000B18911 /* ContactTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTracer.swift; sourceTree = "<group>"; };
 		DC0BBB33244699E400B18911 /* ContactTrace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTrace.swift; sourceTree = "<group>"; };
 		DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorage.swift; sourceTree = "<group>"; };
-		DC0BBB3B24469C9900B18911 /* SafePass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafePass.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC0BBB3D24469C9900B18911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC0BBB4624469C9C00B18911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DC0BBB4924469C9C00B18911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DC0BBB4B24469C9C00B18911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTracker.swift; sourceTree = "<group>"; };
-		DC0E0F972498261700D3C9FC /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		DC0E0F992498263E00D3C9FC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		DC0E0F9B2498267800D3C9FC /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
-		DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPermissionsProviding.swift; sourceTree = "<group>"; };
-		DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
-		DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOnboardingStep.swift; sourceTree = "<group>"; };
-		DC31D08B24994F7D0039FD6B /* SafePassDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafePassDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "safetrace-app-dev-Info.plist"; path = "/Users/maxmamis/code/safetrace-ios/safetrace-app-dev-Info.plist"; sourceTree = "<absolute>"; };
-		DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "safetrace-app-dev.entitlements"; sourceTree = "<group>"; };
 		DC738ACA247F02CA000BF99E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DC7AC09824475486000FF13D /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		DC7AC09B24478B3A000FF13D /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
@@ -266,12 +74,8 @@
 		DC7F32F724493A82009B61B8 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		DC7F32F9244A180D009B61B8 /* BluetoothCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentral.swift; sourceTree = "<group>"; };
 		DC897BA42450F65F00C80DF9 /* BluetoothCentralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCentralTests.swift; sourceTree = "<group>"; };
-		DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitcherOverlayViewController.swift; sourceTree = "<group>"; };
-		DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Debug.swift"; sourceTree = "<group>"; };
-		DCB94CCA249BC43200D616AD /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		DCB94CCD249D62DC00D616AD /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		DCB94CCF249D651700D616AD /* Data+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+HexString.swift"; sourceTree = "<group>"; };
-		DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneEnterViewController.swift; sourceTree = "<group>"; };
 		DCE94620244F888F001AB10D /* TraceIDStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceIDStorageTests.swift; sourceTree = "<group>"; };
 		DCE94625244F8E33001AB10D /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
 		DCE94627244F9D59001AB10D /* MockEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEnvironment.swift; sourceTree = "<group>"; };
@@ -301,151 +105,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC0BBB3824469C9900B18911 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC0BBB5E24469DF400B18911 /* SafeTrace.framework in Frameworks */,
-				DC0D959324B4E6D5003E38E0 /* Analytics in Frameworks */,
-				3EEFCB5E249BE3AB00B74759 /* ReactiveCocoa in Frameworks */,
-				3EEFCB57249BE06400B74759 /* ReactiveSwift in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC31D08024994F7D0039FD6B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC31D08124994F7D0039FD6B /* SafeTrace.framework in Frameworks */,
-				DC53525924B51044002977C3 /* Analytics in Frameworks */,
-				3EEFCB60249BE4AE00B74759 /* ReactiveCocoa in Frameworks */,
-				3EEFCB59249BE07500B74759 /* ReactiveSwift in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E0E3A1B244BFE1F006520E4 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3E0E3A27244C1959006520E4 /* UIView+.swift */,
-				3EEFCB4E249AC93700B74759 /* UIScreen+.swift */,
-				3EEFCB64249BFD1100B74759 /* UIViewController+.swift */,
-				3EB4386B249D4A4200AA80DF /* Reactive+.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3E0E3A1E244BFF76006520E4 /* Common UI */ = {
-			isa = PBXGroup;
-			children = (
-				3E0E3A23244C0886006520E4 /* Button.swift */,
-				3E0E3A21244C0085006520E4 /* Colors.swift */,
-				3E0E3A1F244BFFA4006520E4 /* Fonts.swift */,
-				3EE970BE244CBB2000AAF2CF /* TextField.swift */,
-				3E5F6380244FDCF900C508A4 /* TappableTextView.swift */,
-				DC0E0F972498261700D3C9FC /* BackButton.swift */,
-			);
-			path = "Common UI";
-			sourceTree = "<group>";
-		};
-		3E0E3A29244CA76F006520E4 /* Auth Step */ = {
-			isa = PBXGroup;
-			children = (
-				DC0E0FAA2498274B00D3C9FC /* AuthOnboardingStep.swift */,
-				3E0E3A19244BFD41006520E4 /* IntroViewController.swift */,
-				DCD7482D2447D09E00B93256 /* PhoneEnterViewController.swift */,
-				3EE970CA244CEAA800AAF2CF /* PhoneVerificationViewController.swift */,
-				3E5A05E7249FDFC80052A242 /* EmailVerificationViewController.swift */,
-			);
-			path = "Auth Step";
-			sourceTree = "<group>";
-		};
-		3E5A05F624A135370052A242 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3E6A4508249ECD93001E94A8 /* PermissionImageLabelView.swift */,
-				3E5A05F324A1194E0052A242 /* SeparatorView.swift */,
-				3E5A05FD24A13F070052A242 /* TappableView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		3E5A060024A1439E0052A242 /* Citizen */ = {
-			isa = PBXGroup;
-			children = (
-				3E5A060124A143AB0052A242 /* CitizenProviding.swift */,
-			);
-			path = Citizen;
-			sourceTree = "<group>";
-		};
-		3E6A450E249EF619001E94A8 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				3E6A450F249EF627001E94A8 /* Update.swift */,
-				3EC7599E24F5C87F00B42D81 /* WebViewHelper.swift */,
-				3E32BDB424F970A600F5A2A8 /* SLog.swift */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		3E82683F249E9D6B00B12FE3 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				3E5A060024A1439E0052A242 /* Citizen */,
-				3E826847249EA67D00B12FE3 /* SafeTrace */,
-				3E826846249EA66F00B12FE3 /* Permissions */,
-				3E826840249E9D8100B12FE3 /* Environment.swift */,
-				3E826843249EA00E00B12FE3 /* AppEnvironment.swift */,
-				DC0D959524B4F1E7003E38E0 /* AnalyticsTracker.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		3E826846249EA66F00B12FE3 /* Permissions */ = {
-			isa = PBXGroup;
-			children = (
-				DC0E0FA0249826CD00D3C9FC /* BluetoothPermissionsProviding.swift */,
-				3EB43868249D125500AA80DF /* NotificationPermissionsProviding.swift */,
-			);
-			path = Permissions;
-			sourceTree = "<group>";
-		};
-		3E826847249EA67D00B12FE3 /* SafeTrace */ = {
-			isa = PBXGroup;
-			children = (
-				3E826848249EA6AC00B12FE3 /* SafeTraceProviding.swift */,
-				3E82684B249EA6C200B12FE3 /* SafeTraceProvider.swift */,
-			);
-			path = SafeTrace;
-			sourceTree = "<group>";
-		};
-		3E82684E249EB23C00B12FE3 /* Contact Tracing */ = {
-			isa = PBXGroup;
-			children = (
-				3EEFCB4C249AC5B800B74759 /* ContactTracingViewController.swift */,
-				3EEFCB52249BCDDC00B74759 /* ContactTracingViewModel.swift */,
-				3E5A05F624A135370052A242 /* Views */,
-			);
-			path = "Contact Tracing";
-			sourceTree = "<group>";
-		};
-		3E82684F249EB2A400B12FE3 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DC0E0F992498263E00D3C9FC /* WebViewController.swift */,
-				3EC759A724F8818A00B42D81 /* WebErrorRetryView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		DC0BBB0824468E5B00B18911 = {
 			isa = PBXGroup;
 			children = (
 				DC0BBB1424468E5B00B18911 /* safetrace-sdk */,
 				DC0BBB1F24468E5B00B18911 /* safetrace-sdk-tests */,
-				DC0BBB3C24469C9900B18911 /* safetrace-app */,
 				DC0BBB1324468E5B00B18911 /* Products */,
 				DC0BBB5D24469DF400B18911 /* Frameworks */,
 			);
@@ -456,8 +123,6 @@
 			children = (
 				DC0BBB1224468E5B00B18911 /* SafeTrace.framework */,
 				DC0BBB1B24468E5B00B18911 /* safetrace-sdk-tests.xctest */,
-				DC0BBB3B24469C9900B18911 /* SafePass.app */,
-				DC31D08B24994F7D0039FD6B /* SafePassDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,44 +163,11 @@
 			path = Trace;
 			sourceTree = "<group>";
 		};
-		DC0BBB3C24469C9900B18911 /* safetrace-app */ = {
-			isa = PBXGroup;
-			children = (
-				DCB94CC6249BC01800D616AD /* Debug */,
-				3E0E3A1E244BFF76006520E4 /* Common UI */,
-				3E0E3A1B244BFE1F006520E4 /* Extensions */,
-				DC9650A0244BE03800CFB202 /* Features */,
-				3E82683F249E9D6B00B12FE3 /* Services */,
-				3E6A450E249EF619001E94A8 /* Utility */,
-				DC02ADD8244A89F30053E9E6 /* safetrace-app.entitlements */,
-				DC31D08D24994FB10039FD6B /* safetrace-app-dev.entitlements */,
-				DC0BBB3D24469C9900B18911 /* AppDelegate.swift */,
-				3E5F6382245209D900C508A4 /* Constants.swift */,
-				3EBA763024C64DC4005F3597 /* AnalyticsEvents.swift */,
-				DC0BBB4624469C9C00B18911 /* Assets.xcassets */,
-				DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */,
-				DC0BBB4B24469C9C00B18911 /* Info.plist */,
-				DC31D08C24994F7E0039FD6B /* safetrace-app-dev-Info.plist */,
-			);
-			path = "safetrace-app";
-			sourceTree = "<group>";
-		};
 		DC0BBB5D24469DF400B18911 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DC0E0F9D249826B500D3C9FC /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				DC0E0FA62498271F00D3C9FC /* OnboardingStep.swift */,
-				DC0E0FA82498273700D3C9FC /* OnboardingViewController.swift */,
-				3E0E3A29244CA76F006520E4 /* Auth Step */,
-				3E5A05F024A02F1B0052A242 /* OnboardingTextField.swift */,
-			);
-			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		DC7AC09724475478000FF13D /* Utility */ = {
@@ -588,35 +220,6 @@
 				DC0BBB3524469A5500B18911 /* TraceIDStorage.swift */,
 			);
 			path = "TraceID Storage";
-			sourceTree = "<group>";
-		};
-		DC8DF29424CF7F0C00077C24 /* App Switcher Overlay */ = {
-			isa = PBXGroup;
-			children = (
-				DC8DF29524CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift */,
-			);
-			path = "App Switcher Overlay";
-			sourceTree = "<group>";
-		};
-		DC9650A0244BE03800CFB202 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				DC8DF29424CF7F0C00077C24 /* App Switcher Overlay */,
-				3E82684F249EB2A400B12FE3 /* Common */,
-				3E82684E249EB23C00B12FE3 /* Contact Tracing */,
-				DC0E0F9D249826B500D3C9FC /* Onboarding */,
-				DC0E0F9B2498267800D3C9FC /* MainNavigationController.swift */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		DCB94CC6249BC01800D616AD /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				DCB94CC7249BC02500D616AD /* UIWindow+Debug.swift */,
-				DCB94CCA249BC43200D616AD /* DebugViewController.swift */,
-			);
-			path = Debug;
 			sourceTree = "<group>";
 		};
 		DCE94629244F9E80001AB10D /* mock */ = {
@@ -686,7 +289,6 @@
 			);
 			dependencies = (
 				DC0BBB1E24468E5B00B18911 /* PBXTargetDependency */,
-				DCEBE8872450AEDD003D7967 /* PBXTargetDependency */,
 			);
 			name = "safetrace-sdk-tests";
 			packageProductDependencies = (
@@ -695,54 +297,6 @@
 			productName = "ctzntrace-sdkTests";
 			productReference = DC0BBB1B24468E5B00B18911 /* safetrace-sdk-tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DC0BBB3A24469C9900B18911 /* safetrace-app */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC0BBB5724469C9C00B18911 /* Build configuration list for PBXNativeTarget "safetrace-app" */;
-			buildPhases = (
-				DC0BBB3724469C9900B18911 /* Sources */,
-				DC0BBB3824469C9900B18911 /* Frameworks */,
-				DC0BBB3924469C9900B18911 /* Resources */,
-				DC0BBB6224469DF400B18911 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC0BBB6124469DF400B18911 /* PBXTargetDependency */,
-			);
-			name = "safetrace-app";
-			packageProductDependencies = (
-				3EEFCB56249BE06400B74759 /* ReactiveSwift */,
-				3EEFCB5D249BE3AB00B74759 /* ReactiveCocoa */,
-				DC0D959224B4E6D5003E38E0 /* Analytics */,
-			);
-			productName = "trace-sdk-demo";
-			productReference = DC0BBB3B24469C9900B18911 /* SafePass.app */;
-			productType = "com.apple.product-type.application";
-		};
-		DC31D06724994F7D0039FD6B /* safetrace-app-dev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC31D08724994F7D0039FD6B /* Build configuration list for PBXNativeTarget "safetrace-app-dev" */;
-			buildPhases = (
-				DC31D06A24994F7D0039FD6B /* Sources */,
-				DC31D08024994F7D0039FD6B /* Frameworks */,
-				DC31D08224994F7D0039FD6B /* Resources */,
-				DC31D08524994F7D0039FD6B /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC31D06824994F7D0039FD6B /* PBXTargetDependency */,
-			);
-			name = "safetrace-app-dev";
-			packageProductDependencies = (
-				3EEFCB58249BE07500B74759 /* ReactiveSwift */,
-				3EEFCB5F249BE4AE00B74759 /* ReactiveCocoa */,
-				DC53525824B51044002977C3 /* Analytics */,
-			);
-			productName = "trace-sdk-demo";
-			productReference = DC31D08B24994F7D0039FD6B /* SafePassDev.app */;
-			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -762,9 +316,6 @@
 						CreatedOnToolsVersion = 11.4;
 						LastSwiftMigration = 1140;
 						TestTargetID = DC0BBB3A24469C9900B18911;
-					};
-					DC0BBB3A24469C9900B18911 = {
-						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -789,8 +340,6 @@
 			targets = (
 				DC0BBB1124468E5B00B18911 /* safetrace-sdk */,
 				DC0BBB1A24468E5B00B18911 /* safetrace-sdk-tests */,
-				DC0BBB3A24469C9900B18911 /* safetrace-app */,
-				DC31D06724994F7D0039FD6B /* safetrace-app-dev */,
 			);
 		};
 /* End PBXProject section */
@@ -807,24 +356,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC0BBB3924469C9900B18911 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC0BBB4A24469C9C00B18911 /* LaunchScreen.storyboard in Resources */,
-				DC0BBB4724469C9C00B18911 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC31D08224994F7D0039FD6B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC31D08324994F7D0039FD6B /* LaunchScreen.storyboard in Resources */,
-				DC31D08424994F7D0039FD6B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,105 +404,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC0BBB3724469C9900B18911 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC0E0FA72498271F00D3C9FC /* OnboardingStep.swift in Sources */,
-				DC0E0FAB2498274B00D3C9FC /* AuthOnboardingStep.swift in Sources */,
-				3E5A060224A143AB0052A242 /* CitizenProviding.swift in Sources */,
-				DCB94CCB249BC43200D616AD /* DebugViewController.swift in Sources */,
-				3E0E3A1A244BFD41006520E4 /* IntroViewController.swift in Sources */,
-				3E5A05F424A1194E0052A242 /* SeparatorView.swift in Sources */,
-				DC0BBB3E24469C9900B18911 /* AppDelegate.swift in Sources */,
-				DC0E0F9A2498263E00D3C9FC /* WebViewController.swift in Sources */,
-				DC8DF29624CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */,
-				3E0E3A20244BFFA4006520E4 /* Fonts.swift in Sources */,
-				3EE970BF244CBB2000AAF2CF /* TextField.swift in Sources */,
-				3E6A4510249EF627001E94A8 /* Update.swift in Sources */,
-				3EEFCB53249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
-				3E5A05E8249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
-				DC0E0FA92498273700D3C9FC /* OnboardingViewController.swift in Sources */,
-				3EE970CB244CEAA800AAF2CF /* PhoneVerificationViewController.swift in Sources */,
-				3EBA763124C64DC4005F3597 /* AnalyticsEvents.swift in Sources */,
-				3E826849249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
-				DC0E0FA1249826CD00D3C9FC /* BluetoothPermissionsProviding.swift in Sources */,
-				3E0E3A24244C0886006520E4 /* Button.swift in Sources */,
-				DC0E0F9C2498267800D3C9FC /* MainNavigationController.swift in Sources */,
-				3EB4386C249D4A4200AA80DF /* Reactive+.swift in Sources */,
-				3E5F6381244FDCF900C508A4 /* TappableTextView.swift in Sources */,
-				3E5F6383245209D900C508A4 /* Constants.swift in Sources */,
-				3E826844249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
-				3E5A05F124A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
-				3EB43869249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
-				3EEFCB4F249AC93700B74759 /* UIScreen+.swift in Sources */,
-				3E6A4509249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
-				3EC759A824F8818A00B42D81 /* WebErrorRetryView.swift in Sources */,
-				3EEFCB65249BFD1100B74759 /* UIViewController+.swift in Sources */,
-				3E0E3A28244C1959006520E4 /* UIView+.swift in Sources */,
-				3E5A05FE24A13F070052A242 /* TappableView.swift in Sources */,
-				3E826841249E9D8100B12FE3 /* Environment.swift in Sources */,
-				3E0E3A22244C0085006520E4 /* Colors.swift in Sources */,
-				DC0E0F982498261700D3C9FC /* BackButton.swift in Sources */,
-				DCA29A06244B912F0074CD29 /* PhoneEnterViewController.swift in Sources */,
-				3E32BDB524F970A600F5A2A8 /* SLog.swift in Sources */,
-				3EEFCB4D249AC5B800B74759 /* ContactTracingViewController.swift in Sources */,
-				DCE2DC5124B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
-				3E82684C249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
-				3EC759A524F87CAD00B42D81 /* WebViewHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC31D06A24994F7D0039FD6B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC31D06B24994F7D0039FD6B /* OnboardingStep.swift in Sources */,
-				3E82684D249EA6C200B12FE3 /* SafeTraceProvider.swift in Sources */,
-				DC31D06C24994F7D0039FD6B /* AuthOnboardingStep.swift in Sources */,
-				3E82684A249EA6AC00B12FE3 /* SafeTraceProviding.swift in Sources */,
-				DC31D06E24994F7D0039FD6B /* IntroViewController.swift in Sources */,
-				DC31D06F24994F7D0039FD6B /* AppDelegate.swift in Sources */,
-				DC31D07024994F7D0039FD6B /* WebViewController.swift in Sources */,
-				DC31D07124994F7D0039FD6B /* Fonts.swift in Sources */,
-				DC31D07224994F7D0039FD6B /* TextField.swift in Sources */,
-				3EEFCB54249BCDDC00B74759 /* ContactTracingViewModel.swift in Sources */,
-				3E6A4511249EF627001E94A8 /* Update.swift in Sources */,
-				DCE2DC5224B50D8D0071FE6F /* AnalyticsTracker.swift in Sources */,
-				3EEFCB50249ADAE900B74759 /* ContactTracingViewController.swift in Sources */,
-				3E32BDB624F970A600F5A2A8 /* SLog.swift in Sources */,
-				3E5A05F224A02F1B0052A242 /* OnboardingTextField.swift in Sources */,
-				DC31D07324994F7D0039FD6B /* OnboardingViewController.swift in Sources */,
-				DC31D07424994F7D0039FD6B /* PhoneVerificationViewController.swift in Sources */,
-				DC31D07524994F7D0039FD6B /* BluetoothPermissionsProviding.swift in Sources */,
-				DCB94CC9249BC03300D616AD /* UIWindow+Debug.swift in Sources */,
-				3E5A05F524A1194E0052A242 /* SeparatorView.swift in Sources */,
-				DC31D07624994F7D0039FD6B /* Button.swift in Sources */,
-				3EB4386D249D4A4200AA80DF /* Reactive+.swift in Sources */,
-				DC31D07724994F7D0039FD6B /* MainNavigationController.swift in Sources */,
-				3E6A450A249ECD93001E94A8 /* PermissionImageLabelView.swift in Sources */,
-				DC31D07824994F7D0039FD6B /* TappableTextView.swift in Sources */,
-				3E826842249E9D8100B12FE3 /* Environment.swift in Sources */,
-				3EB4386A249D125500AA80DF /* NotificationPermissionsProviding.swift in Sources */,
-				3EEFCB51249ADAF200B74759 /* UIScreen+.swift in Sources */,
-				3EEFCB66249BFD1100B74759 /* UIViewController+.swift in Sources */,
-				3E826845249EA00E00B12FE3 /* AppEnvironment.swift in Sources */,
-				DC31D07924994F7D0039FD6B /* Constants.swift in Sources */,
-				3E5A05FF24A13F070052A242 /* TappableView.swift in Sources */,
-				3EC759A924F8818A00B42D81 /* WebErrorRetryView.swift in Sources */,
-				DC31D07B24994F7D0039FD6B /* UIView+.swift in Sources */,
-				DC31D07C24994F7D0039FD6B /* Colors.swift in Sources */,
-				DC31D07D24994F7D0039FD6B /* BackButton.swift in Sources */,
-				DC31D07F24994F7D0039FD6B /* PhoneEnterViewController.swift in Sources */,
-				DC8DF29724CF7F1E00077C24 /* AppSwitcherOverlayViewController.swift in Sources */,
-				3EC759A624F87CAD00B42D81 /* WebViewHelper.swift in Sources */,
-				3E5A05E9249FDFC80052A242 /* EmailVerificationViewController.swift in Sources */,
-				3E5A060324A143AB0052A242 /* CitizenProviding.swift in Sources */,
-				3EBA763224C64DC4005F3597 /* AnalyticsEvents.swift in Sources */,
-				DCB94CCC249BC43D00D616AD /* DebugViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -980,33 +412,7 @@
 			target = DC0BBB1124468E5B00B18911 /* safetrace-sdk */;
 			targetProxy = DC0BBB1D24468E5B00B18911 /* PBXContainerItemProxy */;
 		};
-		DC0BBB6124469DF400B18911 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC0BBB1124468E5B00B18911 /* safetrace-sdk */;
-			targetProxy = DC0BBB6024469DF400B18911 /* PBXContainerItemProxy */;
-		};
-		DC31D06824994F7D0039FD6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC0BBB1124468E5B00B18911 /* safetrace-sdk */;
-			targetProxy = DC31D06924994F7D0039FD6B /* PBXContainerItemProxy */;
-		};
-		DCEBE8872450AEDD003D7967 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC0BBB3A24469C9900B18911 /* safetrace-app */;
-			targetProxy = DCEBE8862450AEDD003D7967 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		DC0BBB4824469C9C00B18911 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC0BBB4924469C9C00B18911 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DC0BBB2424468E5B00B18911 /* Debug */ = {
@@ -1236,131 +642,6 @@
 			};
 			name = Release;
 		};
-		DC0BBB5824469C9C00B18911 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePass;
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		DC0BBB5924469C9C00B18911 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePass;
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		DC31D08824994F7D0039FD6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePassDev;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		DC31D08924994F7D0039FD6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePassDev;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		DC31D08A24994F7D0039FD6B /* Staging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app-dev.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-dev";
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePassDev;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = INTERNAL;
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Staging;
-		};
 		DC7F32FB244A2F9E009B61B8 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1471,31 +752,6 @@
 			};
 			name = Staging;
 		};
-		DC7F32FE244A2F9E009B61B8 /* Staging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "safetrace-app/safetrace-app.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = L5262XM8UA;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "safetrace-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ctzn.safetrace;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = SafePass;
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Staging;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1525,26 +781,6 @@
 				DC0BBB2A24468E5B00B18911 /* Debug */,
 				DC0BBB2B24468E5B00B18911 /* Release */,
 				DC7F32FD244A2F9E009B61B8 /* Staging */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DC0BBB5724469C9C00B18911 /* Build configuration list for PBXNativeTarget "safetrace-app" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC0BBB5824469C9C00B18911 /* Debug */,
-				DC0BBB5924469C9C00B18911 /* Release */,
-				DC7F32FE244A2F9E009B61B8 /* Staging */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DC31D08724994F7D0039FD6B /* Build configuration list for PBXNativeTarget "safetrace-app-dev" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DC31D08824994F7D0039FD6B /* Debug */,
-				DC31D08924994F7D0039FD6B /* Release */,
-				DC31D08A24994F7D0039FD6B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1587,36 +823,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3EEFCB56249BE06400B74759 /* ReactiveSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3EEFCB55249BE06400B74759 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
-			productName = ReactiveSwift;
-		};
-		3EEFCB58249BE07500B74759 /* ReactiveSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3EEFCB55249BE06400B74759 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
-			productName = ReactiveSwift;
-		};
-		3EEFCB5D249BE3AB00B74759 /* ReactiveCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3EEFCB5A249BE39C00B74759 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
-			productName = ReactiveCocoa;
-		};
-		3EEFCB5F249BE4AE00B74759 /* ReactiveCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3EEFCB5A249BE39C00B74759 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
-			productName = ReactiveCocoa;
-		};
-		DC0D959224B4E6D5003E38E0 /* Analytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */;
-			productName = Analytics;
-		};
-		DC53525824B51044002977C3 /* Analytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DC0D959124B4E6D5003E38E0 /* XCRemoteSwiftPackageReference "analytics-ios" */;
-			productName = Analytics;
-		};
 		DCE94623244F8ADE001AB10D /* SwiftyMocky */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DCE94622244F8ADE001AB10D /* XCRemoteSwiftPackageReference "SwiftyMocky" */;
