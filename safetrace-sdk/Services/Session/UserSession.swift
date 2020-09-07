@@ -38,13 +38,24 @@ public enum LoginResponseContext {
 private let authTokenKeychainIdentifier = "UserToken"
 private let userIDKeychainIdentifier = "UserId"
 
-#if INTERNAL
-private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-dev"
-private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilantedev"
-#else
-private let keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace"
-private let keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilante"
-#endif
+func getKeychains() -> (app: KeychainProtocol, group: KeychainProtocol) {
+    let keychainAppIdentifier: String
+    let keychainGroupIdentifier: String
+    
+    let bundleID = Bundle.main.bundleIdentifier
+    if bundleID?.hasSuffix("-dev") ?? false {
+        keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace-dev"
+        keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilantedev"
+    } else {
+        keychainAppIdentifier = "L5262XM8UA.org.ctzn.safetrace"
+        keychainGroupIdentifier = "L5262XM8UA.com.sp0n.vigilante"
+    }
+    
+    let appKeychain = KeychainSwift(accessGroup: keychainAppIdentifier)
+    let groupKeychain = KeychainSwift(accessGroup: keychainGroupIdentifier)
+
+    return (appKeychain, groupKeychain)
+}
 
 class UserSession: UserSessionProtocol {
     
@@ -74,12 +85,11 @@ class UserSession: UserSessionProtocol {
     
     init(
         environment: Environment & UserSessionAuthenticationDelegate,
-        appKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainAppIdentifier),
-        groupKeychain: KeychainProtocol = KeychainSwift(accessGroup: keychainGroupIdentifier)
+        keychains: (app: KeychainProtocol, group: KeychainProtocol) = getKeychains()
     ) {
         self.environment = environment
-        self.keychain = appKeychain
-        self.groupKeychain = groupKeychain
+        self.keychain = keychains.app
+        self.groupKeychain = keychains.group
         self.authenticationDelegate = environment
 
         setFirstTimeDefaultIfNeeded()

@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/luoxiu/Chalk",
         "state": {
           "branch": null,
-          "revision": "fbb0adbe8a54d8dbfcb4824ebc96bd3b401d0757",
+          "revision": "b525ab2c82a379911dfa051a6b7225617708e173",
           "version": "0.0.7"
         }
       },
@@ -69,7 +69,7 @@
         "repositoryURL": "https://github.com/luoxiu/Rainbow",
         "state": {
           "branch": null,
-          "revision": "438720f94da08582aff2abc4712de1c23f464d45",
+          "revision": "551c8f0893e38690d7c358c7e488c20c0f77933c",
           "version": "0.0.5"
         }
       },
