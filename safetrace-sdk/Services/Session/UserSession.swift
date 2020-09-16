@@ -109,8 +109,8 @@ class UserSession: UserSessionProtocol {
             attemptToLoadValuesFromAppGroup(groupKeychain: groupKeychain)
         }
 
-        if let userID = userID {
-            loadUserProfileFromAPI(userID: userID)
+        if let userID = userID, let authToken = authToken {
+            loadUserProfileFromAPI(userID: userID, authToken: authToken)
         }
     }
 
@@ -183,7 +183,7 @@ class UserSession: UserSessionProtocol {
 
     private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
-        self.loadUserProfileFromAPI(userID: userID)
+        self.loadUserProfileFromAPI(userID: userID, authToken: authToken)
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
 
@@ -335,8 +335,8 @@ class UserSession: UserSessionProtocol {
         } catch { }
     }
 
-    private func loadUserProfileFromAPI(userID: String, completion: ((Result<User, Error>) -> Void)? = nil) {
-        environment.network.getUser(userID: userID) { result in
+    private func loadUserProfileFromAPI(userID: String, authToken: String, completion: ((Result<User, Error>) -> Void)? = nil) {
+        environment.network.getUser(userID: userID, authToken: authToken) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure:
