@@ -10,7 +10,7 @@ protocol NetworkProtocol {
     func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<AuthData, Error>) -> Void)
     func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     func getUser(userID: String, authToken: String, completion: @escaping (Result<User, Error>) -> Void)
-    func updateUser(userID: String, profile: User, completion: @escaping (Result<User, Error>) -> Void)
+    func updateUser(userID: String, profile: User, completion: @escaping (Result<Void, Error>) -> Void)
 
     func setTracingEnabled(_ enabled: Bool, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
     func syncPushToken(_ token: Data, completion: @escaping (Result<Void, Error>) -> Void)
@@ -126,7 +126,7 @@ class Network: NetworkProtocol {
             completion: completion)
     }
 
-    func updateUser(userID: String, profile: User, completion: @escaping (Result<User, Error>) -> Void) {
+    func updateUser(userID: String, profile: User, completion: @escaping (Result<Void, Error>) -> Void) {
         urlSession.sendRequest(
             with: try URLRequest(
                 endpoint: "v1/user/\(userID)",
@@ -134,7 +134,6 @@ class Network: NetworkProtocol {
                 host: .sp0n,
                 token: environment.session.authToken,
                 body: profile),
-            resultType: User.self,
             completion: completion)
     }
     
