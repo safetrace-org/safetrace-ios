@@ -24,6 +24,14 @@ struct AuthData: Codable {
     public let errorMessageToDisplay: String?
 }
 
+public struct User: Codable {
+    public let email: String?
+    public let firstName: String?
+    public let lastName: String?
+    public var avatarURL: URL?
+    public var avatarThumbURL: URL?
+}
+
 public enum LoginResponseContext {
     public struct EmailVerificationData {
         public let email: String
@@ -37,6 +45,7 @@ public enum LoginResponseContext {
 
 private let authTokenKeychainIdentifier = "UserToken"
 private let userIDKeychainIdentifier = "UserId"
+private let userProfileKeychainIdentifer = "UserProfile"
 
 func getKeychains() -> (app: KeychainProtocol, group: KeychainProtocol) {
     let keychainAppIdentifier: String
@@ -78,7 +87,8 @@ class UserSession: UserSessionProtocol {
 
     private(set) var userID: String?
     private(set) var authToken: String?
-    
+    private(set) var user: User?
+
     private let environment: Environment
     private let keychain: KeychainProtocol
     private let groupKeychain: KeychainProtocol
@@ -98,12 +108,17 @@ class UserSession: UserSessionProtocol {
         if !isAuthenticated {
             attemptToLoadValuesFromAppGroup(groupKeychain: groupKeychain)
         }
+
+        if let userID = userID {
+            loadUserProfileFromAPI(userID: userID)
+        }
     }
 
     func logout() {
         SafeTrace.stopTracing()
 
         updateStoredValues(token: nil, userID: nil)
+        updateStoredUser(user: nil)
         authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
     
@@ -168,6 +183,7 @@ class UserSession: UserSessionProtocol {
 
     private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
+        self.loadUserProfileFromAPI(userID: userID)
         self.authenticationDelegate?.authenticationStatusDidChange(forSession: self)
     }
 
@@ -256,6 +272,10 @@ class UserSession: UserSessionProtocol {
         }
         
         updateLocalValues(token: authToken, userID: userID)
+
+        if let userProfile = getCachedUserProfile(from: self.keychain) {
+            self.user = userProfile
+        }
     }
     
     // Try to load shared values from Citizen app, if present
@@ -267,6 +287,11 @@ class UserSession: UserSessionProtocol {
         
         // Persist values in this app's keychain now that we have them
         updateStoredValues(token: authToken, userID: userID)
+
+        if let userProfile = getCachedUserProfile(from: groupKeychain) {
+            self.user = userProfile
+            updateStoredUser(user: userProfile)
+        }
     }
     
     private func getCachedAuthToken(from keychain: KeychainProtocol) -> String? {
@@ -277,6 +302,17 @@ class UserSession: UserSessionProtocol {
         return keychain.get(userIDKeychainIdentifier)
     }
 
+    private func getCachedUserProfile(from keychain: KeychainProtocol) -> User? {
+        // If we can't load profile data for some reason, that's okay - we'll
+        // end up loading it later via API anyway.
+        guard let userData = keychain.getData(userProfileKeychainIdentifer) else {
+            return nil
+        }
+
+        let user = try? JSONDecoder().decode(User.self, from: userData)
+        return user
+    }
+
     /// Since we save userID and token on keychain, it's persisted even if app is deleted
     private func setFirstTimeDefaultIfNeeded() {
         guard !UserDefaults.standard.bool(forKey: "org.ctzn.firstInstall") else { return }
@@ -284,17 +320,55 @@ class UserSession: UserSessionProtocol {
         UserDefaults.standard.set(true, forKey: "org.ctzn.firstInstall")
         logout()
     }
+
+    private func updateStoredUser(user: User?) {
+        self.user = user
+
+        guard let user = user else {
+            keychain.delete(userProfileKeychainIdentifer)
+            return
+        }
+
+        do {
+            let data = try JSONEncoder().encode(user)
+            keychain.setData(data, forKey: userProfileKeychainIdentifer, withAccess: .accessibleAfterFirstUnlock)
+        } catch { }
+    }
+
+    private func loadUserProfileFromAPI(userID: String, completion: ((Result<User, Error>) -> Void)? = nil) {
+        environment.network.getUser(userID: userID) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    break
+                case .success(let user):
+                    self.updateStoredUser(user: user)
+                }
+                completion?(result)
+            }
+        }
+    }
 }
 
 //sourcery: AutoMockable
 protocol KeychainProtocol {
     var accessGroup: String? { get set }
     @discardableResult func set(_ value: String, forKey key: String, withAccess: KeychainSwiftAccessOptions?) -> Bool
+    @discardableResult func setData(_ value: Data, forKey key: String, withAccess access: KeychainSwiftAccessOptions?) -> Bool
     func get(_ key: String) -> String?
+    func getData(_ key: String) -> Data?
     @discardableResult func delete(_ key: String) -> Bool
 }
 
-extension KeychainSwift: KeychainProtocol { }
+extension KeychainSwift: KeychainProtocol {
+    func getData(_ key: String) -> Data? {
+        self.getData(key, asReference: false)
+    }
+
+    public func setData(_ value: Data, forKey key: String, withAccess access: KeychainSwiftAccessOptions?) -> Bool {
+        return self.set(value, forKey: key, withAccess: access)
+    }
+}
 
 extension KeychainSwift {
     convenience init(accessGroup: String?) {

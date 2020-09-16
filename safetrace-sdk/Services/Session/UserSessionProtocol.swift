@@ -19,6 +19,7 @@ public protocol SafeTraceSession {
     var isAuthenticated: Bool { get }
     var userID: String? { get }
     var authToken: String? { get }
+    var user: User? { get }
     var isCitizenAuthenticated: Bool { get }
 
     func requestAuthenticationCode(for phone: String, completion: @escaping (Result<Void, Error>) -> Void)
