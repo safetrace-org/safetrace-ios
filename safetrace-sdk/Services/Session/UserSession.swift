@@ -25,9 +25,9 @@ struct AuthData: Codable {
 }
 
 public struct User: Codable {
-    public let email: String?
-    public let firstName: String?
-    public let lastName: String?
+    public var email: String?
+    public var firstName: String?
+    public var lastName: String?
     public var avatarURL: URL?
     public var avatarThumbURL: URL?
 }
@@ -179,6 +179,21 @@ class UserSession: UserSessionProtocol {
     
     func setAPNSToken(_ token: Data) {
         environment.network.syncPushToken(token, completion: { _ in })
+    }
+
+    func updateUser(_ update: (inout User) -> Void, completion: @escaping (Result<User, Error>) -> Void) {
+        guard
+            let userID = userID,
+            let authToken = authToken,
+            var userToUpdate = self.user
+        else {
+            assertionFailure("Attempting to update a user profile while logged out")
+            completion(.failure(SessionError.notLoggedIn))
+            return
+        }
+
+        update(&userToUpdate)
+        updateUser(userToUpdate, userID: userID, authToken: authToken, completion: completion)
     }
 
     private func authenticate(withUserID userID: String, authToken: String) {
@@ -345,6 +360,18 @@ class UserSession: UserSessionProtocol {
                     self.updateStoredUser(user: user)
                 }
                 completion?(result)
+            }
+        }
+    }
+
+    private func updateUser(_ user: User, userID: String, authToken: String, completion: @escaping (Result<User, Error>) -> Void) {
+        environment.network.updateUser(userID: userID, profile: user) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                self.updateStoredUser(user: user)
+                completion(.success(user))
             }
         }
     }
