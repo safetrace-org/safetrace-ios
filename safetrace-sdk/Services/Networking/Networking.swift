@@ -207,7 +207,8 @@ class Network: NetworkProtocol {
             with: try URLRequest(
                 endpoint: "v1/sidecar/users/\(userID)/active",
                 method: .post,
-                host: .sp0n, token: environment.session.authToken,
+                host: .sp0n,
+                token: environment.session.authToken,
                 body: HealthCheckPayload(
                     bluetooth_enabled: bluetoothEnabled,
                     notifications_enabled: notificationsEnabled,

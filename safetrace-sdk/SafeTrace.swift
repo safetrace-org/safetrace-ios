@@ -29,6 +29,8 @@ public final class SafeTrace {
         get { return networkEnvironment }
         set { networkEnvironment = newValue }
     }
+
+    public static var applicationUserAgent: String?
     
     /// Will start the scanning process. May only be called once authenticated.
     public static func startTracing() {

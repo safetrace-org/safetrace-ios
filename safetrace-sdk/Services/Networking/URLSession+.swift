@@ -76,7 +76,10 @@ extension URLRequest {
         self.init(url: url)
         self.httpMethod = method.rawValue
         self.httpBody = try body?.toData(dateEncodingStrategy: dateEncodingStrategy)
-        
+
+        if let userAgent = SafeTrace.applicationUserAgent {
+            self.addValue(userAgent, forHTTPHeaderField: "user-agent")
+        }
         if let token = token {
             self.addValue(token, forHTTPHeaderField: "x-access-token")
         }
