@@ -105,10 +105,6 @@ class UserSession: UserSessionProtocol {
         setFirstTimeDefaultIfNeeded()
         attemptToLoadCachedValues()
 
-        if !isAuthenticated {
-            attemptToLoadValuesFromAppGroup(groupKeychain: groupKeychain)
-        }
-
         if let userID = userID, let authToken = authToken {
             loadUserProfileFromAPI(userID: userID, authToken: authToken)
         }
@@ -290,22 +286,6 @@ class UserSession: UserSessionProtocol {
 
         if let userProfile = getCachedUserProfile(from: self.keychain) {
             self.user = userProfile
-        }
-    }
-    
-    // Try to load shared values from Citizen app, if present
-    private func attemptToLoadValuesFromAppGroup(groupKeychain: KeychainProtocol) {
-        guard let authToken = getCachedAuthToken(from: groupKeychain),
-            let userID = getCachedUserID(from: groupKeychain) else {
-            return
-        }
-        
-        // Persist values in this app's keychain now that we have them
-        updateStoredValues(token: authToken, userID: userID)
-
-        if let userProfile = getCachedUserProfile(from: groupKeychain) {
-            self.user = userProfile
-            updateStoredUser(user: userProfile)
         }
     }
     
