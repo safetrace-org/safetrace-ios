@@ -32,6 +32,8 @@ public final class SafeTrace {
     }
 
     public static var applicationUserAgent: String?
+
+    public static var tracingStatusChangeHandler: ((Bool) -> Void)?
     
     /// Will start the scanning process. May only be called once authenticated.
     public static func startTracing() {
@@ -44,6 +46,7 @@ public final class SafeTrace {
             true,
             userID: userID,
             completion: { _ in })
+        SafeTrace.tracingStatusChangeHandler?(true)
     }
 
     public static func stopTracing() {
@@ -55,6 +58,7 @@ public final class SafeTrace {
                 userID: userID,
                 completion: { _ in })
         }
+        SafeTrace.tracingStatusChangeHandler?(false)
     }
     
     public static func sendHealthCheck(wakeReason: WakeReason, completion: (() -> Void)? = nil) {
