@@ -1,5 +1,4 @@
 import CoreBluetooth
-import CoreLocation
 import Foundation
 import UIKit
 import UserNotifications

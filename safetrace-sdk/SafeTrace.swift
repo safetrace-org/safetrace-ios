@@ -1,3 +1,4 @@
+import CoreLocation
 import UIKit
 
 public enum WakeReason: String, Encodable {
@@ -63,6 +64,9 @@ public final class SafeTrace {
         let isOptedIn = environment.tracer.isTracingEnabled
         let appVersion = UIApplication.clientApplicationVersionShortDescription
         let bluetoothHardwareEnabled = environment.tracer.isBluetoothHardwareEnabled
+        let locationAuthorization = CLLocationManager.authorizationStatus()
+                let locationEnabled = locationAuthorization == .authorizedAlways
+                    || locationAuthorization == .authorizedWhenInUse
         UIDevice.current.isBatteryMonitoringEnabled = true
         let batteryLevel = Int(UIDevice.current.batteryLevel * 100)
         let isLowPowerMode = ProcessInfo.processInfo.isLowPowerModeEnabled
@@ -76,6 +80,7 @@ public final class SafeTrace {
                 userID: userID,
                 bluetoothEnabled: bluetoothEnabled,
                 notificationsEnabled: pushEnabled,
+                locationEnabled: locationEnabled,
                 wakeReason: wakeReason,
                 isOptedIn: isOptedIn,
                 appVersion: appVersion,
@@ -175,6 +180,16 @@ public final class SafeTrace {
             sendCheck()
         }
     }
+
+    public static func syncLocation(_ location: LocationRequest, completion: (() -> Void)? = nil) {
+            guard let userID = environment.session.userID else { return }
+            let task = UIApplication.shared.beginBackgroundTask()
+
+            environment.network.syncLocation(location, userID: userID) { _ in
+                completion?()
+                UIApplication.shared.endBackgroundTask(task)
+            }
+        }
 }
 
 extension SafeTrace {

@@ -18,6 +18,7 @@ protocol NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        locationEnabled: Bool,
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
@@ -29,7 +30,8 @@ protocol NetworkProtocol {
 
     func getTraceIDs(userID: String, completion: @escaping (Result<[TraceIDRecord], Error>) -> Void)
     func uploadTraces(_ traces: ContactTraces, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
-    
+
+    func syncLocation(_ location: LocationRequest, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 class Network: NetworkProtocol {
@@ -184,6 +186,7 @@ class Network: NetworkProtocol {
         userID: String,
         bluetoothEnabled: Bool,
         notificationsEnabled: Bool,
+        locationEnabled: Bool,
         wakeReason: WakeReason,
         isOptedIn: Bool,
         appVersion: String,
@@ -195,6 +198,7 @@ class Network: NetworkProtocol {
         struct HealthCheckPayload: Encodable {
             let bluetooth_enabled: Bool
             let notifications_enabled: Bool
+            let location_enabled: Bool
             let wake_reason: WakeReason
             let is_opted_in: Bool
             let app_version: String
@@ -212,6 +216,7 @@ class Network: NetworkProtocol {
                 body: HealthCheckPayload(
                     bluetooth_enabled: bluetoothEnabled,
                     notifications_enabled: notificationsEnabled,
+                    location_enabled: locationEnabled,
                     wake_reason: wakeReason,
                     is_opted_in: isOptedIn,
                     app_version: appVersion,
@@ -245,5 +250,19 @@ class Network: NetworkProtocol {
                 body: traces,
                 dateEncodingStrategy: .iso8601),
             completion:completion)
+    }
+
+    // MARK: - Location
+    func syncLocation(_ location: LocationRequest, userID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "v1/users/\(userID)/location",
+                method: .post,
+                host: .sp0n,
+                token: environment.session.authToken,
+                body: location
+            ),
+            completion: completion
+        )
     }
 }
