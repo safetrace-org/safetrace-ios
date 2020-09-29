@@ -567,6 +567,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk";
 				PRODUCT_MODULE_NAME = SafeTrace;
 				PRODUCT_NAME = SafeTrace;
@@ -599,6 +600,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk";
 				PRODUCT_MODULE_NAME = SafeTrace;
 				PRODUCT_NAME = SafeTrace;
@@ -731,6 +733,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.ctzn.safetrace-sdk";
 				PRODUCT_MODULE_NAME = SafeTrace;
 				PRODUCT_NAME = SafeTrace;
