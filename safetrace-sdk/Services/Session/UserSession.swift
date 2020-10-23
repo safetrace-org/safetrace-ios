@@ -192,6 +192,38 @@ class UserSession: UserSessionProtocol {
         updateUser(userToUpdate, userID: userID, authToken: authToken, completion: completion)
     }
 
+    func updateUserAvatar(jpegData: Data, completion: @escaping (Result<AvatarUploadResponse, Error>) -> Void) {
+        guard
+            let userID = userID,
+            let _ = authToken
+        else {
+            assertionFailure("Attempting to update a user profile while logged out")
+            completion(.failure(SessionError.notLoggedIn))
+            return
+        }
+
+        environment.network.updateUserAvatar(
+            userID: userID,
+            jpegData: jpegData
+        ) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                let updatedUser = User(
+                    email: self.user?.email,
+                    firstName: self.user?.firstName,
+                    lastName: self.user?.lastName,
+                    avatarURL: response.avatarURL,
+                    avatarThumbURL: response.avatarThumbURL
+                )
+                self.updateStoredUser(user: updatedUser)
+                completion(.success(response))
+            }
+        }
+    }
+
     private func authenticate(withUserID userID: String, authToken: String) {
         self.updateStoredValues(token: authToken, userID: userID)
         self.loadUserProfileFromAPI(userID: userID, authToken: authToken)

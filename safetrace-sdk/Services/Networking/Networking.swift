@@ -11,6 +11,7 @@ protocol NetworkProtocol {
     func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     func getUser(userID: String, authToken: String, completion: @escaping (Result<User, Error>) -> Void)
     func updateUser(userID: String, profile: User, completion: @escaping (Result<Void, Error>) -> Void)
+    func updateUserAvatar(userID: String, jpegData: Data, completion: @escaping (Result<AvatarUploadResponse, Error>) -> Void)
 
     func setTracingEnabled(_ enabled: Bool, userID: String, completion: @escaping (Result<Void, Error>) -> Void)
     func syncPushToken(_ token: Data, completion: @escaping (Result<Void, Error>) -> Void)
@@ -136,6 +137,20 @@ class Network: NetworkProtocol {
                 host: .sp0n,
                 token: environment.session.authToken,
                 body: profile),
+            completion: completion)
+    }
+
+    func updateUserAvatar(userID: String, jpegData: Data, completion: @escaping (Result<AvatarUploadResponse, Error>) -> Void) {
+        let base64String = jpegData.base64EncodedString()
+        urlSession.sendRequest(
+            with: try URLRequest(
+                endpoint: "/v1/users/\(userID)/avatar",
+                method: .post,
+                host: .sp0n,
+                token: self.environment.session.authToken,
+                body: ["raw": base64String]
+            ),
+            resultType: AvatarUploadResponse.self,
             completion: completion)
     }
     

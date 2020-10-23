@@ -27,6 +27,7 @@ public protocol SafeTraceSession {
     func authenticateWithEmailCode(_ code: String, phone: String, completion: @escaping (Result<Void, Error>) -> Void)
     func resendEmailAuthCode(phone: String, deviceID: String?, completion: @escaping (Result<Void, Error>) -> Void)
     func updateUser(_ update: (inout User) -> Void, completion: @escaping (Result<User, Error>) -> Void)
+    func updateUserAvatar(jpegData: Data, completion: @escaping (Result<AvatarUploadResponse, Error>) -> Void)
     func setAPNSToken(_ token: Data)
     func syncAuthTokenWebviewCookies(completion: (() -> Void)?)
     func logout()
