@@ -94,29 +94,29 @@ public final class SafeTrace {
             ) { result in
                     completion?()
 
-                    switch result {
-                    case .success:
-                        Debug.notify(
-                            title: "Health Check Sent",
-                            body: "Error: None",
-                            identifier: UUID().uuidString
-                        )
-                    case .failure(let error):
-                        Debug.notify(
-                            title: "Health Check Sent",
-                            body: "Error: \(error.localizedDescription)",
-                            identifier: UUID().uuidString
-                        )
-                    }
-                
+//                    switch result {
+//                    case .success:
+//                        Debug.notify(
+//                            title: "Health Check Sent",
+//                            body: "Error: None",
+//                            identifier: UUID().uuidString
+//                        )
+//                    case .failure(let error):
+//                        Debug.notify(
+//                            title: "Health Check Sent",
+//                            body: "Error: \(error.localizedDescription)",
+//                            identifier: UUID().uuidString
+//                        )
+//                    }
+//                
                     UIApplication.shared.endBackgroundTask(task)
                 }
 
-            Debug.notify(
-                title: "Sending Health Check",
-                body: "Wake Reason: \(wakeReason.rawValue)",
-                identifier: UUID().uuidString
-            )
+//            Debug.notify(
+//                title: "Sending Health Check",
+//                body: "Wake Reason: \(wakeReason.rawValue)",
+//                identifier: UUID().uuidString
+//            )
         }
     }
 
